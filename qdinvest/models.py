@@ -1,0 +1,223 @@
+#coding:utf-8
+from django.db import models
+
+# Create your models here.
+
+'''
+基础用户表
+'''
+class USERS(models.Model):
+	u_name = models.CharField(max_length=50,verbose_name='用户名')
+	u_pwd = models.CharField(max_length=20,verbose_name='密码')
+	u_tel = models.CharField(max_length=20,verbose_name='手机号')
+	u_status = models.IntegerField(default=0,verbose_name='用户状态')
+
+	def __unicode__(self):
+		return self.u_name
+
+	class Meta:
+		verbose_name = '用户'
+		verbose_name_plural = '用户管理'
+
+'''
+用户账户信息
+'''
+class ACCOUNT(models.Model):
+	ac_user = models.OneToOneField(USERS,verbose_name="用户")
+	ac_like = models.IntegerField(default=0,verbose_name="关注的项目数")
+	ac_support = models.IntegerField(default=0,verbose_name="支持的项目数")
+	ac_sponsor = models.IntegerField(default=0,verbose_name="发起的项目数")
+	ac_infos = models.IntegerField(default=0,verbose_name="未读消息数量")
+	ac_balance = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='账户余额')
+	ac_frozen = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='冻结资金')
+	ac_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='待收收益')
+	ac_actual_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='实际收益')
+	ac_total_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='累计投资')
+	ac_total_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='累计收益')
+
+	def __unicode__(self):
+		return self.ac_user.u_name
+
+	class Meta:
+		verbose_name = '账户'
+		verbose_name_plural = '账户管理'
+
+'''
+行业
+'''
+class INDUSTRY(models.Model):
+	in_name = models.CharField(max_length=100,verbose_name="行业名称")
+
+	def __unicode__(self):
+		return self.in_name
+
+	class Meta:
+		verbose_name = '行业'
+		verbose_name_plural = '行业管理'
+
+'''
+地区 城市 基础信息
+'''
+class PROVINCE(models.Model):
+	pr_name = models.CharField(max_length=20,verbose_name="省")
+
+	def __unicode__(self):
+		return self.pr_name
+
+	class Meta:
+		verbose_name = '地区'
+		verbose_name_plural = '地区管理'
+
+'''
+股权众筹
+'''
+class STOCK(models.Model):
+	st_user = models.ForeignKey(USERS,verbose_name="用户")
+	st_title = models.CharField(max_length=100,verbose_name="标题")
+	st_image = models.CharField(max_length=200,verbose_name="LOGO")
+	st_brief = models.CharField(max_length=200,verbose_name="描述")
+	st_begin_time = models.DateTimeField(verbose_name="开始时间")
+	st_end_time = models.DateTimeField(verbose_name="结束时间")
+	st_create_time = models.DateTimeField(verbose_name="创建时间")
+	st_scale = models.FloatField(verbose_name="出让比例")
+	st_total_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资总额')
+	st_current_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='当前已经认购')
+	st_min_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购起点')
+	st_industry = models.ForeignKey(INDUSTRY,verbose_name="所属行业")
+	st_province = models.ForeignKey(PROVINCE,verbose_name="所属地区")
+	st_pro_type = models.CharField(max_length=20,verbose_name="项目属性")
+	st_com_type = models.CharField(max_length=20,verbose_name="公司类型")
+	st_like_count = models.IntegerField(default=0,verbose_name="关注数")
+	st_invest_count = models.IntegerField(default=0,verbose_name="认购次数")
+	st_hint = models.TextField(verbose_name="重要提示")
+	st_com_brief = models.TextField(verbose_name="公司简介")
+	st_protect = models.TextField(verbose_name="投资者保护机制")
+	st_inf_expose = models.TextField(verbose_name="信息披露安排")
+	st_plan = models.TextField(verbose_name="融资计划")
+	st_finance = models.TextField(verbose_name="财务情况")
+	st_good_bad = models.TextField(verbose_name="优势和劣势")
+	st_market = models.TextField(verbose_name="市场分析")
+	st_business = models.TextField(verbose_name="商业模式")
+	st_risk = models.TextField(verbose_name="风险控制")
+	st_team = models.TextField(verbose_name="团队介绍")
+	st_prospectus = models.TextField(verbose_name="投资计划书")
+	st_sort = models.IntegerField(default=0,verbose_name="排序")
+	st_status = models.IntegerField(default=0,verbose_name="状态")
+
+	def __unicode__(self):
+		return self.st_title
+
+	class Meta:
+		verbose_name = '股权众筹'
+		verbose_name_plural = '股权众筹管理'
+
+'''
+债权众筹 
+'''
+class BOND(models.Model):
+	bo_user = models.ForeignKey(USERS,verbose_name="用户")
+	bo_title = models.CharField(max_length=100,verbose_name="标题")
+	bo_com_name = models.CharField(max_length=100,verbose_name="企业名称")
+	bo_brief = models.CharField(max_length=200,verbose_name="描述")
+	bo_begin_time = models.DateTimeField(verbose_name="开始时间")
+	bo_create_time = models.DateTimeField(verbose_name="创建时间")
+	bo_end_time = models.DateTimeField(verbose_name="结束时间")
+	bo_scale = models.FloatField(verbose_name="年转化率")
+	bo_province = models.ForeignKey(PROVINCE,verbose_name="所属地区")
+	bo_total_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资总额')
+	bo_current_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='当前已经认购')
+	bo_min_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购起点')
+	bo_pro_type = models.CharField(max_length=20,verbose_name="项目属性")
+	bo_com_type = models.CharField(max_length=20,verbose_name="公司类型")
+	bo_goal = models.CharField(max_length=200,verbose_name="借款用途")
+	bo_repayment = models.CharField(max_length=200,verbose_name="还款来源")
+	bo_com_inf = models.TextField(verbose_name="企业信息")
+	bo_risk_inf = models.TextField(verbose_name="风险信息")
+	bo_files = models.TextField(verbose_name="相关文件")
+	bo_repay_plan = models.TextField(verbose_name="还款计划")
+	bo_finance = models.TextField(verbose_name="财务计划")
+	bo_sort = models.IntegerField(default=0,verbose_name="排序")
+	bo_status = models.IntegerField(default=0,verbose_name="状态")
+
+	def __unicode__(self):
+		return self.st_title
+
+	class Meta:
+		verbose_name = '债权众筹'
+		verbose_name_plural = '债权众筹管理'
+
+
+'''
+众筹转让
+'''
+
+'''
+用户投资 股权众筹
+'''
+class INVEST_STOCK(models.Model):
+	is_user = models.ForeignKey(USERS,verbose_name="用户")
+	is_stock = models.ForeignKey(STOCK,verbose_name="股权众筹")
+	is_amount = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="投资金额")
+	is_date = models.DateTimeField(verbose_name="投资时间")
+	is_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入")
+	is_profit_date = models.DateField(verbose_name="预计收入日期")
+
+	def __unicode__(self):
+		return self.in_stock.st_title
+
+	class Meta:
+		verbose_name = '用户投资股权众筹'
+		verbose_name_plural = '用户投资股权众筹'
+
+'''
+用户投资 债权众筹 
+'''
+class INVEST_BOND(models.Model):
+	ib_user = models.ForeignKey(USERS,verbose_name="用户")
+	ib_bond = models.ForeignKey(BOND,verbose_name="股权众筹")
+	ib_amount = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资金额')
+	ib_date = models.DateTimeField(verbose_name="投资时间")
+	ib_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入")
+	ib_profit_date = models.DateField(verbose_name="预计收入日期")
+
+	def __unicode__(self):
+		return self.in_stock.st_title
+
+	class Meta:
+		verbose_name = '用户投资债权众筹'
+		verbose_name_plural = '用户投资债权众筹'
+
+'''
+用户充值
+'''
+class RECHARGE(models.Model):
+	rc_user = models.ForeignKey(USERS,verbose_name="用户")
+	rc_value = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='充值金额')
+	rc_date = models.DateTimeField(verbose_name='充值时间')
+
+	def __unicode__(self):
+		return self.ac_user.u_name
+
+	class Meta:
+		verbose_name = '充值信息'
+		verbose_name_plural = '充值管理'
+
+'''
+用户喜欢
+'''
+class USER_FOCUS(models.Model):
+	uf_user	= models.ForeignKey(USERS,verbose_name="用户")
+	uf_stock = models.ForeignKey(STOCK,verbose_name="股权众筹")
+	uf_bond = models.ForeignKey(BOND,verbose_name="股权众筹")
+	uf_update_time = models.DateTimeField(verbose_name="更新时间")
+
+	class Meta:
+		verbose_name = '关注'
+		verbose_name_plural = '关注记录'
+
+'''
+用户讨论
+'''
+
+
+
