@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'Crowdfunding.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', include('qdinvest.urls')),
-    url(r'^c', include('qdinvest.urls')),
+    url(r'^c/', include('qdinvest.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 

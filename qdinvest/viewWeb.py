@@ -15,3 +15,24 @@ def index(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('qdinvest/index.html',context_dict,context)
+
+
+def stock(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/stock.html',context_dict,context)
+
+def transfer(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/transfer.html',context_dict,context)
+
+def bdetail(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/bdetail.html',context_dict,context)
+
+def sdetail(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/sdetail.html',context_dict,context)

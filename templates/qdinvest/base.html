@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" charset="utf-8" />
+</head>
+
+<body>
+  <!-- header -->
+  <div class="header">
+    <div class="wrap">
+      <div class="left logo">
+        <a href="index.html">
+          <img src="{% static 'images/logo.png'%}" />
+        </a>
+      </div>
+      <div class="right userbar">
+        <a href="javascript:;" class="login">登录</a>
+        |
+        <a href="javascript:;" class="reg">注册</a>
+      </div>
+      <ul class="right navi">
+        <li class="hover">
+          <a href="index.html" class="home">首页</a>
+        </li>
+        <li>
+          <a href="stock.html" class="project">股权众筹</a>
+        </li>
+        <li>
+          <a href="bond.html" class="investor">债券众筹</a>
+        </li>
+        <li>
+          <a href="transfer.html" class="attom">众筹转让</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  {% block body_block %}
+  {% endblock %}
+  
+  <div class="clearfix"></div>
+
+  <!-- footer -->
+  <div class="footer">
+    <p class="link">
+      <a href="javascript:;">常见问题</a>
+      |
+      <a href="javascript:;">服务条款</a>
+      |
+      <a href="javascript:;">隐私策略</a>
+      |
+      <a href="javascript:;">关于我们</a>
+    </p>
+    <p>
+      Copyright &copy; 2014 清大益讯（北京）投资管理有限公司 All Rights Reserved.  京ICP备05000922 号
+    </p>
+    <p>
+      地址：北京市海淀区中关村东路1号院清华大学科技园创业大厦1001室-1002室 Email：qinghuainvest@qinghuainvest.com
+    </p>
+  </div>
+  <script type="text/javascript"  src="{% static 'script/jquery-1.7.min.js'%}"></script>
+  <script type="text/javascript"  src="{% static 'script/heustudio.jquery.min.js'%}"></script>
+</body>
+</html>

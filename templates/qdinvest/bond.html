@@ -1,172 +1,368 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>众筹方</title>
-<link href="style/style.css" rel="stylesheet" charset="utf-8" />
-</head>
-
-<body>
-<!-- header -->
-<div class="header">
-  <div class="wrap">
-    <div class="left logo"><a href="index.html"><img src="images/logo.png" /></a></div>
-    <div class="right userbar"> <a href="javascript:;" class="login">登录</a>|<a href="javascript:;" class="reg">注册</a> </div>
-    <ul class="right navi">
-      <li><a href="index.html" class="home">首页</a></li>
-      <li><a href="stock.html" class="project">股权众筹</a></li>
-      <li class="hover"><a href="bond.html" class="investor">债券众筹</a></li>
-      <li><a href="transfer.html" class="attom">众筹转让</a></li>
-    </ul>
-  </div>
-</div>
-
+{% extends "qdinvest/base.html" %}
+{% load staticfiles %}
+{% block title %}债权众筹{% endblock %}
+{% block body_block %}
 <!-- location filter -->
 <div class="wrap level body">
   <div class="titlebar">
-  	<div class="left location">当前位置：<span class="hover">首页</span> &gt; <span class="hover">债券众筹</span> &gt; <span>列表</span></div>
+    <div class="left location">
+      当前位置：
+      <span class="hover">首页</span>
+      &gt;
+      <span class="hover">债权众筹</span>
+      &gt;
+      <span>列表</span>
+    </div>
   </div>
   <div class="filterpart">
-  	<div class="type">
-    	<span>企业类型：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">拟挂牌企业股权众筹</a></span><span><a href="javascript:;">已挂牌企业再融资股权众筹</a></span><span><a href="javascript:;">其他股权众筹</a></span>
+    <div class="type">
+      <span>企业类型：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">拟挂牌企业股权众筹</a>
+      </span>
+      <span>
+        <a href="javascript:;">已挂牌企业再融资股权众筹</a>
+      </span>
+      <span>
+        <a href="javascript:;">其他股权众筹</a>
+      </span>
     </div>
     <div class="status">
-    	<span>项目期限：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">3个月以下</a></span><span><a href="javascript:;">3-6 个月</a></span><span><a href="javascript:;">6-9 个月</a></span><span><a href="javascript:;">9-12 个月</a></span><span><a href="javascript:;">12 个月以上</a></span>
+      <span>项目期限：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">3个月以下</a>
+      </span>
+      <span>
+        <a href="javascript:;">3-6 个月</a>
+      </span>
+      <span>
+        <a href="javascript:;">6-9 个月</a>
+      </span>
+      <span>
+        <a href="javascript:;">9-12 个月</a>
+      </span>
+      <span>
+        <a href="javascript:;">12 个月以上</a>
+      </span>
     </div>
     <div class="trade">
-    	<span>预期利率：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">5%以下</a></span><span><a href="javascript:;">5%-6%</a></span><span><a href="javascript:;">6%-7%</a></span><span><a href="javascript:;">7%-8%</a></span><span><a href="javascript:;">8%以上</a></span>
+      <span>预期利率：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">5%以下</a>
+      </span>
+      <span>
+        <a href="javascript:;">5%-6%</a>
+      </span>
+      <span>
+        <a href="javascript:;">6%-7%</a>
+      </span>
+      <span>
+        <a href="javascript:;">7%-8%</a>
+      </span>
+      <span>
+        <a href="javascript:;">8%以上</a>
+      </span>
     </div>
     <div class="area">
-    	<span>项目状态：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">投标中</a></span><span><a href="javascript:;">还款中</a></span><span><a href="javascript:;">还款完成</a></span>
+      <span>项目状态：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">投标中</a>
+      </span>
+      <span>
+        <a href="javascript:;">还款中</a>
+      </span>
+      <span>
+        <a href="javascript:;">还款完成</a>
+      </span>
     </div>
   </div>
 
-<!-- list -->
-<ul class="underway list bondlist">
-      <li class="blue">
-        <div class="left s">中</div>
-        <div class="right">
-          <div class="namebar"><span class="left name"><a href="bdetail.html">比目鱼儿童主题乐园</a></span><span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span><span class="right status">投标</span><span class="right cstatus">拟挂牌企业</span></div>
-          <div class="binfo">
-            <div class="left dm">年化利率 <span class="byg">10%+1%</span><span class="g">/</span>截止日期 <span class="byg">2015年7月8日</span><span class="g">/</span>融资金额<span class="byg">￥500.00万</span><span class="g">/</span>授信额度 <span class="byg">￥2000.00万</span></div>
-            <div class="left progressbar">
-              <div class="left gray">
-                <div class="left"></div>
-              </div>
-              <div class="right percent">35%</div>
-            </div>
-          </div>
-          <div class="cctext">本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...<a href="javascript:;">更多&gt;&gt;</a></div>
+  <!-- list -->
+  <ul class="underway list bondlist">
+    <li class="blue">
+      <div class="left s">中</div>
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">比目鱼儿童主题乐园</a>
+          </span>
+          <span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span>
+          <span class="right status">投标</span>
+          <span class="right cstatus">拟挂牌企业</span>
         </div>
-      </li>
-      
-      <li class="green">
-        <div class="left s">还</div>
-        <div class="right">
-          <div class="namebar"><span class="left name"><a href="bdetail.html">比目鱼儿童主题乐园</a></span><span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span><span class="right status">查看</span><span class="right cstatus">拟挂牌企业</span></div>
-          <div class="binfo">
-            <div class="left dm">年化利率 <span class="byg">10%+1%</span><span class="g">/</span>截止日期 <span class="byg">2015年7月8日</span><span class="g">/</span>融资金额<span class="byg">￥500.00万</span><span class="g">/</span>授信额度 <span class="byg">￥2000.00万</span></div>
-            <div class="left progressbar">
-              <div class="left gray">
-                <div class="left"></div>
-              </div>
-              <div class="right percent">35%</div>
-            </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">10%+1%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">2015年7月8日</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">￥500.00万</span>
+            <span class="g">/</span>
+            授信额度
+            <span class="byg">￥2000.00万</span>
           </div>
-          <div class="cctext">本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...<a href="javascript:;">更多&gt;&gt;</a></div>
-        </div>
-      </li>
-      
-      <li class="yellow">
-        <div class="left s">完</div>
-        <div class="right">
-          <div class="namebar"><span class="left name"><a href="bdetail.html">比目鱼儿童主题乐园</a></span><span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span><span class="right status">查看</span><span class="right cstatus">拟挂牌企业</span></div>
-          <div class="binfo">
-            <div class="left dm">年化利率 <span class="byg">10%+1%</span><span class="g">/</span>截止日期 <span class="byg">2015年7月8日</span><span class="g">/</span>融资金额<span class="byg">￥500.00万</span><span class="g">/</span>授信额度 <span class="byg">￥2000.00万</span></div>
-            <div class="left progressbar">
-              <div class="left gray">
-                <div class="left"></div>
-              </div>
-              <div class="right percent">100%</div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
             </div>
+            <div class="right percent">35%</div>
           </div>
-          <div class="cctext">本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...<a href="javascript:;">更多&gt;&gt;</a></div>
         </div>
-      </li>
-      
-      <li class="blue">
-        <div class="left s">中</div>
-        <div class="right">
-          <div class="namebar"><span class="left name"><a href="bdetail.html">比目鱼儿童主题乐园</a></span><span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span><span class="right status">投标</span><span class="right cstatus">拟挂牌企业</span></div>
-          <div class="binfo">
-            <div class="left dm">年化利率 <span class="byg">10%+1%</span><span class="g">/</span>截止日期 <span class="byg">2015年7月8日</span><span class="g">/</span>融资金额<span class="byg">￥500.00万</span><span class="g">/</span>授信额度 <span class="byg">￥2000.00万</span></div>
-            <div class="left progressbar">
-              <div class="left gray">
-                <div class="left"></div>
-              </div>
-              <div class="right percent">35%</div>
+        <div class="cctext">
+          本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="green">
+      <div class="left s">还</div>
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">比目鱼儿童主题乐园</a>
+          </span>
+          <span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span>
+          <span class="right status">查看</span>
+          <span class="right cstatus">拟挂牌企业</span>
+        </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">10%+1%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">2015年7月8日</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">￥500.00万</span>
+            <span class="g">/</span>
+            授信额度
+            <span class="byg">￥2000.00万</span>
+          </div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
             </div>
+            <div class="right percent">35%</div>
           </div>
-          <div class="cctext">本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...<a href="javascript:;">更多&gt;&gt;</a></div>
         </div>
-      </li>
-      
-      <li class="green">
-        <div class="left s">还</div>
-        <div class="right">
-          <div class="namebar"><span class="left name"><a href="bdetail.html">比目鱼儿童主题乐园</a></span><span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span><span class="right status">查看</span><span class="right cstatus">拟挂牌企业</span></div>
-          <div class="binfo">
-            <div class="left dm">年化利率 <span class="byg">10%+1%</span><span class="g">/</span>截止日期 <span class="byg">2015年7月8日</span><span class="g">/</span>融资金额<span class="byg">￥500.00万</span><span class="g">/</span>授信额度 <span class="byg">￥2000.00万</span></div>
-            <div class="left progressbar">
-              <div class="left gray">
-                <div class="left"></div>
-              </div>
-              <div class="right percent">35%</div>
+        <div class="cctext">
+          本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="yellow">
+      <div class="left s">完</div>
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">比目鱼儿童主题乐园</a>
+          </span>
+          <span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span>
+          <span class="right status">查看</span>
+          <span class="right cstatus">拟挂牌企业</span>
+        </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">10%+1%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">2015年7月8日</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">￥500.00万</span>
+            <span class="g">/</span>
+            授信额度
+            <span class="byg">￥2000.00万</span>
+          </div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
             </div>
+            <div class="right percent">100%</div>
           </div>
-          <div class="cctext">本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...<a href="javascript:;">更多&gt;&gt;</a></div>
         </div>
-      </li>
-      
-      <li class="yellow">
-        <div class="left s">完</div>
-        <div class="right">
-          <div class="namebar"><span class="left name"><a href="bdetail.html">比目鱼儿童主题乐园</a></span><span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span><span class="right status">查看</span><span class="right cstatus">拟挂牌企业</span></div>
-          <div class="binfo">
-            <div class="left dm">年化利率 <span class="byg">10%+1%</span><span class="g">/</span>截止日期 <span class="byg">2015年7月8日</span><span class="g">/</span>融资金额<span class="byg">￥500.00万</span><span class="g">/</span>授信额度 <span class="byg">￥2000.00万</span></div>
-            <div class="left progressbar">
-              <div class="left gray">
-                <div class="left"></div>
-              </div>
-              <div class="right percent">100%</div>
+        <div class="cctext">
+          本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="blue">
+      <div class="left s">中</div>
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">比目鱼儿童主题乐园</a>
+          </span>
+          <span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span>
+          <span class="right status">投标</span>
+          <span class="right cstatus">拟挂牌企业</span>
+        </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">10%+1%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">2015年7月8日</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">￥500.00万</span>
+            <span class="g">/</span>
+            授信额度
+            <span class="byg">￥2000.00万</span>
+          </div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
             </div>
+            <div class="right percent">35%</div>
           </div>
-          <div class="cctext">本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...<a href="javascript:;">更多&gt;&gt;</a></div>
         </div>
-      </li>
-</ul>
-<ul class="left page_navi">
-    <li><a href="javascript:;">|&lt;</a></li>
-    <li><a href="javascript:;">&lt;</a></li>
-    <li><a href="javascript:;" class="hover">1</a></li>
-    <li><a href="javascript:;">2</a></li>
-    <li><a href="javascript:;">3</a></li>
-    <li><a href="javascript:;">4</a></li>
-    <li><a href="javascript:;">5</a></li>
-    <li><a href="javascript:;">&gt;</a></li>
-    <li><a href="javascript:;">&gt;|</a></li>
-</ul>
-<div class="right page_num">第<span>1</span>/15页 共<span>102</span>页</div>
+        <div class="cctext">
+          本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="green">
+      <div class="left s">还</div>
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">比目鱼儿童主题乐园</a>
+          </span>
+          <span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span>
+          <span class="right status">查看</span>
+          <span class="right cstatus">拟挂牌企业</span>
+        </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">10%+1%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">2015年7月8日</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">￥500.00万</span>
+            <span class="g">/</span>
+            授信额度
+            <span class="byg">￥2000.00万</span>
+          </div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
+            </div>
+            <div class="right percent">35%</div>
+          </div>
+        </div>
+        <div class="cctext">
+          本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="yellow">
+      <div class="left s">完</div>
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">比目鱼儿童主题乐园</a>
+          </span>
+          <span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span>
+          <span class="right status">查看</span>
+          <span class="right cstatus">拟挂牌企业</span>
+        </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">10%+1%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">2015年7月8日</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">￥500.00万</span>
+            <span class="g">/</span>
+            授信额度
+            <span class="byg">￥2000.00万</span>
+          </div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
+            </div>
+            <div class="right percent">100%</div>
+          </div>
+        </div>
+        <div class="cctext">
+          本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <ul class="left page_navi">
+    <li>
+      <a href="javascript:;">|&lt;</a>
+    </li>
+    <li>
+      <a href="javascript:;">&lt;</a>
+    </li>
+    <li>
+      <a href="javascript:;" class="hover">1</a>
+    </li>
+    <li>
+      <a href="javascript:;">2</a>
+    </li>
+    <li>
+      <a href="javascript:;">3</a>
+    </li>
+    <li>
+      <a href="javascript:;">4</a>
+    </li>
+    <li>
+      <a href="javascript:;">5</a>
+    </li>
+    <li>
+      <a href="javascript:;">&gt;</a>
+    </li>
+    <li>
+      <a href="javascript:;">&gt;|</a>
+    </li>
+  </ul>
+  <div class="right page_num">
+    第
+    <span>1</span>
+    /15页 共
+    <span>102</span>
+    页
+  </div>
 </div>
 <div class="clearfix"></div>
 
 <!-- footer -->
-<div class="footer">
-    <p class="link"><a href="javascript:;">常见问题</a>  |  <a href="javascript:;">服务条款</a>  |  <a href="javascript:;">隐私策略</a>  |  <a href="javascript:;">关于我们</a></p>
-    <p>Copyright &copy; 2014 清大益讯（北京）投资管理有限公司 All Rights Reserved.  京ICP备05000922 号</p>
-    <p>地址：北京市海淀区中关村东路1号院清华大学科技园创业大厦1001室-1002室 Email：qinghuainvest@qinghuainvest.com</p>
-</div>
-<script type="text/javascript"  src="script/jquery-1.7.min.js"></script> 
-<script type="text/javascript"  src="script/heustudio.jquery.min.js"></script>
-</body>
-</html>
+{% endblock %}

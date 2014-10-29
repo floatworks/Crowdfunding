@@ -1,126 +1,401 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>众筹方</title>
-<link href="style/style.css" rel="stylesheet" charset="utf-8" />
-</head>
-
-<body>
-<!-- header -->
-<div class="header">
-  <div class="wrap">
-    <div class="left logo"><a href="index.html"><img src="images/logo.png" /></a></div>
-    <div class="right userbar"> <a href="javascript:;" class="login">登录</a>|<a href="javascript:;" class="reg">注册</a> </div>
-    <ul class="right navi">
-      <li><a href="index.html" class="home">首页</a></li>
-      <li><a href="stock.html" class="project">股权众筹</a></li>
-      <li><a href="bond.html" class="investor">债券众筹</a></li>
-      <li class="hover"><a href="transfer.html" class="attom">众筹转让</a></li>
-    </ul>
-  </div>
-</div>
-
+{% extends "qdinvest/base.html" %}
+{% load staticfiles %}
+{% block title %}众筹转让{% endblock %}
+{% block body_block %}
 <!-- location filter -->
 <div class="wrap level body">
   <div class="titlebar">
-  	<div class="left location">当前位置：<span class="hover">首页</span> &gt; <span class="hover">众筹转让</span> &gt; <span>列表</span></div>
+    <div class="left location">
+      当前位置：
+      <span class="hover">首页</span>
+      &gt;
+      <span class="hover">众筹转让</span>
+      &gt;
+      <span>列表</span>
+    </div>
   </div>
   <div class="filterpart">
-  	<div class="type">
-    	<span>企业类型：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">股权转让</a></span><span><a href="javascript:;">众筹转让</a></span>
+    <div class="type">
+      <span>企业类型：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">股权转让</a>
+      </span>
+      <span>
+        <a href="javascript:;">众筹转让</a>
+      </span>
     </div>
     <div class="status">
-    	<span>转让期限：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">3个月以下</a></span><span><a href="javascript:;">3-6 个月</a></span><span><a href="javascript:;">6-9 个月</a></span><span><a href="javascript:;">9-12 个月</a></span><span><a href="javascript:;">12 个月以上</a></span>
+      <span>转让期限：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">3个月以下</a>
+      </span>
+      <span>
+        <a href="javascript:;">3-6 个月</a>
+      </span>
+      <span>
+        <a href="javascript:;">6-9 个月</a>
+      </span>
+      <span>
+        <a href="javascript:;">9-12 个月</a>
+      </span>
+      <span>
+        <a href="javascript:;">12 个月以上</a>
+      </span>
     </div>
     <div class="trade">
-    	<span>预期利率：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">50万以下</a></span><span><a href="javascript:;">50万-100万</a></span><span><a href="javascript:;">100万-150万</a></span><span><a href="javascript:;">150万-200万</a></span><span><a href="javascript:;">200万以上</a></span>
+      <span>预期利率：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">50万以下</a>
+      </span>
+      <span>
+        <a href="javascript:;">50万-100万</a>
+      </span>
+      <span>
+        <a href="javascript:;">100万-150万</a>
+      </span>
+      <span>
+        <a href="javascript:;">150万-200万</a>
+      </span>
+      <span>
+        <a href="javascript:;">200万以上</a>
+      </span>
     </div>
     <div class="area">
-    	<span>项目状态：</span><span class="hover"><a href="javascript:;">全部</a></span><span><a href="javascript:;">已完成</a></span><span><a href="javascript:;">进行中</a></span>
+      <span>项目状态：</span>
+      <span class="hover">
+        <a href="javascript:;">全部</a>
+      </span>
+      <span>
+        <a href="javascript:;">已完成</a>
+      </span>
+      <span>
+        <a href="javascript:;">进行中</a>
+      </span>
     </div>
   </div>
 
-<!-- list -->
-<ul class="underway list transferlist">
-      <li>
-          <div class="namebar"><span class="left name"><a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a></span><span class="left">债权转让编号 28227</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
-          <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">10%</span><span class="gg">/</span>原标年化 <span class="y">10%</span><span class="gg">/</span>剩余时间 <span class="y">8 小时 39 分</span><span class="gg">/</span>债权总额 <span class="b">7,000.00</span><span class="gg">/</span>转让价格 <span class="b">7,000.00</span><span class="gg">/</span>公允价值 <span class="b">7,000.00</span><span class="gg">/</span>剩余期限 <span class="b">293天</span></div>
-          </div>
-          <div class="cctext">公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...<a href="javascript:;" class="y">更多&gt;&gt;</a></div>
-      </li>
-      
-      <li>
-          <div class="namebar"><span class="left name"><a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a></span><span class="left">债权转让编号 28227</span><span class="right bg">债权转让</span><span class="right by">已完成</span></div>
-          <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">10%</span><span class="gg">/</span>原标年化 <span class="y">10%</span><span class="gg">/</span>剩余时间 <span class="y">8 小时 39 分</span><span class="gg">/</span>债权总额 <span class="b">7,000.00</span><span class="gg">/</span>转让价格 <span class="b">7,000.00</span><span class="gg">/</span>公允价值 <span class="b">7,000.00</span><span class="gg">/</span>剩余期限 <span class="b">293天</span></div>
-          </div>
-          <div class="cctext">公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...<a href="javascript:;" class="y">更多&gt;&gt;</a></div>
-      </li>
-      
-      <li>
-          <div class="namebar"><span class="left name"><a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a></span><span class="left">债权转让编号 28227</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
-          <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">10%</span><span class="gg">/</span>原标年化 <span class="y">10%</span><span class="gg">/</span>剩余时间 <span class="y">8 小时 39 分</span><span class="gg">/</span>债权总额 <span class="b">7,000.00</span><span class="gg">/</span>转让价格 <span class="b">7,000.00</span><span class="gg">/</span>公允价值 <span class="b">7,000.00</span><span class="gg">/</span>剩余期限 <span class="b">293天</span></div>
-          </div>
-          <div class="cctext">公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...<a href="javascript:;" class="y">更多&gt;&gt;</a></div>
-      </li>
-      
-      <li>
-          <div class="namebar"><span class="left name"><a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a></span><span class="left">债权转让编号 28227</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
-          <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">10%</span><span class="gg">/</span>原标年化 <span class="y">10%</span><span class="gg">/</span>剩余时间 <span class="y">8 小时 39 分</span><span class="gg">/</span>债权总额 <span class="b">7,000.00</span><span class="gg">/</span>转让价格 <span class="b">7,000.00</span><span class="gg">/</span>公允价值 <span class="b">7,000.00</span><span class="gg">/</span>剩余期限 <span class="b">293天</span></div>
-          </div>
-          <div class="cctext">公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...<a href="javascript:;" class="y">更多&gt;&gt;</a></div>
-      </li>
-      
-      <li>
-          <div class="namebar"><span class="left name"><a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a></span><span class="left">债权转让编号 28227</span><span class="right bg">债权转让</span><span class="right by">已完成</span></div>
-          <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">10%</span><span class="gg">/</span>原标年化 <span class="y">10%</span><span class="gg">/</span>剩余时间 <span class="y">8 小时 39 分</span><span class="gg">/</span>债权总额 <span class="b">7,000.00</span><span class="gg">/</span>转让价格 <span class="b">7,000.00</span><span class="gg">/</span>公允价值 <span class="b">7,000.00</span><span class="gg">/</span>剩余期限 <span class="b">293天</span></div>
-          </div>
-          <div class="cctext">公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...<a href="javascript:;" class="y">更多&gt;&gt;</a></div>
-      </li>
-      
-      <li>
-          <div class="namebar"><span class="left name"><a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a></span><span class="left">债权转让编号 28227</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
-          <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">10%</span><span class="gg">/</span>原标年化 <span class="y">10%</span><span class="gg">/</span>剩余时间 <span class="y">8 小时 39 分</span><span class="gg">/</span>债权总额 <span class="b">7,000.00</span><span class="gg">/</span>转让价格 <span class="b">7,000.00</span><span class="gg">/</span>公允价值 <span class="b">7,000.00</span><span class="gg">/</span>剩余期限 <span class="b">293天</span></div>
-          </div>
-          <div class="cctext">公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...<a href="javascript:;" class="y">更多&gt;&gt;</a></div>
-      </li>
-      
-      <li>
-          <div class="namebar"><span class="left name"><a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a></span><span class="left">债权转让编号 28227</span><span class="right bg">债权转让</span><span class="right bb">进行中</span></div>
-          <div class="binfo">
-            <div class="left dm">实际年化 <span class="y">10%</span><span class="gg">/</span>原标年化 <span class="y">10%</span><span class="gg">/</span>剩余时间 <span class="y">8 小时 39 分</span><span class="gg">/</span>债权总额 <span class="b">7,000.00</span><span class="gg">/</span>转让价格 <span class="b">7,000.00</span><span class="gg">/</span>公允价值 <span class="b">7,000.00</span><span class="gg">/</span>剩余期限 <span class="b">293天</span></div>
-          </div>
-          <div class="cctext">公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...<a href="javascript:;" class="y">更多&gt;&gt;</a></div>
-      </li>
-</ul>
-<ul class="left page_navi">
-    <li><a href="javascript:;">|&lt;</a></li>
-    <li><a href="javascript:;">&lt;</a></li>
-    <li><a href="javascript:;" class="hover">1</a></li>
-    <li><a href="javascript:;">2</a></li>
-    <li><a href="javascript:;">3</a></li>
-    <li><a href="javascript:;">4</a></li>
-    <li><a href="javascript:;">5</a></li>
-    <li><a href="javascript:;">&gt;</a></li>
-    <li><a href="javascript:;">&gt;|</a></li>
-</ul>
-<div class="right page_num">第<span>1</span>/15页 共<span>102</span>页</div>
+  <!-- list -->
+  <ul class="underway list transferlist">
+    <li>
+      <div class="namebar">
+        <span class="left name">
+          <a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a>
+        </span>
+        <span class="left">债权转让编号 28227</span>
+        <span class="right bg">债权转让</span>
+        <span class="right bb">进行中</span>
+      </div>
+      <div class="binfo">
+        <div class="left dm">
+          实际年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          原标年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          剩余时间
+          <span class="y">8 小时 39 分</span>
+          <span class="gg">/</span>
+          债权总额
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          转让价格
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          公允价值
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          剩余期限
+          <span class="b">293天</span>
+        </div>
+      </div>
+      <div class="cctext">
+        公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...
+        <a href="javascript:;" class="y">更多&gt;&gt;</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="namebar">
+        <span class="left name">
+          <a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a>
+        </span>
+        <span class="left">债权转让编号 28227</span>
+        <span class="right bg">债权转让</span>
+        <span class="right by">已完成</span>
+      </div>
+      <div class="binfo">
+        <div class="left dm">
+          实际年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          原标年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          剩余时间
+          <span class="y">8 小时 39 分</span>
+          <span class="gg">/</span>
+          债权总额
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          转让价格
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          公允价值
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          剩余期限
+          <span class="b">293天</span>
+        </div>
+      </div>
+      <div class="cctext">
+        公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...
+        <a href="javascript:;" class="y">更多&gt;&gt;</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="namebar">
+        <span class="left name">
+          <a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a>
+        </span>
+        <span class="left">债权转让编号 28227</span>
+        <span class="right bg">债权转让</span>
+        <span class="right bb">进行中</span>
+      </div>
+      <div class="binfo">
+        <div class="left dm">
+          实际年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          原标年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          剩余时间
+          <span class="y">8 小时 39 分</span>
+          <span class="gg">/</span>
+          债权总额
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          转让价格
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          公允价值
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          剩余期限
+          <span class="b">293天</span>
+        </div>
+      </div>
+      <div class="cctext">
+        公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...
+        <a href="javascript:;" class="y">更多&gt;&gt;</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="namebar">
+        <span class="left name">
+          <a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a>
+        </span>
+        <span class="left">债权转让编号 28227</span>
+        <span class="right bg">债权转让</span>
+        <span class="right bb">进行中</span>
+      </div>
+      <div class="binfo">
+        <div class="left dm">
+          实际年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          原标年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          剩余时间
+          <span class="y">8 小时 39 分</span>
+          <span class="gg">/</span>
+          债权总额
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          转让价格
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          公允价值
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          剩余期限
+          <span class="b">293天</span>
+        </div>
+      </div>
+      <div class="cctext">
+        公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...
+        <a href="javascript:;" class="y">更多&gt;&gt;</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="namebar">
+        <span class="left name">
+          <a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a>
+        </span>
+        <span class="left">债权转让编号 28227</span>
+        <span class="right bg">债权转让</span>
+        <span class="right by">已完成</span>
+      </div>
+      <div class="binfo">
+        <div class="left dm">
+          实际年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          原标年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          剩余时间
+          <span class="y">8 小时 39 分</span>
+          <span class="gg">/</span>
+          债权总额
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          转让价格
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          公允价值
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          剩余期限
+          <span class="b">293天</span>
+        </div>
+      </div>
+      <div class="cctext">
+        公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...
+        <a href="javascript:;" class="y">更多&gt;&gt;</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="namebar">
+        <span class="left name">
+          <a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a>
+        </span>
+        <span class="left">债权转让编号 28227</span>
+        <span class="right bg">债权转让</span>
+        <span class="right bb">进行中</span>
+      </div>
+      <div class="binfo">
+        <div class="left dm">
+          实际年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          原标年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          剩余时间
+          <span class="y">8 小时 39 分</span>
+          <span class="gg">/</span>
+          债权总额
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          转让价格
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          公允价值
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          剩余期限
+          <span class="b">293天</span>
+        </div>
+      </div>
+      <div class="cctext">
+        公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...
+        <a href="javascript:;" class="y">更多&gt;&gt;</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="namebar">
+        <span class="left name">
+          <a href="tdetail.html">蓝莓种植企业经营贷款 724-1-2</a>
+        </span>
+        <span class="left">债权转让编号 28227</span>
+        <span class="right bg">债权转让</span>
+        <span class="right bb">进行中</span>
+      </div>
+      <div class="binfo">
+        <div class="left dm">
+          实际年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          原标年化
+          <span class="y">10%</span>
+          <span class="gg">/</span>
+          剩余时间
+          <span class="y">8 小时 39 分</span>
+          <span class="gg">/</span>
+          债权总额
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          转让价格
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          公允价值
+          <span class="b">7,000.00</span>
+          <span class="gg">/</span>
+          剩余期限
+          <span class="b">293天</span>
+        </div>
+      </div>
+      <div class="cctext">
+        公司成立于1997年11月，为自然人出资有限责任公司。注册资金5000万元。公司经营范围加工销售：肉及肉制品、预制肉制品、熟肉制品；果蔬制品、蔬菜、食用菌；粮食及...
+        <a href="javascript:;" class="y">更多&gt;&gt;</a>
+      </div>
+    </li>
+  </ul>
+  <ul class="left page_navi">
+    <li>
+      <a href="javascript:;">|&lt;</a>
+    </li>
+    <li>
+      <a href="javascript:;">&lt;</a>
+    </li>
+    <li>
+      <a href="javascript:;" class="hover">1</a>
+    </li>
+    <li>
+      <a href="javascript:;">2</a>
+    </li>
+    <li>
+      <a href="javascript:;">3</a>
+    </li>
+    <li>
+      <a href="javascript:;">4</a>
+    </li>
+    <li>
+      <a href="javascript:;">5</a>
+    </li>
+    <li>
+      <a href="javascript:;">&gt;</a>
+    </li>
+    <li>
+      <a href="javascript:;">&gt;|</a>
+    </li>
+  </ul>
+  <div class="right page_num">
+    第
+    <span>1</span>
+    /15页 共
+    <span>102</span>
+    页
+  </div>
 </div>
 <div class="clearfix"></div>
 
 <!-- footer -->
-<div class="footer">
-    <p class="link"><a href="javascript:;">常见问题</a>  |  <a href="javascript:;">服务条款</a>  |  <a href="javascript:;">隐私策略</a>  |  <a href="javascript:;">关于我们</a></p>
-    <p>Copyright &copy; 2014 清大益讯（北京）投资管理有限公司 All Rights Reserved.  京ICP备05000922 号</p>
-    <p>地址：北京市海淀区中关村东路1号院清华大学科技园创业大厦1001室-1002室 Email：qinghuainvest@qinghuainvest.com</p>
-</div>
-<script type="text/javascript"  src="script/jquery-1.7.min.js"></script> 
-<script type="text/javascript"  src="script/heustudio.jquery.min.js"></script>
-</body>
-</html>
+{% endblock %}
