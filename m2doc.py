@@ -6,8 +6,6 @@ from django.conf import settings
 from django.db import models
 from django.template import Context,Template
 
-
-
 template = '''
 	<html>        
 		<head>
@@ -24,11 +22,11 @@ template = '''
 				<table border="0" width="100%">
 					<tbody>
 						<tr>
-							<td colspan="4" style="border:1px solid #000;">
-								<b>Model Name: {{model|safe}}<b>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: {{model.model|safe}}&nbsp;&nbsp;&nbsp;&nbsp;{{model.name|safe}}<b>
 							</td>
 						</tr>
-						<tr style="background:#000; color:#fff;">
+						<tr style="background:#3385ff; color:#fff;">
 							<th width="15%">列名</th>
 							<th width="15%">简称</th>
 							<th width="15%">列类型</th>
@@ -60,13 +58,11 @@ template = '''
 						
 def get_propertys(cls):
 	fields = []
-	#print cls.verbose_name_plural
 	for f in cls._meta.fields:
 		setattr(f, 'class_name', f.__class__.__name__)
 		if hasattr(f, 'related'):
 			setattr(f, 'related_name', f.related.parent_model.__name__)
 		fields.append(f)
-	#print fields
 	return fields
 
 def main():    
@@ -75,17 +71,16 @@ def main():
 	for app in settings.INSTALLED_APPS:
 		mod_list.append('%s.%s' % (app, 'models'))
 	modules = map(__import__, mod_list)
-	#print modules
 	for s_model in mod_list:
 		for member in inspect.getmembers(sys.modules[s_model], predicate=inspect.isclass):
 			name,obj=member
-			module_name = inspect.getmodule(obj).__name__
-			#print sys.modules[s_model]._meta
-			#print module_name         
+			module_name = inspect.getmodule(obj).__name__     
 			if module_name.startswith('qdinvest'):
-				#print module_name
-				#print obj._meta.verbose_name_plural
-				model_list.append((obj._meta.verbose_name_plural, get_propertys(obj)))
+				#这儿可以使用obj.__name__
+				model_obj = {}
+				model_obj['model'] = obj.__name__
+				model_obj['name'] = obj._meta.verbose_name_plural
+				model_list.append((model_obj, get_propertys(obj)))
 
 	print model_list
 	if model_list:

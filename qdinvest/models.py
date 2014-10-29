@@ -1,7 +1,6 @@
 #coding:utf-8
 from django.db import models
 
-# Create your models here.
 
 '''
 基础用户表
@@ -161,6 +160,7 @@ class INVEST_STOCK(models.Model):
 	is_date = models.DateTimeField(verbose_name="投资时间")
 	is_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入")
 	is_profit_date = models.DateField(verbose_name="预计收入日期")
+	is_status = models.IntegerField(default=0,verbose_name="审核状态")
 
 	def __unicode__(self):
 		return self.in_stock.st_title
@@ -179,6 +179,7 @@ class INVEST_BOND(models.Model):
 	ib_date = models.DateTimeField(verbose_name="投资时间")
 	ib_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入")
 	ib_profit_date = models.DateField(verbose_name="预计收入日期")
+	ib_status = models.IntegerField(default=0,verbose_name="审核状态")
 
 	def __unicode__(self):
 		return self.in_stock.st_title
@@ -192,8 +193,10 @@ class INVEST_BOND(models.Model):
 '''
 class RECHARGE(models.Model):
 	rc_user = models.ForeignKey(USERS,verbose_name="用户")
-	rc_value = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='充值金额')
-	rc_date = models.DateTimeField(verbose_name='充值时间')
+	rc_type = models.IntegerField(default=0,verbose_name="操作类型",help_text="0充值，1提现")
+	rc_value = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='金额')
+	rc_date = models.DateTimeField(verbose_name='操作时间')
+	rc_status = models.IntegerField(default=0,verbose_name="状态")
 
 	def __unicode__(self):
 		return self.ac_user.u_name
@@ -218,6 +221,72 @@ class USER_FOCUS(models.Model):
 '''
 用户讨论
 '''
+class TALK(models.Model):
+	ta_user = models.ForeignKey(USERS,verbose_name="用户")
+	ta_stock = models.ForeignKey(STOCK,verbose_name="股权众筹")
+	ta_msg = models.CharField(max_length=500,verbose_name="评论内容")
+	ta_pre_id = models.IntegerField(default=0,verbose_name="父ID")
+
+	class Meta:
+		verbose_name = '用户讨论'
+		verbose_name_plural = '股权众筹用户讨论记录'
+
+
+'''
+系统通知表
+'''
+class NOTICE(models.Model):
+	no_title = models.CharField(max_length=100,verbose_name="通知标题")
+	no_body = models.TextField(verbose_name="通知内容")
+	no_time = models.DateTimeField(verbose_name="通知时间")
+	no_type = models.IntegerField(verbose_name="通知类型",help_text="比如紧急通知，维护通知，广告通知之类")
+	no_sort = models.IntegerField(verbose_name="优先级")
+	no_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
+
+	class Meta:
+		verbose_name = '系统通知'
+		verbose_name_plural = '系统通知管理'
+
+'''
+用户通知表
+'''
+class NOTICE_USER(models.Model):
+	nu_title = models.CharField(max_length=100,verbose_name="通知标题")
+	nu_body = models.TextField(verbose_name="通知管理")
+	nu_time = models.DateTimeField(verbose_name="通知内容")
+	nu_user = models.ForeignKey(USERS,verbose_name="用户")
+	nu_type = models.IntegerField(verbose_name="通知类型",help_text="比如收益通知，债权众筹提前打款等")
+	nu_is_read = models.IntegerField(verbose_name="是否已读",help_text="0 未读 1 已读")
+	nu_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
+
+	class Meta:
+		verbose_name = '用户通知'
+		verbose_name_plural = '用户通知管理'''
+
+'''
+系统通知查看
+'''
+class NOTICE_READ(models.Model):
+	nr_user = models.ForeignKey(USERS,verbose_name="用户")
+	nr_notice = models.ForeignKey(NOTICE,verbose_name="系统通知")
+
+	class Meta:
+		verbose_name = '系统通知查看'
+		verbose_name_plural = '系统通知是否已读'
+
+
+'''
+用户收益表
+'''
+class PROFIT(models.Model):
+	pr_user = models.ForeignKey(USERS,verbose_name="用户")
+	pr_amount = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='收益金额')
+	pr_date = models.DateField(verbose_name="收益时间")
+	pr_title = models.CharField(max_length=100,verbose_name="收益项目名称")
+
+	class Meta:
+		verbose_name = '用户收益'
+		verbose_name_plural = '用户收益管理'
 
 
 
