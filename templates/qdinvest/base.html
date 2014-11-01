@@ -13,7 +13,7 @@
   <div class="header">
     <div class="wrap">
       <div class="left logo">
-        <a href="index.html">
+        <a href="/">
           <img src="{% static 'images/logo.png'%}" />
         </a>
       </div>
@@ -22,19 +22,12 @@
         |
         <a href="javascript:;" class="reg">注册</a>
       </div>
+      {% load mainTag %} 
       <ul class="right navi">
-        <li class="hover">
-          <a href="index.html" class="home">首页</a>
-        </li>
-        <li>
-          <a href="stock.html" class="project">股权众筹</a>
-        </li>
-        <li>
-          <a href="bond.html" class="investor">债券众筹</a>
-        </li>
-        <li>
-          <a href="transfer.html" class="attom">众筹转让</a>
-        </li>
+        {% navtagitem / "首页" "home" %} 
+        {% navtagitem /c/stock/ "股权众筹" "project" %}
+        {% navtagitem /c/bond/ "债券众筹" "investor" %}
+        {% navtagitem /c/transfer/ "众筹转让" "attom" %}
       </ul>
     </div>
   </div>
@@ -62,7 +55,7 @@
       地址：北京市海淀区中关村东路1号院清华大学科技园创业大厦1001室-1002室 Email：qinghuainvest@qinghuainvest.com
     </p>
   </div>
-  <script type="text/javascript"  src="{% static 'script/jquery-1.7.min.js'%}"></script>
-  <script type="text/javascript"  src="{% static 'script/heustudio.jquery.min.js'%}"></script>
+  <script type="text/javascript"  src="{% static 'js/jquery-1.7.min.js'%}"></script>
+  <script type="text/javascript"  src="{% static 'js/heustudio.jquery.min.js'%}"></script>
 </body>
 </html>

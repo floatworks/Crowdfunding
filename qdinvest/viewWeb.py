@@ -16,6 +16,11 @@ def index(request):
 	context_dict = {}
 	return render_to_response('qdinvest/index.html',context_dict,context)
 
+def bond(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/bond.html',context_dict,context)
+
 
 def stock(request):
 	context = RequestContext(request)

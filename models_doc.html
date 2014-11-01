@@ -278,7 +278,9 @@
 						<tr style="background:#ffffff">
 							<td>bo_pro_type</td>
 							<td>项目属性</td>
-							<td>CharField
+							<td>ForeignKey
+								
+									(PRO_TYPE)
 								
 							</td>
 							<td></td>
@@ -287,7 +289,9 @@
 						<tr style="background:#f1f1f1">
 							<td>bo_com_type</td>
 							<td>公司类型</td>
-							<td>CharField
+							<td>ForeignKey
+								
+									(COM_TYPE)
 								
 							</td>
 							<td></td>
@@ -369,6 +373,43 @@
 							<td>bo_status</td>
 							<td>状态</td>
 							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: COM_TYPE&nbsp;&nbsp;&nbsp;&nbsp;企业类型管理<b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ct_name</td>
+							<td>公司类型</td>
+							<td>CharField
 								
 							</td>
 							<td></td>
@@ -938,6 +979,43 @@
 					<tbody>
 						<tr>
 							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: PRO_TYPE&nbsp;&nbsp;&nbsp;&nbsp;公司类型管理<b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>pt_name</td>
+							<td>公司类型</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
 								<b>Model Name: RECHARGE&nbsp;&nbsp;&nbsp;&nbsp;充值管理<b>
 							</td>
 						</tr>
@@ -1158,7 +1236,9 @@
 						<tr style="background:#ffffff">
 							<td>st_pro_type</td>
 							<td>项目属性</td>
-							<td>CharField
+							<td>ForeignKey
+								
+									(PRO_TYPE)
 								
 							</td>
 							<td></td>
@@ -1167,7 +1247,9 @@
 						<tr style="background:#f1f1f1">
 							<td>st_com_type</td>
 							<td>公司类型</td>
-							<td>CharField
+							<td>ForeignKey
+								
+									(COM_TYPE)
 								
 							</td>
 							<td></td>
