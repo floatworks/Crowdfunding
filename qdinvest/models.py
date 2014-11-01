@@ -46,6 +46,7 @@ class ACCOUNT(models.Model):
 '''
 class INDUSTRY(models.Model):
 	in_name = models.CharField(max_length=100,verbose_name="行业名称")
+	in_sort = models.IntegerField(default=0,verbose_name="排序")
 
 	def __unicode__(self):
 		return self.in_name
@@ -68,6 +69,32 @@ class PROVINCE(models.Model):
 		verbose_name_plural = '地区管理'
 
 '''
+公司类型 
+'''
+class PRO_TYPE(models.Model):
+	pt_name = models.CharField(max_length=50,verbose_name="公司类型")
+
+	def __unicode__(self):
+		return self.pt_name
+
+	class Meta:
+		verbose_name = '公司类型'
+		verbose_name_plural = '公司类型管理'
+
+'''
+企业类型 
+'''
+class COM_TYPE(models.Model):
+	ct_name = models.CharField(max_length=50,verbose_name="公司类型")
+
+	def __unicode__(self):
+		return self.ct_name
+
+	class Meta:
+		verbose_name = '企业类型'
+		verbose_name_plural = '企业类型管理'
+
+'''
 股权众筹
 '''
 class STOCK(models.Model):
@@ -84,8 +111,8 @@ class STOCK(models.Model):
 	st_min_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购起点')
 	st_industry = models.ForeignKey(INDUSTRY,verbose_name="所属行业")
 	st_province = models.ForeignKey(PROVINCE,verbose_name="所属地区")
-	st_pro_type = models.CharField(max_length=20,verbose_name="项目属性")
-	st_com_type = models.CharField(max_length=20,verbose_name="公司类型")
+	st_pro_type = models.ForeignKey(PRO_TYPE,verbose_name="项目属性")
+	st_com_type = models.ForeignKey(COM_TYPE,verbose_name="公司类型")
 	st_like_count = models.IntegerField(default=0,verbose_name="关注数")
 	st_invest_count = models.IntegerField(default=0,verbose_name="认购次数")
 	st_hint = models.TextField(verbose_name="重要提示")
@@ -126,8 +153,8 @@ class BOND(models.Model):
 	bo_total_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资总额')
 	bo_current_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='当前已经认购')
 	bo_min_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购起点')
-	bo_pro_type = models.CharField(max_length=20,verbose_name="项目属性")
-	bo_com_type = models.CharField(max_length=20,verbose_name="公司类型")
+	bo_pro_type = models.ForeignKey(PRO_TYPE,verbose_name="项目属性")
+	bo_com_type = models.ForeignKey(COM_TYPE,verbose_name="公司类型")
 	bo_goal = models.CharField(max_length=200,verbose_name="借款用途")
 	bo_repayment = models.CharField(max_length=200,verbose_name="还款来源")
 	bo_com_inf = models.TextField(verbose_name="企业信息")
