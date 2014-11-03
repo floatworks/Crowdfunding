@@ -1,5 +1,16 @@
-#依赖文件说明
+#清大众筹
+----
+
+##依赖文件说明
 
 *	pagination
 
-*	pip install django-pagination
+	*	分页组件
+
+*	django-xadmin
+
+	*	administrator interface
+
+*	xlwt
+
+	*	excel导出组件
