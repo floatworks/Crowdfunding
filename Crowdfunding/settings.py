@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'qdinvest',
     'pagination',
-    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
