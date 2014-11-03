@@ -38,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'qdinvest',
     'pagination',
+    'xadmin',
+    'crispy_forms',
+    'reversion',
 )
 
 MIDDLEWARE_CLASSES = (
