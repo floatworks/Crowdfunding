@@ -30,8 +30,8 @@ def Register(request):
 			response_dict['status'] = 2
 		elif T.CheckExist(USERS,{'u_tel':u_tel}):
 			response_dict['status'] = 3
-		elif not CheckRandomCode(u_tel,code):
-			response_dict['status'] = 4
+		#elif not CheckRandomCode(u_tel,code):
+		#	response_dict['status'] = 4
 		else:
 			userData.appendlist('u_status',0)
 			userForm = USERSFORM(data = userData)
@@ -96,5 +96,26 @@ def GetRandomCode(request):
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
 
+#手机端用户登录接口
+def Login(request):
+	response_dict = {}
 
+	if request.method == 'POST':
+		u_name = request.POST.get('u_name','')
+		u_pwd = request.POST.get('u_pwd','')
 
+		if u_name and u_pwd:
+			USERS_objs = USERS.objects.filter(u_name__exact = u_name,u_pwd__exact = u_pwd)
+			if USERS_objs:
+				response_dict['status'] = 1
+				token = T.GenToken()
+				response_dict['token'] = token
+				T.CheckToken(USERS_objs[0],token,1)
+			else:
+				response_dict['status'] = 0
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")

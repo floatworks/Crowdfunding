@@ -330,5 +330,18 @@ class RANDOMCODE(models.Model):
 		verbose_name = '验证码'
 		verbose_name_plural = '验证码管理'
 
+'''
+token合法性验证
+'''
+class TOKEN(models.Model):
+	t_user = models.ForeignKey(USERS,verbose_name='用户')
+	t_token = models.CharField(max_length=50,verbose_name='token')
+	t_time = models.DateTimeField(verbose_name='更新时间')
 
+	def __unicode__(self):
+		return self.t_user.u_name
+
+	class Meta:
+		verbose_name = 'token'
+		verbose_name_plural = 'TOKEN管理'
 
