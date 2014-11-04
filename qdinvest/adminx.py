@@ -55,10 +55,10 @@ class COM_TYPEAdmin(object):
 '''
 class STOCKAdmin(object):
 	list_display = ['st_user','st_title','st_image','st_brief','st_begin_time',
-	'st_end_time','st_create_time','st_scale','st_total_price','st_current_price','st_min_price','st_industry',
+	'st_end_time','st_create_time','st_scale ','st_total_price','st_current_price','st_min_price','st_industry',
 	'st_province','st_pro_type','st_com_type','st_like_count','st_invest_count','st_hint','st_com_brief','st_protect',
 	'st_inf_expose','st_plan','st_finance','st_good_bad','st_market','st_business','st_risk','st_team','st_prospectus',
-	'st_sort','st_status']
+	'st_sort ','st_status']
 	search_fiedls = ['st_user'] 
 
 '''
@@ -99,7 +99,7 @@ class USER_FOCUSAdmin(object):
 用户讨论
 '''
 class TALKAdmin(object):
-	list_display = ['ta_user','ta_stock','ta_msg','ta_pre_id'
+	list_display = ['ta_user','ta_stock','ta_msg','ta_pre_id '
 	]
 	search_fiedls = ['ta_user'] 
 
