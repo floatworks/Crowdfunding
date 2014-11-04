@@ -14,3 +14,5 @@
 *	xlwt
 
 	*	excel导出组件
+
+*	django-reversion
