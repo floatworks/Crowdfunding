@@ -6,10 +6,10 @@ from django.db import models
 基础用户表
 '''
 class USERS(models.Model):
-	u_name = models.CharField(max_length=50,verbose_name='用户名')
+	u_name = models.CharField(max_length=50,verbose_name='用户名',unique=True)
 	u_pwd = models.CharField(max_length=20,verbose_name='密码')
 	u_tel = models.CharField(max_length=20,verbose_name='手机号')
-	u_status = models.IntegerField(default=0,verbose_name='用户状态')
+	u_status = models.IntegerField(default=0,verbose_name='用户状态',help_text='0 正常')
 
 	def __unicode__(self):
 		return self.u_name

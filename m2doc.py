@@ -23,7 +23,7 @@ template = '''
 					<tbody>
 						<tr>
 							<td colspan="4" style="border:1px solid #3385ff;">
-								<b>Model Name: {{model.model|safe}}&nbsp;&nbsp;&nbsp;&nbsp;{{model.name|safe}}<b>
+								<b>Model Name: {{model.model|safe}}&nbsp;&nbsp;&nbsp;&nbsp;{{model.name|safe}}</b>
 							</td>
 						</tr>
 						<tr style="background:#3385ff; color:#fff;">
