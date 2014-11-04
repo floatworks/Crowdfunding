@@ -315,5 +315,20 @@ class PROFIT(models.Model):
 		verbose_name = '用户收益'
 		verbose_name_plural = '用户收益管理'
 
+'''
+随机验证码
+'''
+class RANDOMCODE(models.Model):
+	rc_tel = models.CharField(max_length=20,verbose_name='手机号码')
+	rc_code = models.CharField(max_length=10,verbose_name='验证码')
+	rc_time = models.DateTimeField(verbose_name='更新时间')
+
+	def __unicode__(self):
+		return self.rc_tel
+
+	class Meta:
+		verbose_name = '验证码'
+		verbose_name_plural = '验证码管理'
+
 
 
