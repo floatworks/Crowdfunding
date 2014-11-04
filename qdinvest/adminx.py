@@ -55,7 +55,7 @@ class COM_TYPEAdmin(object):
 '''
 class STOCKAdmin(object):
 	list_display = ['st_user','st_title','st_image','st_brief','st_begin_time',
-	'st_end_time','st_create_time','st_scale ','st_total_price','st_current_price','st_min_price','st_industry',
+	'st_end_time','st_create_time','st_scale','st_total_price','st_current_price','st_min_price','st_industry',
 	'st_province','st_pro_type','st_com_type','st_like_count','st_invest_count','st_hint','st_com_brief','st_protect',
 	'st_inf_expose','st_plan','st_finance','st_good_bad','st_market','st_business','st_risk','st_team','st_prospectus',
 	'st_sort ','st_status']
@@ -75,8 +75,7 @@ class BONDAdmin(object):
 用户投资 股权众筹
 '''
 class INVEST_STOCKAdmin(object):
-	list_display = ['is_user','is_stock','is_amount','is_date','is_soon_profit','is_profit_date','is_status'
-	]
+	list_display = ['is_user','is_stock','is_amount','is_date','is_soon_profit','is_profit_date','is_status']
 	search_fiedls = ['is_user '] 
 
 
@@ -84,65 +83,57 @@ class INVEST_STOCKAdmin(object):
 用户充值
 '''
 class RECHARGEAdmin(object):
-	list_display = ['rc_user','rc_type','rc_value','rc_date','rc_status'
-	]
+	list_display = ['rc_user','rc_type','rc_value','rc_date','rc_status']
 	search_fiedls = ['rc_user '] 
 '''
 用户喜欢
 '''
 class USER_FOCUSAdmin(object):
-	list_display = ['uf_user','uf_stock','uf_bond','uf_update_time'
-	]
+	list_display = ['uf_user','uf_stock','uf_bond','uf_update_time']
 	search_fiedls = ['uf_user'] 
 
 '''
 用户讨论
 '''
 class TALKAdmin(object):
-	list_display = ['ta_user','ta_stock','ta_msg','ta_pre_id '
-	]
+	list_display = ['ta_user','ta_stock','ta_msg','ta_pre_id']
 	search_fiedls = ['ta_user'] 
 
 '''
 系统通知表
 '''
 class NOTICEAdmin(object):
-	list_display = ['no_title','no_body','no_time','no_type','no_sort','no_is_delete'
-	]
+	list_display = ['no_title','no_body','no_time','no_type','no_sort','no_is_delete']
 	search_fiedls = ['no_title'] 
 
 '''
 用户通知表
 '''
 class NOTICE_USERAdmin(object):
-	list_display = ['nu_title','nu_body','nu_time','nu_user','nu_type','nu_is_read','nu_is_delete'
-	]
+	list_display = ['nu_title','nu_body','nu_time','nu_user','nu_type','nu_is_read','nu_is_delete']
 	search_fiedls = ['nu_title'] 
 
 '''
 系统通知查看
 '''
 class NOTICE_READAdmin(object):
-	list_display = ['nr_user','nr_notice'
-	]
+	list_display = ['nr_user','nr_notice']
 	search_fiedls = ['nr_user'] 
 
 '''
 用户收益表
 '''
 class PROFITAdmin(object):
-	list_display = ['pr_user','pr_amount','pr_date','pr_title'
-	]
+	list_display = ['pr_user','pr_amount','pr_date','pr_title']
 	search_fiedls = ['pr_user'] 
 
 
-
-
-
-
-
-
-
+'''
+验证码
+'''
+class RANDOMCODEAdmin(object):
+	list_display = ['rc_tel','rc_code','rc_time']
+	search_fiedls = ['rc_tel'] 
 
 xadmin.site.register(USERS,USERSAdmin)
 xadmin.site.register(ACCOUNT,ACCOUNTAdmin)
@@ -160,7 +151,7 @@ xadmin.site.register(PROFIT,PROFITAdmin)
 xadmin.site.register(INVEST_STOCK,INVEST_STOCKAdmin)
 xadmin.site.register(TALK,TALKAdmin)
 xadmin.site.register(NOTICE_READ,NOTICE_READAdmin)
-
+xadmin.site.register(RANDOMCODE,RANDOMCODEAdmin)
 
 
 
