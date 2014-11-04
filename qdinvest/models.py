@@ -100,7 +100,7 @@ class COM_TYPE(models.Model):
 class STOCK(models.Model):
 	st_user = models.ForeignKey(USERS,verbose_name="用户")
 	st_title = models.CharField(max_length=100,verbose_name="标题")
-	st_image = models.CharField(max_length=200,verbose_name="LOGO")
+	st_image = models.ImageField(upload_to ='upload/logo/',verbose_name="LOGO")
 	st_brief = models.CharField(max_length=200,verbose_name="描述")
 	st_begin_time = models.DateTimeField(verbose_name="开始时间")
 	st_end_time = models.DateTimeField(verbose_name="结束时间")
