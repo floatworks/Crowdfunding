@@ -52,7 +52,7 @@ def Register(request):
 def CheckRandomCode(u_tel,code):
 	randomCode_obj = RANDOMCODE.objects.filter(rc_tel__exact = u_tel)
 	if randomCode_obj:
-		if randomCode_obj[0].rc_code == code and (datetime.now() - randomCode_obj[0].rc_time) < 300:
+		if randomCode_obj[0].rc_code == code and (datetime.now() - randomCode_obj[0].rc_time).seconds < 300:
 			return True
 		else:
 			return False
