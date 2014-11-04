@@ -2,7 +2,7 @@
 from django import forms
 from models import *
 
-class USERSForm(forms.ModelForm):
+class USERSFORM(forms.ModelForm):
 
 	class Meta:
 		model = USERS
