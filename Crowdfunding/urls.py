@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', include('qdinvest.urls')),
     url(r'^c/', include('qdinvest.urls')),
+    url(r'^app/', include('qdinvest.urlsapp')),
     #url(r'^admin/', include(admin.site.urls)),
     url(r'admin/', include(xadmin.site.urls)),
 )
