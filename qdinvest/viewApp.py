@@ -30,8 +30,8 @@ def Register(request):
 			response_dict['status'] = 2
 		elif T.CheckExist(USERS,{'u_tel':u_tel}):
 			response_dict['status'] = 3
-		#elif not CheckRandomCode(u_tel,code):
-		#	response_dict['status'] = 4
+		elif not CheckRandomCode(u_tel,code):
+			response_dict['status'] = 4
 		else:
 			userData.appendlist('u_status',0)
 			userForm = USERSFORM(data = userData)
@@ -68,26 +68,10 @@ def GetRandomCode(request):
 		if T.CheckExist(USERS,{'u_tel':u_tel}):
 			response_dict['status'] = 2
 		elif u_tel:
-			url = 'http://www.duanxin10086.com/sms.aspx'
-			code = T.RandCode()
-			content = '【清大众筹】您的验证码为'+code+'。工作人员不会向您索要，请勿向任何人泄漏。'
-			payload = {'userid':'7685','account':'tb2014','password':'123456','mobile':u_tel,
-						'content':content,'sendTime':'','action':'send','checkcontent':0,
-						'taskName':'','countnumber':1,'mobilenumber':1,'telephonenumber':0}
-			r = requests.post(url,data=payload)
-			xml = ElementTree.fromstring(r.content)
-			returnstatus = xml.find("returnstatus").text
-			#验证码获取成功
-			if returnstatus == 'Success':
+			if T.SendRandomCode(u_tel):
 				response_dict['status'] = 1
-				if T.CheckExist(RANDOMCODE,{'rc_tel':u_tel}):
-					randomCode_obj = RANDOMCODE.objects.get(rc_tel__exact = u_tel)
-					randomCode_obj.rc_code = code
-					randomCode_obj.rc_time = datetime.now()
-					randomCode_obj.save()
-				else:
-					randomCode_obj = RANDOMCODE(rc_tel = u_tel,rc_code = code,rc_time = datetime.now())
-					randomCode_obj.save()
+			else:
+				response_dict['status'] = 0
 		else:
 			response_dict['status'] = 0
 
@@ -133,14 +117,44 @@ def RePassWord(request):
 		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
 		if USERS_objs:
 			if T.CheckToken(USERS_objs[0],token,0):
-				if USERS_objs[0].u_pwd == u_pwd:
+				if u_pwd:
+					if USERS_objs[0].u_pwd == u_pwd:
+						USERS_objs[0].u_pwd = u_npwd
+						USERS_objs[0].save()
+						response_dict['status'] = 1
+					else:
+						response_dict['status'] = 2
+				else:
 					USERS_objs[0].u_pwd = u_npwd
 					USERS_objs[0].save()
 					response_dict['status'] = 1
-				else:
-					response_dict['status'] = 2
 			else:
 				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#APP密码找回
+def Forget(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		u_tel = request.POST.get('u_tel','')
+		code = request.POST.get('code','')
+
+		if CheckRandomCode(u_tel,code):
+			response_dict['status'] = 1
+			USERS_objs = USERS.objects.filter(u_tel__exact = u_tel)
+			if USERS_objs:
+				token = T.GenToken()
+				T.CheckToken(USERS_objs[0],token,1)
+				response_dict['u_name'] = USERS_objs[0].u_name
+				response_dict['token'] = token
+			else:
+				response_dict['status'] = 0
 		else:
 			response_dict['status'] = 0
 
