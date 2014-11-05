@@ -119,3 +119,32 @@ def Login(request):
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#APP端用户修改密码
+def RePassWord(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		token = request.POST.get('token','')
+		u_name = request.POST.get('u_name','')
+		u_pwd = request.POST.get('u_pwd','')
+		u_npwd = request.POST.get('u_npwd','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if USERS_objs[0].u_pwd == u_pwd:
+					USERS_objs[0].u_pwd = u_npwd
+					USERS_objs[0].save()
+					response_dict['status'] = 1
+				else:
+					response_dict['status'] = 2
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
