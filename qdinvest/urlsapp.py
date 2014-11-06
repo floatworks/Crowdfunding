@@ -7,4 +7,6 @@ urlpatterns = patterns('',
 	url(r'^login/$', viewApp.Login, name='Login'),
 	url(r'^pwd/$', viewApp.RePassWord, name='RePassWord'),
 	url(r'^forget/$', viewApp.Forget, name='Forget'),
+	url(r'^projects/$', viewApp.GetProjects, name='GetProjects'),
+	url(r'^recompro/$', viewApp.GetProjectsSort, name='GetProjectsSort'),
 	)

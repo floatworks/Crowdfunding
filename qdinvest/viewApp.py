@@ -170,3 +170,119 @@ def Forget(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#获取项目列表
+def GetProjects(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+		num = request.GET.get('num','')
+		if not num:
+			num = 0
+		num = int(num)
+		print token,num
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				response_dict['status'] = 1
+				stocks_data = []
+				STOCK_objs = STOCK.objects.order_by('-st_create_time')[num*20:(num+1)*20]
+				for STOCK_obj in STOCK_objs:
+					stocks_per = {}
+					stocks_per['st_title'] = STOCK_obj.st_title
+					stocks_per['st_image'] = str(STOCK_obj.st_image)
+					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
+					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
+					stocks_per['st_industry'] = STOCK_obj.st_industry.in_name
+					stocks_per['st_com_type'] = STOCK_obj.st_com_type.ct_name
+					stocks_per['st_like_count'] = STOCK_obj.st_like_count
+					stocks_per['st_invest_count'] = STOCK_obj.st_invest_count
+					stocks_per['st_current_price'] = STOCK_obj.st_current_price
+					stocks_per['st_total_price'] = STOCK_obj.st_total_price
+					stocks_per['st_min_price'] = STOCK_obj.st_min_price
+					stocks_data.append(stocks_per)
+				response_dict['stocks'] = stocks_data
+				bonds_data = []
+				BOND_objs = BOND.objects.order_by('-bo_create_time')[num*20:(num+1)*20]
+				for BOND_obj in BOND_objs:
+					bonds_per = {}
+					bonds_per['bo_title'] = BOND_obj.bo_title
+					bonds_per['bo_image'] = str(BOND_obj.bo_image)
+					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
+					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
+					bonds_per['bo_brief'] = BOND_obj.bo_brief
+					bonds_per['bo_scale'] = BOND_obj.bo_scale
+					bonds_per['bo_total_price'] = BOND_obj.bo_total_price
+					bonds_per['bo_current_price'] = BOND_obj.bo_current_price
+					bonds_per['bo_min_price'] = BOND_obj.bo_min_price
+					bonds_data.append(bonds_per)
+				response_dict['bonds'] = bonds_data
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#根据排序获取项目列表
+def GetProjectsSort(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+		num = request.GET.get('num','')
+		if not num:
+			num = 0
+		num = int(num)
+		print token,num
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				response_dict['status'] = 1
+				stocks_data = []
+				STOCK_objs = STOCK.objects.order_by('st_sort')[num*20:(num+1)*20]
+				for STOCK_obj in STOCK_objs:
+					stocks_per = {}
+					stocks_per['st_title'] = STOCK_obj.st_title
+					stocks_per['st_image'] = str(STOCK_obj.st_image)
+					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
+					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
+					stocks_per['st_industry'] = STOCK_obj.st_industry.in_name
+					stocks_per['st_com_type'] = STOCK_obj.st_com_type.ct_name
+					stocks_per['st_like_count'] = STOCK_obj.st_like_count
+					stocks_per['st_invest_count'] = STOCK_obj.st_invest_count
+					stocks_per['st_current_price'] = STOCK_obj.st_current_price
+					stocks_per['st_total_price'] = STOCK_obj.st_total_price
+					stocks_per['st_min_price'] = STOCK_obj.st_min_price
+					stocks_data.append(stocks_per)
+				response_dict['stocks'] = stocks_data
+				bonds_data = []
+				BOND_objs = BOND.objects.order_by('bo_sort')[num*20:(num+1)*20]
+				for BOND_obj in BOND_objs:
+					bonds_per = {}
+					bonds_per['bo_title'] = BOND_obj.bo_title
+					bonds_per['bo_image'] = str(BOND_obj.bo_image)
+					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
+					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
+					bonds_per['bo_brief'] = BOND_obj.bo_brief
+					bonds_per['bo_scale'] = BOND_obj.bo_scale
+					bonds_per['bo_total_price'] = BOND_obj.bo_total_price
+					bonds_per['bo_current_price'] = BOND_obj.bo_current_price
+					bonds_per['bo_min_price'] = BOND_obj.bo_min_price
+					bonds_data.append(bonds_per)
+				response_dict['bonds'] = bonds_data
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
