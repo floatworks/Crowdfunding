@@ -115,18 +115,18 @@ class STOCK(models.Model):
 	st_com_type = models.ForeignKey(COM_TYPE,verbose_name="公司类型")
 	st_like_count = models.IntegerField(default=0,verbose_name="关注数")
 	st_invest_count = models.IntegerField(default=0,verbose_name="认购次数")
-	st_hint = models.TextField(verbose_name="重要提示")
-	st_com_brief = models.TextField(verbose_name="公司简介")
-	st_protect = models.TextField(verbose_name="投资者保护机制")
-	st_inf_expose = models.TextField(verbose_name="信息披露安排")
-	st_plan = models.TextField(verbose_name="融资计划")
-	st_finance = models.TextField(verbose_name="财务情况")
-	st_good_bad = models.TextField(verbose_name="优势和劣势")
-	st_market = models.TextField(verbose_name="市场分析")
-	st_business = models.TextField(verbose_name="商业模式")
-	st_risk = models.TextField(verbose_name="风险控制")
-	st_team = models.TextField(verbose_name="团队介绍")
-	st_prospectus = models.TextField(verbose_name="投资计划书")
+	st_hint = models.TextField(verbose_name="重要提示",null=True,blank=True)
+	st_com_brief = models.TextField(verbose_name="公司简介",null=True,blank=True)
+	st_protect = models.TextField(verbose_name="投资者保护机制",null=True,blank=True)
+	st_inf_expose = models.TextField(verbose_name="信息披露安排",null=True,blank=True)
+	st_plan = models.TextField(verbose_name="融资计划",null=True,blank=True)
+	st_finance = models.TextField(verbose_name="财务情况",null=True,blank=True)
+	st_good_bad = models.TextField(verbose_name="优势和劣势",null=True,blank=True)
+	st_market = models.TextField(verbose_name="市场分析",null=True,blank=True)
+	st_business = models.TextField(verbose_name="商业模式",null=True,blank=True)
+	st_risk = models.TextField(verbose_name="风险控制",null=True,blank=True)
+	st_team = models.TextField(verbose_name="团队介绍",null=True,blank=True)
+	st_prospectus = models.TextField(verbose_name="投资计划书",null=True,blank=True)
 	st_sort = models.IntegerField(default=0,verbose_name="排序")
 	st_status = models.IntegerField(default=0,verbose_name="状态")
 
@@ -157,16 +157,16 @@ class BOND(models.Model):
 	bo_com_type = models.ForeignKey(COM_TYPE,verbose_name="公司类型")
 	bo_goal = models.CharField(max_length=200,verbose_name="借款用途")
 	bo_repayment = models.CharField(max_length=200,verbose_name="还款来源")
-	bo_com_inf = models.TextField(verbose_name="企业信息")
-	bo_risk_inf = models.TextField(verbose_name="风险信息")
-	bo_files = models.TextField(verbose_name="相关文件")
-	bo_repay_plan = models.TextField(verbose_name="还款计划")
-	bo_finance = models.TextField(verbose_name="财务计划")
+	bo_com_inf = models.TextField(verbose_name="企业信息",null=True,blank=True)
+	bo_risk_inf = models.TextField(verbose_name="风险信息",null=True,blank=True)
+	bo_files = models.TextField(verbose_name="相关文件",null=True,blank=True)
+	bo_repay_plan = models.TextField(verbose_name="还款计划",null=True,blank=True)
+	bo_finance = models.TextField(verbose_name="财务计划",null=True,blank=True)
 	bo_sort = models.IntegerField(default=0,verbose_name="排序")
 	bo_status = models.IntegerField(default=0,verbose_name="状态")
 
 	def __unicode__(self):
-		return self.st_title
+		return self.bo_title
 
 	class Meta:
 		verbose_name = '债权众筹'
