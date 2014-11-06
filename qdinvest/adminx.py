@@ -65,7 +65,7 @@ class STOCKAdmin(object):
 债权众筹 
 '''
 class BONDAdmin(object):
-	list_display = ['bo_user','bo_title','bo_com_name','bo_brief','bo_begin_time','bo_create_time','bo_end_time',
+	list_display = ['bo_user','bo_title','bo_image','bo_com_name','bo_brief','bo_begin_time','bo_create_time','bo_end_time',
 	'bo_scale','bo_province','bo_total_price','bo_current_price','bo_min_price','bo_pro_type','bo_com_type',
 	'bo_goal','bo_repayment','bo_com_inf','bo_risk_inf','bo_files','bo_repay_plan','bo_finance','bo_sort',
 	'bo_status']
