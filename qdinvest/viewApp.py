@@ -62,18 +62,26 @@ def CheckRandomCode(u_tel,code):
 #手机端用户获取验证码
 def GetRandomCode(request):
 	response_dict = {}
-
 	if request.method == 'GET':
 		u_tel = request.GET.get('u_tel','')
-		if T.CheckExist(USERS,{'u_tel':u_tel}):
-			response_dict['status'] = 2
-		elif u_tel:
-			if T.SendRandomCode(u_tel):
-				response_dict['status'] = 1
-			else:
-				response_dict['status'] = 0
+		u_type = request.GET.get('type','')
+		if u_tel and u_type:
+			print u_tel,u_type
+			if u_type == 'reg':
+				if T.CheckExist(USERS,{'u_tel':u_tel}):
+					response_dict['status'] = 2
+				elif T.SendRandomCode(u_tel):
+					response_dict['status'] = 1
+				else:
+					response_dict['status'] = 0
+			elif u_type == 'forget':
+				if T.SendRandomCode(u_tel):
+					response_dict['status'] = 1
+				else:
+					response_dict['status'] = 0
 		else:
 			response_dict['status'] = 0
+
 
 	if settings.DEBUG:
 		print response_dict
