@@ -7,14 +7,17 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.db.models import Q
 
+
 import simplejson as json
 from datetime import datetime,timedelta
+from  models import STOCK
 
 
 def index(request):
 	context = RequestContext(request)
+   # context_dict = STOCK.objects.all()[0:3:1]
 	context_dict = {}
-	return render_to_response('qdinvest/index.html',context_dict,context)
+	return render_to_response('qdinvest/index.html',{'context_dict':context_dict},context)
 
 def bond(request):
 	context = RequestContext(request)
