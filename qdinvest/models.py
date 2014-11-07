@@ -243,8 +243,8 @@ class RECHARGE(models.Model):
 '''
 class USER_FOCUS(models.Model):
 	uf_user	= models.ForeignKey(USERS,verbose_name="用户")
-	uf_stock = models.ForeignKey(STOCK,verbose_name="股权众筹")
-	uf_bond = models.ForeignKey(BOND,verbose_name="股权众筹")
+	uf_stock = models.ForeignKey(STOCK,verbose_name="股权众筹",null=True,blank=True)
+	uf_bond = models.ForeignKey(BOND,verbose_name="股权众筹",null=True,blank=True)
 	uf_update_time = models.DateTimeField(verbose_name="更新时间")
 
 	class Meta:

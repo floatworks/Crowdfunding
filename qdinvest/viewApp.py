@@ -424,5 +424,80 @@ def ProjectBase(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#用户关注或取消关注某个项目
+#代码写得这么烂，十年前你自己知道不？
+def ProLike(request):
+	response_dict = {}
 
+	if request.method == 'POST':
+		token = request.POST.get('token','')
+		u_name = request.POST.get('u_name','')
+		p_type = request.POST.get('type','')
+		p_id = request.POST.get('id','-1')
+		focus = request.POST.get('focus','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if focus == 'like':
+					if p_type == 'stock':
+						print '1'
+						STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+						if STOCK_objs:
+							if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_objs[0]}):
+								response_dict['status'] = 2
+							else:
+								USER_FOCUS_new = USER_FOCUS(uf_user = USERS_objs[0],uf_stock = STOCK_objs[0],uf_update_time = datetime.now())
+								USER_FOCUS_new.save()
+								response_dict['status'] = 1
+						else:
+							response_dict['status'] = 0
+					elif p_type == 'bond':
+						BOND_objs = BOND.objects.filter(id_exact = pid)
+						if BOND_objs:
+							if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_bond':BOND_objs[0]}):
+								response_dict['status'] = 2
+							else:
+								USER_FOCUS_new = USER_FOCUS(uf_user = USERS_objs[0],uf_bond = BOND_objs[0],uf_update_time = datetime.now())
+								USER_FOCUS_new.save()
+								response_dict['status'] = 1
+						else:
+							response_dict['status'] = 0
+					else:
+						response_dict['status'] = 0
+				elif focus == 'unlike':
+					if p_type == 'stock':
+						STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+						if STOCK_objs:
+							USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_objs[0],uf_stock = STOCK_objs[0])
+							if USER_FOCUS_objs:
+								USER_FOCUS_objs[0].delete()
+								response_dict['status'] = 1
+							else:
+								response_dict['status'] = 2
+						else:
+							response_dict['status'] = 0
+					elif p_type == 'bond':
+						BOND_objs = BOND.objects.filter(id_exact = pid)
+						if BOND_objs:
+							USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_objs[0],uf_bond = BOND_objs[0])
+							if USER_FOCUS_objs:
+								USER_FOCUS_objs[0].delete()
+								response_dict['status'] = 1
+							else:
+								response_dict['status'] = 2
+						else:
+							response_dict['status'] = 0
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
