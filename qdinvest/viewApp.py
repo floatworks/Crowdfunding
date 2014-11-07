@@ -322,6 +322,7 @@ def SearchProject(request):
 					stocks_per['st_current_price'] = STOCK_obj.st_current_price
 					stocks_per['st_total_price'] = STOCK_obj.st_total_price
 					stocks_per['st_min_price'] = STOCK_obj.st_min_price
+					stocks_per['st_create_time'] = STOCK_obj.st_create_time.strftime('%Y-%m-%d %H:%M:%S')
 					stocks_data.append(stocks_per)
 				response_dict['stocks'] = stocks_data
 				bonds_data = []
@@ -337,6 +338,7 @@ def SearchProject(request):
 					bonds_per['bo_total_price'] = BOND_obj.bo_total_price
 					bonds_per['bo_current_price'] = BOND_obj.bo_current_price
 					bonds_per['bo_min_price'] = BOND_obj.bo_min_price
+					bonds_per['bo_create_time'] = BOND_obj.bo_create_time.strftime('%Y-%m-%d %H:%M:%S')
 					bonds_data.append(bonds_per)
 				response_dict['bonds'] = bonds_data
 			else:
@@ -449,6 +451,12 @@ def ProLike(request):
 							else:
 								USER_FOCUS_new = USER_FOCUS(uf_user = USERS_objs[0],uf_stock = STOCK_objs[0],uf_update_time = datetime.now())
 								USER_FOCUS_new.save()
+								ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_objs[0])
+								if ACCOUNT_objs:
+									ACCOUNT_objs[0].ac_like += 1
+									ACCOUNT_objs[0].save()
+								STOCK_objs[0].st_like_count += 1
+								STOCK_objs[0].save()
 								response_dict['status'] = 1
 						else:
 							response_dict['status'] = 0
@@ -460,6 +468,12 @@ def ProLike(request):
 							else:
 								USER_FOCUS_new = USER_FOCUS(uf_user = USERS_objs[0],uf_bond = BOND_objs[0],uf_update_time = datetime.now())
 								USER_FOCUS_new.save()
+								ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_objs[0])
+								if ACCOUNT_objs:
+									ACCOUNT_objs[0].ac_like += 1
+									ACCOUNT_objs[0].save()
+								BOND_objs[0].bo_like_count += 1
+								BOND_objs[0].save()
 								response_dict['status'] = 1
 						else:
 							response_dict['status'] = 0
@@ -472,6 +486,12 @@ def ProLike(request):
 							USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_objs[0],uf_stock = STOCK_objs[0])
 							if USER_FOCUS_objs:
 								USER_FOCUS_objs[0].delete()
+								ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_objs[0])
+								if ACCOUNT_objs:
+									ACCOUNT_objs[0].ac_like -= 1
+									ACCOUNT_objs[0].save()
+								STOCK_objs[0].st_like_count -= 1
+								STOCK_objs[0].save()
 								response_dict['status'] = 1
 							else:
 								response_dict['status'] = 2
@@ -483,6 +503,12 @@ def ProLike(request):
 							USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_objs[0],uf_bond = BOND_objs[0])
 							if USER_FOCUS_objs:
 								USER_FOCUS_objs[0].delete()
+								ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_objs[0])
+								if ACCOUNT_objs:
+									ACCOUNT_objs[0].ac_like -= 1
+									ACCOUNT_objs[0].save()
+								BOND_objs[0].bo_like_count -= 1
+								BOND_objs[0].save()
 								response_dict['status'] = 1
 							else:
 								response_dict['status'] = 2
