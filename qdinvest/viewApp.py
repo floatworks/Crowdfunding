@@ -75,7 +75,9 @@ def GetRandomCode(request):
 				else:
 					response_dict['status'] = 0
 			elif u_type == 'forget':
-				if T.SendRandomCode(u_tel):
+				if not T.CheckExist(USERS,{'u_tel':u_tel}):
+					response_dict['status'] = 2
+				elif T.SendRandomCode(u_tel):
 					response_dict['status'] = 1
 				else:
 					response_dict['status'] = 0
@@ -337,6 +339,34 @@ def SearchProject(request):
 					bonds_per['bo_min_price'] = BOND_obj.bo_min_price
 					bonds_data.append(bonds_per)
 				response_dict['bonds'] = bonds_data
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#获取项目基础信息
+def ProjectBase(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+		p_type = request.GET.get('type','')
+		p_id = request.GET.get('id','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if p_type == 'stock':
+
+				elif p_type == 'bond':
+
+				else:
+					response_dict['status'] = 0
 			else:
 				response_dict['status'] = -1
 		else:
