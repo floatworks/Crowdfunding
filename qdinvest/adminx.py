@@ -37,7 +37,7 @@ class PROVINCEAdmin(object):
 	search_fiedls = ['pr_name'] 
 
 '''
-公司类型 
+项目属性
 '''
 class PRO_TYPEAdmin(object):
 	list_display = ['pt_name']
@@ -54,23 +54,25 @@ class COM_TYPEAdmin(object):
 股权众筹
 '''
 class STOCKAdmin(object):
-	list_display = ['st_user','st_title','st_image','st_brief','st_begin_time',
+	list_display = ['st_title','st_user','st_brief','st_begin_time',
 	'st_end_time','st_create_time','st_scale','st_total_price','st_current_price','st_min_price','st_industry',
-	'st_province','st_pro_type','st_com_type','st_like_count','st_invest_count','st_hint','st_com_brief','st_protect',
-	'st_inf_expose','st_plan','st_finance','st_good_bad','st_market','st_business','st_risk','st_team','st_prospectus',
+	'st_province','st_pro_type','st_com_type','st_like_count','st_view_count','st_invest_count',
 	'st_sort','st_status']
+	list_filter = ('st_begin_time','st_end_time','st_create_time')
 	search_fiedls = ['st_user'] 
+   
+    
 
 '''
 债权众筹 
 '''
 class BONDAdmin(object):
-	list_display = ['bo_user','bo_title','bo_image','bo_com_name','bo_brief','bo_begin_time','bo_create_time','bo_end_time',
-	'bo_scale','bo_province','bo_total_price','bo_current_price','bo_min_price','bo_pro_type','bo_com_type',
-	'bo_goal','bo_repayment','bo_com_inf','bo_risk_inf','bo_files','bo_repay_plan','bo_finance','bo_sort',
-	'bo_status']
+	list_display = ['bo_user','bo_title','bo_com_name','bo_brief','bo_begin_time','bo_create_time','bo_end_time',
+	'bo_scale','bo_province','bo_total_price','bo_current_price','bo_min_price','bo_pro_type','bo_com_type','bo_like_count',
+	'bo_view_count','bo_sort','bo_status']
+	list_filter = ('bo_begin_time','bo_create_time','bo_end_time')
 	search_fiedls = ['bo_user'] 
-
+    
 '''
 用户投资 股权众筹
 '''

@@ -69,17 +69,17 @@ class PROVINCE(models.Model):
 		verbose_name_plural = '地区管理'
 
 '''
-公司类型 
+项目属性 
 '''
 class PRO_TYPE(models.Model):
-	pt_name = models.CharField(max_length=50,verbose_name="公司类型")
+	pt_name = models.CharField(max_length=50,verbose_name="项目属性")
 
 	def __unicode__(self):
 		return self.pt_name
 
 	class Meta:
-		verbose_name = '公司类型'
-		verbose_name_plural = '公司类型管理'
+		verbose_name = '项目属性'
+		verbose_name_plural = '项目属性管理'
 
 '''
 企业类型 
