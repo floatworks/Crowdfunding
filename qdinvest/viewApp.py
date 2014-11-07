@@ -453,7 +453,7 @@ def ProLike(request):
 						else:
 							response_dict['status'] = 0
 					elif p_type == 'bond':
-						BOND_objs = BOND.objects.filter(id_exact = pid)
+						BOND_objs = BOND.objects.filter(id__exact = p_id)
 						if BOND_objs:
 							if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_bond':BOND_objs[0]}):
 								response_dict['status'] = 2
@@ -478,7 +478,7 @@ def ProLike(request):
 						else:
 							response_dict['status'] = 0
 					elif p_type == 'bond':
-						BOND_objs = BOND.objects.filter(id_exact = pid)
+						BOND_objs = BOND.objects.filter(id__exact = p_id)
 						if BOND_objs:
 							USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_objs[0],uf_bond = BOND_objs[0])
 							if USER_FOCUS_objs:
