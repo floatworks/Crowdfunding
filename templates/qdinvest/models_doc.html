@@ -1,0 +1,1744 @@
+
+	<html>        
+		<head>
+			<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+			<title>Data table schema document</title>
+			<style type="text/css">
+				.loopeven {background:#f1f1f1;}
+				.loopodd {}
+			</style>
+		</head>
+		<body>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: ACCOUNT&nbsp;&nbsp;&nbsp;&nbsp;账户管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_user</td>
+							<td>用户</td>
+							<td>OneToOneField
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ac_like</td>
+							<td>关注的项目数</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_support</td>
+							<td>支持的项目数</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ac_sponsor</td>
+							<td>发起的项目数</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_infos</td>
+							<td>未读消息数量</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ac_balance</td>
+							<td>账户余额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_frozen</td>
+							<td>冻结资金</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ac_soon_profit</td>
+							<td>待收收益</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_actual_profit</td>
+							<td>实际收益</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ac_total_invest</td>
+							<td>累计投资</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_total_profit</td>
+							<td>累计收益</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: BOND&nbsp;&nbsp;&nbsp;&nbsp;债权众筹管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_title</td>
+							<td>标题</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_image</td>
+							<td>LOGO</td>
+							<td>ImageField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_com_name</td>
+							<td>企业名称</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_brief</td>
+							<td>经营用途</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_begin_time</td>
+							<td>开始时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_create_time</td>
+							<td>创建时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_end_time</td>
+							<td>结束时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_scale</td>
+							<td>年转化率</td>
+							<td>FloatField
+								
+							</td>
+							<td>单位:%</td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_province</td>
+							<td>所属地区</td>
+							<td>ForeignKey
+								
+									(PROVINCE)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_total_price</td>
+							<td>融资总额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_current_price</td>
+							<td>当前已经认购</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_min_price</td>
+							<td>认购起点</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_pro_type</td>
+							<td>项目属性</td>
+							<td>ForeignKey
+								
+									(PRO_TYPE)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_com_type</td>
+							<td>公司类型</td>
+							<td>ForeignKey
+								
+									(COM_TYPE)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_goal</td>
+							<td>借款用途</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_repayment</td>
+							<td>还款来源</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_com_inf</td>
+							<td>企业信息</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_risk_inf</td>
+							<td>风险信息</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_files</td>
+							<td>相关文件</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_repay_plan</td>
+							<td>还款计划</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_finance</td>
+							<td>财务计划</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_sort</td>
+							<td>排序</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>bo_status</td>
+							<td>状态</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: COM_TYPE&nbsp;&nbsp;&nbsp;&nbsp;企业类型管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ct_name</td>
+							<td>公司类型</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: INDUSTRY&nbsp;&nbsp;&nbsp;&nbsp;行业管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>in_name</td>
+							<td>行业名称</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>in_sort</td>
+							<td>排序</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: INVEST_BOND&nbsp;&nbsp;&nbsp;&nbsp;用户投资债权众筹</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ib_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ib_bond</td>
+							<td>股权众筹</td>
+							<td>ForeignKey
+								
+									(BOND)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ib_amount</td>
+							<td>投资金额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ib_date</td>
+							<td>投资时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ib_soon_profit</td>
+							<td>预计收入</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ib_profit_date</td>
+							<td>预计收入日期</td>
+							<td>DateField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ib_status</td>
+							<td>审核状态</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: INVEST_STOCK&nbsp;&nbsp;&nbsp;&nbsp;用户投资股权众筹</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>is_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>is_stock</td>
+							<td>股权众筹</td>
+							<td>ForeignKey
+								
+									(STOCK)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>is_amount</td>
+							<td>投资金额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>is_date</td>
+							<td>投资时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>is_soon_profit</td>
+							<td>预计收入</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>is_profit_date</td>
+							<td>预计收入日期</td>
+							<td>DateField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>is_status</td>
+							<td>审核状态</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: NOTICE&nbsp;&nbsp;&nbsp;&nbsp;系统通知管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>no_title</td>
+							<td>通知标题</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>no_body</td>
+							<td>通知内容</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>no_time</td>
+							<td>通知时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>no_type</td>
+							<td>通知类型</td>
+							<td>IntegerField
+								
+							</td>
+							<td>比如紧急通知，维护通知，广告通知之类</td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>no_sort</td>
+							<td>优先级</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>no_is_delete</td>
+							<td>是否删除</td>
+							<td>IntegerField
+								
+							</td>
+							<td>0 未删除 1 已删除</td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: NOTICE_READ&nbsp;&nbsp;&nbsp;&nbsp;系统通知是否已读</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>nr_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>nr_notice</td>
+							<td>系统通知</td>
+							<td>ForeignKey
+								
+									(NOTICE)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: NOTICE_USER&nbsp;&nbsp;&nbsp;&nbsp;用户通知管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>nu_title</td>
+							<td>通知标题</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>nu_body</td>
+							<td>通知管理</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>nu_time</td>
+							<td>通知内容</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>nu_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>nu_type</td>
+							<td>通知类型</td>
+							<td>IntegerField
+								
+							</td>
+							<td>比如收益通知，债权众筹提前打款等</td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>nu_is_read</td>
+							<td>是否已读</td>
+							<td>IntegerField
+								
+							</td>
+							<td>0 未读 1 已读</td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>nu_is_delete</td>
+							<td>是否删除</td>
+							<td>IntegerField
+								
+							</td>
+							<td>0 未删除 1 已删除</td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: PROFIT&nbsp;&nbsp;&nbsp;&nbsp;用户收益管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>pr_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>pr_amount</td>
+							<td>收益金额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>pr_date</td>
+							<td>收益时间</td>
+							<td>DateField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>pr_title</td>
+							<td>收益项目名称</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: PROVINCE&nbsp;&nbsp;&nbsp;&nbsp;地区管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>pr_name</td>
+							<td>省</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: PRO_TYPE&nbsp;&nbsp;&nbsp;&nbsp;公司类型管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>pt_name</td>
+							<td>公司类型</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: RANDOMCODE&nbsp;&nbsp;&nbsp;&nbsp;验证码管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>rc_tel</td>
+							<td>手机号码</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>rc_code</td>
+							<td>验证码</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>rc_time</td>
+							<td>更新时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: RECHARGE&nbsp;&nbsp;&nbsp;&nbsp;充值管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>rc_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>rc_type</td>
+							<td>操作类型</td>
+							<td>IntegerField
+								
+							</td>
+							<td>0充值，1提现</td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>rc_value</td>
+							<td>金额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>rc_date</td>
+							<td>操作时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>rc_status</td>
+							<td>状态</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: STOCK&nbsp;&nbsp;&nbsp;&nbsp;股权众筹管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_title</td>
+							<td>标题</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_image</td>
+							<td>LOGO</td>
+							<td>ImageField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_brief</td>
+							<td>描述</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_begin_time</td>
+							<td>开始时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_end_time</td>
+							<td>结束时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_create_time</td>
+							<td>创建时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_scale</td>
+							<td>出让比例</td>
+							<td>FloatField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_total_price</td>
+							<td>投资总额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_current_price</td>
+							<td>当前已经认购</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_min_price</td>
+							<td>认购起点</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_industry</td>
+							<td>所属行业</td>
+							<td>ForeignKey
+								
+									(INDUSTRY)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_province</td>
+							<td>所属地区</td>
+							<td>ForeignKey
+								
+									(PROVINCE)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_pro_type</td>
+							<td>项目属性</td>
+							<td>ForeignKey
+								
+									(PRO_TYPE)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_com_type</td>
+							<td>公司类型</td>
+							<td>ForeignKey
+								
+									(COM_TYPE)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_like_count</td>
+							<td>关注数</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_invest_count</td>
+							<td>认购次数</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_hint</td>
+							<td>重要提示</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_com_brief</td>
+							<td>公司简介</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_protect</td>
+							<td>投资者保护机制</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_inf_expose</td>
+							<td>信息披露安排</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_plan</td>
+							<td>融资计划</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_finance</td>
+							<td>财务情况</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_good_bad</td>
+							<td>优势和劣势</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_market</td>
+							<td>市场分析</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_business</td>
+							<td>商业模式</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_risk</td>
+							<td>风险控制</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_team</td>
+							<td>团队介绍</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_prospectus</td>
+							<td>投资计划书</td>
+							<td>TextField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>st_sort</td>
+							<td>排序</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>st_status</td>
+							<td>状态</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: TALK&nbsp;&nbsp;&nbsp;&nbsp;股权众筹用户讨论记录</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ta_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ta_stock</td>
+							<td>股权众筹</td>
+							<td>ForeignKey
+								
+									(STOCK)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ta_msg</td>
+							<td>评论内容</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ta_pre_id</td>
+							<td>父ID</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: TOKEN&nbsp;&nbsp;&nbsp;&nbsp;TOKEN管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>t_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>t_token</td>
+							<td>token</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>t_time</td>
+							<td>更新时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: USERS&nbsp;&nbsp;&nbsp;&nbsp;用户管理</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#f1f1f1">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>u_name</td>
+							<td>用户名</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>u_pwd</td>
+							<td>密码</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>u_tel</td>
+							<td>手机号</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>u_status</td>
+							<td>用户状态</td>
+							<td>IntegerField
+								
+							</td>
+							<td>0 正常</td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: USER_FOCUS&nbsp;&nbsp;&nbsp;&nbsp;关注记录</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>uf_user</td>
+							<td>用户</td>
+							<td>ForeignKey
+								
+									(USERS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>uf_stock</td>
+							<td>股权众筹</td>
+							<td>ForeignKey
+								
+									(STOCK)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>uf_bond</td>
+							<td>股权众筹</td>
+							<td>ForeignKey
+								
+									(BOND)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>uf_update_time</td>
+							<td>更新时间</td>
+							<td>DateTimeField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="margin-top:50px; padding:10px; width:100%;text-align:center;">
+				this document generated by scott
+				<a href="http://www.congyuandong.cn"> django-m2doc</a>
+			</p>
+		</body>
+	</html>
+	

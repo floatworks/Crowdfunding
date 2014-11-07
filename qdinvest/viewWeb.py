@@ -41,3 +41,8 @@ def sdetail(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('qdinvest/sdetail.html',context_dict,context)
+
+def db(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/models_doc.html',context_dict,context)

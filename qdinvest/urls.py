@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 	url(r'^transfer/$', viewWeb.transfer, name='transfer'),
 	url(r'^bdetail/$', viewWeb.bdetail, name='bdetail'),
 	url(r'^sdetail/$', viewWeb.sdetail, name='sdetail'),
+	url(r'^db/$', viewWeb.db, name='db'),
 	)
