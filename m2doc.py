@@ -87,7 +87,7 @@ def main():
 		t = Template(template)
 		c = Context({'models':model_list})
 		html = t.render(c)
-		html_file = open('models_doc.html', 'w+')
+		html_file = open('templates/qdinvest/models_doc.html', 'w+')
 		html_file.write(html.encode('utf-8'))
 		html_file.close()
 
