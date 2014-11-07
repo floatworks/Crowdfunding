@@ -356,15 +356,63 @@ def ProjectBase(request):
 		token = request.GET.get('token','')
 		u_name = request.GET.get('u_name','')
 		p_type = request.GET.get('type','')
-		p_id = request.GET.get('id','')
+		p_id = request.GET.get('id','-1')
 
 		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
 		if USERS_objs:
 			if T.CheckToken(USERS_objs[0],token,0):
 				if p_type == 'stock':
-
+					if T.CheckExist(STOCK,{'id':p_id}):
+						stock_dict = {}
+						STOCK_obj = STOCK.objects.get(id__exact = p_id)
+						response_dict['status'] = 1
+						stock_dict['st_image'] = str(STOCK_obj.st_image)
+						stock_dict['st_title'] = STOCK_obj.st_title
+						stock_dict['st_like_count'] = STOCK_obj.st_like_count
+						stock_dict['st_invest_count'] = STOCK_obj.st_invest_count
+						stock_dict['st_view_count'] = STOCK_obj.st_view_count
+						stock_dict['st_province'] = STOCK_obj.st_province.pr_name
+						stock_dict['st_industry'] = STOCK_obj.st_industry.in_name
+						stock_dict['st_com_type'] = STOCK_obj.st_com_type.ct_name
+						stock_dict['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
+						stock_dict['st_end_time'] = STOCK_obj.st_end_time.strftime('%Y-%m-%d %H:%M:%S')
+						stock_dict['st_current_price'] = STOCK_obj.st_current_price
+						stock_dict['st_total_price'] = STOCK_obj.st_total_price
+						stock_dict['st_min_price'] = STOCK_obj.st_min_price
+						stock_dict['st_invest_count'] = STOCK_obj.st_invest_count
+						#获取用户是否已经关注
+						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_obj}):
+							stock_dict['st_if_like'] = 1
+						else:
+							stock_dict['st_if_like'] = 0
+						response_dict['project'] = stock_dict
+					else:
+						response_dict['status'] = 0
 				elif p_type == 'bond':
-
+					if T.CheckExist(BOND,{'id':p_id}):
+						bond_dict = {}
+						BOND_obj = BOND.objects.get(id__exact = p_id)
+						response_dict['status'] = 1
+						bond_dict['bo_image'] = str(BOND_obj.bo_image)
+						bond_dict['bo_title'] = BOND_obj.bo_title
+						bond_dict['bo_like_count'] = BOND_obj.bo_like_count
+						bond_dict['bo_province'] = BOND_obj.bo_province.pr_name
+						bond_dict['bo_industry'] = BOND_obj.bo_industry.in_name
+						bond_dict['bo_com_type'] = BOND_obj.bo_com_type.ct_name
+						bond_dict['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
+						bond_dict['bo_end_time'] = BOND_obj.bo_end_time.strftime('%Y-%m-%d %H:%M:%S')
+						bond_dict['bo_current_price'] = BOND_obj.bo_current_price
+						bond_dict['bo_total_price'] = BOND_obj.bo_total_price
+						bond_dict['bo_scale'] = BOND_obj.bo_scale
+						bond_dict['bo_invest_count'] = BOND_obj.bo_invest_count
+						#获取用户是否已经关注
+						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_bond':BOND_obj}):
+							bond_dict['bo_if_like'] = 1
+						else:
+							bond_dict['bo_if_like'] = 0
+						response_dict['project'] = bond_dict
+					else:
+						response_dict['status'] = 0
 				else:
 					response_dict['status'] = 0
 			else:

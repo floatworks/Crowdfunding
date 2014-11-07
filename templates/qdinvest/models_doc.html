@@ -258,6 +258,17 @@
 						</tr> 
 						
 						<tr style="background:#ffffff">
+							<td>bo_industry</td>
+							<td>所属行业</td>
+							<td>ForeignKey
+								
+									(INDUSTRY)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
 							<td>bo_total_price</td>
 							<td>融资总额</td>
 							<td>DecimalField
@@ -266,7 +277,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>bo_current_price</td>
 							<td>当前已经认购</td>
 							<td>DecimalField
@@ -275,7 +286,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>bo_min_price</td>
 							<td>认购起点</td>
 							<td>DecimalField
@@ -284,7 +295,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>bo_pro_type</td>
 							<td>项目属性</td>
 							<td>ForeignKey
@@ -295,7 +306,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>bo_com_type</td>
 							<td>公司类型</td>
 							<td>ForeignKey
@@ -306,7 +317,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>bo_like_count</td>
 							<td>关注数</td>
 							<td>IntegerField
@@ -315,9 +326,18 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>bo_view_count</td>
 							<td>点击数</td>
+							<td>IntegerField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>bo_invest_count</td>
+							<td>认购次数</td>
 							<td>IntegerField
 								
 							</td>
