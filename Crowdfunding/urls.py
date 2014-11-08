@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^app/', include('qdinvest.urlsapp')),
     #url(r'^admin/', include(admin.site.urls)),
     url(r'admin/', include(xadmin.site.urls)),
+    url(r'^ueditor/',include('DjangoUeditor.urls' )),
 )
 
 

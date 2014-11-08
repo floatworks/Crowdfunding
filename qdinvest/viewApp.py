@@ -37,6 +37,8 @@ def Register(request):
 			userForm = USERSFORM(data = userData)
 			if userForm.is_valid():
 				userForm.save()
+				#创建用户的时候同时需要创建用户账户
+				#补充代码
 				response_dict['status'] = 1
 			else:
 				response_dict['status'] = 0

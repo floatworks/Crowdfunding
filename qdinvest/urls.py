@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 	url(r'^bdetail/$', viewWeb.bdetail, name='bdetail'),
 	url(r'^sdetail/$', viewWeb.sdetail, name='sdetail'),
 	url(r'^db/$', viewWeb.db, name='db'),
+	url(r'^testUeditor/$', viewWeb.testUeditor, name='testUeditor'),
 	)

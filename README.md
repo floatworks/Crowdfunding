@@ -16,3 +16,7 @@
 	*	excel导出组件
 
 *	django-reversion
+
+*	django-ckeditor
+
+*	Pillow

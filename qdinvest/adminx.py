@@ -2,6 +2,13 @@
 import xadmin
 from xadmin import views
 from models import *
+from DjangoUeditor.models import UEditorField
+from DjangoUeditor.widgets import UEditorWidget
+from xadmin.views import BaseAdminPlugin, ModelFormAdminView, DetailAdminView
+from django.conf import settings
+
+
+
 '''
 基础用户表
 '''
@@ -58,8 +65,10 @@ class STOCKAdmin(object):
 	'st_end_time','st_create_time','st_scale','st_total_price','st_current_price','st_min_price','st_industry',
 	'st_province','st_pro_type','st_com_type','st_like_count','st_view_count','st_invest_count',
 	'st_sort','st_status']
-	list_filter = ('st_begin_time','st_end_time','st_create_time')	
-	search_fiedls = ['st_user'] 
+	list_filter = ('st_begin_time','st_end_time','st_create_time')
+	search_fiedls = ['st_user']
+	style_fields = {'st_hint':'ueditor'}
+
    
     
 
@@ -136,6 +145,33 @@ class PROFITAdmin(object):
 class RANDOMCODEAdmin(object):
 	list_display = ['rc_tel','rc_code','rc_time']
 	search_fiedls = ['rc_tel'] 
+
+class XadminUEditorWidget(UEditorWidget):
+	def __init__(self,**kwargs):
+		self.ueditor_options=kwargs
+		self.Media.js = None
+		super(XadminUEditorWidget,self).__init__(kwargs)
+
+class UeditorPlugin(BaseAdminPlugin):
+	def get_field_style(self, attrs, db_field, style, **kwargs):
+		if style == 'ueditor':
+			if isinstance(db_field, UEditorField):
+				widget = db_field.formfield().widget
+				param = {}
+				param.update(widget.ueditor_settings)
+				param.update(widget.attrs)
+				return {'widget': XadminUEditorWidget(**param)}
+			if isinstance(db_field, TextField):
+				return {'widget': XadminUEditorWidget}
+		return attrs
+	def block_extrahead(self, context, nodes):
+		js = '<script type="text/javascript" src="%s"></script>' % (settings.STATIC_URL + "ueditor/ueditor.config.js")
+		js += '<script type="text/javascript" src="%s"></script>' % (settings.STATIC_URL + "ueditor/ueditor.all.min.js")
+		nodes.append(js)
+
+xadmin.site.register_plugin(UeditorPlugin,DetailAdminView)
+
+xadmin.site.register_plugin(UeditorPlugin,ModelFormAdminView)
 
 xadmin.site.register(USERS,USERSAdmin)
 xadmin.site.register(ACCOUNT,ACCOUNTAdmin)

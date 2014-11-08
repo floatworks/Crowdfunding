@@ -12,10 +12,16 @@ import simplejson as json
 from datetime import datetime,timedelta
 from  models import STOCK
 
+def testUeditor(request):
+	context = RequestContext(request)
+	context_dict = {}
+	STOCK_obj = STOCK.objects.get(id__exact = 10)
+	context_dict['stock'] = STOCK_obj
+	return render_to_response('qdinvest/testUeditor.html',context_dict,context)
 
 def index(request):
 	context = RequestContext(request)
-   # context_dict = STOCK.objects.all()[0:3:1]
+   	# context_dict = STOCK.objects.all()[0:3:1]
 	context_dict = {}
 	return render_to_response('qdinvest/index.html',{'context_dict':context_dict},context)
 

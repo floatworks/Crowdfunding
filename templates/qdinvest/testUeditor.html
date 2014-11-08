@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+	{% load staticfiles %}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" name="viewport">
+<body>
+	{{stock.st_title}}
+	{% autoescape off %} 
+    {{stock.st_hint}}
+	{% endautoescape %}
+
+</body>
+</html>

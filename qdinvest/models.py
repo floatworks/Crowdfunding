@@ -1,6 +1,6 @@
 #coding:utf-8
 from django.db import models
-
+from DjangoUeditor.models import UEditorField
 
 '''
 基础用户表
@@ -116,7 +116,9 @@ class STOCK(models.Model):
 	st_like_count = models.IntegerField(default=0,verbose_name="关注数")
 	st_view_count = models.IntegerField(default=0,verbose_name="点击数")
 	st_invest_count = models.IntegerField(default=0,verbose_name="认购次数")
-	st_hint = models.TextField(verbose_name="重要提示",null=True,blank=True)
+	#st_hint = models.TextField(verbose_name="重要提示",null=True,blank=True)
+	st_hint = UEditorField(u'重要提示',width="100%", height=300, toolbars="full",imagePath="media/ueditor/images/",filePath="media/ueditor/files/",
+		upload_settings={"imageMaxSize":1204000},null=True,blank=True)
 	st_com_brief = models.TextField(verbose_name="公司简介",null=True,blank=True)
 	st_protect = models.TextField(verbose_name="投资者保护机制",null=True,blank=True)
 	st_inf_expose = models.TextField(verbose_name="信息披露安排",null=True,blank=True)
