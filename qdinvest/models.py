@@ -1,6 +1,7 @@
 #coding:utf-8
 from django.db import models
 from DjangoUeditor.models import UEditorField
+from django.conf import settings
 
 '''
 基础用户表
@@ -116,20 +117,42 @@ class STOCK(models.Model):
 	st_like_count = models.IntegerField(default=0,verbose_name="关注数")
 	st_view_count = models.IntegerField(default=0,verbose_name="点击数")
 	st_invest_count = models.IntegerField(default=0,verbose_name="认购次数")
-	#st_hint = models.TextField(verbose_name="重要提示",null=True,blank=True)
-	st_hint = UEditorField(u'重要提示',width="100%", height=300, toolbars="full",imagePath="ueditor/images/",filePath="ueditor/files/",
-		upload_settings={"imageMaxSize":1204000},null=True,blank=True)
-	st_com_brief = models.TextField(verbose_name="公司简介",null=True,blank=True)
-	st_protect = models.TextField(verbose_name="投资者保护机制",null=True,blank=True)
-	st_inf_expose = models.TextField(verbose_name="信息披露安排",null=True,blank=True)
-	st_plan = models.TextField(verbose_name="融资计划",null=True,blank=True)
-	st_finance = models.TextField(verbose_name="财务情况",null=True,blank=True)
-	st_good_bad = models.TextField(verbose_name="优势和劣势",null=True,blank=True)
-	st_market = models.TextField(verbose_name="市场分析",null=True,blank=True)
-	st_business = models.TextField(verbose_name="商业模式",null=True,blank=True)
-	st_risk = models.TextField(verbose_name="风险控制",null=True,blank=True)
-	st_team = models.TextField(verbose_name="团队介绍",null=True,blank=True)
-	st_prospectus = models.TextField(verbose_name="投资计划书",null=True,blank=True)
+	st_hint = UEditorField(verbose_name='重要提示',imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_com_brief = UEditorField(verbose_name="公司简介",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_protect = UEditorField(verbose_name="投资者保护机制",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_inf_expose = UEditorField(verbose_name="信息披露安排",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_plan = UEditorField(verbose_name="融资计划",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_finance = UEditorField(verbose_name="财务情况",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_good_bad = UEditorField(verbose_name="优势和劣势",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_market = UEditorField(verbose_name="市场分析",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_business = UEditorField(verbose_name="商业模式",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_risk = UEditorField(verbose_name="风险控制",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_team = UEditorField(verbose_name="团队介绍",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_prospectus = UEditorField(verbose_name="投资计划书",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
 	st_sort = models.IntegerField(default=0,verbose_name="排序")
 	st_status = models.IntegerField(default=0,verbose_name="状态")
 
@@ -165,11 +188,21 @@ class BOND(models.Model):
 	bo_invest_count = models.IntegerField(default=0,verbose_name="认购次数")
 	bo_goal = models.CharField(max_length=200,verbose_name="借款用途")
 	bo_repayment = models.CharField(max_length=200,verbose_name="还款来源")
-	bo_com_inf = models.TextField(verbose_name="企业信息",null=True,blank=True)
-	bo_risk_inf = models.TextField(verbose_name="风险信息",null=True,blank=True)
-	bo_files = models.TextField(verbose_name="相关文件",null=True,blank=True)
-	bo_repay_plan = models.TextField(verbose_name="还款计划",null=True,blank=True)
-	bo_finance = models.TextField(verbose_name="财务计划",null=True,blank=True)
+	bo_com_inf = UEditorField(verbose_name="企业信息",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	bo_risk_inf = UEditorField(verbose_name="风险信息",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	bo_files = UEditorField(verbose_name="相关文件",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	bo_repay_plan = UEditorField(verbose_name="还款计划",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	bo_finance = UEditorField(verbose_name="财务计划",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
 	bo_sort = models.IntegerField(default=0,verbose_name="排序")
 	bo_status = models.IntegerField(default=0,verbose_name="状态")
 
@@ -272,7 +305,9 @@ class TALK(models.Model):
 '''
 class NOTICE(models.Model):
 	no_title = models.CharField(max_length=100,verbose_name="通知标题")
-	no_body = models.TextField(verbose_name="通知内容")
+	no_body = UEditorField(verbose_name="通知内容",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000})
 	no_time = models.DateTimeField(verbose_name="通知时间")
 	no_type = models.IntegerField(verbose_name="通知类型",help_text="比如紧急通知，维护通知，广告通知之类")
 	no_sort = models.IntegerField(verbose_name="优先级")
@@ -287,8 +322,10 @@ class NOTICE(models.Model):
 '''
 class NOTICE_USER(models.Model):
 	nu_title = models.CharField(max_length=100,verbose_name="通知标题")
-	nu_body = models.TextField(verbose_name="通知管理")
-	nu_time = models.DateTimeField(verbose_name="通知内容")
+	nu_body = UEditorField(verbose_name="通知内容",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000})
+	nu_time = models.DateTimeField(verbose_name="通知时间")
 	nu_user = models.ForeignKey(USERS,verbose_name="用户")
 	nu_type = models.IntegerField(verbose_name="通知类型",help_text="比如收益通知，债权众筹提前打款等")
 	nu_is_read = models.IntegerField(verbose_name="是否已读",help_text="0 未读 1 已读")

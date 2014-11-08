@@ -96,7 +96,8 @@ UEDITOR_SETTINGS={
     },
     'upload':{
         "imageAllowFiles":[".png",".jpg", ".jpeg", ".gif", ".bmp",".JPG"],
-    }
+        
+    },
 }
 
 # Internationalization

@@ -8,8 +8,6 @@ from xadmin.views import BaseAdminPlugin, ModelFormAdminView, DetailAdminView
 from django.conf import settings
 from django.db.models import TextField
 
-
-
 '''
 基础用户表
 '''
@@ -68,7 +66,9 @@ class STOCKAdmin(object):
 	'st_sort','st_status']
 	list_filter = ('st_begin_time','st_end_time','st_create_time')
 	search_fiedls = ['st_user']
-	style_fields = {'st_hint':'ueditor'}
+	style_fields = {'st_hint':'ueditor','st_com_brief':'ueditor','st_protect':'ueditor','st_inf_expose':'ueditor',
+					'st_plan':'ueditor','st_finance':'ueditor','st_good_bad':'ueditor','st_market':'ueditor',
+					'st_business':'ueditor','st_risk':'ueditor','st_team':'ueditor','st_prospectus':'ueditor',}
 
    
     
@@ -77,11 +77,12 @@ class STOCKAdmin(object):
 债权众筹 
 '''
 class BONDAdmin(object):
-	list_display = ['bo_user','bo_title','bo_com_name','bo_brief','bo_begin_time','bo_create_time','bo_end_time',
+	list_display = ['bo_title','bo_user','bo_com_name','bo_brief','bo_begin_time','bo_create_time','bo_end_time',
 	'bo_scale','bo_province','bo_total_price','bo_current_price','bo_min_price','bo_pro_type','bo_com_type','bo_like_count',
 	'bo_view_count','bo_sort','bo_status']
 	list_filter = ('bo_begin_time','bo_create_time','bo_end_time')
 	search_fiedls = ['bo_user'] 
+	style_fields = {'bo_com_inf':'ueditor','bo_risk_inf':'ueditor','bo_files':'ueditor','bo_repay_plan':'ueditor','bo_finance':'ueditor'}
     
 '''
 用户投资 股权众筹
@@ -117,6 +118,7 @@ class TALKAdmin(object):
 class NOTICEAdmin(object):
 	list_display = ['no_title','no_body','no_time','no_type','no_sort','no_is_delete']
 	search_fiedls = ['no_title'] 
+	style_fields  = {'no_body':'ueditor'}
 
 '''
 用户通知表
@@ -124,6 +126,7 @@ class NOTICEAdmin(object):
 class NOTICE_USERAdmin(object):
 	list_display = ['nu_title','nu_body','nu_time','nu_user','nu_type','nu_is_read','nu_is_delete']
 	search_fiedls = ['nu_title'] 
+	style_fields  = {'nu_body':'ueditor'}
 
 '''
 系统通知查看
