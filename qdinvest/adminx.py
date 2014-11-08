@@ -58,7 +58,7 @@ class STOCKAdmin(object):
 	'st_end_time','st_create_time','st_scale','st_total_price','st_current_price','st_min_price','st_industry',
 	'st_province','st_pro_type','st_com_type','st_like_count','st_view_count','st_invest_count',
 	'st_sort','st_status']
-	list_filter = ('st_begin_time','st_end_time','st_create_time')
+	list_filter = ('st_begin_time','st_end_time','st_create_time')	
 	search_fiedls = ['st_user'] 
    
     
