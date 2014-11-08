@@ -100,7 +100,7 @@ class COM_TYPE(models.Model):
 class STOCK(models.Model):
 	st_user = models.ForeignKey(USERS,verbose_name="用户")
 	st_title = models.CharField(max_length=100,verbose_name="&nbsp;&nbsp;&nbsp;&nbsp;标题&nbsp;&nbsp;&nbsp;&nbsp;")
-	st_image = models.ImageField(upload_to ='media/logo/',verbose_name="LOGO")
+	st_image = models.ImageField(upload_to ='logo/',verbose_name="LOGO")
 	st_brief = models.CharField(max_length=200,verbose_name="&nbsp;&nbsp;&nbsp;&nbsp;描述&nbsp;&nbsp;&nbsp;&nbsp;")
 	st_begin_time = models.DateTimeField(verbose_name="&nbsp;&nbsp;开始时间&nbsp;&nbsp;")
 	st_end_time = models.DateTimeField(verbose_name="&nbsp;&nbsp;结束时间&nbsp;&nbsp;")
@@ -117,7 +117,7 @@ class STOCK(models.Model):
 	st_view_count = models.IntegerField(default=0,verbose_name="点击数")
 	st_invest_count = models.IntegerField(default=0,verbose_name="认购次数")
 	#st_hint = models.TextField(verbose_name="重要提示",null=True,blank=True)
-	st_hint = UEditorField(u'重要提示',width="100%", height=300, toolbars="full",imagePath="media/ueditor/images/",filePath="media/ueditor/files/",
+	st_hint = UEditorField(u'重要提示',width="100%", height=300, toolbars="full",imagePath="ueditor/images/",filePath="ueditor/files/",
 		upload_settings={"imageMaxSize":1204000},null=True,blank=True)
 	st_com_brief = models.TextField(verbose_name="公司简介",null=True,blank=True)
 	st_protect = models.TextField(verbose_name="投资者保护机制",null=True,blank=True)
@@ -146,7 +146,7 @@ class STOCK(models.Model):
 class BOND(models.Model):
 	bo_user = models.ForeignKey(USERS,verbose_name="用户")
 	bo_title = models.CharField(max_length=100,verbose_name="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标题&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
-	bo_image = models.ImageField(upload_to ='media/logo/',verbose_name="LOGO")
+	bo_image = models.ImageField(upload_to ='logo/',verbose_name="LOGO")
 	bo_com_name = models.CharField(max_length=100,verbose_name="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;企业名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
 	bo_brief = models.CharField(max_length=200,verbose_name="经营用途")
 	bo_begin_time = models.DateTimeField(verbose_name="&nbsp;&nbsp;开始时间&nbsp;&nbsp;")
