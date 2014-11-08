@@ -195,6 +195,7 @@ def GetProjects(request):
 				STOCK_objs = STOCK.objects.order_by('-st_create_time')[num*20:(num+1)*20]
 				for STOCK_obj in STOCK_objs:
 					stocks_per = {}
+					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
 					stocks_per['st_image'] = str(STOCK_obj.st_image)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
@@ -213,6 +214,7 @@ def GetProjects(request):
 				BOND_objs = BOND.objects.order_by('-bo_create_time')[num*20:(num+1)*20]
 				for BOND_obj in BOND_objs:
 					bonds_per = {}
+					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
 					bonds_per['bo_image'] = str(BOND_obj.bo_image)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
@@ -255,6 +257,7 @@ def GetProjectsSort(request):
 				STOCK_objs = STOCK.objects.order_by('st_sort')[num*20:(num+1)*20]
 				for STOCK_obj in STOCK_objs:
 					stocks_per = {}
+					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
 					stocks_per['st_image'] = str(STOCK_obj.st_image)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
@@ -273,6 +276,7 @@ def GetProjectsSort(request):
 				BOND_objs = BOND.objects.order_by('bo_sort')[num*20:(num+1)*20]
 				for BOND_obj in BOND_objs:
 					bonds_per = {}
+					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
 					bonds_per['bo_image'] = str(BOND_obj.bo_image)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
@@ -317,6 +321,7 @@ def SearchProject(request):
 				STOCK_objs = STOCK.objects.filter(st_title__contains = keyword).order_by('st_sort')[num*20:(num+1)*20]
 				for STOCK_obj in STOCK_objs:
 					stocks_per = {}
+					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
 					stocks_per['st_image'] = str(STOCK_obj.st_image)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
@@ -335,6 +340,7 @@ def SearchProject(request):
 				BOND_objs = BOND.objects.filter(bo_title__contains = keyword).order_by('bo_sort')[num*20:(num+1)*20]
 				for BOND_obj in BOND_objs:
 					bonds_per = {}
+					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
 					bonds_per['bo_image'] = str(BOND_obj.bo_image)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
