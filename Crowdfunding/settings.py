@@ -114,6 +114,7 @@ USE_L10N = True
 USE_TZ = False
 
 DATE_FORMAT = 'Y-m-d'
+
 DATETIME_FORMAT = 'Y-m-d H:i:s'
 
 
