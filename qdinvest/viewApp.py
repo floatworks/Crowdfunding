@@ -206,6 +206,7 @@ def GetProjects(request):
 					stocks_per['st_current_price'] = STOCK_obj.st_current_price
 					stocks_per['st_total_price'] = STOCK_obj.st_total_price
 					stocks_per['st_min_price'] = STOCK_obj.st_min_price
+					stocks_per['st_create_time'] = STOCK_obj.st_create_time.strftime('%Y-%m-%d %H:%M:%S')
 					stocks_data.append(stocks_per)
 				response_dict['stocks'] = stocks_data
 				bonds_data = []
@@ -221,6 +222,7 @@ def GetProjects(request):
 					bonds_per['bo_total_price'] = BOND_obj.bo_total_price
 					bonds_per['bo_current_price'] = BOND_obj.bo_current_price
 					bonds_per['bo_min_price'] = BOND_obj.bo_min_price
+					bonds_per['bo_create_time'] = BOND_obj.bo_create_time.strftime('%Y-%m-%d %H:%M:%S')
 					bonds_data.append(bonds_per)
 				response_dict['bonds'] = bonds_data
 			else:
@@ -264,6 +266,7 @@ def GetProjectsSort(request):
 					stocks_per['st_current_price'] = STOCK_obj.st_current_price
 					stocks_per['st_total_price'] = STOCK_obj.st_total_price
 					stocks_per['st_min_price'] = STOCK_obj.st_min_price
+					stocks_per['st_create_time'] = STOCK_obj.st_create_time.strftime('%Y-%m-%d %H:%M:%S')
 					stocks_data.append(stocks_per)
 				response_dict['stocks'] = stocks_data
 				bonds_data = []
@@ -279,6 +282,7 @@ def GetProjectsSort(request):
 					bonds_per['bo_total_price'] = BOND_obj.bo_total_price
 					bonds_per['bo_current_price'] = BOND_obj.bo_current_price
 					bonds_per['bo_min_price'] = BOND_obj.bo_min_price
+					bonds_per['bo_create_time'] = BOND_obj.bo_create_time.strftime('%Y-%m-%d %H:%M:%S')
 					bonds_data.append(bonds_per)
 				response_dict['bonds'] = bonds_data
 			else:
