@@ -2,6 +2,7 @@
 from django.db import models
 from DjangoUeditor.models import UEditorField
 from django.conf import settings
+import simplejson as json
 
 '''
 基础用户表
@@ -9,7 +10,7 @@ from django.conf import settings
 class USERS(models.Model):
 	u_name = models.CharField(max_length=50,verbose_name='用户名',unique=True)
 	u_pwd = models.CharField(max_length=20,verbose_name='密码')
-	u_tel = models.CharField(max_length=20,verbose_name='手机号')
+	u_tel = models.CharField(max_length=20,verbose_name='手机号',unique=True)
 	u_status = models.IntegerField(default=0,verbose_name='用户状态',help_text='0 正常')
 
 	def __unicode__(self):
@@ -28,12 +29,18 @@ class ACCOUNT(models.Model):
 	ac_support = models.IntegerField(default=0,verbose_name="支持的项目数")
 	ac_sponsor = models.IntegerField(default=0,verbose_name="发起的项目数")
 	ac_infos = models.IntegerField(default=0,verbose_name="未读消息数量")
-	ac_balance = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='账户余额')
-	ac_frozen = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='冻结资金')
-	ac_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='待收收益')
-	ac_actual_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='实际收益')
-	ac_total_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='累计投资')
-	ac_total_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='累计收益')
+	#ac_balance = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='账户余额')
+	#ac_frozen = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='冻结资金')
+	#ac_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='待收收益')
+	#ac_actual_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='实际收益')
+	ac_stock_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='股权投资')
+	ac_bond_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='债权总额')
+	ac_total_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资总额')
+	ac_stock_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='股权收益')
+	ac_bond_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='债权收益')
+	ac_total_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='收益收益')
+	ac_subscription = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购定金')
+	ac_total_subscription = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购总额')
 
 	def __unicode__(self):
 		return self.ac_user.u_name
@@ -231,7 +238,7 @@ class INVEST_STOCK(models.Model):
 	is_status = models.IntegerField(default=0,verbose_name="审核状态")
 
 	def __unicode__(self):
-		return self.in_stock.st_title
+		return self.is_stock.st_title
 
 	class Meta:
 		verbose_name = '用户投资股权众筹'
@@ -250,7 +257,7 @@ class INVEST_BOND(models.Model):
 	ib_status = models.IntegerField(default=0,verbose_name="审核状态")
 
 	def __unicode__(self):
-		return self.in_stock.st_title
+		return self.ib_bond.bo_title
 
 	class Meta:
 		verbose_name = '用户投资债权众筹'

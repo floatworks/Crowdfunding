@@ -22,8 +22,8 @@ class USERSAdmin(object):
 
 class ACCOUNTAdmin(object):
 	list_display = ['ac_user','ac_like','ac_support','ac_sponsor','ac_infos',
-	'ac_balance','ac_frozen','ac_soon_profit','ac_actual_profit','ac_total_invest',
-	'ac_total_profit']
+	'ac_stock_invest','ac_bond_invest','ac_total_invest','ac_stock_profit','ac_bond_profit',
+	'ac_total_profit','ac_subscription','ac_total_subscription']
 	search_fiedls = ['ac_user']
 
 '''

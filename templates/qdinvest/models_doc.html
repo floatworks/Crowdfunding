@@ -82,8 +82,8 @@
 						</tr> 
 						
 						<tr style="background:#f1f1f1">
-							<td>ac_balance</td>
-							<td>账户余额</td>
+							<td>ac_stock_invest</td>
+							<td>股权投资</td>
 							<td>DecimalField
 								
 							</td>
@@ -91,26 +91,8 @@
 						</tr> 
 						
 						<tr style="background:#ffffff">
-							<td>ac_frozen</td>
-							<td>冻结资金</td>
-							<td>DecimalField
-								
-							</td>
-							<td></td>
-						</tr> 
-						
-						<tr style="background:#f1f1f1">
-							<td>ac_soon_profit</td>
-							<td>待收收益</td>
-							<td>DecimalField
-								
-							</td>
-							<td></td>
-						</tr> 
-						
-						<tr style="background:#ffffff">
-							<td>ac_actual_profit</td>
-							<td>实际收益</td>
+							<td>ac_bond_invest</td>
+							<td>债权总额</td>
 							<td>DecimalField
 								
 							</td>
@@ -119,7 +101,25 @@
 						
 						<tr style="background:#f1f1f1">
 							<td>ac_total_invest</td>
-							<td>累计投资</td>
+							<td>投资总额</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_stock_profit</td>
+							<td>股权收益</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ac_bond_profit</td>
+							<td>债权收益</td>
 							<td>DecimalField
 								
 							</td>
@@ -128,7 +128,25 @@
 						
 						<tr style="background:#ffffff">
 							<td>ac_total_profit</td>
-							<td>累计收益</td>
+							<td>收益收益</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>ac_subscription</td>
+							<td>认购定金</td>
+							<td>DecimalField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>ac_total_subscription</td>
+							<td>认购总额</td>
 							<td>DecimalField
 								
 							</td>
@@ -365,7 +383,7 @@
 						<tr style="background:#f1f1f1">
 							<td>bo_com_inf</td>
 							<td>企业信息</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -374,7 +392,7 @@
 						<tr style="background:#ffffff">
 							<td>bo_risk_inf</td>
 							<td>风险信息</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -383,7 +401,7 @@
 						<tr style="background:#f1f1f1">
 							<td>bo_files</td>
 							<td>相关文件</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -392,7 +410,7 @@
 						<tr style="background:#ffffff">
 							<td>bo_repay_plan</td>
 							<td>还款计划</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -401,7 +419,7 @@
 						<tr style="background:#f1f1f1">
 							<td>bo_finance</td>
 							<td>财务计划</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -738,7 +756,7 @@
 						<tr style="background:#f1f1f1">
 							<td>no_body</td>
 							<td>通知内容</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -869,8 +887,8 @@
 						
 						<tr style="background:#f1f1f1">
 							<td>nu_body</td>
-							<td>通知管理</td>
-							<td>TextField
+							<td>通知内容</td>
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -878,7 +896,7 @@
 						
 						<tr style="background:#ffffff">
 							<td>nu_time</td>
-							<td>通知内容</td>
+							<td>通知时间</td>
 							<td>DateTimeField
 								
 							</td>
@@ -1035,7 +1053,7 @@
 					<tbody>
 						<tr>
 							<td colspan="4" style="border:1px solid #3385ff;">
-								<b>Model Name: PRO_TYPE&nbsp;&nbsp;&nbsp;&nbsp;公司类型管理</b>
+								<b>Model Name: PRO_TYPE&nbsp;&nbsp;&nbsp;&nbsp;项目属性管理</b>
 							</td>
 						</tr>
 						<tr style="background:#3385ff; color:#fff;">
@@ -1056,7 +1074,7 @@
 						
 						<tr style="background:#f1f1f1">
 							<td>pt_name</td>
-							<td>公司类型</td>
+							<td>项目属性</td>
 							<td>CharField
 								
 							</td>
@@ -1396,7 +1414,7 @@
 						<tr style="background:#f1f1f1">
 							<td>st_hint</td>
 							<td>重要提示</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1405,7 +1423,7 @@
 						<tr style="background:#ffffff">
 							<td>st_com_brief</td>
 							<td>公司简介</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1414,7 +1432,7 @@
 						<tr style="background:#f1f1f1">
 							<td>st_protect</td>
 							<td>投资者保护机制</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1423,7 +1441,7 @@
 						<tr style="background:#ffffff">
 							<td>st_inf_expose</td>
 							<td>信息披露安排</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1432,7 +1450,7 @@
 						<tr style="background:#f1f1f1">
 							<td>st_plan</td>
 							<td>融资计划</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1441,7 +1459,7 @@
 						<tr style="background:#ffffff">
 							<td>st_finance</td>
 							<td>财务情况</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1450,7 +1468,7 @@
 						<tr style="background:#f1f1f1">
 							<td>st_good_bad</td>
 							<td>优势和劣势</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1459,7 +1477,7 @@
 						<tr style="background:#ffffff">
 							<td>st_market</td>
 							<td>市场分析</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1468,7 +1486,7 @@
 						<tr style="background:#f1f1f1">
 							<td>st_business</td>
 							<td>商业模式</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1477,7 +1495,7 @@
 						<tr style="background:#ffffff">
 							<td>st_risk</td>
 							<td>风险控制</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1486,7 +1504,7 @@
 						<tr style="background:#f1f1f1">
 							<td>st_team</td>
 							<td>团队介绍</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
@@ -1495,7 +1513,7 @@
 						<tr style="background:#ffffff">
 							<td>st_prospectus</td>
 							<td>投资计划书</td>
-							<td>TextField
+							<td>UEditorField
 								
 							</td>
 							<td></td>
