@@ -12,4 +12,6 @@ urlpatterns = patterns('',
 	url(r'^searchpro/$', viewApp.SearchProject, name='SearchProject'),
 	url(r'^probase/$', viewApp.ProjectBase, name='ProjectBase'),
 	url(r'^like/$', viewApp.ProLike, name='ProLike'),
+	url(r'^investlist/$', viewApp.InvestList, name='InvestList'),
+	url(r'^account/$', viewApp.GetAccount, name='GetAccount'),
 	)

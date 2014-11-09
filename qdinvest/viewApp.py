@@ -38,7 +38,11 @@ def Register(request):
 			if userForm.is_valid():
 				userForm.save()
 				#创建用户的时候同时需要创建用户账户
-				#补充代码
+				USERS_obj = USERS.objects.get(u_name__exact = u_name)
+				ACCOUNT_new = ACCOUNT(ac_user=USERS_obj,ac_like=0,ac_support=0,ac_sponsor=0,ac_infos=0,
+							ac_stock_invest=0,ac_bond_invest=0,ac_total_invest=0,ac_stock_profit=0,ac_bond_profit=0,
+							ac_total_profit=0,ac_subscription=0,ac_total_subscription=0)
+				ACCOUNT_new.save()
 				response_dict['status'] = 1
 			else:
 				response_dict['status'] = 0
@@ -46,6 +50,32 @@ def Register(request):
 					response_dict['error'] = userForm.errors
 					print userForm.errors
 	
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#手机端用户获取账户信息
+def GetAccount(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_objs[0])
+				if ACCOUNT_objs:
+					response_dict['status'] = 1
+					response_dict['account'] = json.loads(serializers.serialize("json", ACCOUNT_objs))[0]['fields']
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
@@ -538,4 +568,61 @@ def ProLike(request):
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#获取用户的投资列表
+def InvestList(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+		p_type = request.GET.get('type','')
+		p_id = request.GET.get('id','-1')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if p_type == 'stock':
+					if T.CheckExist(STOCK,{'id':p_id}):
+						invest_stock_list = []
+						response_dict['status'] = 1
+						INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_stock__exact = p_id)
+						for INVEST_STOCK_obj in INVEST_STOCK_objs:
+							invest_stock_per = {}
+							invest_stock_per['is_user'] = INVEST_STOCK_obj.is_user.u_name
+							invest_stock_per['is_date'] = INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d')
+							invest_stock_per['is_amount'] = INVEST_STOCK_obj.is_amount
+							invest_stock_list.append(invest_stock_per)
+						response_dict['invest_stocks'] = invest_stock_list
+					else:
+						response_dict['status'] = 0
+				elif p_type == 'bond':
+					if T.CheckExist(BOND,{'id':p_id}):
+						invest_bond_list = []
+						response_dict['status'] = 1
+						INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_bond__exact = p_id)
+						for INVEST_BOND_obj in INVEST_BOND_objs:
+							invest_bond_per = {}
+							invest_bond_per['ib_user'] = INVEST_BOND_obj.ib_user.u_name
+							invest_bond_per['ib_date'] = INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d')
+							invest_bond_per['ib_amount'] = INVEST_BOND_obj.ib_amount
+							invest_bond_list.append(invest_bond_per)
+						response_dict['invest_bonds'] = invest_bond_list
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+	else:
+		response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+
+
 
