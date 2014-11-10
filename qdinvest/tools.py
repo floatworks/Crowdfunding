@@ -28,7 +28,7 @@ def GenToken():
 def SendRandomCode(u_tel):
 	url = 'http://www.duanxin10086.com/sms.aspx'
 	code = RandCode()
-	content = '【清大众筹】您的验证码为'+code+'。工作人员不会向您索要，请勿向任何人泄漏。'
+	content = '您的验证码为'+code+'。工作人员不会向您索要，请勿向任何人泄漏。【清大众筹】'
 	payload = {'userid':'7685','account':'tb2014','password':'123456','mobile':u_tel,
 				'content':content,'sendTime':'','action':'send','checkcontent':0,
 				'taskName':'','countnumber':1,'mobilenumber':1,'telephonenumber':0}
