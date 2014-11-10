@@ -91,30 +91,31 @@
 
   <!-- list -->
   <ul class="underway list bondlist">
+    {%for bond in  bonds%}
     <li class="blue">
       <div class="left s">中</div>
       <div class="right">
         <div class="namebar">
           <span class="left name">
-            <a href="bdetail.html">比目鱼儿童主题乐园</a>
+            <a href="bdetail.html">{{bond.bo_title }}</a>
           </span>
-          <span class="left ctext">融资企业：陕西塑胶制品有限公司  |  资金用途：补充经营用途，企业经营流动性资金</span>
+          <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
           <span class="right status">投标</span>
-          <span class="right cstatus">拟挂牌企业</span>
+          <span class="right cstatus">{{bond.bo_com_type}}</span>
         </div>
         <div class="binfo">
           <div class="left dm">
             年化利率
-            <span class="byg">10%+1%</span>
+            <span class="byg">{{bond.bo_scale}}%</span>
             <span class="g">/</span>
             截止日期
-            <span class="byg">2015年7月8日</span>
+            <span class="byg">{{bond.bo_end_time}}</span>
             <span class="g">/</span>
             融资金额
-            <span class="byg">￥500.00万</span>
+            <span class="byg">{{bond.bo_total_price}}</span>
             <span class="g">/</span>
-            授信额度
-            <span class="byg">￥2000.00万</span>
+            认购起点
+            <span class="byg">{{bond.bo_min_price}}</span>
           </div>
           <div class="left progressbar">
             <div class="left gray">
@@ -124,12 +125,12 @@
           </div>
         </div>
         <div class="cctext">
-          本项目为个人消费型购房周转贷款，借款人由于买房向银行申请个人买房贷款， 银行已确认批准贷款，积木盒子风险管理委员会已验讫，批单全部金额...
+        {{bond.bo_brief}} 
           <a href="javascript:;">更多&gt;&gt;</a>
         </div>
       </div>
     </li>
-
+    {% endfor %}
     <li class="green">
       <div class="left s">还</div>
       <div class="right">

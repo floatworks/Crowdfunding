@@ -196,6 +196,7 @@
 
   <!-- list -->
   <ul class="underway list stock">
+    {%for stock in  stocks%}
     <li>
       <div class="left img">
         <a href="sdetail.html">
@@ -205,46 +206,46 @@
       <div class="right">
         <div class="namebar">
           <span class="left name">
-            <a href="sdetail.html">比目鱼儿童主题乐园</a>
+            <a href="sdetail.html">{{stock.st_title }}</a>
           </span>
-          <span class="left local">北京 • |</span>
+          <span class="left local">{{stock.st_province}}• |</span>
           <span class="clazz">
-            <a href="javascript:;">医疗健康</a>
+            <a href="javascript:;">{{stock.st_industry}}</a>
           </span>
           <span class="right status">融资中</span>
-          <span class="right cstatus">拟挂牌企业</span>
+          <span class="right cstatus">{{stock.st_com_type}}</span>
         </div>
-        <div class="desc">餐饮行业餐具破损现象十分普遍，五星级酒店餐具正常破损率为营业收入千分之三至千分之四，大部分酒店在国内民营企业中...</div>
+        <div class="desc">{{stock.st_hint}}</div>
         <div class="progressbar">
           <div class="left gray">
             <div class="left yellow"></div>
           </div>
-          <div class="right percent">35%</div>
+          <div class="right percent">{{stock.st_scale}}%</div>
         </div>
         <div class="money">
           <div class="left">
             当前融资：
-            <span>￥200,000</span>
+            <span>{{stock.st_current_price}}</span>
             融资总额：
-            <span>￥2,000,000</span>
+            <span>{{stock.st_total_price}}</span>
             认购起点：
-            <span>￥4,000</span>
+            <span>{{stock.st_min_price}}</span>
             出让股权比例：
-            <span>44.14%</span>
+            <span>{{stock.st_scale}}%</span>
           </div>
         </div>
         <div class="right course">
-          约谈
-          <span>23</span>
-          /　关注
-          <span>1,088</span>
-          /　认购结束
-          <span>3,555</span>
+          /  关注
+          <span>{{stock.st_like_count}}</span>
+          /　点击
+          <span>{{stock.st_view_count}}</span>
+          /　认购数
+          <span>{{stock.st_invest_count}}</span>
         </div>
       </div>
     </li>
-
-    <li class="preheat">
+    {% endfor %}
+    <!--li class="preheat">
       <div class="left img">
         <a href="sdetail.html">
           <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
@@ -472,7 +473,7 @@
           <span>3,555</span>
         </div>
       </div>
-    </li>
+    </li-->
   </ul>
   <ul class="left page_navi">
     <li>

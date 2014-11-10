@@ -47,7 +47,61 @@
         </span>
       </div>
       <ul class="list">
-        <li>
+        {% for stock in stocks%}            
+            <li>
+            <div class="img">
+            <a href="javascript:;">
+              <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
+            </a>
+            <div class="tip">
+              <p class="intro">{{stock.st_com_brief|truncatewords:"3"}}</p>
+              <p class="remain">统筹日期：{{stock.st_end_time}}-{{stock.st_begin_time}}</p>
+            </div>
+            </div>
+          <div class="namebar">
+            <span class="left name">
+              <a href="javascript:;">{{stock.st_title}}</a>
+            </span>
+            <span class="right status">{{stock.st_pro_type.pt_name}}</span>
+          </div>
+          <div class="progressbar">
+            <div class="left gray">
+              <div class="left yellow"></div>
+            </div>
+            <div class="right percent">{{stock.st_scale}}%</div>
+          </div>
+          <div class="money">
+            <div class="left">
+              <p>{{stock.st_total_price}}</p>
+              <p>投资金额</p>
+            </div>
+            <div class="left">
+              <p>{{stock.st_current_price}}</p>
+              <p>当前认购</p>
+            </div>
+            <div class="left">
+              <p>{{stock.st_min_price}}</p>
+              <p>认购起点</p>
+            </div>
+          </div>
+          <div class="cinfo">
+            <span class="location">{{stock.st_province}}</span>
+            <span class="clazz">
+              <a href="javascript:;">{{stock.st_industry}}</a>
+            </span>
+            <span class="right status">{{stock.st_com_type}}</span>
+          </div>
+          <div class="course">            
+            /　关注
+            <span>{{stock.st_like_count}}</span>
+            /　点击数
+            <span>{{stock.st_view_count}}</span>
+            /   认购数
+            <span>{{stock.st_invest_count}}</span>
+          </div>
+          </li>        
+        {% endfor  %}       
+        <!--li>        
           <div class="img">
             <a href="javascript:;">
               <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
@@ -202,7 +256,7 @@
             /　认购结束
             <span>3,555</span>
           </div>
-        </li>
+        </li-->
       </ul>
     </div>
     <div class="clearfix"></div>
@@ -216,54 +270,49 @@
         </span>
       </div>
       <ul class="list">
+      {% for stock in stocks2%}   
         <li class="preheat">
           <div class="img">
             <a href="javascript:;">
               <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
             </a>
             <div class="tip">
-              <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
-              <p class="remain">剩余：23天</p>
+              <p class="intro">{{stock.st_com_brief}}}</p>
+              <p class="remain">统筹日期：{{stock.st_end_time}}-{{stock.st_begin_time}}</p>
             </div>
           </div>
           <div class="namebar">
             <span class="left name">
-              <a href="javascript:;">比目鱼儿童主题乐园</a>
+              <a href="javascript:;">{{stock.st_title}}</a>
             </span>
-            <span class="right status">预热中</span>
+            <span class="right status">{{stock.st_pro_type.pt_name}}</span>
           </div>
           <div class="progressbar">预热中可预约认购提交投资</div>
           <div class="money">
             <div class="left">
-              <p>￥200,000</p>
-              <p>项目方出资</p>
-            </div>
-            <div class="left">
-              <p>￥2,000,000</p>
+              <p>{{stock.st_total_price}}</p>
               <p>融资总额</p>
-            </div>
+            </div>            
             <div class="left">
-              <p>￥4,000</p>
-              <p>单投资人最低出资</p>
+              <p>{{stock.st_min_price}}</p>
+              <p>融资起点</p>
             </div>
           </div>
           <div class="cinfo">
-            <span class="location">北京</span>
+            <span class="location">{{stock.st_province}}</span>
             <span class="clazz">
-              <a href="javascript:;">医疗健康</a>
+              <a href="javascript:;">{{stock.st_industry}}</a>
             </span>
-            <span class="right status">已挂牌企业</span>
+            <span class="right status">{{stock.st_com_type}}</span>
           </div>
-          <div class="course">
-            约谈
-            <span>23</span>
+           <div class="course">            
             /　关注
-            <span>1,088</span>
-            /　认购结束
-            <span>3,555</span>
+            <span>{{stock.st_like_count}}</span>
+            /　点击数
+            <span>{{stock.st_view_count}}</span>          
           </div>
         </li>
-        <li class="preheat">
+        <!--li class="preheat">
           <div class="img">
             <a href="javascript:;">
               <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
@@ -356,7 +405,8 @@
             /　认购结束
             <span>3,555</span>
           </div>
-        </li>
+        </li-->        
+        {% endfor  %}
       </ul>
     </div>
     <div class="clearfix"></div>
@@ -370,7 +420,56 @@
         </span>
       </div>
       <ul class="list">
+      {% for stock in stocks3%}    
         <li class="finished">
+          <div class="img">
+            <a href="javascript:;">
+              <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
+            </a>
+            <div class="tip">
+              <p class="intro">{{stock.st_com_brief}}</p>
+              <p class="remain">统筹日期：{{stock.st_end_time}}-{{stock.st_begin_time}}</p>
+            </div>
+          </div>
+          <div class="namebar">
+            <span class="left name">
+              <a href="javascript:;">{{stock.st_title}}</a>
+            </span>
+            <span class="right status">已成功</span>
+          </div>
+          <div class="progressbar">
+            <div class="left gray">
+              <div class="left yellow"></div>
+            </div>
+            <div class="right percent">100%</div>
+          </div>
+          <div class="money">
+            <div class="left">
+              <p>{{stock.st_total_price}}</p>
+              <p>融资总额</p>
+            </div>            
+            <div class="left">
+              <p>{{stock.st_min_price}}</p>
+              <p>融资起点</p>
+            </div>            
+          </div>
+           <div class="cinfo">
+            <span class="location">{{stock.st_province}}</span>
+            <span class="clazz">
+              <a href="javascript:;">{{stock.st_industry}}</a>
+            </span>
+            <span class="right status">{{stock.st_com_type}}</span>
+          </div>
+           <div class="course">            
+            /　关注
+            <span>{{stock.st_like_count}}</span>
+            /　点击数
+            <span>{{stock.st_view_count}}</span> 
+             /　认购结束
+            <span>{{stock.st_total_price}}</span>          
+          </div>
+        </li>
+        <!--li class="finished">
           <div class="img">
             <a href="javascript:;">
               <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
@@ -473,59 +572,8 @@
             /　认购结束
             <span>3,555</span>
           </div>
-        </li>
-        <li class="finished">
-          <div class="img">
-            <a href="javascript:;">
-              <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
-            </a>
-            <div class="tip">
-              <p class="intro">面是四川的宜宾燃面，是当地最具特色的汉族传统小吃之一，原名叙府燃面</p>
-              <p class="remain">剩余：23天</p>
-            </div>
-          </div>
-          <div class="namebar">
-            <span class="left name">
-              <a href="javascript:;">比目鱼儿童主题乐园</a>
-            </span>
-            <span class="right status">已成功</span>
-          </div>
-          <div class="progressbar">
-            <div class="left gray">
-              <div class="left yellow"></div>
-            </div>
-            <div class="right percent">100%</div>
-          </div>
-          <div class="money">
-            <div class="left">
-              <p>￥200,000</p>
-              <p>项目方出资</p>
-            </div>
-            <div class="left">
-              <p>￥2,000,000</p>
-              <p>融资总额</p>
-            </div>
-            <div class="left">
-              <p>￥4,000</p>
-              <p>单投资人最低出资</p>
-            </div>
-          </div>
-          <div class="cinfo">
-            <span class="location">北京</span>
-            <span class="clazz">
-              <a href="javascript:;">医疗健康</a>
-            </span>
-            <span class="right status">已挂牌企业</span>
-          </div>
-          <div class="course">
-            约谈
-            <span>23</span>
-            /　关注
-            <span>1,088</span>
-            /　认购结束
-            <span>3,555</span>
-          </div>
-        </li>
+        </li-->        
+      {% endfor  %}
       </ul>
     </div>
   </div>
@@ -538,10 +586,11 @@
         </span>
       </div>
       <ul class="left plist">
+      {% for bond in bonds%} 
         <li>
           <div class="left status">中</div>
           <div class="left company">
-            <div>塑胶制品生产企业经营贷款</div>
+            <div>{{bond.bo_brief}}</div>
             <div class="progressbar">
               <div class="left gray">
                 <div class="left blue"></div>
@@ -550,26 +599,26 @@
             </div>
           </div>
           <div class="clearfix"></div>
-          <div>融资企业：陕西塑胶制品有限公司</div>
-          <div>资金用途：补充经营用途，企业经营流动性资金</div>
+          <div>融资企业：{{bond.bo_com_name}}</div>
+          <div>资金用途：{{bo_goal}}</div>
           <hr />
           <div>
             年化利率
-            <span class="ctext">10%+1%</span>
+            <span class="ctext">{{bond.bo_scale}}%</span>
             <span class="g">/</span>
             截止日期
-            <span class="ctext">2015年7月8日</span>
+            <span class="ctext">{{bond.bo_end_time}}</span>
           </div>
           <div>
             融资金额
-            <span class="ctext">￥500.00万</span>
+            <span class="ctext">{{bond.bo_total_price}}</span>
             <span class="g">/</span>
-            授信额度
-            <span class="ctext">￥2000.00万</span>
+            认购起点
+            <span class="ctext">{{bond.bo_min_price}}</span>
           </div>
         </li>
-
-        <li>
+      {% endfor  %} 
+        <!--li>
           <div class="left status">中</div>
           <div class="left company">
             <div>塑胶制品生产企业经营贷款</div>
@@ -629,7 +678,7 @@
             授信额度
             <span class="ctext">￥2000.00万</span>
           </div>
-        </li>
+        </li-->
       </ul>
     </div>
     <div class="clearfix"></div>
@@ -742,7 +791,39 @@
         </span>
       </div>
       <ul class="left plist">
+        {% for bond  in bonds3 %}
         <li>
+          <div class="left status">完</div>
+          <div class="left company">
+            <div>{{bond.bo_brief}}</div>
+            <div class="progressbar">
+              <div class="left gray">
+                <div class="left yellow"></div>
+              </div>
+              <div class="right percent">100%</div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div>融资企业：{{bond.bo_com_name}}</div>
+          <div>资金用途：{{bo_goal}}</div>
+          <hr />
+          <div>
+            年化利率
+            <span class="ctext">{{bond.bo_scale}}%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="ctext">{{bond.bo_end_time}}</span>
+          </div>
+          <div>
+            融资金额
+            <span class="ctext">{{bond.bo_total_price}}</span>
+            <span class="g">/</span>
+             认购起点
+            <span class="ctext">{{bond.bo_min_price}}</span>
+          </div>
+        </li>
+        {% endfor %}
+        <!--li>
           <div class="left status">完</div>
           <div class="left company">
             <div>塑胶制品生产企业经营贷款</div>
@@ -801,37 +882,7 @@
             授信额度
             <span class="ctext">￥2000.00万</span>
           </div>
-        </li>
-        <li>
-          <div class="left status">完</div>
-          <div class="left company">
-            <div>塑胶制品生产企业经营贷款</div>
-            <div class="progressbar">
-              <div class="left gray">
-                <div class="left yellow"></div>
-              </div>
-              <div class="right percent">100%</div>
-            </div>
-          </div>
-          <div class="clearfix"></div>
-          <div>融资企业：陕西塑胶制品有限公司</div>
-          <div>资金用途：补充经营用途，企业经营流动性资金</div>
-          <hr />
-          <div>
-            年化利率
-            <span class="ctext">10%+1%</span>
-            <span class="g">/</span>
-            截止日期
-            <span class="ctext">2015年7月8日</span>
-          </div>
-          <div>
-            融资金额
-            <span class="ctext">￥500.00万</span>
-            <span class="g">/</span>
-            授信额度
-            <span class="ctext">￥2000.00万</span>
-          </div>
-        </li>
+        </li-->
       </ul>
     </div>
   </div>

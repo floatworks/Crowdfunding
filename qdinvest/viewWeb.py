@@ -10,7 +10,7 @@ from django.db.models import Q
 
 import simplejson as json
 from datetime import datetime,timedelta
-from  models import STOCK
+from  models import STOCK,PRO_TYPE,BOND
 
 def testUeditor(request):
 	context = RequestContext(request)
@@ -21,19 +21,32 @@ def testUeditor(request):
 
 def index(request):
 	context = RequestContext(request)
-   	# context_dict = STOCK.objects.all()[0:3:1]
 	context_dict = {}
-	return render_to_response('qdinvest/index.html',{'context_dict':context_dict},context)
+	STOCK_objs=STOCK.objects.filter(st_pro_type__pt_name__contains = "筹资中")[:3]
+	STOCK_objs2=STOCK.objects.filter(st_pro_type__pt_name__contains = "即将开始")[:3] 
+	STOCK_objs3=STOCK.objects.filter(st_pro_type__pt_name__contains = "成功项目")[:3]  
+	BOND_objs=BOND.objects.filter(bo_pro_type__pt_name__contains = "筹资中")[:3]
+	BOND_objs3=BOND.objects.filter(bo_pro_type__pt_name__contains = "成功项目")[:3]
+	context_dict['stocks'] = STOCK_objs 
+	context_dict['stocks2'] = STOCK_objs2 
+	context_dict['stocks3'] = STOCK_objs3 
+	context_dict['bonds'] = BOND_objs
+	context_dict['bonds3'] = BOND_objs3
+	return render_to_response('qdinvest/index.html',context_dict,context)
 
 def bond(request):
-	context = RequestContext(request)
-	context_dict = {}
+	context = RequestContext(request)	
+	context_dict = {}	
+	BOND_objs=BOND.objects.all()[:6]
+	context_dict['bonds'] = BOND_objs
 	return render_to_response('qdinvest/bond.html',context_dict,context)
 
 
 def stock(request):
 	context = RequestContext(request)
 	context_dict = {}
+	STOCK_objs=STOCK.objects.all()[:6]
+	context_dict['stocks'] = STOCK_objs
 	return render_to_response('qdinvest/stock.html',context_dict,context)
 
 def transfer(request):
