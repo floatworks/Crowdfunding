@@ -273,52 +273,39 @@ def GetMyProjects(request):
 	if request.method == 'GET':
 		token = request.GET.get('token','')
 		u_name = request.GET.get('u_name','')
-		num = request.GET.get('num','')
-		if not num:
-			num = 0
-		num = int(num)
-		print token,num
 
 		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
 		if USERS_objs:
 			if T.CheckToken(USERS_objs[0],token,0):
 				response_dict['status'] = 1
 				stocks_data = []
-				STOCK_objs = STOCK.objects.order_by('-st_create_time')[num*20:(num+1)*20]
-				for STOCK_obj in STOCK_objs:
+				INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0]).order_by('-is_date')
+				for INVEST_STOCK_obj in INVEST_STOCK_objs:
 					stocks_per = {}
-					stocks_per['id'] = STOCK_obj.id
-					stocks_per['st_title'] = STOCK_obj.st_title
-					stocks_per['st_image'] = str(STOCK_obj.st_image)
-					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
-					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
-					stocks_per['st_industry'] = STOCK_obj.st_industry.in_name
-					stocks_per['st_com_type'] = STOCK_obj.st_com_type.ct_name
-					stocks_per['st_like_count'] = STOCK_obj.st_like_count
-					stocks_per['st_invest_count'] = STOCK_obj.st_invest_count
-					stocks_per['st_current_price'] = STOCK_obj.st_current_price
-					stocks_per['st_total_price'] = STOCK_obj.st_total_price
-					stocks_per['st_min_price'] = STOCK_obj.st_min_price
-					stocks_per['st_create_time'] = STOCK_obj.st_create_time.strftime('%Y-%m-%d %H:%M:%S')
+					stocks_per['id'] = INVEST_STOCK_obj.is_stock.id
+					stocks_per['st_title'] = INVEST_STOCK_obj.is_stock.st_title
+					stocks_per['st_image'] = str(INVEST_STOCK_obj.is_stock.st_image)
+					stocks_per['st_total_price'] = INVEST_STOCK_obj.is_stock.st_total_price
+					stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
+					stocks_per['is_status'] = INVEST_STOCK_obj.is_status
+					stocks_per['st_brief'] = INVEST_STOCK_obj.is_stock.st_brief 
+					stocks_per['is_date'] = INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d %H:%M:%S')
 					stocks_data.append(stocks_per)
-				response_dict['stocks'] = stocks_data
+				response_dict['invest_stocks'] = stocks_data
 				bonds_data = []
-				BOND_objs = BOND.objects.order_by('-bo_create_time')[num*20:(num+1)*20]
-				for BOND_obj in BOND_objs:
+				INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0]).order_by('-ib_date')
+				for INVEST_BOND_obj in INVEST_BOND_objs:
 					bonds_per = {}
-					bonds_per['id'] = BOND_obj.id
-					bonds_per['bo_title'] = BOND_obj.bo_title
-					bonds_per['bo_image'] = str(BOND_obj.bo_image)
-					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
-					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
-					bonds_per['bo_brief'] = BOND_obj.bo_brief
-					bonds_per['bo_scale'] = BOND_obj.bo_scale
-					bonds_per['bo_total_price'] = BOND_obj.bo_total_price
-					bonds_per['bo_current_price'] = BOND_obj.bo_current_price
-					bonds_per['bo_min_price'] = BOND_obj.bo_min_price
-					bonds_per['bo_create_time'] = BOND_obj.bo_create_time.strftime('%Y-%m-%d %H:%M:%S')
+					bonds_per['id'] = INVEST_BOND_obj.ib_bond.id
+					bonds_per['bo_title'] = INVEST_BOND_obj.ib_bond.bo_title
+					bonds_per['bo_image'] = str(INVEST_BOND_obj.ib_bond.bo_image)
+					bonds_per['bo_total_price'] = INVEST_BOND_obj.ib_bond.bo_total_price
+					bonds_per['ib_amount'] = INVEST_BOND_obj.ib_amount
+					bonds_per['ib_status'] = INVEST_BOND_obj.ib_status
+					bonds_per['bo_brief'] = INVEST_BOND_obj.ib_bond.bo_brief
+					bonds_per['ib_date'] = INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d %H:%M:%S')
 					bonds_data.append(bonds_per)
-				response_dict['bonds'] = bonds_data
+				response_dict['invest_bonds'] = bonds_data
 			else:
 				response_dict['status'] = -1
 		else:

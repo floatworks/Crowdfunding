@@ -235,7 +235,7 @@ class INVEST_STOCK(models.Model):
 	is_date = models.DateTimeField(verbose_name="投资时间")
 	is_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入")
 	is_profit_date = models.DateField(verbose_name="预计收入日期")
-	is_status = models.IntegerField(default=0,verbose_name="审核状态")
+	is_status = models.IntegerField(default=0,verbose_name="审核状态",help_text="0:认购中 1:持有中 2:已完成")
 
 	def __unicode__(self):
 		return self.is_stock.st_title
@@ -254,7 +254,7 @@ class INVEST_BOND(models.Model):
 	ib_date = models.DateTimeField(verbose_name="投资时间")
 	ib_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入")
 	ib_profit_date = models.DateField(verbose_name="预计收入日期")
-	ib_status = models.IntegerField(default=0,verbose_name="审核状态")
+	ib_status = models.IntegerField(default=0,verbose_name="审核状态",help_text="0:认购中 1:持有中 2:已完成")
 
 	def __unicode__(self):
 		return self.ib_bond.bo_title
