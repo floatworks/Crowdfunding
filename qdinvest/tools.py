@@ -53,7 +53,7 @@ def SendRandomCode(u_tel):
 def SendRandomCode(u_tel):
 	url = 'http://www.mxtong.net.cn/GateWay/Services.asmx/DirectSend'
 	code = RandCode()
-	content = '【清大众筹】您的验证码为'+code+'。工作人员不会向您索要，请勿向任何人泄漏。'
+	content = '您的验证码为'+code+'。工作人员不会向您索要，请勿向任何人泄漏。【清大众筹】'
 	payload = {'UserID':'965125','Account':'admin','Password':'DUWBT2','Phones':u_tel,
 				'Content':content,'SendTime':'','SendType':'1','PostFixNumber':''}
 	r = requests.get(url,params=payload)
