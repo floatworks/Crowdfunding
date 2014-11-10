@@ -672,6 +672,61 @@ def InvestList(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#用户获取通知列表
+def GetNotices(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				notices = []
+				NOTICE_objs = NOTICE.objects.filter(no_is_delete__exact = 0)
+				for NOTICE_obj in NOTICE_objs:
+					notice_data = {}
+					notice_data['id'] = NOTICE_obj.id
+					notice_data['no_title'] = NOTICE_obj.no_title
+					notice_data['no_brief'] = NOTICE_obj.no_brief
+					notice_data['time'] = NOTICE_obj.no_time.strftime('%Y-%m-%d %H:%M:%S')
+					notice_data['no_type'] = NOTICE_obj.no_type
+					notice_data['no_sort'] = NOTICE_obj.no_sort
+					notice_data['type'] = 'sys'
+					notices.append(notice_data)
+				NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_objs[0])
+				for NOTICE_USER_obj in NOTICE_USER_objs:
+					notice_data = {}
+					notice_data['id'] = NOTICE_USER_obj.id
+					notice_data['nu_title'] = NOTICE_USER_obj.nu_title
+					notice_data['nu_brief'] = NOTICE_USER_obj.nu_brief
+					notice_data['time'] = NOTICE_USER_obj.nu_time.strftime('%Y-%m-%d %H:%M:%S')
+					notice_data['nu_type'] = NOTICE_USER_obj.nu_type
+					notice_data['nu_is_read'] = NOTICE_USER_obj.nu_is_read
+					notice_data['type'] = 'user'
+					notices.append(notice_data)
+				print notices.sort()
+				response_dict['notices'] = notices
+				response_dict['status'] = 1
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#用户获取通知详情
+def NoticeDetail(request):
+	response_dict = {}
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+
 
 
 

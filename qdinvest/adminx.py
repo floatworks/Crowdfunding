@@ -116,7 +116,7 @@ class TALKAdmin(object):
 系统通知表
 '''
 class NOTICEAdmin(object):
-	list_display = ['no_title','no_body','no_time','no_type','no_sort','no_is_delete']
+	list_display = ['no_title','no_brief','no_time','no_type','no_sort','no_is_delete']
 	search_fiedls = ['no_title'] 
 	style_fields  = {'no_body':'ueditor'}
 
@@ -124,7 +124,7 @@ class NOTICEAdmin(object):
 用户通知表
 '''
 class NOTICE_USERAdmin(object):
-	list_display = ['nu_title','nu_body','nu_time','nu_user','nu_type','nu_is_read','nu_is_delete']
+	list_display = ['nu_title','nu_brief','nu_time','nu_user','nu_type','nu_is_read','nu_is_delete']
 	search_fiedls = ['nu_title'] 
 	style_fields  = {'nu_body':'ueditor'}
 

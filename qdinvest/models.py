@@ -312,11 +312,12 @@ class TALK(models.Model):
 '''
 class NOTICE(models.Model):
 	no_title = models.CharField(max_length=100,verbose_name="通知标题")
+	no_brief = models.CharField(max_length=200,verbose_name="通知概要",help_text="请不要超过100个汉字")
 	no_body = UEditorField(verbose_name="通知内容",imagePath="ueditor/images/",
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000})
 	no_time = models.DateTimeField(verbose_name="通知时间")
-	no_type = models.IntegerField(verbose_name="通知类型",help_text="比如紧急通知，维护通知，广告通知之类")
+	no_type = models.IntegerField(verbose_name="通知类型",help_text="1:紧急通知 2:维护通知 3:广告 4:其他")
 	no_sort = models.IntegerField(verbose_name="优先级")
 	no_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
 
@@ -329,13 +330,14 @@ class NOTICE(models.Model):
 '''
 class NOTICE_USER(models.Model):
 	nu_title = models.CharField(max_length=100,verbose_name="通知标题")
+	nu_brief = models.CharField(max_length=200,verbose_name="通知概要",help_text="请不要超过100个汉字")
 	nu_body = UEditorField(verbose_name="通知内容",imagePath="ueditor/images/",
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000})
 	nu_time = models.DateTimeField(verbose_name="通知时间")
 	nu_user = models.ForeignKey(USERS,verbose_name="用户")
-	nu_type = models.IntegerField(verbose_name="通知类型",help_text="比如收益通知，债权众筹提前打款等")
-	nu_is_read = models.IntegerField(verbose_name="是否已读",help_text="0 未读 1 已读")
+	nu_type = models.IntegerField(verbose_name="通知类型",help_text="1:收益通知 2:其他")
+	nu_is_read = models.IntegerField(verbose_name="是否已读",default=0,help_text="0 未读 1 已读")
 	nu_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
 
 	class Meta:
