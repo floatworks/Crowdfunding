@@ -25,12 +25,14 @@ def index(request):
 	STOCK_objs=STOCK.objects.filter(st_pro_type__pt_name__contains = "筹资中")[:3]
 	STOCK_objs2=STOCK.objects.filter(st_pro_type__pt_name__contains = "即将开始")[:3] 
 	STOCK_objs3=STOCK.objects.filter(st_pro_type__pt_name__contains = "成功项目")[:3]  
-	BOND_objs=BOND.objects.filter(bo_pro_type__pt_name__contains = "筹资中")[:3]
+	BOND_objs=BOND.objects.filter(bo_pro_type__pt_name__contains = "即将开始")[:3]
+	BOND_objs2=BOND.objects.filter(bo_pro_type__pt_name__contains = "筹资中")[:3]
 	BOND_objs3=BOND.objects.filter(bo_pro_type__pt_name__contains = "成功项目")[:3]
 	context_dict['stocks'] = STOCK_objs 
 	context_dict['stocks2'] = STOCK_objs2 
 	context_dict['stocks3'] = STOCK_objs3 
 	context_dict['bonds'] = BOND_objs
+	context_dict['bonds2'] = BOND_objs2
 	context_dict['bonds3'] = BOND_objs3
 	return render_to_response('qdinvest/index.html',context_dict,context)
 

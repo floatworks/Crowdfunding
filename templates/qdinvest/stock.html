@@ -212,15 +212,15 @@
           <span class="clazz">
             <a href="javascript:;">{{stock.st_industry}}</a>
           </span>
-          <span class="right status">融资中</span>
+          <span class="right status">{{stock.st_pro_type}}</span>
           <span class="right cstatus">{{stock.st_com_type}}</span>
         </div>
-        <div class="desc">{{stock.st_hint}}</div>
+        <div class="desc">{{stock.st_hint|slice:"55"}}...</div>
         <div class="progressbar">
           <div class="left gray">
             <div class="left yellow"></div>
           </div>
-          <div class="right percent">{{stock.st_scale}}%</div>
+          <div class="right percent">{% widthratio stock.st_current_price stock.st_total_price 100%}%</div>
         </div>
         <div class="money">
           <div class="left">
@@ -234,13 +234,13 @@
             <span>{{stock.st_scale}}%</span>
           </div>
         </div>
-        <div class="right course">
-          /  关注
+        <div class="right course">      
+          /  约谈
+          <span>23</span>
+          /　关注
           <span>{{stock.st_like_count}}</span>
-          /　点击
-          <span>{{stock.st_view_count}}</span>
-          /　认购数
-          <span>{{stock.st_invest_count}}</span>
+          /　认购结束
+          <span>{{stock.st_total_price}}</span>
         </div>
       </div>
     </li>

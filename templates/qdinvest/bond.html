@@ -91,9 +91,10 @@
 
   <!-- list -->
   <ul class="underway list bondlist">
-    {%for bond in  bonds%}
-    <li class="blue">
-      <div class="left s">中</div>
+    {%for bond in  bonds%}   
+    {%if bond.bo_pro_type.id == 1%}
+    <li class="blue">      
+      <div class="left s">完</div>     
       <div class="right">
         <div class="namebar">
           <span class="left name">
@@ -121,7 +122,7 @@
             <div class="left gray">
               <div class="left"></div>
             </div>
-            <div class="right percent">35%</div>
+            <div class="right percent">{% widthratio bond.bo_current_price bond.bo_total_price 100%}%</div>
           </div>
         </div>
         <div class="cctext">
@@ -130,6 +131,86 @@
         </div>
       </div>
     </li>
+
+    {% elif bond.bo_pro_type.id == 7%}
+    <li class="green">
+      <div class="left s">还</div>
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">{{bond.bo_title }}</a>
+          </span>
+          <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
+          <span class="right status">投标</span>
+          <span class="right cstatus">{{bond.bo_com_type}}</span>
+        </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">{{bond.bo_scale}}%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">{{bond.bo_end_time}}</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">{{bond.bo_total_price}}</span>
+            <span class="g">/</span>
+            认购起点
+            <span class="byg">{{bond.bo_min_price}}</span>
+          </div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
+            </div>
+            <div class="right percent">{% widthratio bond.bo_current_price bond.bo_total_price 100%}%</div>
+          </div>
+        </div>
+        <div class="cctext">
+        {{bond.bo_brief}} 
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+      {% elif bond.bo_pro_type.id == 4%}
+    <li class="blue">      
+      <div class="left s">中</div>     
+      <div class="right">
+        <div class="namebar">
+          <span class="left name">
+            <a href="bdetail.html">{{bond.bo_title }}</a>
+          </span>
+          <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
+          <span class="right status">投标</span>
+          <span class="right cstatus">{{bond.bo_com_type}}</span>
+        </div>
+        <div class="binfo">
+          <div class="left dm">
+            年化利率
+            <span class="byg">{{bond.bo_scale}}%</span>
+            <span class="g">/</span>
+            截止日期
+            <span class="byg">{{bond.bo_end_time}}</span>
+            <span class="g">/</span>
+            融资金额
+            <span class="byg">{{bond.bo_total_price}}</span>
+            <span class="g">/</span>
+            认购起点
+            <span class="byg">{{bond.bo_min_price}}</span>
+          </div>
+          <div class="left progressbar">
+            <div class="left gray">
+              <div class="left"></div>
+            </div>
+            <div class="right percent">{% widthratio bond.bo_current_price bond.bo_total_price 100%}%</div>
+          </div>
+        </div>
+        <div class="cctext">
+        {{bond.bo_brief}} 
+          <a href="javascript:;">更多&gt;&gt;</a>
+        </div>
+      </div>
+    </li>
+    {% endif %}
     {% endfor %}
     <li class="green">
       <div class="left s">还</div>
