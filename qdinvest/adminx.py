@@ -90,8 +90,12 @@ class BONDAdmin(object):
 class INVEST_STOCKAdmin(object):
 	list_display = ['is_user','is_stock','is_amount','is_date','is_soon_profit','is_profit_date','is_status']
 	search_fiedls = ['is_user '] 
-
-
+'''
+用户投资 债权众筹 
+'''
+class INVEST_BONDAdmin(object):
+	list_display = ['ib_user','ib_bond','ib_amount','ib_date','ib_soon_profit','ib_profit_date','ib_status']
+	search_fields = ['ib_user']
 '''
 用户充值
 '''
@@ -191,6 +195,7 @@ xadmin.site.register(NOTICE,NOTICEAdmin)
 xadmin.site.register(NOTICE_USER,NOTICE_USERAdmin)
 xadmin.site.register(PROFIT,PROFITAdmin)
 xadmin.site.register(INVEST_STOCK,INVEST_STOCKAdmin)
+xadmin.site.register(INVEST_BOND,INVEST_BONDAdmin)
 xadmin.site.register(TALK,TALKAdmin)
 xadmin.site.register(NOTICE_READ,NOTICE_READAdmin)
 xadmin.site.register(RANDOMCODE,RANDOMCODEAdmin)
