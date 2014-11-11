@@ -93,15 +93,15 @@
   <ul class="underway list bondlist">
     {%for bond in  bonds%}   
     {%if bond.bo_pro_type.id == 1%}
-    <li class="blue">      
-      <div class="left s">完</div>     
+     <li class="yellow">
+      <div class="left s">完</div>
       <div class="right">
         <div class="namebar">
           <span class="left name">
             <a href="bdetail.html">{{bond.bo_title }}</a>
           </span>
           <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
-          <span class="right status">投标</span>
+          <span class="right status">{{bond.bo_pro_type}}</span>
           <span class="right cstatus">{{bond.bo_com_type}}</span>
         </div>
         <div class="binfo">
@@ -141,7 +141,7 @@
             <a href="bdetail.html">{{bond.bo_title }}</a>
           </span>
           <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
-          <span class="right status">投标</span>
+          <span class="right status">{{bond.bo_pro_type}}</span>
           <span class="right cstatus">{{bond.bo_com_type}}</span>
         </div>
         <div class="binfo">
@@ -180,7 +180,7 @@
             <a href="bdetail.html">{{bond.bo_title }}</a>
           </span>
           <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
-          <span class="right status">投标</span>
+          <span class="right status">{{bond.bo_pro_type}}</span>
           <span class="right cstatus">{{bond.bo_com_type}}</span>
         </div>
         <div class="binfo">
@@ -212,7 +212,7 @@
     </li>
     {% endif %}
     {% endfor %}
-    <li class="green">
+    <!--li class="green">
       <div class="left s">还</div>
       <div class="right">
         <div class="namebar">
@@ -405,7 +405,7 @@
           <a href="javascript:;">更多&gt;&gt;</a>
         </div>
       </div>
-    </li>
+    </li-->
   </ul>
   <ul class="left page_navi">
     <li>

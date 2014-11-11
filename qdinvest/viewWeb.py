@@ -47,7 +47,7 @@ def bond(request):
 def stock(request):
 	context = RequestContext(request)
 	context_dict = {}
-	STOCK_objs=STOCK.objects.all()[:6]
+	STOCK_objs=STOCK.objects.all()[:11]
 	context_dict['stocks'] = STOCK_objs
 	return render_to_response('qdinvest/stock.html',context_dict,context)
 
