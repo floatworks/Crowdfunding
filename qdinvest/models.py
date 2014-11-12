@@ -363,7 +363,8 @@ class PROFIT(models.Model):
 	pr_user = models.ForeignKey(USERS,verbose_name="用户")
 	pr_amount = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='收益金额')
 	pr_date = models.DateField(verbose_name="收益时间")
-	pr_title = models.CharField(max_length=100,verbose_name="收益项目名称")
+	pr_stock = models.ForeignKey(STOCK,verbose_name="股权众筹",null=True,blank=True,help_text="二选一即可")
+	pr_bond = models.ForeignKey(BOND,verbose_name="股权众筹",null=True,blank=True,help_text="二选一即可")
 
 	class Meta:
 		verbose_name = '用户收益'
@@ -399,3 +400,32 @@ class TOKEN(models.Model):
 		verbose_name = 'token'
 		verbose_name_plural = 'TOKEN管理'
 
+'''
+系统基础参数
+'''
+class SETTINGS(models.Model):
+	se_android_version = models.CharField(max_length=20,verbose_name='Android版本')
+	se_ios_version = models.CharField(max_length=20,verbose_name='IOS版本')
+
+	def __unicode__(self):
+		return self.se_android_version
+
+	class Meta:
+		verbose_name = '系统基础参数'
+		verbose_name_plural = '系统基础参数管理'
+
+'''
+用户反馈表
+'''
+class FEEDBACK(models.Model):
+	fe_user = models.ForeignKey(USERS,verbose_name='用户')
+	fe_mail = models.CharField(max_length=100,verbose_name='邮件地址',null=True,blank=True)
+	fe_time = models.DateTimeField(verbose_name='时间')
+	fe_content = models.CharField(max_length=500,verbose_name='反馈内容')
+
+	def __unicode__(self):
+		return self.fe_user.u_name
+
+	class Meta:
+		verbose_name = '用户反馈'
+		verbose_name_plural = '用户反馈管理'

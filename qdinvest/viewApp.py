@@ -16,6 +16,7 @@ import requests
 import simplejson as json
 from datetime import datetime,timedelta
 from xml.etree import ElementTree
+import operator
 
 #手机端用户注册接口
 def Register(request):
@@ -479,6 +480,9 @@ def ProjectBase(request):
 						else:
 							stock_dict['st_if_like'] = 0
 						response_dict['project'] = stock_dict
+						#热度增加1
+						STOCK_obj.st_view_count += 1
+						STOCK_obj.save()
 					else:
 						response_dict['status'] = 0
 				elif p_type == 'bond':
@@ -489,6 +493,7 @@ def ProjectBase(request):
 						bond_dict['bo_image'] = str(BOND_obj.bo_image)
 						bond_dict['bo_title'] = BOND_obj.bo_title
 						bond_dict['bo_like_count'] = BOND_obj.bo_like_count
+						bond_dict['bo_view_count'] = BOND_obj.bo_view_count
 						bond_dict['bo_province'] = BOND_obj.bo_province.pr_name
 						bond_dict['bo_industry'] = BOND_obj.bo_industry.in_name
 						bond_dict['bo_com_type'] = BOND_obj.bo_com_type.ct_name
@@ -504,6 +509,8 @@ def ProjectBase(request):
 						else:
 							bond_dict['bo_if_like'] = 0
 						response_dict['project'] = bond_dict
+						BOND_obj.bo_view_count += 1
+						BOND_obj.save()
 					else:
 						response_dict['status'] = 0
 				else:
@@ -684,7 +691,7 @@ def GetNotices(request):
 		if USERS_objs:
 			if T.CheckToken(USERS_objs[0],token,0):
 				notices = []
-				NOTICE_objs = NOTICE.objects.filter(no_is_delete__exact = 0)
+				NOTICE_objs = NOTICE.objects.filter(no_is_delete__exact = 0).order_by('-no_time')
 				for NOTICE_obj in NOTICE_objs:
 					notice_data = {}
 					notice_data['id'] = NOTICE_obj.id
@@ -694,8 +701,12 @@ def GetNotices(request):
 					notice_data['no_type'] = NOTICE_obj.no_type
 					notice_data['no_sort'] = NOTICE_obj.no_sort
 					notice_data['type'] = 'sys'
+					if T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_obj}):
+						notice_data['no_is_read'] = 1
+					else:
+						notice_data['no_is_read'] = 0
 					notices.append(notice_data)
-				NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_objs[0])
+				NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_objs[0]).order_by('-nu_time')
 				for NOTICE_USER_obj in NOTICE_USER_objs:
 					notice_data = {}
 					notice_data['id'] = NOTICE_USER_obj.id
@@ -706,7 +717,8 @@ def GetNotices(request):
 					notice_data['nu_is_read'] = NOTICE_USER_obj.nu_is_read
 					notice_data['type'] = 'user'
 					notices.append(notice_data)
-				print notices.sort()
+				#按照时间的倒序进行排列
+				notices = sorted(notices,key = operator.itemgetter('time'),reverse=True)
 				response_dict['notices'] = notices
 				response_dict['status'] = 1
 			else:
@@ -721,12 +733,138 @@ def GetNotices(request):
 #用户获取通知详情
 def NoticeDetail(request):
 	response_dict = {}
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+		n_type = request.GET.get('type','')
+		n_id = request.GET.get('id','-1')
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if n_type == 'sys':
+					NOTICE_objs = NOTICE.objects.filter(id__exact = n_id)
+					if NOTICE_objs:
+						response_dict['status'] = 1
+						notice = {}
+						notice['title'] = NOTICE_objs[0].no_title
+						notice['body'] = NOTICE_objs[0].no_body
+						notice['time'] = NOTICE_objs[0].no_time.strftime('%Y-%m-%d %H:%M:%S')
+						response_dict['notice'] = notice
+						if not T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_objs[0]}):
+							NOTICE_READ_new = NOTICE_READ(nr_user = USERS_objs[0],nr_notice = NOTICE_objs[0])
+							NOTICE_READ_new.save()
+					else:
+						response_dict['status'] = 0
+				elif n_type == 'user':
+					NOTICE_USER_objs = NOTICE_USER.objects.filter(id__exact = n_id)
+					if NOTICE_USER_objs:
+						response_dict['status'] = 1
+						notice = {}
+						notice['title'] = NOTICE_USER_objs[0].nu_title
+						notice['body'] = NOTICE_USER_objs[0].nu_body
+						notice['time'] = NOTICE_USER_objs[0].nu_time.strftime('%Y-%m-%d %H:%M:%S')
+						response_dict['notice'] = notice
+						#标记为已经阅读
+						NOTICE_USER_objs[0].nu_is_read = 1
+						NOTICE_USER_objs[0].save()
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
 
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#获取收益列表
+def GetProfits(request):
+	response_dict = {}
 
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
 
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				response_dict['status'] = 1
+				profits = []
+				PROFIT_objs = PROFIT.objects.filter(pr_user__exact = USERS_objs[0]).order_by('-pr_date')
+				for PROFIT_obj in PROFIT_objs:
+					profits_data = {}
+					profits_data['pr_date'] = PROFIT_obj.pr_date.strftime('%Y-%m-%d %H:%M:%S')
+					profits_data['pr_amount'] = PROFIT_obj.pr_amount
+					if PROFIT_obj.pr_stock:
+						profits_data['pr_stock'] = PROFIT_obj.pr_stock.st_title
+						profits_data['pr_stock_id'] = PROFIT_obj.pr_stock.id
+					elif PROFIT_obj.pr_bond:
+						profits_data['pr_bond'] = PROFIT_obj.pr_bond.bo_title
+						profits_data['pr_bond_id'] = PROFIT_obj.pr_bond.id
+					profits.append(profits_data)
+				response_dict['profits'] = profits
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#检查是否需要更新
+def CheckUpdate(request):
+	response_dict = {}
 
+	if request.method == 'GET':
+		os = request.GET.get('os','')
+		version = request.GET.get('version','')
+
+		SETTINGS_objs = SETTINGS.objects.all()
+		if SETTINGS_objs:
+			if os == 'android' or os == 'Android':
+				if version != SETTINGS_objs[0].se_android_version:
+					response_dict['status'] = 1
+				else:
+					response_dict['status'] = 0
+			elif os == 'IOS' or os == 'ios':
+				if version != SETTINGS_objs[0].se_ios_version:
+					response_dict['status'] = 1
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = 0
+		else:
+			response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#用户反馈
+def Feedback(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		token = request.POST.get('token','')
+		u_name = request.POST.get('u_name','')
+		mail = request.POST.get('mail','')
+		content = request.POST.get('content','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if content:
+					response_dict['status'] = 1
+					FEEDBACK_new = FEEDBACK(fe_user = USERS_objs[0],fe_mail = mail,fe_time = datetime.now(),fe_content = content)
+					FEEDBACK_new.save()
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")

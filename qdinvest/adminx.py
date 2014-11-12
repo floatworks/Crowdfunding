@@ -143,7 +143,7 @@ class NOTICE_READAdmin(object):
 用户收益表
 '''
 class PROFITAdmin(object):
-	list_display = ['pr_user','pr_amount','pr_date','pr_title']
+	list_display = ['pr_user','pr_amount','pr_date','pr_stock','pr_bond']
 	search_fiedls = ['pr_user'] 
 
 
@@ -153,6 +153,17 @@ class PROFITAdmin(object):
 class RANDOMCODEAdmin(object):
 	list_display = ['rc_tel','rc_code','rc_time']
 	search_fiedls = ['rc_tel'] 
+
+'''
+系统设置
+'''
+class SETTINGSAdmin(object):
+	list_display = ['se_android_version','se_ios_version']
+
+'''
+'''
+class FEEDBACKAdmin(object):
+	list_display = ['fe_user','fe_mail','fe_time','fe_content']
 
 class XadminUEditorWidget(UEditorWidget):
 	def __init__(self,**kwargs):
@@ -178,7 +189,6 @@ class UeditorPlugin(BaseAdminPlugin):
 		nodes.append(js)
 
 xadmin.site.register_plugin(UeditorPlugin,DetailAdminView)
-
 xadmin.site.register_plugin(UeditorPlugin,ModelFormAdminView)
 
 xadmin.site.register(USERS,USERSAdmin)
@@ -199,8 +209,8 @@ xadmin.site.register(INVEST_BOND,INVEST_BONDAdmin)
 xadmin.site.register(TALK,TALKAdmin)
 xadmin.site.register(NOTICE_READ,NOTICE_READAdmin)
 xadmin.site.register(RANDOMCODE,RANDOMCODEAdmin)
-
-
+xadmin.site.register(SETTINGS,SETTINGSAdmin)
+xadmin.site.register(FEEDBACK,FEEDBACKAdmin)
 
 
 
