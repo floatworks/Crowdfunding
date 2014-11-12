@@ -20,3 +20,5 @@
 *	django-ckeditor
 
 *	Pillow
+
+*	font-awesome 4.2

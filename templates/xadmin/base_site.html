@@ -2,13 +2,13 @@
 {% load i18n xadmin_tags %}
 {% load url from future %}
 
-{% block title %}{{ title }} | 清大众筹后台管理系统{% endblock %}
+{% block title %}{{ title }} | {{ site_title }}{% endblock %}
 
 {% block body %}
   <!-- Header -->
   <div id="top-nav" class="navbar navbar-xs navbar-inverse navbar-fixed-top">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">{% block branding %}清大众筹后台管理系统{% endblock %}</a>
+      <a class="navbar-brand" href="#">{% block branding %}{{ site_title }}{% endblock %}</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -106,7 +106,7 @@
   <div id="footer">
     <hr/>
     <footer class="text-center">
-        <p>&copy; {% block site_footer %}{{ site_footer }}{% endblock %}</p>
+        <p>&copy; {% block site_footer %} 清大益讯（北京）投资管理有限公司{% endblock %}</p>
     </footer>
   </div>
   {% endblock %}

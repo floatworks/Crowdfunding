@@ -8,6 +8,45 @@ from xadmin.views import BaseAdminPlugin, ModelFormAdminView, DetailAdminView
 from django.conf import settings
 from django.db.models import TextField
 
+
+class GlobalSetting(object):
+	#设置base_site.html的Title
+	site_title = '清大众筹后台管理系统'
+
+	def get_site_menu(self):
+
+		return (
+            {'title': '用户管理','menus':(
+                {'title': '用户管理', 'icon': 'fa fa-user', 'url': self.get_model_url(USERS, 'changelist')},
+                {'title': '账户管理', 'icon': 'fa fa-file', 'url': self.get_model_url(ACCOUNT, 'changelist')},
+                {'title': '收益管理', 'icon': 'fa fa-cny', 'url': self.get_model_url(PROFIT, 'changelist')},
+            )},
+            {'title':'众筹管理','menus':(
+            	{'title':'股权众筹','icon': 'fa fa-line-chart','url':self.get_model_url(STOCK,'changelist')},
+            	{'title':'债权众筹','icon': 'fa fa-money','url':self.get_model_url(BOND,'changelist')},	
+            )},
+            {'title': '认购管理','menus':(
+                {'title': '股权认购', 'icon': 'fa fa-bar-chart-o', 'url': self.get_model_url(INVEST_STOCK, 'changelist')},
+                {'title': '债权认购', 'icon': 'fa fa-bank', 'url': self.get_model_url(INVEST_BOND, 'changelist')},
+            )},
+            {'title':'基础数据维护','menus':(
+            	{'title':'行业方向','icon': 'fa fa-location-arrow','url':self.get_model_url(INDUSTRY,'changelist')},
+            	{'title':'辐射区域','icon': 'fa fa-globe','url':self.get_model_url(PROVINCE,'changelist')},
+            	{'title':'项目属性','icon': 'fa fa-briefcase','url':self.get_model_url(PRO_TYPE,'changelist')},
+            	{'title':'企业类型','icon': 'fa fa-credit-card','url':self.get_model_url(COM_TYPE,'changelist')},
+            )},
+            {'title':'通知管理','menus':(
+            	{'title':'系统通知','icon': 'fa fa-envelope','url':self.get_model_url(NOTICE,'changelist')},
+            	{'title':'用户通知','icon': 'fa fa-envelope-o','url':self.get_model_url(NOTICE_USER,'changelist')},	
+            )},
+            {'title':'其他','menus':(
+            	{'title':'用户反馈','icon': 'fa fa-comment','url':self.get_model_url(FEEDBACK,'changelist')},
+            	{'title':'系统参数','icon': 'fa fa-gear','url':self.get_model_url(SETTINGS,'changelist')},	
+            )},
+        )
+
+xadmin.site.register(views.CommAdminView, GlobalSetting)
+
 '''
 基础用户表
 '''
