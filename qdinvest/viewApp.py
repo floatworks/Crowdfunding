@@ -813,3 +813,58 @@ def GetProfits(request):
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#检查是否需要更新
+def CheckUpdate(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		os = request.GET.get('os','')
+		version = request.GET.get('version','')
+
+		SETTINGS_objs = SETTINGS.objects.all()
+		if SETTINGS_objs:
+			if os == 'android' or os == 'Android':
+				if version != SETTINGS_objs[0].se_android_version:
+					response_dict['status'] = 1
+				else:
+					response_dict['status'] = 0
+			elif os == 'IOS' or os == 'ios':
+				if version != SETTINGS_objs[0].se_ios_version:
+					response_dict['status'] = 1
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = 0
+		else:
+			response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#用户反馈
+def Feedback(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		token = request.POST.get('token','')
+		u_name = request.POST.get('u_name','')
+		mail = request.POST.get('mail','')
+		content = request.POST.get('content','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if content:
+					response_dict['status'] = 1
+					FEEDBACK_new = FEEDBACK(fe_user = USERS_objs[0],fe_mail = mail,fe_time = datetime.now(),fe_content = content)
+					FEEDBACK_new.save()
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
