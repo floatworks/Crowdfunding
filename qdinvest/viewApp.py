@@ -16,6 +16,7 @@ import requests
 import simplejson as json
 from datetime import datetime,timedelta
 from xml.etree import ElementTree
+import operator
 
 #手机端用户注册接口
 def Register(request):
@@ -684,7 +685,7 @@ def GetNotices(request):
 		if USERS_objs:
 			if T.CheckToken(USERS_objs[0],token,0):
 				notices = []
-				NOTICE_objs = NOTICE.objects.filter(no_is_delete__exact = 0)
+				NOTICE_objs = NOTICE.objects.filter(no_is_delete__exact = 0).order_by('-no_time')
 				for NOTICE_obj in NOTICE_objs:
 					notice_data = {}
 					notice_data['id'] = NOTICE_obj.id
@@ -695,7 +696,7 @@ def GetNotices(request):
 					notice_data['no_sort'] = NOTICE_obj.no_sort
 					notice_data['type'] = 'sys'
 					notices.append(notice_data)
-				NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_objs[0])
+				NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_objs[0]).order_by('-nu_time')
 				for NOTICE_USER_obj in NOTICE_USER_objs:
 					notice_data = {}
 					notice_data['id'] = NOTICE_USER_obj.id
@@ -706,7 +707,8 @@ def GetNotices(request):
 					notice_data['nu_is_read'] = NOTICE_USER_obj.nu_is_read
 					notice_data['type'] = 'user'
 					notices.append(notice_data)
-				print notices.sort()
+				#按照时间的倒序进行排列
+				notices = sorted(notices,key = operator.itemgetter('time'),reverse=True)
 				response_dict['notices'] = notices
 				response_dict['status'] = 1
 			else:
@@ -721,6 +723,42 @@ def GetNotices(request):
 #用户获取通知详情
 def NoticeDetail(request):
 	response_dict = {}
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+		n_type = request.GET.get('type','')
+		n_id = request.GET.get('id','-1')
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if n_type == 'sys':
+					NOTICE_objs = NOTICE.objects.filter(id__exact = n_id)
+					if NOTICE_objs:
+						response_dict['status'] = 1
+						notice = {}
+						notice['title'] = NOTICE_objs[0].no_title
+						notice['body'] = NOTICE_objs[0].no_body
+						notice['time'] = NOTICE_objs[0].no_time.strftime('%Y-%m-%d %H:%M:%S')
+						response_dict['notice'] = notice
+					else:
+						response_dict['status'] = 0
+				elif n_type == 'user':
+					NOTICE_USER_objs = NOTICE_USER.objects.filter(id__exact = n_id)
+					if NOTICE_USER_objs:
+						response_dict['status'] = 1
+						notice = {}
+						notice['title'] = NOTICE_USER_objs[0].nu_title
+						notice['body'] = NOTICE_USER_objs[0].nu_body
+						notice['time'] = NOTICE_USER_objs[0].nu_time.strftime('%Y-%m-%d %H:%M:%S')
+						response_dict['notice'] = notice
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
 
 	if settings.DEBUG:
 		print response_dict
