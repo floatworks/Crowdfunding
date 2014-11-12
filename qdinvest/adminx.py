@@ -143,7 +143,7 @@ class NOTICE_READAdmin(object):
 用户收益表
 '''
 class PROFITAdmin(object):
-	list_display = ['pr_user','pr_amount','pr_date','pr_title']
+	list_display = ['pr_user','pr_amount','pr_date','pr_stock','pr_bond']
 	search_fiedls = ['pr_user'] 
 
 

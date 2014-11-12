@@ -780,7 +780,36 @@ def NoticeDetail(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#获取收益列表
+def GetProfits(request):
+	response_dict = {}
 
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
 
-
-
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				response_dict['status'] = 1
+				profits = []
+				PROFIT_objs = PROFIT.objects.filter(pr_user__exact = USERS_objs[0]).order_by('-pr_date')
+				for PROFIT_obj in PROFIT_objs:
+					profits_data = {}
+					profits_data['pr_date'] = PROFIT_obj.pr_date.strftime('%Y-%m-%d %H:%M:%S')
+					profits_data['pr_amount'] = PROFIT_obj.pr_amount
+					if PROFIT_obj.pr_stock:
+						profits_data['pr_stock'] = PROFIT_obj.pr_stock.st_title
+						profits_data['pr_stock_id'] = PROFIT_obj.pr_stock.id
+					elif PROFIT_obj.pr_bond:
+						profits_data['pr_bond'] = PROFIT_obj.pr_bond.bo_title
+						profits_data['pr_bond_id'] = PROFIT_obj.pr_bond.id
+					profits.append(profits_data)
+				response_dict['profits'] = profits
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")

@@ -363,7 +363,8 @@ class PROFIT(models.Model):
 	pr_user = models.ForeignKey(USERS,verbose_name="用户")
 	pr_amount = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='收益金额')
 	pr_date = models.DateField(verbose_name="收益时间")
-	pr_title = models.CharField(max_length=100,verbose_name="收益项目名称")
+	pr_stock = models.ForeignKey(STOCK,verbose_name="股权众筹",null=True,blank=True,help_text="二选一即可")
+	pr_bond = models.ForeignKey(BOND,verbose_name="股权众筹",null=True,blank=True,help_text="二选一即可")
 
 	class Meta:
 		verbose_name = '用户收益'
