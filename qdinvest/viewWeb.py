@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.db.models import Q
 
-
+import tools as T
 import simplejson as json
 from datetime import datetime,timedelta
 from  models import STOCK,PRO_TYPE,BOND
@@ -56,14 +56,20 @@ def transfer(request):
 	context_dict = {}
 	return render_to_response('qdinvest/transfer.html',context_dict,context)
 
-def bdetail(request):
-	context = RequestContext(request)
+def bdetail(request,t_id):
+	context = RequestContext(request)	
 	context_dict = {}
+	if T.CheckExist(BOND,{'id':t_id}):
+		BOND_obj = BOND.objects.get(id__exact = t_id)
+		context_dict['bond'] = BOND_obj
 	return render_to_response('qdinvest/bdetail.html',context_dict,context)
 
-def sdetail(request):
+def sdetail(request,s_id):
 	context = RequestContext(request)
 	context_dict = {}
+	if T.CheckExist(STOCK,{'id':s_id}):
+		STOCK_obj = STOCK.objects.get(id__exact = s_id)
+		context_dict['stock'] = STOCK_obj
 	return render_to_response('qdinvest/sdetail.html',context_dict,context)
 
 def db(request):

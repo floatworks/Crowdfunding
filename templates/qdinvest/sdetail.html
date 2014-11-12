@@ -3,9 +3,10 @@
 {% block title %}股权众筹详情{% endblock %}
 {% block body_block %}
 
+
 <div class="wrap level body">
     <div class="titlebar">
-        <h1 class="left">万记麻辣烫</h1>
+        <h1 class="left">{{stock.st_title}}</h1>
         <div class="right location">
             <span class="hover">首页</span>
             &gt;
@@ -25,37 +26,37 @@
                 <div class="right">
                     <div class="namebar">
                         <span class="left name">
-                            <a href="javascript:;">比目鱼儿童主题乐园</a>
+                            <a href="javascript:;">{{stock.st_title}}</a>
                         </span>
-                        <span class="right status">融资中</span>
+                        <span class="right status">{{stock.st_pro_type}}</span>
                     </div>
                     <div class="progressbar">
                         <div class="left gray">
                             <div class="left yellow"></div>
                         </div>
-                        <div class="right percent">35%</div>
+                        <div class="right percent">{% widthratio stock.st_current_price stock.st_total_price 100%}%</div>
                     </div>
                     <div class="money">
                         <div class="left">
-                            <p>￥200,000</p>
-                            <p>项目方出资</p>
+                            <p>￥{{stock.st_total_price}}</p>
+                            <p>投资金额</p>
                         </div>
                         <div class="left">
-                            <p>￥2,000,000</p>
-                            <p>融资总额</p>
+                            <p>￥{{stock.st_current_price}}</p>
+                            <p>当前认购</p>
                         </div>
                         <div class="left">
-                            <p>￥4,000</p>
-                            <p>单投资人最低出资</p>
+                            <p>￥{{stock.st_min_price}}</p>
+                            <p>认购起点</p>
                         </div>
                     </div>
                     <div class="course">
-                        约谈
-                        <span>23</span>
-                        关注
-                        <span>1,088</span>
-                        认购结束
-                        <span>3,555</span>
+                         /  点击
+                        <span>{{stock.st_like_count}}</span>
+                        /　关注
+                        <span>{{stock.st_like_count}}</span>
+                        /　认购结束
+                       <span>{{stock.st_total_price}}</span>
                     </div>
                 </div>
             </li>
@@ -63,12 +64,12 @@
         <div class="right operate">
             <div class="remain">
                 剩余
-                <span>22</span>
-                天
+                <span>{{stock.st_begin_time|timesince:stock.st_end_time}}</span>
+                
             </div>
             <div class="offer">
                 已认购：
-                <span>￥36,000</span>
+                <span>{{stock.st_current_price}}</span>
                 <a href="javascript:;">认购</a>
             </div>
         </div>
@@ -83,53 +84,50 @@
             <div class="tabitem presentation">
                 <h1 id="i1">重要提示</h1>
                 <div class="text">
-                    <p>
-                        1、企业(个人)发起的众筹项目申请在本众筹平台进行信息展示,本平台不对企业(个人)的经营风险、募集风险、诉讼风险以及众筹项目的投资风险或收益等作出判断或保证。
-                    </p>
-                    <p>
-                        2、投资者认投本项目，应当认真阅读本说明书及有光信息披露文件，对企业(人)信息披露的真实性、准确性进行独立分析，并据以独立判断投资价值，自行承担投资风险。
-                    </p>
-                    <p>3、企业(人)保证本项目融资说明书不存在任何虚假、误导性陈述或重大遗留，并对真实性、准确性负个别和连带责任。</p>
+                    <p>{{stock.st_hint}}</p>
                 </div>
                 <h1 id="i2">公司介绍</h1>
                 <div class="text">
-                    <p>
-                        苏州道诚科技股份有限公司成立于2000年， 现注册资本850万元，是一家专业从事为金属半成品及成品加工企业提供供应链解决方案的供应链服务商。公司为客户提供专业的半成品金属品供应链管理服务，为金属制品及相关终端客户提供除核心业务（包括产品设计、开发、制造、销售、市场等）以外的供应链环节服务，具体包括如传统的原材料代理采购服务、供应商管理库存（VMI）、原材料加工、仓储、物流运输等服务，涉及的产品种类包括：镍、钴、铜、铝等有色金属，钼铁、钨铁、钒钛等铁合金，金属铬、钼、钨等纯金属以及各类炼钢辅料。
-                    </p>
+                    <p>  {{stock.st_com_brief}}</p>
+                    
                 </div>
                 <h1 id="i3">投资者保护机制</h1>
                 <div class="text">
-                    <p>
-                        1、推荐人有义务对发起人的信息展示、资金募集、资金使用、项目运作、收益和红利发放等进行持续督导，在持续督导过程中遇项目重大事件及时予以披露并采取整改措施；
-                    </p>
-                    <p>2、发起人拥有完善的企业治理机制，议事规则，在经营过程中严格遵照公司章程规定，股东大会、董事会、监事会的决议进行管理；</p>
+                    <p>{{stock.st_protect}}</p>
+                       
                 </div>
                 <h1 id="i4">信息披露安排</h1>
                 <div class="text">
-                    <p>发起人为众筹网,按本网站规定及成长板信批要求予以披露。</p>
+                    <p>{{stock.st_inf_expose}}</p>
                 </div>
                 <h1 id="i5">融资计划</h1>
                 <div class="text">
-                    <p>
-                        有色金属工业是国民经济重要的基础原材料产业，产品种类多、应用领域广、产业关联度高，在经济社会发展以及国防科技工业建设等方面发挥着重要作用。铜、铝、铅、锌等有色金属产品作为经济建设的重要中间原材料，是国民经济中大部分行业的必备材料之一。我国已经发展成为全球制造业中心，有色金属产业在技术进步、改善品种质量、淘汰落后产能、开发利用境外资源方面迅速发展，生产和消费规模不断扩大。
-                    </p>
-                    <p>
-                        有色金属是我国最早进入期货市场的行业，也是运行最为成熟、市场化和国际化程度最高的代表性行业。历经近20年发展，我国有色金属行业和期货市场实现了共同成长和共同发展。期货市场推动了我国有色金属行业的可持续发展，有色金属行业不断做大做强，我国已经连续11年成为世界最大的有色金属生产国和消费国。我国有色金属期货市场从无到有、从小到大，已经成为全球仅次于伦敦金属交易所LME的重要市场。"十一五"期间，铜、铝、铅、锌、镍等10种产品的64个品牌已先后在伦敦金属交易所（LME）注册。2013年11月26日上海期货交易所印发了关于《阴极铜、铝、锌、铅四个期货合约修订案》，从12月20日起，国内开展连续交易的期货品种将从贵金属扩展到铜、铝、锌、铅等有色金属品种。"夜盘"交易将使投资者有了更多的风险对冲和投资机会，期货公司也将从连续交易品种的扩容上获得更多的机遇，将有利于提高铜铝铅锌市场的活跃度。
-                    </p>
-                    <p>根据工信部《2013年有色金属工业经济运行情况》预测，未来我国有色金属工业生产、消费</p>
+                    <p>{{stock.st_plan}}  </p>
                 </div>
                 <h1 id="i5">财务情况</h1>
-                <div class="text"></div>
+                <div class="text">
+                    <p>{{stock.st_finance}}</p>
+                </div>
                 <h1 id="i7">优势和劣势</h1>
-                <div class="text"></div>
+                <div class="text"> 
+                 <p>{{stock.st_good_bad}}</p>  
+                </div>
                 <h1 id="i8">市场分析</h1>
-                <div class="text"></div>
+                <div class="text">
+                <p>{{stock.st_market}}</p>
+                </div>
                 <h1 id="i9">商业模式</h1>
-                <div class="text"></div>
+                <div class="text">
+                    <p>{{stock.st_business}}</p>
+                </div>
                 <h1 id="i10">风险控制</h1>
-                <div class="text"></div>
+                <div class="text">
+                    <p>{{stock.st_risk}}</p>
+                </div>
                 <h1 id="i11">团队介绍</h1>
-                <div class="text"></div>
+                <div class="text">
+                    <p>{{stock.st_team}}</p>
+                </div>
                 <ul class="sidemenu">
                     <li class="hover">
                         <a href="#i1">重要提示</a>
@@ -351,6 +349,7 @@
         </div>
     </div>
 </div>
+
 <div class="clearfix"></div>
 <!-- footer -->
 {% endblock %}

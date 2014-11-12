@@ -4,7 +4,7 @@
 {% block body_block %}
 <div class="wrap level body">
   <div class="titlebar">
-    <h1 class="left">万记麻辣烫</h1>
+    <h1 class="left">{{bond.bo_title}}</h1>
     <div class="right location">
       <span class="hover">首页</span>
       &gt;
@@ -19,28 +19,28 @@
         <div class="left s">中</div>
         <div class="right">
           <div class="local">
-            <span class="left cctext">北京 • |</span>
-            <span class="left bygc">企业经营用途 企业经营流动性资金</span>
-            <span class="right status bygb">融资中</span>
-            <span class="right y">拟挂牌企业</span>
+            <span class="left cctext">{{bond.bo_province}}• |</span>
+            <span class="left bygc">{{bond.bo_brief}}</span>
+            <span class="right status bygb">{{bond.bo_pro_type}}</span>
+            <span class="right y">{{bond.bo_com_type}}</span>
           </div>
           <div class="progressbar">
             <div class="left gray">
               <div class="left"></div>
             </div>
-            <div class="right percent bygc">35%</div>
+            <div class="right percent bygc">{% widthratio bond.bo_current_price bond.bo_total_price 100%}%</div>
           </div>
           <div class="money">
             <div class="left">
-              <p>10%+1%</p>
+              <p>{{bond.bo_scale}}</p>
               <p>年化利率</p>
             </div>
             <div class="left">
-              <p>2014年7月14日</p>
+              <p>{{bond.bo_end_time.date}}</p>
               <p>截止日期</p>
             </div>
             <div class="left">
-              <p>￥500万</p>
+              <p>￥{{bond.bo_total_price}}</p>
               <p>融资金额</p>
             </div>
             <div class="left">
@@ -57,36 +57,43 @@
     <div class="right operate">
       <div class="remain">
         剩余
-        <span class="bygc">22</span>
-        天
+        <span class="bygc">{{bond.bo_begin_time|timesince:bond.bo_end_time}}</span>
+       
       </div>
       <div class="offer">
         已认购：
-        <span>￥36,000</span>
-        <a href="javascript:;" class="bygb">投标</a>
+        <span>￥{{bond.bo_current_price}}
+        <a href="javascript:;" class="bygb">投标</a></span>
       </div>
     </div>
   </div>
+
+  
   <div class="intro">
     <div class="left about">
+
+
       <ul class="tabmenu">
         <li class="hover" data="projectinfo">项目信息</li>
         <li data="riskinfo">风险信息</li>
         <li data="file">相关文件</li>
         <li data="plan">还款计划</li>
       </ul>
+
+
+
       <div class="tabitem projectinfo">
         <table class="t1">
           <tr>
             <td class="ti">融资企业</td>
-            <td class="te">****食品有限公司</td>
+            <td class="te">{{bond.bo_com_name}}</td>
             <td class="ti">本期融资金额</td>
-            <td class="ts">500.00万元</td>
+            <td class="ts">{{bond.bo_total_price}}</td>
           </tr>
           <tr>
             <td class="ti">融资企业代理人</td>
             <td class="te">
-              zw***56
+              {{bond.bo_user}}
               <a href="javascript:;">所有融资项目</a>
             </td>
             <td class="ti">本次授信额度</td>
@@ -94,30 +101,32 @@
           </tr>
           <tr>
             <td class="ti">项目区域位置</td>
-            <td class="te">河北</td>
+            <td class="te">{{bond.bo_province}}</td>
             <td class="ti">还款日期</td>
-            <td class="ts">2015-7-14</td>
+            <td class="ts">{{bond.bo_end_time.date}}</td>
           </tr>
           <tr>
             <td class="ti">年化利率</td>
-            <td class="te">10%+1%</td>
+            <td class="te">{{bond.bo_scale}}</td>
             <td class="ti">投标截止日期</td>
-            <td class="ts">2014-07-14 160:00:00</td>
+            <td class="ts">{{bond.bo_begin_time.date}}</td>
           </tr>
           <tr>
             <td class="ti">资金用途</td>
-            <td class="te" colspan="3">企业经营用途，企业经营流动性资金</td>
+            <td class="te" colspan="3">{{bond.bo_brief}}</td>
           </tr>
           <tr>
             <td class="ti">借款用途</td>
-            <td class="te" colspan="3">公司经营周转</td>
+            <td class="te" colspan="3">{{bond.bo_goal}}</td>
           </tr>
           <tr>
             <td class="ti">还款来源</td>
-            <td class="te"  colspan="3">营业收入</td>
+            <td class="te"  colspan="3">{{bond.bo_com_inf}}</td>
           </tr>
         </table>
-        <h1 class="h1">企业信息</h1>
+         
+         
+        <!--h1 class="h1">企业信息</h1>
         <h2>企业基本信息</h2>
         <table class="t2">
           <tr>
@@ -199,39 +208,55 @@
             <td>4641.15</td>
             <td>1515.14</td>
           </tr>
-        </table>
+        </table-->
+      <!-- </div> -->
+      <div class="tabitem presentation">
+        <h1 class="h1">企业信息</h1>
+        <div class="text">
+          <p>{{bond.bo_com_inf}}</p>
+          </div>
       </div>
-      <div class="tabitem riskinfo">
-        <h1 class="h1">项目风险保障</h1>
-        <div class="item">
-          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
-          <p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
-        </div>
-        <div class="item">
-          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
-          <p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
-        </div>
-        <div class="item">
-          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
-          <p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
-        </div>
-        <div class="item">
-          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
-          <p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
-        </div>
+       <div class="tabitem presentation">
+        <h1 class="h1">财务状况</h1>
+        <div class="text">
+          <p>{{bond.bo_finance}}</p>
+         </div>
       </div>
+
+    </div>
+          <!-- <h2>360度实地尽调 - 大数据思维保障项目质量</h2> -->
+          <!--p>
+            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
+          </p>
+          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
+      </div>
+        
+        <div class="item">
+          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
+          <p>
+            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
+          </p>
+          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
+        </div>
+        <div class="item">
+          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
+          <p>
+            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
+          </p>
+          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
+        </div>
+        <div class="item">
+          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
+          <p>
+            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
+          </p>
+          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
+        </div-->
+        <div class="item">
+
+          <h2>{{bond.bo_risk_inf}}</h2>
+        </div>
+
       <div class="tabitem file">
         <h1 class="h1">相关资料</h1>
         <h2>合同协议</h2>
@@ -345,6 +370,8 @@
           </tr>
         </table>
       </div>
+    </div-->
+    </div>
     </div>
     <div class="right investinfo">
       <h1>投标情况</h1>
