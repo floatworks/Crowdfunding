@@ -480,6 +480,9 @@ def ProjectBase(request):
 						else:
 							stock_dict['st_if_like'] = 0
 						response_dict['project'] = stock_dict
+						#热度增加1
+						STOCK_obj.st_view_count += 1
+						STOCK_obj.save()
 					else:
 						response_dict['status'] = 0
 				elif p_type == 'bond':
@@ -490,6 +493,7 @@ def ProjectBase(request):
 						bond_dict['bo_image'] = str(BOND_obj.bo_image)
 						bond_dict['bo_title'] = BOND_obj.bo_title
 						bond_dict['bo_like_count'] = BOND_obj.bo_like_count
+						bond_dict['bo_view_count'] = BOND_obj.bo_view_count
 						bond_dict['bo_province'] = BOND_obj.bo_province.pr_name
 						bond_dict['bo_industry'] = BOND_obj.bo_industry.in_name
 						bond_dict['bo_com_type'] = BOND_obj.bo_com_type.ct_name
@@ -505,6 +509,8 @@ def ProjectBase(request):
 						else:
 							bond_dict['bo_if_like'] = 0
 						response_dict['project'] = bond_dict
+						BOND_obj.bo_view_count += 1
+						BOND_obj.save()
 					else:
 						response_dict['status'] = 0
 				else:
@@ -695,6 +701,10 @@ def GetNotices(request):
 					notice_data['no_type'] = NOTICE_obj.no_type
 					notice_data['no_sort'] = NOTICE_obj.no_sort
 					notice_data['type'] = 'sys'
+					if T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_obj}):
+						notice_data['no_is_read'] = 1
+					else:
+						notice_data['no_is_read'] = 0
 					notices.append(notice_data)
 				NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_objs[0]).order_by('-nu_time')
 				for NOTICE_USER_obj in NOTICE_USER_objs:
@@ -740,6 +750,9 @@ def NoticeDetail(request):
 						notice['body'] = NOTICE_objs[0].no_body
 						notice['time'] = NOTICE_objs[0].no_time.strftime('%Y-%m-%d %H:%M:%S')
 						response_dict['notice'] = notice
+						if not T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_objs[0]}):
+							NOTICE_READ_new = NOTICE_READ(nr_user = USERS_objs[0],nr_notice = NOTICE_objs[0])
+							NOTICE_READ_new.save()
 					else:
 						response_dict['status'] = 0
 				elif n_type == 'user':
@@ -751,6 +764,9 @@ def NoticeDetail(request):
 						notice['body'] = NOTICE_USER_objs[0].nu_body
 						notice['time'] = NOTICE_USER_objs[0].nu_time.strftime('%Y-%m-%d %H:%M:%S')
 						response_dict['notice'] = notice
+						#标记为已经阅读
+						NOTICE_USER_objs[0].nu_is_read = 1
+						NOTICE_USER_objs[0].save()
 					else:
 						response_dict['status'] = 0
 				else:
