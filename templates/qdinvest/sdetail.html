@@ -107,6 +107,9 @@ window.addEventListener('scroll', function() {
                 <li data="comments">讨论区</li>
             </ul>
             <div class="tabitem presentation">
+                {% if stock.st_video %}
+                    <div id='plv_video' data='{{stock.st_video}}' class="text"></div>
+                {% endif %}
                 <h1 id="i1">重要提示</h1>
                 <div class="text">
                     {% autoescape off %}
