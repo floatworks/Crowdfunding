@@ -206,7 +206,7 @@
       <div class="right">
         <div class="namebar">
           <span class="left name">
-            <a href="sdetail.html">{{stock.st_title }}</a>
+            <a href="/c/stock/sdetail/{{stock.id}}">{{stock.st_title }}</a>
           </span>
           <span class="left local">{{stock.st_province}}• |</span>
           <span class="clazz">
@@ -215,7 +215,9 @@
           <span class="right status">{{stock.st_pro_type}}</span>
           <span class="right cstatus">{{stock.st_com_type}}</span>
         </div>
-        <div class="desc">{{stock.st_hint|slice:"55"}}...</div>
+        <div class="desc">{% autoescape off %} 
+                          {{stock.st_hint|slice:"55"}}
+                           {% endautoescape %}... </div>
         <div class="progressbar">
           <div class="left gray">
             <div class="left yellow"></div>

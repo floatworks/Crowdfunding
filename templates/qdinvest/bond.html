@@ -98,7 +98,7 @@
       <div class="right">
         <div class="namebar">
           <span class="left name">
-            <a href="bdetail.html">{{bond.bo_title }}</a>
+            <a href="/c/bond/bdetail/{{bond.id}}">{{bond.bo_title }}</a>
           </span>
           <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
           <span class="right status">{{bond.bo_pro_type}}</span>
@@ -110,7 +110,7 @@
             <span class="byg">{{bond.bo_scale}}%</span>
             <span class="g">/</span>
             截止日期
-            <span class="byg">{{bond.bo_end_time}}</span>
+            <span class="byg">{{bond.bo_end_time.date}}</span>
             <span class="g">/</span>
             融资金额
             <span class="byg">{{bond.bo_total_price}}</span>
@@ -126,9 +126,8 @@
             <div class="right percent">{% widthratio bond.bo_current_price bond.bo_total_price 100%}%</div>
           </div>
         </div>
-        <div class="cctext">
-        {{bond.bo_brief}} 
-          <a href="javascript:;">更多&gt;&gt;</a>
+        <div class="cctext">        
+          <a href="/c/bond/bdetail/{{bond.id}}">更多&gt;&gt;</a>
         </div>
       </div>
     </li>
@@ -138,8 +137,8 @@
       <div class="left s">还</div>
       <div class="right">
         <div class="namebar">
-          <span class="left name">
-            <a href="bdetail.html">{{bond.bo_title }}</a>
+          <span class="left name">            
+            <a href="/c/bond/bdetail/{{bond.id}}">{{bond.bo_title }}</a>
           </span>
           <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
           <span class="right status">{{bond.bo_pro_type}}</span>
@@ -151,7 +150,7 @@
             <span class="byg">{{bond.bo_scale}}%</span>
             <span class="g">/</span>
             截止日期
-            <span class="byg">{{bond.bo_end_time}}</span>
+            <span class="byg">{{bond.bo_end_time.date}}</span>
             <span class="g">/</span>
             融资金额
             <span class="byg">{{bond.bo_total_price}}</span>
@@ -166,9 +165,8 @@
             <div class="right percent">{% widthratio bond.bo_current_price bond.bo_total_price 100%}%</div>
           </div>
         </div>
-        <div class="cctext">
-        {{bond.bo_brief}} 
-          <a href="javascript:;">更多&gt;&gt;</a>
+        <div class="cctext">      
+          <a href="/c/bond/bdetail/{{bond.id}}">更多&gt;&gt;</a>
         </div>
       </div>
     </li>
@@ -177,8 +175,8 @@
       <div class="left s">中</div>     
       <div class="right">
         <div class="namebar">
-          <span class="left name">
-            <a href="bdetail.html">{{bond.bo_title }}</a>
+          <span class="left name">          
+            <a href="/c/bond/bdetail/{{bond.id}}">{{bond.bo_title }}</a>
           </span>
           <span class="left ctext">融资企业：{{bond.bo_com_name}} |  资金用途：{{bond.bo_brief}}</span>
           <span class="right status">{{bond.bo_pro_type}}</span>
@@ -190,7 +188,7 @@
             <span class="byg">{{bond.bo_scale}}%</span>
             <span class="g">/</span>
             截止日期
-            <span class="byg">{{bond.bo_end_time}}</span>
+            <span class="byg">{{bond.bo_end_time.date}}</span>
             <span class="g">/</span>
             融资金额
             <span class="byg">{{bond.bo_total_price}}</span>
@@ -205,9 +203,8 @@
             <div class="right percent">{% widthratio bond.bo_current_price bond.bo_total_price 100%}%</div>
           </div>
         </div>
-        <div class="cctext">
-        {{bond.bo_brief}} 
-          <a href="javascript:;">更多&gt;&gt;</a>
+        <div class="cctext">         
+          <a href="/c/bond/bdetail/{{bond.id}}">更多&gt;&gt;</a>
         </div>
       </div>
     </li>

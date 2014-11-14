@@ -10,7 +10,7 @@ from django.db.models import Q
 import tools as T
 import simplejson as json
 from datetime import datetime,timedelta
-from  models import STOCK,PRO_TYPE,BOND
+from  models import STOCK,PRO_TYPE,BOND,INVEST_BOND,INVEST_STOCK
 
 def testUeditor(request):
 	context = RequestContext(request)
@@ -39,6 +39,7 @@ def index(request):
 def bond(request):
 	context = RequestContext(request)	
 	context_dict = {}	
+	
 	BOND_objs=BOND.objects.all()[:6]
 	context_dict['bonds'] = BOND_objs
 	return render_to_response('qdinvest/bond.html',context_dict,context)
@@ -61,15 +62,19 @@ def bdetail(request,t_id):
 	context_dict = {}
 	if T.CheckExist(BOND,{'id':t_id}):
 		BOND_obj = BOND.objects.get(id__exact = t_id)
+		BOND_obj2 = INVEST_BOND.objects.filter(ib_bond__id__exact = t_id)
 		context_dict['bond'] = BOND_obj
+		context_dict['invest_bonds'] = BOND_obj2
 	return render_to_response('qdinvest/bdetail.html',context_dict,context)
 
 def sdetail(request,s_id):
 	context = RequestContext(request)
 	context_dict = {}
 	if T.CheckExist(STOCK,{'id':s_id}):
-		STOCK_obj = STOCK.objects.get(id__exact = s_id)
+		STOCK_obj = STOCK.objects.get(id__exact = s_id)	
 		context_dict['stock'] = STOCK_obj
+	STOCK_objs2 = INVEST_STOCK.objects.filter(is_stock__id__exact = s_id)
+	context_dict['invest_stocks'] = STOCK_objs2
 	return render_to_response('qdinvest/sdetail.html',context_dict,context)
 
 def db(request):

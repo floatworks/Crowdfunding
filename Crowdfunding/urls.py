@@ -16,6 +16,9 @@ urlpatterns = patterns('',
     #url(r'^admin/', include(admin.site.urls)),
     url(r'admin/', include(xadmin.site.urls)),
     url(r'^ueditor/',include('DjangoUeditor.urls' )),
+    url(r'^c/stock/', include('qdinvest.urls')),
+    url(r'^c/bond/', include('qdinvest.urls')),
+
 )
 
 

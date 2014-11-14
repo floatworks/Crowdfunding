@@ -2,7 +2,32 @@
 {% load staticfiles %}
 {% block title %}股权众筹详情{% endblock %}
 {% block body_block %}
+<!--script>
 
+$(document).ready(function(){
+  var content1 = $('#i1');
+var content2 = $('#i2');
+var content3 = $('#i3');
+window.addEventListener('scroll', function() {
+  // 拿到滚动位置
+
+  var scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+  //alert('scrollY:'+scrollY+'content3'+content3.getBoundingClientRect().top);
+  // 计算悬浮层高亮
+  // if (content3.getBoundingClientRect().top > scrollY) {
+  //   // 改变右侧悬浮层高亮content3标题
+    
+  // } else if (content2.getBoundingClientRect().top > scrollY) {
+   
+  //   // 改变右侧悬浮层高亮content2标题
+  // } else if (content1.getBoundingClientRect().top > scrollY) {
+  //   // 改变右侧悬浮层高亮content1标题
+  // }
+}, false);
+});
+
+
+</script-->
 
 <div class="wrap level body">
     <div class="titlebar">
@@ -64,7 +89,7 @@
         <div class="right operate">
             <div class="remain">
                 剩余
-                <span>{{stock.st_begin_time|timesince:stock.st_end_time}}</span>
+                <span> {{stock.st_begin_time|timesince:stock.st_end_time}}</span>
                 
             </div>
             <div class="offer">
@@ -84,49 +109,69 @@
             <div class="tabitem presentation">
                 <h1 id="i1">重要提示</h1>
                 <div class="text">
-                    <p>{{stock.st_hint}}</p>
+                    {% autoescape off %}
+                  <p>{{stock.st_hint}}</p>
+                     {% endautoescape %}
                 </div>
                 <h1 id="i2">公司介绍</h1>
                 <div class="text">
-                    <p>  {{stock.st_com_brief}}</p>
-                    
+                    {% autoescape off %}
+                 <p>  {{stock.st_com_brief}}</p>
+                    {% endautoescape %}
                 </div>
                 <h1 id="i3">投资者保护机制</h1>
                 <div class="text">
-                    <p>{{stock.st_protect}}</p>
-                       
+                    {% autoescape off %}
+                 <p>{{stock.st_protect}}</p>
+                    {% endautoescape %} 
                 </div>
                 <h1 id="i4">信息披露安排</h1>
                 <div class="text">
-                    <p>{{stock.st_inf_expose}}</p>
+                    {% autoescape off %}
+                 <p>{{stock.st_inf_expose}}</p>
+                    {% endautoescape %} 
                 </div>
                 <h1 id="i5">融资计划</h1>
                 <div class="text">
-                    <p>{{stock.st_plan}}  </p>
+                    {% autoescape off %}
+                 <p>{{stock.st_plan}}  </p>
+                    {% endautoescape %}
                 </div>
                 <h1 id="i5">财务情况</h1>
                 <div class="text">
-                    <p>{{stock.st_finance}}</p>
+                    {% autoescape off %}
+                <p>{{stock.st_finance}}</p>
+                    {% endautoescape %}
                 </div>
                 <h1 id="i7">优势和劣势</h1>
                 <div class="text"> 
-                 <p>{{stock.st_good_bad}}</p>  
+                    {% autoescape off %}
+                 <p>{{stock.st_good_bad}}</p> 
+                    {% endautoescape %} 
                 </div>
                 <h1 id="i8">市场分析</h1>
                 <div class="text">
+                    {% autoescape off %}
                 <p>{{stock.st_market}}</p>
+                    {% endautoescape %}
                 </div>
                 <h1 id="i9">商业模式</h1>
                 <div class="text">
-                    <p>{{stock.st_business}}</p>
+                    {% autoescape off %}
+                <p>{{stock.st_business}}</p>
+                    {% endautoescape %}
                 </div>
                 <h1 id="i10">风险控制</h1>
                 <div class="text">
-                    <p>{{stock.st_risk}}</p>
+                    {% autoescape off %}
+                <p>{{stock.st_risk}}</p>
+                    {% endautoescape %}
                 </div>
                 <h1 id="i11">团队介绍</h1>
                 <div class="text">
-                    <p>{{stock.st_team}}</p>
+                     {% autoescape off %}
+                <p>{{stock.st_team}}</p>
+                    {% endautoescape %}
                 </div>
                 <ul class="sidemenu">
                     <li class="hover">
@@ -280,7 +325,14 @@
                     <th class="r">投资人</th>
                     <th class="q">投资金额</th>
                 </tr>
+                {% for invest_stock in invest_stocks%}
                 <tr>
+                    <td>{{invest_stock.is_date.date}}</td>
+                    <td>{{invest_stock.is_user}}</td>
+                    <td>{{invest_stock.is_amount}}</td>
+                </tr>
+                {% endfor %}
+                <!--tr>
                     <td>2014-07-12 01:18:34</td>
                     <td>LC****05</td>
                     <td>7,126.56</td>
@@ -339,12 +391,7 @@
                     <td>2014-07-12 01:18:34</td>
                     <td>LC****05</td>
                     <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
+                </tr-->
             </table>
         </div>
     </div>

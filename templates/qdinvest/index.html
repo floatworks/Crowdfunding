@@ -54,13 +54,13 @@
               <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
             </a>
             <div class="tip">
-              <p class="intro">{{stock.st_title|truncatewords:"3"}}</p>
+              <p class="intro">{{stock.st_title}}</p>
               <p class="remain">剩余时间：{{stock.st_begin_time|timesince:stock.st_end_time}}</p>
             </div>
             </div>
           <div class="namebar">
             <span class="left name">
-              <a href="sdetail/{{stock.id}}">{{stock.st_title}}</a>
+              <a href="c/sdetail/{{stock.id}}">{{stock.st_title}}</a>
             </span>
             <span class="right status">{{stock.st_pro_type.pt_name}}</span>
           </div>
@@ -282,7 +282,7 @@
           </div>
           <div class="namebar">
             <span class="left name">
-              <a href="sdetail/{{stock.id}}">{{stock.st_title}}</a>
+              <a href="c/sdetail/{{stock.id}}">{{stock.st_title}}</a>
             </span>
             <span class="right status">{{stock.st_pro_type.pt_name}}</span>
           </div>
@@ -438,7 +438,7 @@
           </div>
           <div class="namebar">
             <span class="left name">
-              <a href="sdetail/{{stock.id}}">{{stock.st_title}}</a>
+              <a href="c/sdetail/{{stock.id}}">{{stock.st_title}}</a>
             </span>
             <span class="right status">已成功</span>
           </div>
@@ -600,8 +600,7 @@
           <div class="left status">中</div>
           <div class="left company">
             <div>
-            <a href="bdetail/{{bond.id}}">
-                {{bond.bo_brief}}</a>
+            <a href="c/bdetail/{{bond.id}}"> {{bond.bo_brief}} </a>
             </div>
             <div class="progressbar">
               <div class="left gray">
@@ -706,7 +705,7 @@
         <li>          
           <div class="left status">还</div>
           <div class="left company">
-            <div>{{bond.bo_brief}}</div>
+           <a href="c/bdetail/{{bond.id}}"> {{bond.bo_brief}} </a>
             <div class="progressbar">
               <div class="left gray">
                 <div class="left green"></div>
@@ -809,7 +808,7 @@
         <li>
           <div class="left status">完</div>
           <div class="left company">
-            <div>{{bond.bo_brief}}</div>
+            <a href="c/bdetail/{{bond.id}}"> {{bond.bo_brief}} </a>
             <div class="progressbar">
               <div class="left gray">
                 <div class="left yellow"></div>

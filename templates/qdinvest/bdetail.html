@@ -68,7 +68,7 @@
     </div>
   </div>
 
-  
+
   <div class="intro">
     <div class="left about">
 
@@ -113,153 +113,42 @@
           </tr>
           <tr>
             <td class="ti">资金用途</td>
-            <td class="te" colspan="3">{{bond.bo_brief}}</td>
+            <td class="te" colspan="3"> {{bond.bo_brief}}</td>
           </tr>
           <tr>
             <td class="ti">借款用途</td>
-            <td class="te" colspan="3">{{bond.bo_goal}}</td>
+            <td class="te" colspan="3">{% autoescape off %}{{bond.bo_goal}} {% endautoescape %}</td>
           </tr>
           <tr>
             <td class="ti">还款来源</td>
-            <td class="te"  colspan="3">{{bond.bo_com_inf}}</td>
+            <td class="te"  colspan="3">{% autoescape off %}{{bond.bo_com_inf}} {% endautoescape %}</td>
           </tr>
         </table>
-         
-         
-        <!--h1 class="h1">企业信息</h1>
-        <h2>企业基本信息</h2>
-        <table class="t2">
-          <tr>
-            <td class="ti">注册年限</td>
-            <td class="tt">4年</td>
-          </tr>
-          <tr>
-            <td class="ti">注册资金</td>
-            <td class="tt">5081.60万元</td>
-          </tr>
-          <tr>
-            <td class="ti">资产净值</td>
-            <td class="tt">9576.21万元</td>
-          </tr>
-          <tr>
-            <td class="ti">年度经营现金流入</td>
-            <td class="tt">12407.47</td>
-          </tr>
-          <tr>
-            <td class="ti">行业</td>
-            <td class="tt">制造业，农副食品加工业</td>
-          </tr>
-          <tr>
-            <td class="ti">经营情况</td>
-            <td class="tt">该公司目前主要以绿色有机蔬菜，精选马铃薯原料生产VF即食果蔬，非膨化食品。</td>
-          </tr>
-          <tr>
-            <td class="ti">涉诉情况</td>
-            <td class="tt">未发现融资企业涉诉信息</td>
-          </tr>
-        </table>
+        <div class="transferlist">
+        <h2>企业基本信息</h2>          
+          {% autoescape off %} 
+          {{bond.bo_com_inf}}
+          {% endautoescape %}   
+          </div> 
+        <div class="transferlist">     
         <h2>财务状况</h2>
-        <table class="t3">
-          <tr>
-            <th>年份</th>
-            <th>主营收入（万）</th>
-            <th>毛利润（万）</th>
-            <th>净利润（万）</th>
-            <th>总资产（万）</th>
-            <th>净资产（万）</th>
-          </tr>
-          <tr>
-            <td>2013</td>
-            <td>6874.15</td>
-            <td>5762.23</td>
-            <td>1555.56</td>
-            <td>4641.15</td>
-            <td>1515.14</td>
-          </tr>
-          <tr>
-            <td>2013</td>
-            <td>6874.15</td>
-            <td>5762.23</td>
-            <td>1555.56</td>
-            <td>4641.15</td>
-            <td>1515.14</td>
-          </tr>
-          <tr>
-            <td>2013</td>
-            <td>6874.15</td>
-            <td>5762.23</td>
-            <td>1555.56</td>
-            <td>4641.15</td>
-            <td>1515.14</td>
-          </tr>
-          <tr>
-            <td>2013</td>
-            <td>6874.15</td>
-            <td>5762.23</td>
-            <td>1555.56</td>
-            <td>4641.15</td>
-            <td>1515.14</td>
-          </tr>
-          <tr>
-            <td>2013</td>
-            <td>6874.15</td>
-            <td>5762.23</td>
-            <td>1555.56</td>
-            <td>4641.15</td>
-            <td>1515.14</td>
-          </tr>
-        </table-->
-      <!-- </div> -->
-      <div class="tabitem presentation">
-        <h1 class="h1">企业信息</h1>
-        <div class="text">
-          <p>{{bond.bo_com_inf}}</p>
-          </div>
-      </div>
-       <div class="tabitem presentation">
-        <h1 class="h1">财务状况</h1>
-        <div class="text">
-          <p>{{bond.bo_finance}}</p>
+          {% autoescape off %} 
+            {{bond.bo_finance}}
+          {% endautoescape %}
          </div>
       </div>
-
-    </div>
-          <!-- <h2>360度实地尽调 - 大数据思维保障项目质量</h2> -->
-          <!--p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
+    <div class="tabitem riskinfo">
+      <div class="transferlist"> 
+      <h1 class='h1'>项目风险保障</h1>
+        {% autoescape off %} 
+          {{bond.bo_risk_inf}}
+        {% endautoescape %}
       </div>
-        
-        <div class="item">
-          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
-          <p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
-        </div>
-        <div class="item">
-          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
-          <p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
-        </div>
-        <div class="item">
-          <h2>360度实地尽调 - 大数据思维保障项目质量</h2>
-          <p>
-            专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察
-          </p>
-          <p>专业尽调团队对融资项目进行360度实地尽职考察，专业尽调团队对融资项目进行360度实地尽职考察</p>
-        </div-->
-        <div class="item">
-
-          <h2>{{bond.bo_risk_inf}}</h2>
-        </div>
-
-      <div class="tabitem file">
-        <h1 class="h1">相关资料</h1>
-        <h2>合同协议</h2>
+    </div>
+    <div class="tabitem file">
+      <div class="transferlist"> 
+      <h1 class="h1">相关资料</h1>
+      <!-- <h2>合同协议</h2> 
         <ul class="h">
           <li>
             <img src="{% static 'images/e3.png'%}" />
@@ -309,10 +198,14 @@
             <br />
             担保函1.jpg
           </li>
-        </ul>
+        </ul-->
+        {% autoescape off %} 
+        {{bond.bo_files}}
+        {% endautoescape %}
+      </div>
       </div>
       <div class="tabitem plan">
-        <table>
+        <!--table>
           <tr>
             <th class="l">预期还款时间</th>
             <th class="c">类型</th>
@@ -367,21 +260,36 @@
             <td class="l">2015-7-15</td>
             <td class="c">利息</td>
             <td class="r">1,515.00</td>
-          </tr>
-        </table>
+          </tr>          
+        </table-->
+        <h1 class="h1">还款计划</h1>
+        <div class="transferlist"> 
+        {% autoescape off %}
+        {{bond.bo_repay_plan}}
+        {% endautoescape %}
       </div>
-    </div-->
+      </div>
     </div>
-    </div>
-    <div class="right investinfo">
+
+      <div class="right investinfo">
       <h1>投标情况</h1>
+
       <table>
         <tr>
           <th class="s">时 间</th>
           <th class="r">投资人</th>
           <th class="q">投资金额</th>
         </tr>
+        {%if invest_bonds%}
+        {%for invest_bond in invest_bonds%}
         <tr>
+           <td>{{invest_bond.ib_user}}</td>
+          <td>{{invest_bond.ib_date.date}}</td>
+          <td>{{invest_bond.ib_amount}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <!--tr>
           <td>2014-07-12 01:18:34</td>
           <td>LC****05</td>
           <td>7,126.56</td>
@@ -440,14 +348,11 @@
           <td>2014-07-12 01:18:34</td>
           <td>LC****05</td>
           <td>7,126.56</td>
-        </tr>
-        <tr>
-          <td>2014-07-12 01:18:34</td>
-          <td>LC****05</td>
-          <td>7,126.56</td>
-        </tr>
+        </tr-->
       </table>
     </div>
+    </div>
+  
   </div>
 </div>
 <div class="clearfix"></div>
