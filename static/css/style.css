@@ -24,12 +24,12 @@
 .header .navi li a:hover,.header .navi .hover a{ border:2px solid #e0f5ff; color:#e0f5ff; line-height:38px; padding:0 24px 0 54px;}
 .header .navi li .home{ background:url(../images/navi_ico_home_b.png) 20px center no-repeat;}
 .header .navi li .project{ background:url(../images/navi_ico_project_b.png) 20px center no-repeat;}
-.header .navi li .investor{ background:url(../images/navi_ico_investor_b.png) 20px center no-repeat;}
-.header .navi li .attom{ background:url(../images/navi_ico_attom_b.png) 20px center no-repeat;}
+.header .navi li .investor{ background:url(../images/navi_ico_attom_b.png) 20px center no-repeat;}
+.header .navi li .attom{ background:url(../images/navi_ico_investor_b.png) 20px center no-repeat;}
 .header .navi li .home:hover,.header .navi .hover .home{ background:url(../images/navi_ico_home_w.png) 19px center no-repeat;}
 .header .navi li .project:hover,.header .navi .hover .project{ background:url(../images/navi_ico_project_w.png) 19px center no-repeat;}
-.header .navi li .investor:hover,.header .navi .hover .investor{ background:url(../images/navi_ico_investor_w.png) 19px center no-repeat;}
-.header .navi li .attom:hover,.header .navi .hover .attom{ background:url(../images/navi_ico_attom_w.png) 19px center no-repeat;}
+.header .navi li .investor:hover,.header .navi .hover .investor{ background:url(../images/navi_ico_attom_w.png) 19px center no-repeat;}
+.header .navi li .attom:hover,.header .navi .hover .attom{ background:url(../images/navi_ico_investor_w.png) 19px center no-repeat;}
 .header .userbar{ width:206px; height:30px; text-align:center; line-height:30px; color:#7fb2cc; background-color:#00518c;}
 .header .userbar a{ color:#7fb2cc; padding:0px 18px; font-size:14px; margin-left:20px;}
 .header .userbar a:hover{ text-decoration:underline;}
@@ -116,7 +116,7 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .level .list .finished .course span{ color:#ff8c19;}
 .level .list .finished .progressbar .yellow{ width:100%; background:url(../images/progressbar1.png) right center no-repeat #ff8c19;}
 
-.wrap > .bond,.wrap transfer{ display:none;}
+.wrap > .bond,.wrap > .transfer{ display:none;}
 .bond .plist li{ width:298px; float:left; margin-right:20px; margin-top:20px; border:1px solid #eee; padding:10px; line-height:22px;}
 .bond .plist li:last-child{ margin-right:0;}
 .bond .plist li .status{ width:50px; height:50px; font-size:20px; color:#fff; text-align:center; line-height:50px; font-weight:bold; font-family:'微软雅黑'; background-color:#0099ff;}
@@ -334,3 +334,17 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .body .intro .about .plan table .l{ text-align:left;}
 .body .intro .about .plan table .c{ text-align:center;}
 .body .intro .about .plan table .r{ text-align:right;}
+
+.body .transferbg{ background:url(../images/transfer_btn.png)  right center no-repeat; padding-right:75px;}
+.body .minh{ min-height:500px;}
+.body .transfer .bygc{ font-weight:bold;}
+.body .tipbar{ line-height:30px; padding:5px 10px; margin-top:10px; border:1px solid #eee;}
+.body .tipbar .g{ color:#379945; font-size:14px; font-weight:bold;}
+.body .tipbar .y{ color:#ff8c19; font-size:14px; font-weight:bold;}
+.body .info .transfer li > .right{ width:100%;}
+.body .info .transfer li .status{ padding:3px 5px; color:#fff;}
+.body .info .transfer li .money{ padding-top:20px; border-top:1px solid #eee;}
+.body .info .transfer li .money .left{ width:100px;}
+.body .info .transfer li .money .left .y{ color:#ff8c19;}
+.body .info .transfer li .money .left .b{ color:#0099ff;}
+.body .info .transfer .by{ background-color:#ff8c19;}
