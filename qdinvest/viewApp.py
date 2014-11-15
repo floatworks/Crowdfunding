@@ -69,7 +69,9 @@ def GetAccount(request):
 				ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_objs[0])
 				if ACCOUNT_objs:
 					response_dict['status'] = 1
-					response_dict['account'] = json.loads(serializers.serialize("json", ACCOUNT_objs))[0]['fields']
+					account = json.loads(serializers.serialize("json", ACCOUNT_objs))[0]['fields']
+					account['u_name'] = u_name
+					response_dict['account'] = account
 				else:
 					response_dict['status'] = 0
 			else:
