@@ -2,32 +2,6 @@
 {% load staticfiles %}
 {% block title %}股权众筹详情{% endblock %}
 {% block body_block %}
-<!--script>
-
-$(document).ready(function(){
-  var content1 = $('#i1');
-var content2 = $('#i2');
-var content3 = $('#i3');
-window.addEventListener('scroll', function() {
-  // 拿到滚动位置
-
-  var scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
-  //alert('scrollY:'+scrollY+'content3'+content3.getBoundingClientRect().top);
-  // 计算悬浮层高亮
-  // if (content3.getBoundingClientRect().top > scrollY) {
-  //   // 改变右侧悬浮层高亮content3标题
-    
-  // } else if (content2.getBoundingClientRect().top > scrollY) {
-   
-  //   // 改变右侧悬浮层高亮content2标题
-  // } else if (content1.getBoundingClientRect().top > scrollY) {
-  //   // 改变右侧悬浮层高亮content1标题
-  // }
-}, false);
-});
-
-
-</script-->
 
 <div class="wrap level body">
     <div class="titlebar">
@@ -402,4 +376,7 @@ window.addEventListener('scroll', function() {
 
 <div class="clearfix"></div>
 <!-- footer -->
+{% endblock %}
+{% block otherjs %}
+    <script type="text/javascript"  src="{% static 'js/sdetail.js'%}"></script>
 {% endblock %}
