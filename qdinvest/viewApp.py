@@ -543,7 +543,6 @@ def ProLike(request):
 			if T.CheckToken(USERS_objs[0],token,0):
 				if focus == 'like':
 					if p_type == 'stock':
-						print '1'
 						STOCK_objs = STOCK.objects.filter(id__exact = p_id)
 						if STOCK_objs:
 							if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_objs[0]}):
@@ -618,6 +617,50 @@ def ProLike(request):
 						response_dict['status'] = 0
 				else:
 					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#用户认购
+def Invest(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		token = request.POST.get('token','')
+		u_name = request.POST.get('u_name','')
+		p_type = request.POST.get('type','')
+		p_id = request.POST.get('id','-1')
+		price = request.POST.get('price','0')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if float(price) > 0:
+					if p_type == 'stock':
+						STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+						if STOCK_objs:
+							response_dict['status'] = 1
+							INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_objs[0],is_stock = STOCK_objs[0],is_amount = price,is_date = datetime.now(),is_status = 0)
+							INVEST_STOCK_new.save()
+						else:
+							response_dict['status'] = 0
+					elif p_type == 'bond':
+						BOND_objs = BOND.objects.filter(id__exact = p_id)
+						if BOND_objs:
+							response_dict['status'] = 1
+							INVEST_BOND_new = INVEST_BOND(ib_user = USERS_objs[0],ib_bond = BOND_objs[0],ib_amount = price,ib_date = datetime.now(),ib_status = 0)
+							INVEST_BOND_new.save()
+						else:
+							response_dict['status'] = 0
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 2
 			else:
 				response_dict['status'] = -1
 		else:
