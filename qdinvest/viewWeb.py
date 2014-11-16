@@ -52,10 +52,15 @@ def stock(request):
 	context_dict['stocks'] = STOCK_objs
 	return render_to_response('qdinvest/stock.html',context_dict,context)
 
-def transfer(request):
+def account(request):
 	context = RequestContext(request)
 	context_dict = {}
-	return render_to_response('qdinvest/transfer.html',context_dict,context)
+	return render_to_response('qdinvest/account.html',context_dict,context)
+
+def login(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/login.html',context_dict,context)
 
 def bdetail(request,t_id):
 	context = RequestContext(request)	
