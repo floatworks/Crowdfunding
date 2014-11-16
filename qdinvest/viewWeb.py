@@ -10,7 +10,7 @@ from django.db.models import Q
 import tools as T
 import simplejson as json
 from datetime import datetime,timedelta
-from  models import STOCK,PRO_TYPE,BOND,INVEST_BOND,INVEST_STOCK
+from  models import *
 
 def testUeditor(request):
 	context = RequestContext(request)
@@ -60,6 +60,17 @@ def account(request):
 def login(request):
 	context = RequestContext(request)
 	context_dict = {}
+	if request.method == 'POST':
+		u_name = request.POST.get('username','')
+		u_pwd = request.POST.get('password','')
+		print u_name,u_pwd
+		if T.CheckExist(USERS,{'u_name':u_name,'u_pwd':u_pwd}):
+			USERS_obj = USERS.objects.get(u_name = u_name,u_pwd=u_pwd)
+			request.session['username'] = USERS_obj.u_name
+			request.session['user_id'] = USERS_obj.id
+			return HttpResponseRedirect('/c/account/')
+		else:
+			return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/login.html',context_dict,context)
 
 def bdetail(request,t_id):

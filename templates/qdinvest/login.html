@@ -4,19 +4,43 @@
 {% block body_block %}
 <!-- loginbar -->
 <div class="loginbar">
-	<div class="lbanner left"></div>
-    <div class="loginform right">
-    	<div class="title"><h3 class="left">会员登陆</h3><span class="right">还没有账号 <span><a href="javascript:;">立即注册</a></span></span></div>
-        <form method="post" class="form">
-        	<div><input type="text" placeholder="用户名" /></div>
-            <div><input type="text" placeholder="密码" /></div>
-            <input type="submit" value="登陆" /><span><input type="checkbox" /><a href="javascript:;">保持登陆</a></span><span><a href="javascript:;">忘记密码？</a></span>
-        </form>
-        <div class="third_party ">
-        	<div>用第三方账号登录</div>
-            <a href="javascript:;" class="sina"><img src="{% static 'images/sina_login.png'%}"  /></a><a href="javascript:;" class="qq"><img src="{% static 'images/qq_login.png'%}"  /></a>
-        </div>
+  <div class="lbanner left"></div>
+  <div class="loginform right">
+    <div class="title">
+      <h3 class="left">会员登陆</h3>
+      <span class="right">
+        还没有账号
+        <span>
+          <a href="javascript:;">立即注册</a>
+        </span>
+      </span>
     </div>
+    <form method="post" class="form">
+      <div>
+        <input type="text" placeholder="用户名" name="username"/>
+      </div>
+      <div>
+        <input type="password" placeholder="密码" name="password"/>
+      </div>
+      <input type="submit" value="登陆" />
+      <span>
+        <input type="checkbox" />
+        <a href="javascript:;">保持登陆</a>
+      </span>
+      <span>
+        <a href="javascript:;">忘记密码？</a>
+      </span>
+    </form>
+    <!--div class="third_party ">
+      <div>用第三方账号登录</div>
+      <a href="javascript:;" class="sina">
+        <img src="{% static 'images/sina_login.png'%}"/>
+      </a>
+      <a href="javascript:;" class="qq">
+        <img src="{% static 'images/qq_login.png'%}"/>
+      </a>
+    </div-->
+  </div>
 </div>
 <div class="clearfix"></div>
 {% endblock %}

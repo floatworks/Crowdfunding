@@ -370,11 +370,12 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 
 .loginbar{ width:1000px; margin:40px auto 0;}
 .lbanner{ background:url(../images/login_banner.png) center center no-repeat; width:570px; height:547px;}
-.loginform{ width:340px; padding:0 44px; margin-top:40px; border:1px solid #eee; border-top:3px solid #7fb2cc;}
+.loginform{ width:340px; padding:0 44px; margin-top:100px; border:1px solid #eee; border-top:3px solid #7fb2cc;}
 .loginform .title{ margin-top:30px; overflow:hidden;}
 .loginform .title h3{ font-size:30px; font-weight:normal; vertical-align:bottom;}
 .loginform .title span{ font-size:18px; vertical-align:bottom; padding-top:10px;}
 .loginform .title span span a{ color:#F00; font-size:18px; vertical-align:bottom;}
+.loginform .form {margin-bottom: 30px}
 .loginform .form div input{ width:318px; height:40px; padding:0 10px; margin-top:15px; border:1px solid #eee;}
 .loginform .form > input{ width:128px; height:40px; border:1px solid #eee; background:#70ca10; color:#fff; font-size:24px; padding-bottom:5px; margin-top:30px;}
 .loginform .form > span{ margin-top:30px; margin-left:15px;}
