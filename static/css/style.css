@@ -35,6 +35,7 @@
 .header .userbar a:hover{ text-decoration:underline;}
 .header .userbar .login{ background:url(../images/lock.png) left center no-repeat;}
 .header .userbar .reg{ background:url(../images/user.png) left center no-repeat;}
+.header .userbar .unlock{ background:url(../images/unlock.png) left center no-repeat;}
 
 /* titlebar */
 .body .titlebar{ overflow:hidden; height:30px;}
