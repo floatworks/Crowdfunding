@@ -295,6 +295,9 @@ def GetMyProjects(request):
 					#stocks_per['is_status'] = INVEST_STOCK_obj.is_status
 					stocks_per['st_brief'] = INVEST_STOCK_obj.st_brief 
 					#stocks_per['is_date'] = INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d %H:%M:%S')
+					INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0],is_stock__exact = INVEST_STOCK_obj).order_by('-is_date')
+					if INVEST_STOCK_objs:
+						stocks_per['is_date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
 					stocks_data.append(stocks_per)
 				response_dict['invest_stocks'] = stocks_data
 				bonds_data = []
@@ -310,6 +313,9 @@ def GetMyProjects(request):
 					#bonds_per['ib_status'] = INVEST_BOND_obj.ib_status
 					bonds_per['bo_brief'] = INVEST_BOND_obj.bo_brief
 					#bonds_per['ib_date'] = INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d %H:%M:%S')
+					INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0],ib_bond__exact = INVEST_BOND_obj).order_by('-ib_date')
+					if INVEST_BOND_objs:
+						bonds_per['ib_date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
 					bonds_data.append(bonds_per)
 				response_dict['invest_bonds'] = bonds_data
 			else:
