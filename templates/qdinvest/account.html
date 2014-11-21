@@ -1,0 +1,58 @@
+{% extends "qdinvest/base.html" %}
+{% load staticfiles %}
+{% block title %}个人中心{% endblock %}
+{% block body_block %}
+
+<div class="infocontent">
+	<ul class="sidemenu left">
+    	<li>
+        	<div>我的资料</div>
+            <ul>
+            	<li><a href="javascript:;">账户信息</a></li>
+                <li><a href="javascript:;">认证中心</a></li>
+                <li><a href="javascript:;">资料完善</a></li>
+            </ul>
+        </li>
+        <li>
+        	<div>权限申请</div>
+            <ul>
+            	<li><a href="javascript:;">身份资质申请</a></li>
+                <li><a href="javascript:;">交易权限</a></li>
+            </ul>
+        </li>
+        <li>
+        	<div>我的项目</div>
+            <ul>
+            	<li><a href="javascript:;">股权项目</a></li>
+                <li><a href="javascript:;">债权项目</a></li>
+            </ul>
+        </li>
+        <li>
+        	<div>我的消息</div>
+            <ul>
+            	<li><a href="javascript:;">我的消息</a></li>
+            </ul>
+        </li>
+    </ul>
+	<div class="info right">
+    	<div class="title">股权项目</div>
+        <div class="project">
+        	<div class="left">投资的项目</div>
+            <table>
+            	<tr><th>行号</th><th>项目名称</th><th>区域</th><th>行业</th><th>投资金额</th><th>是否领投</th></tr>
+                <tr><td>行号</td><td>项目名称</td><td>区域</td><td>行业</td><td>投资金额</td><td>是否领投</td></tr>
+            </table>
+            <div class="right">投资金额总记  0万元</div>
+        </div>
+        <div class="project">
+        	<div><span  class="left">发起的项目</span><span class="right btn"><a href="javascript:;">发起项目</a></span></div>
+            <table>
+            	<tr><th>行号</th><th>项目名称</th><th>区域</th><th>行业</th><th>投资金额</th><th>是否领投</th></tr>
+                <tr><td>行号</td><td>项目名称</td><td>区域</td><td>行业</td><td>投资金额</td><td>是否领投</td></tr>
+            </table>
+            <div class="right">投资金额总记  0万元</div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}

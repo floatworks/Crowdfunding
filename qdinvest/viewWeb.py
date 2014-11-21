@@ -10,7 +10,11 @@ from django.db.models import Q
 import tools as T
 import simplejson as json
 from datetime import datetime,timedelta
+<<<<<<< HEAD
 from  models import STOCK,PRO_TYPE,BOND,INVEST_BOND,INVEST_STOCK,PROVINCE,INDUSTRY,COM_TYPE
+=======
+from  models import *
+>>>>>>> origin/master
 
 def testUeditor(request):
 	context = RequestContext(request)
@@ -161,6 +165,7 @@ def stock(request):
 			else:
 				kwargs['st_pro_type'] = request.session['pt_id']		
 
+<<<<<<< HEAD
 	if it:	
 		if it == '883':
 			request.session['it_id'] = 88
@@ -217,9 +222,28 @@ def stock(request):
 		context_dict['prt'] = 884
 	return render_to_response('qdinvest/stock.html',context_dict,context)
 def transfer(request):
+=======
+def account(request):
+>>>>>>> origin/master
 	context = RequestContext(request)
 	context_dict = {}
-	return render_to_response('qdinvest/transfer.html',context_dict,context)
+	return render_to_response('qdinvest/account.html',context_dict,context)
+
+def login(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method == 'POST':
+		u_name = request.POST.get('username','')
+		u_pwd = request.POST.get('password','')
+		print u_name,u_pwd
+		if T.CheckExist(USERS,{'u_name':u_name,'u_pwd':u_pwd}):
+			USERS_obj = USERS.objects.get(u_name = u_name,u_pwd=u_pwd)
+			request.session['username'] = USERS_obj.u_name
+			request.session['user_id'] = USERS_obj.id
+			return HttpResponseRedirect('/c/account/')
+		else:
+			return HttpResponseRedirect('/c/login/')
+	return render_to_response('qdinvest/login.html',context_dict,context)
 
 def bdetail(request,t_id):
 	context = RequestContext(request)	

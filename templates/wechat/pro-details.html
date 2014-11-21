@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>清大重酬</title>
+	<link rel="shortcut icon" href="favicon.png">
+	<link rel="stylesheet" href="css/themes/qingda.css" />
+	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.5.css" />
+	<link rel="stylesheet" href="css/themes/style.css" />
+</head>
+<body>
+	<div data-role="page" id="detail" data-title="项目详情" data-theme="a">
+		<div data-role="header">
+			<a href="#" data-rel="back">返回</a>
+			<h1>股权众筹详情</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<div data-role="tabs" id="tabs" >
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#items-list" data-ajax="false" data-theme="e">基本信息</a>
+						</li>
+						<li>
+							<a href="#items-recommend" data-ajax="false" data-theme="e">项目介绍</a>
+						</li>
+					</ul>
+				</div>
+				<div id="items-list" class="ui-content">
+					<h1>First tab contents</h1>
+				</div>
+				<div id="items-recommend">
+					<ul data-role="listview" data-inset="true">
+						<li>
+							<a href="#">Acura</a>
+						</li>
+						<li>
+							<a href="#">Audi</a>
+						</li>
+						<li>
+							<a href="#">BMW</a>
+						</li>
+						<li>
+							<a href="#">Cadillac</a>
+						</li>
+						<li>
+							<a href="#">Ferrari</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer">
+			<div data-role="navbar" data-position="fixed">
+				<ul>
+					<li>
+						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
+					</li>
+					<li>
+						<a href="#" data-icon="user">我的帐户</a>
+					</li>
+					<li>
+						<a href="#" data-icon="bullets">我的项目</a>
+					</li>
+					<li>
+						<a href="#" data-icon="gear">设置</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+</body>
+</html>

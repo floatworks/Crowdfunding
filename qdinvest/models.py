@@ -161,6 +161,9 @@ class STOCK(models.Model):
 	st_prospectus = UEditorField(verbose_name="投资计划书",imagePath="ueditor/images/",
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_manage = UEditorField(verbose_name="投后管理",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
 	st_sort = models.IntegerField(default=0,verbose_name="排序")
 	st_status = models.IntegerField(default=0,verbose_name="状态")
 
@@ -210,6 +213,9 @@ class BOND(models.Model):
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
 	bo_finance = UEditorField(verbose_name="财务计划",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	bo_manage = UEditorField(verbose_name="投后管理",imagePath="ueditor/images/",
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
 	bo_sort = models.IntegerField(default=0,verbose_name="排序")

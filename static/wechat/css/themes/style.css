@@ -1,0 +1,17 @@
+.ui-page-theme-a .ui-header .ui-btn{
+	background-color:transparent;
+	border: 0;
+}
+.ui-page-theme-a .ui-header .ui-btn.topSearch,
+.ui-page-theme-a .ui-header .ui-btn.topPlus {
+	top: 1em
+}
+.ui-page-theme-a .ui-header .ui-btn:hover{
+	background-color: #e0f5ff;
+}
+.ui-content{
+	padding: 0;
+}
+.ui-content{
+	padding: 0;
+}

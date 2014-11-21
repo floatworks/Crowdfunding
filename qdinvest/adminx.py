@@ -107,10 +107,8 @@ class STOCKAdmin(object):
 	search_fiedls = ['st_user']
 	style_fields = {'st_hint':'ueditor','st_com_brief':'ueditor','st_protect':'ueditor','st_inf_expose':'ueditor',
 					'st_plan':'ueditor','st_finance':'ueditor','st_good_bad':'ueditor','st_market':'ueditor',
-					'st_business':'ueditor','st_risk':'ueditor','st_team':'ueditor','st_prospectus':'ueditor',}
-
-   
-    
+					'st_business':'ueditor','st_risk':'ueditor','st_team':'ueditor','st_prospectus':'ueditor',
+					'st_manage':'ueditor',}
 
 '''
 债权众筹 
@@ -121,7 +119,7 @@ class BONDAdmin(object):
 	'bo_view_count','bo_sort','bo_status']
 	list_filter = ('bo_begin_time','bo_create_time','bo_end_time')
 	search_fiedls = ['bo_user'] 
-	style_fields = {'bo_com_inf':'ueditor','bo_risk_inf':'ueditor','bo_files':'ueditor','bo_repay_plan':'ueditor','bo_finance':'ueditor'}
+	style_fields = {'bo_com_inf':'ueditor','bo_risk_inf':'ueditor','bo_files':'ueditor','bo_repay_plan':'ueditor','bo_finance':'ueditor','bo_manage':'ueditor'}
     
 '''
 用户投资 股权众筹
