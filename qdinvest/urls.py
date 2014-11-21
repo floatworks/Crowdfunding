@@ -3,6 +3,7 @@ import viewWeb
 
 urlpatterns = patterns('',
 	url(r'^$', viewWeb.index, name='index'),
+	#url(r'^\w*/$', viewWeb.stock1, name='stock1'),
 	url(r'^stock/$', viewWeb.stock, name='stock'),
 	url(r'^bond/$', viewWeb.bond, name='bond'),
 	url(r'^transfer/$', viewWeb.transfer, name='transfer'),

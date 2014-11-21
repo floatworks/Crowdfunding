@@ -15,45 +15,72 @@
     </div>
   </div>
   <div class="filterpart">
-    <div class="type">
+     <div class="type">
       <span>企业类型：</span>
-      <span class="hover">
-        <a href="javascript:;">全部</a>
-      </span>
-      <span>
-        <a href="javascript:;">拟挂牌企业股权众筹</a>
-      </span>
-      <span>
-        <a href="javascript:;">已挂牌企业再融资股权众筹</a>
-      </span>
-      <span>
-        <a href="javascript:;">其他股权众筹</a>
-      </span>
+       {% ifequal ct 881 %}
+       <span class="hover">
+       {% else %}
+       <span>
+       {% endifequal %}
+        <a href="/c/stock/?ct=881">全部</a>
+      </span>      
+      {% for com_type in com_types%}
+        {% ifequal ct com_type.id%}        
+        <span class="hover">
+          <a href="/c/stock/?ct={{com_type.id}}">{{com_type.ct_name}}</a>
+        </span> 
+        {% else %}   
+        <span>
+          <a href="/c/stock/?ct={{com_type.id}}">{{com_type.ct_name}}</a>
+        </span>
+        {% endifequal %}
+        {% endfor %}
     </div>
+
     <div class="status">
       <span>项目属性：</span>
+       {% ifequal pt  882 %}
       <span class="hover">
-        <a href="javascript:;">全部</a>
-      </span>
+        {% else %}
       <span>
-        <a href="javascript:;">筹资中</a>
-      </span>
-      <span>
-        <a href="javascript:;">即将开始</a>
-      </span>
-      <span>
-        <a href="javascript:;">成功项目</a>
-      </span>
+        {% endifequal %}
+        <a href="/c/stock/?pt=882">全部</a>
+      </span>      
+      {% for pro_type in pro_types%}  
+       {% ifequal pt pro_type.id%}  
+       <span class="hover">
+        <a href="/c/stock/?pt={{pro_type.id}}">{{pro_type.pt_name}} </a> 
+       </span>
+       {%else%}         
+        <span>
+          <a href="/c/stock/?pt={{pro_type.id}}">{{pro_type.pt_name}}           
+          </a>          
+        </span>
+        {% endifequal %}
+      {% endfor %}
     </div>
+
     <div class="trade">
       <span>所属行业：</span>
+     {% ifequal it  883 %}
       <span class="hover">
-        <a href="javascript:;">全部</a>
-      </span>
+      {% else %}
       <span>
-        <a href="javascript:;">医疗健康</a>
+      {% endifequal %}
+        <a href="/c/stock/?it=883">全部</a>
       </span>
+      {%for industry in industrys%}
+      {% ifequal it industry.id%}  
+      <span  class="hover">
+         <a href="/c/stock/?it={{industry.id}}"> {{industry.in_name}} </a>
+      </span> 
+      {% else %}
       <span>
+        <a href="/c/stock/?it={{industry.id}}"> {{industry.in_name}} </a>
+      </span>
+      {% endifequal %}
+      {% endfor %}
+      <!--span>
         <a href="javascript:;">文化传媒</a>
       </span>
       <span>
@@ -82,17 +109,29 @@
       </span>
       <span class="extend">
         <a href="javascript:;">更多</a>
-      </span>
+      </span-->
     </div>
     <div class="area">
       <span>所属地区：</span>
+      {% ifequal prt  884 %}
       <span class="hover">
-        <a href="javascript:;">全部</a>
-      </span>
+      {%else%}
       <span>
-        <a href="javascript:;">浙江</a>
+      {% endifequal %}
+        <a href="/c/stock/?prt=884">全部</a>
       </span>
+      {%for province in provinces %}
+       {% ifequal prt province.id%}  
+       <span class="hover">
+        <a href="/c/stock/?prt={{province.id}}">{{province.pr_name}}</a>
+      </span>
+       {%else%}
       <span>
+        <a href="/c/stock/?prt={{province.id}}">{{province.pr_name}}</a>
+      </span>
+      {% endifequal %}
+      {%  endfor%}
+      <!-- <span>
         <a href="javascript:;">北京</a>
       </span>
       <span>
@@ -190,7 +229,7 @@
       </span>
       <span class="extend pack">
         <a href="javascript:;">收起</a>
-      </span>
+      </span> -->
     </div>
   </div>
 

@@ -10,7 +10,7 @@ from django.db.models import Q
 import tools as T
 import simplejson as json
 from datetime import datetime,timedelta
-from  models import STOCK,PRO_TYPE,BOND,INVEST_BOND,INVEST_STOCK
+from  models import STOCK,PRO_TYPE,BOND,INVEST_BOND,INVEST_STOCK,PROVINCE,INDUSTRY,COM_TYPE
 
 def testUeditor(request):
 	context = RequestContext(request)
@@ -38,20 +38,184 @@ def index(request):
 
 def bond(request):
 	context = RequestContext(request)	
-	context_dict = {}	
+	context_dict = {}
+	kwargs = {}
+	ct = request.GET.get('ct','')
+	st = request.GET.get('st','')
+	tr = request.GET.get('tr','')
+	pt = request.GET.get('pt','')	
+	COM_TYPE_objs = COM_TYPE.objects.all()
+	context_dict['com_types'] = COM_TYPE_objs	
+	PRO_TYPE_objs = PRO_TYPE.objects.all()
+	context_dict['pro_types'] = PRO_TYPE_objs
 	
-	BOND_objs=BOND.objects.all()[:6]
-	context_dict['bonds'] = BOND_objs
-	return render_to_response('qdinvest/bond.html',context_dict,context)
+	if 	ct:			
+		if ct == '881':			
+			request.session['ct_id'] = 88
+		else:
+			request.session['ct_id'] = ct
+			kwargs['bo_com_type'] = ct		
+	else:
+		if  request.session['ct_id']:			
+			if  request.session['ct_id'] == 88:							
+				ct = 1
+			else:
+				kwargs['bo_com_type'] = request.session['ct_id']
+	if  st:
+		if st == '882':
+			request.session['st_id'] = 88
+		else:
+			request.session['st_id'] = st
+	else:
+		request.session['st_id'] = 88
 
+
+	if pt:	
+		if pt == '884':
+			request.session['pt_id'] = 88
+		else: 
+			request.session['pt_id'] = pt
+			kwargs['bo_pro_type'] = pt		
+	else:
+		if  request.session['pt_id']:			
+			if  request.session['pt_id'] == 88:				
+				ct = 1	
+			else:
+				kwargs['bo_pro_type'] = request.session['pt_id']
+
+	if kwargs or request.session['st_id']:	
+		if  kwargs.has_key('bo_com_type'):
+			context_dict['ct'] = int(kwargs['bo_com_type'])
+		else:
+			context_dict['ct'] = 881
+
+		if  kwargs.has_key('bo_pro_type'):
+			context_dict['pt'] = int(kwargs['bo_pro_type'])
+		else:
+			context_dict['pt'] = 884
+
+
+
+		if request.session['st_id']:
+			if request.session['st_id'] == 88:
+				BOND_objs1 = BOND.objects.filter(**kwargs)	
+				context_dict['bonds'] = BOND_objs1
+
+			if request.session['st_id'] == '1':		
+				context_dict['bonds'] = BOND.objects.filter(bo_end_time__month=3)	
+				context_dict['bonds'] = BOND.objects.filter(Q(bo_end_time__month=7)&Q(bo_end_time__year=2015),**kwargs)		
+		else:
+			BOND_objs1 = BOND.objects.filter(**kwargs)	
+			context_dict['bonds'] = BOND_objs1
+
+	else:
+		BOND_objs1 = BOND.objects.all()	
+		context_dict['bonds'] = BOND_objs1	
+		context_dict['ct'] = 881
+		context_dict['pt'] = 884
+
+
+
+	return render_to_response('qdinvest/bond.html',context_dict,context)
 
 def stock(request):
 	context = RequestContext(request)
 	context_dict = {}
-	STOCK_objs=STOCK.objects.all()[:11]
-	context_dict['stocks'] = STOCK_objs
-	return render_to_response('qdinvest/stock.html',context_dict,context)
+	kwargs = {}
+	ct = request.GET.get('ct','')
+	pt = request.GET.get('pt','')
+	it = request.GET.get('it','')
+	prt = request.GET.get('prt','')	
+	PRO_TYPE_objs = PRO_TYPE.objects.all()
+	context_dict['pro_types'] = PRO_TYPE_objs
+	COM_TYPE_objs = COM_TYPE.objects.all()
+	context_dict['com_types'] = COM_TYPE_objs
+	INDUSTRY_objs = INDUSTRY.objects.all()
+	context_dict['industrys'] = INDUSTRY_objs
+	PROVINCE_objs = PROVINCE.objects.all()
+	context_dict['provinces'] = PROVINCE_objs
 
+	if 	ct:			
+		if ct == '881':			
+			request.session['ct_id'] = 88
+		else:
+			request.session['ct_id'] = ct
+			kwargs['st_com_type'] = ct		
+	else:
+		if  request.session['ct_id']:			
+			if  request.session['ct_id'] == 88:							
+				ct = 1
+			else:
+				kwargs['st_com_type'] = request.session['ct_id']
+		
+	if pt:	
+		if pt == '882':
+			request.session['pt_id'] = 88
+		else: 
+			request.session['pt_id'] = pt
+			kwargs['st_pro_type'] = pt		
+	else:
+		if  request.session['pt_id']:			
+			if  request.session['pt_id'] == 88:				
+				ct = 1	
+			else:
+				kwargs['st_pro_type'] = request.session['pt_id']		
+
+	if it:	
+		if it == '883':
+			request.session['it_id'] = 88
+		else: 
+			request.session['it_id'] = it
+			kwargs['st_industry'] = it		
+	else:
+		if  request.session['it_id']:			
+			if  request.session['it_id'] == 88:				
+				ct = 1	
+			else:
+				kwargs['st_industry'] = request.session['it_id']
+	if prt:	
+		if prt == '884':
+			request.session['prt_id'] = 88
+		else: 
+			request.session['prt_id'] = prt
+			kwargs['st_province'] = prt		
+	else:
+		if  request.session['prt_id']:			
+			if  request.session['prt_id'] == 88:				
+				ct = 1	
+			else:
+				kwargs['st_province'] = request.session['prt_id']
+	if kwargs:		
+		STOCK_objs1 = STOCK.objects.filter(**kwargs)	
+		context_dict['stocks'] = STOCK_objs1
+
+		if  kwargs.has_key('st_com_type'):
+			context_dict['ct'] = int(kwargs['st_com_type'])
+		else:
+			context_dict['ct'] = 881
+
+		if  kwargs.has_key('st_pro_type'):
+			context_dict['pt'] = int(kwargs['st_pro_type'])
+		else:
+			context_dict['pt'] = 882
+
+		if  kwargs.has_key('st_industry'):
+			context_dict['it'] = int(kwargs['st_industry'])
+		else:
+			context_dict['it'] = 883
+
+		if  kwargs.has_key('st_province'):
+			context_dict['prt'] = int(kwargs['st_province'])
+		else:
+			context_dict['prt'] = 884
+	else:		
+		STOCK_objs1 = STOCK.objects.all()	
+		context_dict['stocks'] = STOCK_objs1	
+		context_dict['ct'] = 881
+		context_dict['pt'] = 882
+		context_dict['it'] = 883
+		context_dict['prt'] = 884
+	return render_to_response('qdinvest/stock.html',context_dict,context)
 def transfer(request):
 	context = RequestContext(request)
 	context_dict = {}

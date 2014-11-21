@@ -17,75 +17,98 @@
   <div class="filterpart">
     <div class="type">
       <span>企业类型：</span>
+      {%ifequal ct 881%}
       <span class="hover">
-        <a href="javascript:;">全部</a>
+      {%else%}
+        <span>
+      {% endifequal %}
+        <a href="/c/bond/?ct=881">全部</a>
       </span>
-      <span>
-        <a href="javascript:;">拟挂牌企业股权众筹</a>
+      {%for com_type in com_types%}
+      {%ifequal ct com_type.id%}
+      <span  class='hover'>
+        <a href="/c/bond/?ct={{com_type.id}}">{{com_type.ct_name}}</a>
       </span>
+      {%else%}
       <span>
+        <a href="/c/bond/?ct={{com_type.id}}">{{com_type.ct_name}}</a>
+      </span>
+      {% endifequal %}
+      {% endfor %}
+      <!-- <span>
         <a href="javascript:;">已挂牌企业再融资股权众筹</a>
       </span>
       <span>
         <a href="javascript:;">其他股权众筹</a>
-      </span>
+      </span> -->
     </div>
     <div class="status">
       <span>项目期限：</span>
       <span class="hover">
-        <a href="javascript:;">全部</a>
+        <a href="/c/bond/?st=882">全部</a>
       </span>
       <span>
-        <a href="javascript:;">3个月以下</a>
+        <a href="/c/bond/?st=1">3个月以下</a>
       </span>
       <span>
-        <a href="javascript:;">3-6 个月</a>
+        <a href="/c/bond/?st=2">3-6 个月</a>
       </span>
       <span>
-        <a href="javascript:;">6-9 个月</a>
+        <a href="/c/bond/?st=3">6-9 个月</a>
       </span>
       <span>
-        <a href="javascript:;">9-12 个月</a>
+        <a href="/c/bond/?st=4">9-12 个月</a>
       </span>
       <span>
-        <a href="javascript:;">12 个月以上</a>
+        <a href="/c/bond/?st=5">12 个月以上</a>
       </span>
     </div>
+
+
     <div class="trade">
-      <span>预期利率：</span>
+      <span>年转化率：</span>
       <span class="hover">
-        <a href="javascript:;">全部</a>
+        <a href="c/bond/?tr=883">全部</a>
       </span>
       <span>
-        <a href="javascript:;">5%以下</a>
+        <a href="c/bond/?tr=1">10%以下</a>
       </span>
       <span>
-        <a href="javascript:;">5%-6%</a>
+        <a href="c/bond/?tr=2">10%-15%</a>
       </span>
       <span>
-        <a href="javascript:;">6%-7%</a>
-      </span>
+        <a href="c/bond/?tr=3">15%-20%</a>
+      </span>      
       <span>
-        <a href="javascript:;">7%-8%</a>
-      </span>
-      <span>
-        <a href="javascript:;">8%以上</a>
+        <a href="c/bond/?tr=4">20%以上</a>
       </span>
     </div>
     <div class="area">
       <span>项目状态：</span>
+      {%ifequal pt 884%}
       <span class="hover">
-        <a href="javascript:;">全部</a>
-      </span>
+      {%else%}
       <span>
-        <a href="javascript:;">投标中</a>
+      {%endifequal %}
+        <a href="/c/bond/?pt=884">全部</a>
       </span>
+      {%for pro_type in pro_types%}
+      {%ifequal pt pro_type.id%}
+      <span class='hover'>
+        <a href="/c/bond/?pt={{pro_type.id}}">{{pro_type.pt_name}}</a>
+      </span>
+      {%else%}
       <span>
+        <a href="/c/bond/?pt={{pro_type.id}}">{{pro_type.pt_name}}</a>
+      </span>
+      {%endifequal%}
+      {% endfor %}
+      <!-- <span>
         <a href="javascript:;">还款中</a>
       </span>
       <span>
         <a href="javascript:;">还款完成</a>
-      </span>
+      </span> -->
     </div>
   </div>
 
@@ -106,7 +129,7 @@
         </div>
         <div class="binfo">          
           <div class="left dm">
-            年化利率
+            年转化率
             <span class="byg">{{bond.bo_scale}}%</span>
             <span class="g">/</span>
             截止日期
