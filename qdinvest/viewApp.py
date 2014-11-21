@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.db.models import Q
 from django.conf import settings
+from django.http import Http404
 
 from models import *
 from forms import *
@@ -647,6 +648,12 @@ def Invest(request):
 							response_dict['status'] = 1
 							INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_objs[0],is_stock = STOCK_objs[0],is_amount = price,is_date = datetime.now(),is_status = 0)
 							INVEST_STOCK_new.save()
+							try:
+								ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+								ACCOUNT_obj.ac_total_subscription = str(float(ACCOUNT_obj.ac_total_subscription)+float(price))
+								ACCOUNT_obj.save()
+							except ACCOUNT.DoesNotExist:
+								raise Http404
 						else:
 							response_dict['status'] = 0
 					elif p_type == 'bond':
@@ -655,6 +662,12 @@ def Invest(request):
 							response_dict['status'] = 1
 							INVEST_BOND_new = INVEST_BOND(ib_user = USERS_objs[0],ib_bond = BOND_objs[0],ib_amount = price,ib_date = datetime.now(),ib_status = 0)
 							INVEST_BOND_new.save()
+							try:
+								ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+								ACCOUNT_obj.ac_total_subscription = str(float(ACCOUNT_obj.ac_total_subscription)+float(price))
+								ACCOUNT_obj.save()
+							except ACCOUNT.DoesNotExist:
+								raise Http500
 						else:
 							response_dict['status'] = 0
 					else:
