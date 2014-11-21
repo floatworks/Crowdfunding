@@ -10,11 +10,11 @@ from django.db.models import Q
 import tools as T
 import simplejson as json
 from datetime import datetime,timedelta
-<<<<<<< HEAD
-from  models import STOCK,PRO_TYPE,BOND,INVEST_BOND,INVEST_STOCK,PROVINCE,INDUSTRY,COM_TYPE
-=======
+
+
+
 from  models import *
->>>>>>> origin/master
+
 
 def testUeditor(request):
 	context = RequestContext(request)
@@ -60,7 +60,7 @@ def bond(request):
 			request.session['ct_id'] = ct
 			kwargs['bo_com_type'] = ct		
 	else:
-		if  request.session['ct_id']:			
+		if  request.session.has_key('ct_id'):			
 			if  request.session['ct_id'] == 88:							
 				ct = 1
 			else:
@@ -81,7 +81,7 @@ def bond(request):
 			request.session['pt_id'] = pt
 			kwargs['bo_pro_type'] = pt		
 	else:
-		if  request.session['pt_id']:			
+		if  request.session.has_key('pt_id'):			
 			if  request.session['pt_id'] == 88:				
 				ct = 1	
 			else:
@@ -146,8 +146,8 @@ def stock(request):
 			request.session['ct_id'] = ct
 			kwargs['st_com_type'] = ct		
 	else:
-		if  request.session['ct_id']:			
-			if  request.session['ct_id'] == 88:							
+		if  request.session.has_key('ct_id'):
+			if  request.session['ct_id'] == 88:
 				ct = 1
 			else:
 				kwargs['st_com_type'] = request.session['ct_id']
@@ -159,13 +159,13 @@ def stock(request):
 			request.session['pt_id'] = pt
 			kwargs['st_pro_type'] = pt		
 	else:
-		if  request.session['pt_id']:			
+		if  request.session.has_key('pt_id'):			
 			if  request.session['pt_id'] == 88:				
 				ct = 1	
 			else:
 				kwargs['st_pro_type'] = request.session['pt_id']		
 
-<<<<<<< HEAD
+
 	if it:	
 		if it == '883':
 			request.session['it_id'] = 88
@@ -173,7 +173,7 @@ def stock(request):
 			request.session['it_id'] = it
 			kwargs['st_industry'] = it		
 	else:
-		if  request.session['it_id']:			
+		if  request.session.has_key('it_id'):			
 			if  request.session['it_id'] == 88:				
 				ct = 1	
 			else:
@@ -185,7 +185,7 @@ def stock(request):
 			request.session['prt_id'] = prt
 			kwargs['st_province'] = prt		
 	else:
-		if  request.session['prt_id']:			
+		if  request.session.has_key('prt_id'):			
 			if  request.session['prt_id'] == 88:				
 				ct = 1	
 			else:
@@ -221,10 +221,9 @@ def stock(request):
 		context_dict['it'] = 883
 		context_dict['prt'] = 884
 	return render_to_response('qdinvest/stock.html',context_dict,context)
-def transfer(request):
-=======
-def account(request):
->>>>>>> origin/master
+
+
+def account(request):	
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('qdinvest/account.html',context_dict,context)
