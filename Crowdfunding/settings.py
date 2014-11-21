@@ -142,6 +142,7 @@ STATICFILES_DIRS = (
     ("css", os.path.join(STATIC_ROOT,'css')),
     ("js", os.path.join(STATIC_ROOT,'js')),
     ("images", os.path.join(STATIC_ROOT,'images')),
+    ("wechat", os.path.join(STATIC_ROOT,'wechat')),
 )
 # List of finder classes that know how to find static files in
 # various locations.

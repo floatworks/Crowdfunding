@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>清大重酬</title>
+	<link rel="shortcut icon" href="favicon.png">
+	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
+</head>
+<body>
+	<div data-role="page" id="index" data-title="主页" data-theme="a">
+		<div data-role="header">
+			<a href="#" class="ui-btn ui-icon-search ui-btn-icon-notext ui-btn-inline topSearch">search</a>
+			<h1>
+				清大众筹
+				<select data-native-menu="false" data-mini="true" data-inline="true" data-icon="carat-d"  data-iconpos="notext">
+					<option value="0">登录</option>
+					<option value="1">注册</option>
+					<option value="2">首页</option>
+				</select>
+
+			</h1>
+			<a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-btn-inline topPlus">Plus</a>
+		</div>
+		<div role="main" class="ui-content">
+			<div data-role="tabs" id="tabs" >
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#items-list" data-ajax="false" data-theme="e">项目列表</a>
+						</li>
+						<li>
+							<a href="#items-recommend" data-ajax="false" data-theme="e">推荐项目</a>
+						</li>
+						<!--<li>
+							<a href="ajax-content-ignore.html" data-ajax="false">three</a>
+						</li>-->
+					</ul>
+				</div>
+				<div id="items-list" class="ui-content">
+					<h1>First tab contents</h1>
+				</div>
+				<div id="items-recommend">
+					<ul data-role="listview" data-inset="true">
+						<li>
+							<a href="#">Acura</a>
+						</li>
+						<li>
+							<a href="#">Audi</a>
+						</li>
+						<li>
+							<a href="#">BMW</a>
+						</li>
+						<li>
+							<a href="#">Cadillac</a>
+						</li>
+						<li>
+							<a href="#">Ferrari</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer">
+			<div data-role="navbar" data-position="fixed">
+				<ul>
+					<li>
+						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
+					</li>
+					<li>
+						<a href="#" data-icon="user">我的帐户</a>
+					</li>
+					<li>
+						<a href="#" data-icon="bullets">我的项目</a>
+					</li>
+					<li>
+						<a href="#" data-icon="gear">设置</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div data-role="page" id="pdetail" data-title="项目详情" data-theme="a">
+		<div data-role="header">
+			<a href="#" class="ui-btn ui-icon-search ui-btn-icon-notext ui-btn-inline topSearch">search</a>
+			<h1>
+				清大众筹
+				<select data-native-menu="false" data-mini="true" data-inline="true" data-icon="carat-d"  data-iconpos="notext">
+					<option value="0">登录</option>
+					<option value="1">注册</option>
+					<option value="2">首页</option>
+				</select>
+
+			</h1>
+			<a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-btn-inline topPlus">Plus</a>
+		</div>
+		<div role="main" class="ui-content">
+			<div data-role="tabs" id="tabs" >
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#items-list" data-ajax="false" data-theme="e">项目列表</a>
+						</li>
+						<li>
+							<a href="#items-recommend" data-ajax="false" data-theme="e">推荐项目</a>
+						</li>
+						<!--<li>
+							<a href="ajax-content-ignore.html" data-ajax="false">three</a>
+						</li>-->
+					</ul>
+				</div>
+				<div id="items-list" class="ui-content">
+					<h1>First tab contents</h1>
+				</div>
+				<div id="items-recommend">
+					<ul data-role="listview" data-inset="true">
+						<li>
+							<a href="#">Acura</a>
+						</li>
+						<li>
+							<a href="#">Audi</a>
+						</li>
+						<li>
+							<a href="#">BMW</a>
+						</li>
+						<li>
+							<a href="#">Cadillac</a>
+						</li>
+						<li>
+							<a href="#">Ferrari</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer">
+			<div data-role="navbar" data-position="fixed">
+				<ul>
+					<li>
+						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
+					</li>
+					<li>
+						<a href="#" data-icon="user">我的帐户</a>
+					</li>
+					<li>
+						<a href="#" data-icon="bullets">我的项目</a>
+					</li>
+					<li>
+						<a href="#" data-icon="gear">设置</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+</body>
+</html>
