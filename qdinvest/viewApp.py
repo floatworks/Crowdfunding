@@ -283,33 +283,97 @@ def GetMyProjects(request):
 			if T.CheckToken(USERS_objs[0],token,0):
 				response_dict['status'] = 1
 				stocks_data = []
-				INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0]).order_by('-is_date')
-				for INVEST_STOCK_obj in INVEST_STOCK_objs:
+				STOCK_ids = INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0]).values('is_stock').distinct()
+				for STOCK_id in STOCK_ids:
+					INVEST_STOCK_obj = STOCK.objects.get(id__exact = STOCK_id['is_stock'])
 					stocks_per = {}
-					stocks_per['id'] = INVEST_STOCK_obj.is_stock.id
-					stocks_per['st_title'] = INVEST_STOCK_obj.is_stock.st_title
-					stocks_per['st_image'] = str(INVEST_STOCK_obj.is_stock.st_image)
-					stocks_per['st_total_price'] = INVEST_STOCK_obj.is_stock.st_total_price
-					stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
-					stocks_per['is_status'] = INVEST_STOCK_obj.is_status
-					stocks_per['st_brief'] = INVEST_STOCK_obj.is_stock.st_brief 
-					stocks_per['is_date'] = INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d %H:%M:%S')
+					stocks_per['id'] = INVEST_STOCK_obj.id
+					stocks_per['st_title'] = INVEST_STOCK_obj.st_title
+					stocks_per['st_image'] = str(INVEST_STOCK_obj.st_image)
+					stocks_per['st_total_price'] = INVEST_STOCK_obj.st_total_price
+					#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
+					#stocks_per['is_status'] = INVEST_STOCK_obj.is_status
+					stocks_per['st_brief'] = INVEST_STOCK_obj.st_brief 
+					#stocks_per['is_date'] = INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d %H:%M:%S')
 					stocks_data.append(stocks_per)
 				response_dict['invest_stocks'] = stocks_data
 				bonds_data = []
-				INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0]).order_by('-ib_date')
-				for INVEST_BOND_obj in INVEST_BOND_objs:
+				BOND_ids = INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0]).values('ib_bond').distinct()
+				for BOND_id in BOND_ids:
+					INVEST_BOND_obj = BOND.objects.get(id__exact = BOND_id['ib_bond'])
 					bonds_per = {}
-					bonds_per['id'] = INVEST_BOND_obj.ib_bond.id
-					bonds_per['bo_title'] = INVEST_BOND_obj.ib_bond.bo_title
-					bonds_per['bo_image'] = str(INVEST_BOND_obj.ib_bond.bo_image)
-					bonds_per['bo_total_price'] = INVEST_BOND_obj.ib_bond.bo_total_price
-					bonds_per['ib_amount'] = INVEST_BOND_obj.ib_amount
-					bonds_per['ib_status'] = INVEST_BOND_obj.ib_status
-					bonds_per['bo_brief'] = INVEST_BOND_obj.ib_bond.bo_brief
-					bonds_per['ib_date'] = INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d %H:%M:%S')
+					bonds_per['id'] = INVEST_BOND_obj.id
+					bonds_per['bo_title'] = INVEST_BOND_obj.bo_title
+					bonds_per['bo_image'] = str(INVEST_BOND_obj.bo_image)
+					bonds_per['bo_total_price'] = INVEST_BOND_obj.bo_total_price
+					#bonds_per['ib_amount'] = INVEST_BOND_obj.ib_amount
+					#bonds_per['ib_status'] = INVEST_BOND_obj.ib_status
+					bonds_per['bo_brief'] = INVEST_BOND_obj.bo_brief
+					#bonds_per['ib_date'] = INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d %H:%M:%S')
 					bonds_data.append(bonds_per)
 				response_dict['invest_bonds'] = bonds_data
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#获取项目相关的认购列表，同时返回项目基本信息
+def ProjectInvest(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+		p_type = request.GET.get('type','')
+		p_id = request.GET.get('id','-1')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if p_type == 'stock':
+					if T.CheckExist(STOCK,{'id':p_id}):
+						response_dict['status'] = 1
+						STOCK_obj = STOCK.objects.get(id__exact = p_id)
+						project = {}
+						project['id'] = STOCK_obj.id
+						project['st_title'] = STOCK_obj.st_title
+						project['st_image'] = str(STOCK_obj.st_image)
+						project['st_brief'] = STOCK_obj.st_brief
+						project['st_total_price'] = STOCK_obj.st_total_price
+						project['st_current_price'] = STOCK_obj.st_current_price
+						response_dict['project'] = project
+						invests = []
+						INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user = USERS_objs[0],is_stock = STOCK_obj)
+						for INVEST_STOCK_obj in INVEST_STOCK_objs:
+							invests.append({'is_amount':INVEST_STOCK_obj.is_amount,'is_date':INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d %H:%M:%S'),'is_status':INVEST_STOCK_obj.is_status})
+						response_dict['invests'] = invests
+					else:
+						response_dict['status'] = 0
+				elif p_type == 'bond':
+					if T.CheckExist(BOND,{'id':p_id}):
+						response_dict['status'] = 1
+						BOND_obj = BOND.objects.get(id__exact = p_id)
+						project = {}
+						project['id'] = BOND_obj.id
+						project['bo_title'] = BOND_obj.bo_title
+						project['bo_image'] = str(BOND_obj.bo_image)
+						project['bo_brief'] = BOND_obj.bo_brief
+						project['bo_total_price'] = BOND_obj.bo_total_price
+						project['bo_current_price'] = BOND_obj.bo_current_price
+						response_dict['project'] = project
+						invests = []
+						INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user = USERS_objs[0],ib_bond = BOND_obj)
+						for INVEST_BOND_obj in INVEST_BOND_objs:
+							invests.append({'ib_amount':INVEST_BOND_obj.ib_amount,'ib_date':INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d %H:%M:%S'),'ib_status':INVEST_BOND_obj.ib_status})
+						response_dict['invests'] = invests
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
 			else:
 				response_dict['status'] = -1
 		else:
