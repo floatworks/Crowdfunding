@@ -272,7 +272,7 @@ class INVEST_STOCK(models.Model):
 '''
 class INVEST_BOND(models.Model):
 	ib_user = models.ForeignKey(USERS,verbose_name="用户")
-	ib_bond = models.ForeignKey(BOND,verbose_name="股权众筹")
+	ib_bond = models.ForeignKey(BOND,verbose_name="债权众筹")
 	ib_amount = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资金额')
 	ib_date = models.DateTimeField(verbose_name="投资时间")
 	ib_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入",null=True)
