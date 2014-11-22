@@ -41,6 +41,9 @@
 		<strong>团队介绍</strong>
 		{{stock.st_team}}
 		{% elif bond %}
+		{% if bond.bo_video %}
+            <div id='plv_video' data='{{bond.bo_video}}'></div>
+        {% endif %}
 		<strong>企业基本信息</strong>
 		{{bond.bo_com_inf}}
 		<strong>财务状况</strong>
