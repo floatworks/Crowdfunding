@@ -361,11 +361,14 @@ def ProjectInvest(request):
 						project['st_brief'] = STOCK_obj.st_brief
 						project['st_total_price'] = STOCK_obj.st_total_price
 						project['st_current_price'] = STOCK_obj.st_current_price
-						response_dict['project'] = project
 						invests = []
+						st_invest_price = 0
 						INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user = USERS_objs[0],is_stock = STOCK_obj)
 						for INVEST_STOCK_obj in INVEST_STOCK_objs:
-							invests.append({'is_amount':INVEST_STOCK_obj.is_amount,'is_date':INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d %H:%M:%S'),'is_status':INVEST_STOCK_obj.is_status})
+							invests.append({'is_amount':INVEST_STOCK_obj.is_amount,'is_date':INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d'),'is_status':INVEST_STOCK_obj.is_status.id})
+							st_invest_price += INVEST_STOCK_obj.is_amount
+						project['st_invest_price'] = st_invest_price
+						response_dict['project'] = project
 						response_dict['invests'] = invests
 					else:
 						response_dict['status'] = 0
@@ -380,11 +383,14 @@ def ProjectInvest(request):
 						project['bo_brief'] = BOND_obj.bo_brief
 						project['bo_total_price'] = BOND_obj.bo_total_price
 						project['bo_current_price'] = BOND_obj.bo_current_price
-						response_dict['project'] = project
 						invests = []
+						bo_invest_price = 0
 						INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user = USERS_objs[0],ib_bond = BOND_obj)
 						for INVEST_BOND_obj in INVEST_BOND_objs:
-							invests.append({'ib_amount':INVEST_BOND_obj.ib_amount,'ib_date':INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d %H:%M:%S'),'ib_status':INVEST_BOND_obj.ib_status})
+							invests.append({'ib_amount':INVEST_BOND_obj.ib_amount,'ib_date':INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d'),'ib_status':INVEST_BOND_obj.ib_status.id})
+							bo_invest_price += INVEST_BOND_obj.ib_amount
+						project['bo_invest_price'] = bo_invest_price
+						response_dict['project'] = project
 						response_dict['invests'] = invests
 					else:
 						response_dict['status'] = 0

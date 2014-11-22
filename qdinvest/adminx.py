@@ -54,7 +54,7 @@ class USERSAdmin(object):
 	list_display = ['u_name','u_pwd','u_tel','u_status']
 	list_filter=['u_status']	
 	search_fiedls = ['u_name']
-    
+
 '''
 用户账户信息
 '''
@@ -125,14 +125,18 @@ class BONDAdmin(object):
 用户投资 股权众筹
 '''
 class INVEST_STOCKAdmin(object):
-	list_display = ['is_user','is_stock','is_amount','is_date','is_soon_profit','is_profit_date','is_status']
-	search_fiedls = ['is_user '] 
+	list_display = ['is_user','is_stock','is_amount','is_status','is_date','is_soon_profit','is_profit_date']
+	search_fiedls = ['is_user ']
+	list_editable = ['is_status']
+
 '''
 用户投资 债权众筹 
 '''
 class INVEST_BONDAdmin(object):
-	list_display = ['ib_user','ib_bond','ib_amount','ib_date','ib_soon_profit','ib_profit_date','ib_status']
+	list_display = ['ib_user','ib_bond','ib_amount','ib_status','ib_date','ib_soon_profit','ib_profit_date']
 	search_fields = ['ib_user']
+	list_editable = ['ib_status']
+	
 '''
 用户充值
 '''

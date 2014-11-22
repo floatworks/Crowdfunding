@@ -699,10 +699,58 @@
 						<tr style="background:#f1f1f1">
 							<td>ib_status</td>
 							<td>审核状态</td>
+							<td>ForeignKey
+								
+									(INVEST_STATUS)
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+					</tbody>
+				</table>
+			</p>
+			
+			<p style="clear:both; margin-top:40px; display:inline;">
+				<table border="0" width="100%">
+					<tbody>
+						<tr>
+							<td colspan="4" style="border:1px solid #3385ff;">
+								<b>Model Name: INVEST_STATUS&nbsp;&nbsp;&nbsp;&nbsp;认购状态</b>
+							</td>
+						</tr>
+						<tr style="background:#3385ff; color:#fff;">
+							<th width="15%">列名</th>
+							<th width="15%">简称</th>
+							<th width="15%">列类型</th>
+							<th>描述</th>
+						</tr>
+						
+						<tr style="background:#ffffff">
+							<td>id</td>
+							<td>ID</td>
+							<td>AutoField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#f1f1f1">
+							<td>status</td>
+							<td>状态</td>
+							<td>CharField
+								
+							</td>
+							<td></td>
+						</tr> 
+						
+						<tr style="background:#ffffff">
+							<td>sort</td>
+							<td>排序</td>
 							<td>IntegerField
 								
 							</td>
-							<td>0:认购中 1:持有中 2:已完成</td>
+							<td></td>
 						</tr> 
 						
 					</tbody>
@@ -724,7 +772,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -733,7 +781,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>is_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -744,7 +792,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>is_stock</td>
 							<td>股权众筹</td>
 							<td>ForeignKey
@@ -755,7 +803,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>is_amount</td>
 							<td>投资金额</td>
 							<td>DecimalField
@@ -764,7 +812,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>is_date</td>
 							<td>投资时间</td>
 							<td>DateTimeField
@@ -773,7 +821,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>is_soon_profit</td>
 							<td>预计收入</td>
 							<td>DecimalField
@@ -782,7 +830,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>is_profit_date</td>
 							<td>预计收入日期</td>
 							<td>DateField
@@ -791,13 +839,15 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>is_status</td>
 							<td>审核状态</td>
-							<td>IntegerField
+							<td>ForeignKey
+								
+									(INVEST_STATUS)
 								
 							</td>
-							<td>0:认购中 1:持有中 2:已完成</td>
+							<td></td>
 						</tr> 
 						
 					</tbody>
@@ -819,7 +869,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -828,7 +878,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>no_title</td>
 							<td>通知标题</td>
 							<td>CharField
@@ -837,7 +887,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>no_brief</td>
 							<td>通知概要</td>
 							<td>CharField
@@ -846,7 +896,7 @@
 							<td>请不要超过100个汉字</td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>no_body</td>
 							<td>通知内容</td>
 							<td>UEditorField
@@ -855,7 +905,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>no_time</td>
 							<td>通知时间</td>
 							<td>DateTimeField
@@ -864,7 +914,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>no_type</td>
 							<td>通知类型</td>
 							<td>IntegerField
@@ -873,7 +923,7 @@
 							<td>1:紧急通知 2:维护通知 3:广告 4:其他</td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>no_sort</td>
 							<td>优先级</td>
 							<td>IntegerField
@@ -882,7 +932,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>no_is_delete</td>
 							<td>是否删除</td>
 							<td>IntegerField
@@ -910,7 +960,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -919,7 +969,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>nr_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -930,7 +980,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>nr_notice</td>
 							<td>系统通知</td>
 							<td>ForeignKey
@@ -960,7 +1010,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -969,7 +1019,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>nu_title</td>
 							<td>通知标题</td>
 							<td>CharField
@@ -978,7 +1028,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>nu_brief</td>
 							<td>通知概要</td>
 							<td>CharField
@@ -987,7 +1037,7 @@
 							<td>请不要超过100个汉字</td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>nu_body</td>
 							<td>通知内容</td>
 							<td>UEditorField
@@ -996,7 +1046,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>nu_time</td>
 							<td>通知时间</td>
 							<td>DateTimeField
@@ -1005,7 +1055,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>nu_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -1016,7 +1066,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>nu_type</td>
 							<td>通知类型</td>
 							<td>IntegerField
@@ -1025,7 +1075,7 @@
 							<td>1:收益通知 2:其他</td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>nu_is_read</td>
 							<td>是否已读</td>
 							<td>IntegerField
@@ -1034,7 +1084,7 @@
 							<td>0 未读 1 已读</td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>nu_is_delete</td>
 							<td>是否删除</td>
 							<td>IntegerField
@@ -1062,7 +1112,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1071,7 +1121,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>pr_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -1082,7 +1132,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>pr_amount</td>
 							<td>收益金额</td>
 							<td>DecimalField
@@ -1091,7 +1141,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>pr_date</td>
 							<td>收益时间</td>
 							<td>DateField
@@ -1100,7 +1150,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>pr_stock</td>
 							<td>股权众筹</td>
 							<td>ForeignKey
@@ -1111,7 +1161,7 @@
 							<td>二选一即可</td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>pr_bond</td>
 							<td>股权众筹</td>
 							<td>ForeignKey
@@ -1141,7 +1191,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1150,7 +1200,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>pr_name</td>
 							<td>省</td>
 							<td>CharField
@@ -1178,7 +1228,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1187,7 +1237,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>pt_name</td>
 							<td>项目属性</td>
 							<td>CharField
@@ -1215,7 +1265,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1224,7 +1274,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>rc_tel</td>
 							<td>手机号码</td>
 							<td>CharField
@@ -1233,7 +1283,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>rc_code</td>
 							<td>验证码</td>
 							<td>CharField
@@ -1242,7 +1292,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>rc_time</td>
 							<td>更新时间</td>
 							<td>DateTimeField
@@ -1270,7 +1320,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1279,7 +1329,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>rc_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -1290,7 +1340,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>rc_type</td>
 							<td>操作类型</td>
 							<td>IntegerField
@@ -1299,7 +1349,7 @@
 							<td>0充值，1提现</td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>rc_value</td>
 							<td>金额</td>
 							<td>DecimalField
@@ -1308,7 +1358,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>rc_date</td>
 							<td>操作时间</td>
 							<td>DateTimeField
@@ -1317,7 +1367,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>rc_status</td>
 							<td>状态</td>
 							<td>IntegerField
@@ -1345,7 +1395,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1354,7 +1404,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>se_android_version</td>
 							<td>Android版本</td>
 							<td>CharField
@@ -1363,7 +1413,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>se_ios_version</td>
 							<td>IOS版本</td>
 							<td>CharField
@@ -1391,7 +1441,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1400,7 +1450,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -1411,7 +1461,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_title</td>
 							<td>标题</td>
 							<td>CharField
@@ -1420,7 +1470,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_image</td>
 							<td>LOGO</td>
 							<td>ImageField
@@ -1429,7 +1479,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_video</td>
 							<td>保利威视视频id</td>
 							<td>CharField
@@ -1438,7 +1488,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_brief</td>
 							<td>描述</td>
 							<td>CharField
@@ -1447,7 +1497,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_begin_time</td>
 							<td>开始时间</td>
 							<td>DateTimeField
@@ -1456,7 +1506,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_end_time</td>
 							<td>结束时间</td>
 							<td>DateTimeField
@@ -1465,7 +1515,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_create_time</td>
 							<td>创建时间</td>
 							<td>DateTimeField
@@ -1474,7 +1524,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_scale</td>
 							<td>出让比例</td>
 							<td>FloatField
@@ -1483,7 +1533,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_total_price</td>
 							<td>投资总额</td>
 							<td>DecimalField
@@ -1492,7 +1542,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_current_price</td>
 							<td>当前已经认购</td>
 							<td>DecimalField
@@ -1501,7 +1551,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_min_price</td>
 							<td>认购起点</td>
 							<td>DecimalField
@@ -1510,7 +1560,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_industry</td>
 							<td>所属行业</td>
 							<td>ForeignKey
@@ -1521,7 +1571,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_province</td>
 							<td>所属地区</td>
 							<td>ForeignKey
@@ -1532,7 +1582,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_pro_type</td>
 							<td>项目属性</td>
 							<td>ForeignKey
@@ -1543,7 +1593,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_com_type</td>
 							<td>公司类型</td>
 							<td>ForeignKey
@@ -1554,7 +1604,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_like_count</td>
 							<td>关注数</td>
 							<td>IntegerField
@@ -1563,7 +1613,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_view_count</td>
 							<td>点击数</td>
 							<td>IntegerField
@@ -1572,7 +1622,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_invest_count</td>
 							<td>认购次数</td>
 							<td>IntegerField
@@ -1581,7 +1631,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_hint</td>
 							<td>重要提示</td>
 							<td>UEditorField
@@ -1590,7 +1640,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_com_brief</td>
 							<td>公司简介</td>
 							<td>UEditorField
@@ -1599,7 +1649,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_protect</td>
 							<td>投资者保护机制</td>
 							<td>UEditorField
@@ -1608,7 +1658,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_inf_expose</td>
 							<td>信息披露安排</td>
 							<td>UEditorField
@@ -1617,7 +1667,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_plan</td>
 							<td>融资计划</td>
 							<td>UEditorField
@@ -1626,7 +1676,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_finance</td>
 							<td>财务情况</td>
 							<td>UEditorField
@@ -1635,7 +1685,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_good_bad</td>
 							<td>优势和劣势</td>
 							<td>UEditorField
@@ -1644,7 +1694,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_market</td>
 							<td>市场分析</td>
 							<td>UEditorField
@@ -1653,7 +1703,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_business</td>
 							<td>商业模式</td>
 							<td>UEditorField
@@ -1662,7 +1712,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_risk</td>
 							<td>风险控制</td>
 							<td>UEditorField
@@ -1671,7 +1721,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_team</td>
 							<td>团队介绍</td>
 							<td>UEditorField
@@ -1680,7 +1730,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_prospectus</td>
 							<td>投资计划书</td>
 							<td>UEditorField
@@ -1689,7 +1739,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_manage</td>
 							<td>投后管理</td>
 							<td>UEditorField
@@ -1698,7 +1748,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>st_sort</td>
 							<td>排序</td>
 							<td>IntegerField
@@ -1707,7 +1757,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>st_status</td>
 							<td>状态</td>
 							<td>IntegerField
@@ -1735,7 +1785,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1744,7 +1794,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>ta_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -1755,7 +1805,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>ta_stock</td>
 							<td>股权众筹</td>
 							<td>ForeignKey
@@ -1766,7 +1816,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>ta_msg</td>
 							<td>评论内容</td>
 							<td>CharField
@@ -1775,7 +1825,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>ta_pre_id</td>
 							<td>父ID</td>
 							<td>IntegerField
@@ -1803,7 +1853,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1812,7 +1862,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>t_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -1823,7 +1873,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>t_token</td>
 							<td>token</td>
 							<td>CharField
@@ -1832,7 +1882,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>t_time</td>
 							<td>更新时间</td>
 							<td>DateTimeField
@@ -1860,7 +1910,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1869,7 +1919,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>u_name</td>
 							<td>用户名</td>
 							<td>CharField
@@ -1878,7 +1928,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>u_pwd</td>
 							<td>密码</td>
 							<td>CharField
@@ -1887,7 +1937,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>u_tel</td>
 							<td>手机号</td>
 							<td>CharField
@@ -1896,7 +1946,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>u_status</td>
 							<td>用户状态</td>
 							<td>IntegerField
@@ -1924,7 +1974,7 @@
 							<th>描述</th>
 						</tr>
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>id</td>
 							<td>ID</td>
 							<td>AutoField
@@ -1933,7 +1983,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>uf_user</td>
 							<td>用户</td>
 							<td>ForeignKey
@@ -1944,7 +1994,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>uf_stock</td>
 							<td>股权众筹</td>
 							<td>ForeignKey
@@ -1955,7 +2005,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#f1f1f1">
+						<tr style="background:#ffffff">
 							<td>uf_bond</td>
 							<td>股权众筹</td>
 							<td>ForeignKey
@@ -1966,7 +2016,7 @@
 							<td></td>
 						</tr> 
 						
-						<tr style="background:#ffffff">
+						<tr style="background:#f1f1f1">
 							<td>uf_update_time</td>
 							<td>更新时间</td>
 							<td>DateTimeField

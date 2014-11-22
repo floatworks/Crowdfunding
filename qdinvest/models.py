@@ -234,6 +234,20 @@ class BOND(models.Model):
 '''
 
 '''
+用户投资状态说明,不可修改
+'''
+class INVEST_STATUS(models.Model):
+	status = models.CharField(max_length=20,verbose_name='状态')
+	sort = models.IntegerField(default=0,verbose_name='排序')
+
+	def __unicode__(self):
+		return self.status
+
+	class Meta:
+		verbose_name = '认购状态'
+		verbose_name_plural = '认购状态'
+
+'''
 用户投资 股权众筹
 '''
 class INVEST_STOCK(models.Model):
@@ -243,7 +257,8 @@ class INVEST_STOCK(models.Model):
 	is_date = models.DateTimeField(verbose_name="投资时间")
 	is_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入",null=True)
 	is_profit_date = models.DateField(verbose_name="预计收入日期",null=True)
-	is_status = models.IntegerField(default=0,verbose_name="审核状态",help_text="0:认购中 1:持有中 2:已完成")
+	#is_status = models.IntegerField(default=0,verbose_name="审核状态",help_text="0:认购中 1:持有中 2:已完成")
+	is_status = models.ForeignKey(INVEST_STATUS,verbose_name='审核状态')
 
 	def __unicode__(self):
 		return self.is_stock.st_title
@@ -262,7 +277,8 @@ class INVEST_BOND(models.Model):
 	ib_date = models.DateTimeField(verbose_name="投资时间")
 	ib_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name="预计收入",null=True)
 	ib_profit_date = models.DateField(verbose_name="预计收入日期",null=True)
-	ib_status = models.IntegerField(default=0,verbose_name="审核状态",help_text="0:认购中 1:持有中 2:已完成")
+	#ib_status = models.IntegerField(default=0,verbose_name="审核状态",help_text="0:认购中 1:持有中 2:已完成")
+	ib_status = models.ForeignKey(INVEST_STATUS,verbose_name='审核状态')
 
 	def __unicode__(self):
 		return self.ib_bond.bo_title
