@@ -17,12 +17,12 @@
   <div class="filterpart">
     <div class="type">
       <span>企业类型：</span>
-      {%ifequal ct 881%}
+      {%ifequal ct 'all'%}
       <span class="hover">
       {%else%}
         <span>
       {% endifequal %}
-        <a href="/c/bond/?ct=881">全部</a>
+        <a href="/c/bond/?ct=all">全部</a>
       </span>
       {%for com_type in com_types%}
       {%ifequal ct com_type.id%}
@@ -44,22 +44,46 @@
     </div>
     <div class="status">
       <span>项目期限：</span>
+      {%ifequal st 'all' %}
       <span class="hover">
-        <a href="/c/bond/?st=882">全部</a>
-      </span>
+      {%else%}
       <span>
-        <a href="/c/bond/?st=1">3个月以下</a>
+      {% endifequal %}
+        <a href="/c/bond/?st=all">全部</a>
       </span>
+      {% ifequal st 1%}
+      <span class="hover">
+      {%else%}
       <span>
-        <a href="/c/bond/?st=2">3-6 个月</a>
+      {% endifequal %}
+      <a href="/c/bond/?st=1">3个月以下</a>
       </span>
+      {% ifequal st 2%}
+      <span class="hover">
+      {% else %}
       <span>
-        <a href="/c/bond/?st=3">6-9 个月</a>
+      {% endifequal %}
+      <a href="/c/bond/?st=2">3-6 个月</a>
       </span>
+      {% ifequal st 3%}
+      <span class="hover">
+      {%else%}
       <span>
-        <a href="/c/bond/?st=4">9-12 个月</a>
+      {% endifequal %} 
+      <a href="/c/bond/?st=3">6-9 个月</a>
       </span>
+      {% ifequal st 4%}
+      <span class="hover">
+      {%else%}
       <span>
+      {% endifequal %}
+      <a href="/c/bond/?st=4">9-12 个月</a>
+      </span>
+     {% ifequal st 5 %}
+      <span class="hover">
+      {%else%}
+      <span>
+      {% endifequal %}
         <a href="/c/bond/?st=5">12 个月以上</a>
       </span>
     </div>
@@ -67,30 +91,50 @@
 
     <div class="trade">
       <span>年转化率：</span>
+      {%ifequal tr 'all'%}
       <span class="hover">
-        <a href="c/bond/?tr=883">全部</a>
-      </span>
+      {%else%}
       <span>
-        <a href="c/bond/?tr=1">10%以下</a>
+      {% endifequal %}
+        <a href="/c/bond/?tr=all">全部</a>
       </span>
+     {%ifequal tr 1%}
+      <span class="hover">
+      {%else%}
       <span>
-        <a href="c/bond/?tr=2">10%-15%</a>
+      {% endifequal %}
+        <a href="/c/bond/?tr=1">10%以下</a>
       </span>
+      {%ifequal tr 2%}
+      <span class="hover">
+      {%else%}
       <span>
-        <a href="c/bond/?tr=3">15%-20%</a>
+      {% endifequal %}
+        <a href="/c/bond/?tr=2">10%-15%</a>
+      </span>
+       {%ifequal tr 3%}
+      <span class="hover">
+      {%else%}
+      <span>
+      {% endifequal %}
+        <a href="/c/bond/?tr=3">15%-20%</a>
       </span>      
+      {%ifequal tr 4%}
+      <span class="hover">
+      {%else%}
       <span>
-        <a href="c/bond/?tr=4">20%以上</a>
+      {% endifequal %}
+        <a href="/c/bond/?tr=4">20%以上</a>
       </span>
     </div>
     <div class="area">
       <span>项目状态：</span>
-      {%ifequal pt 884%}
+      {%ifequal pt 'all'%}
       <span class="hover">
       {%else%}
       <span>
       {%endifequal %}
-        <a href="/c/bond/?pt=884">全部</a>
+        <a href="/c/bond/?pt=all">全部</a>
       </span>
       {%for pro_type in pro_types%}
       {%ifequal pt pro_type.id%}

@@ -9,9 +9,8 @@ from django.db.models import Q
 
 import tools as T
 import simplejson as json
-from datetime import datetime,timedelta
-
-
+import datetime
+from datetime import timedelta
 
 from  models import *
 
@@ -54,71 +53,147 @@ def bond(request):
 	context_dict['pro_types'] = PRO_TYPE_objs
 	
 	if 	ct:			
-		if ct == '881':			
-			request.session['ct_id'] = 88
+		if ct == 'all':			
+			request.session['ct_id'] = 'all2'
 		else:
 			request.session['ct_id'] = ct
 			kwargs['bo_com_type'] = ct		
 	else:
 		if  request.session.has_key('ct_id'):			
-			if  request.session['ct_id'] == 88:							
+			if  request.session['ct_id'] == 'all2':							
 				ct = 1
 			else:
 				kwargs['bo_com_type'] = request.session['ct_id']
 	if  st:
-		if st == '882':
-			request.session['st_id'] = 88
+		if st == 'all':
+			request.session['st_id'] = 'all2'
 		else:
 			request.session['st_id'] = st
 	else:
-		request.session['st_id'] = 88
+		if  request.session.has_key('st_id'):
+			ct=1
+		else:			
+			request.session['st_id'] = 'all2'
 
+
+
+	if 	tr:			
+		if tr == 'all':			
+			request.session['tr_id'] = 'all2'
+		else:
+			if tr == '1':
+				request.session['tr_id'] = 10		
+				kwargs['bo_scale__lte'] = 10	
+			if tr == '2':
+				request.session['tr_id'] = 15	
+				request.session['tr_id1'] = 10
+				kwargs['bo_scale__lte'] = 15
+				kwargs['bo_scale__gte'] = 10
+			if tr == '3':
+				request.session['tr_id'] = 20	
+				request.session['tr_id1'] = 15
+				kwargs['bo_scale__lte'] = 20
+				kwargs['bo_scale__gte'] = 15
+			if tr == '4':
+				request.session['tr_id'] = 25	
+				request.session['tr_id1'] = 20
+				
+				kwargs['bo_scale__gte'] = 20
+
+	else:
+		if  request.session.has_key('tr_id'):			
+			if  request.session['tr_id'] == 'all2':							
+				ct = 1
+			else:
+				if request.session['tr_id'] == 10:
+					kwargs['bo_scale__lte'] = request.session['tr_id']
+				if request.session['tr_id'] == 15:
+					kwargs['bo_scale__lte'] = request.session['tr_id']
+					kwargs['bo_scale__gte'] = request.session['tr_id1']
+				if request.session['tr_id'] == 20:
+					kwargs['bo_scale__lte'] = request.session['tr_id']
+					kwargs['bo_scale__gte'] = request.session['tr_id1']
+				if request.session['tr_id'] == 25:					
+					kwargs['bo_scale__gte'] = request.session['tr_id1']
 
 	if pt:	
-		if pt == '884':
-			request.session['pt_id'] = 88
+		if pt == 'all':
+			request.session['pt_id'] = 'all2'
 		else: 
 			request.session['pt_id'] = pt
 			kwargs['bo_pro_type'] = pt		
 	else:
 		if  request.session.has_key('pt_id'):			
-			if  request.session['pt_id'] == 88:				
+			if  request.session['pt_id'] == 'all2':				
 				ct = 1	
 			else:
 				kwargs['bo_pro_type'] = request.session['pt_id']
 
-	if kwargs or request.session['st_id']:	
+	if kwargs or request.session.has_key('st_id'):	
 		if  kwargs.has_key('bo_com_type'):
 			context_dict['ct'] = int(kwargs['bo_com_type'])
 		else:
-			context_dict['ct'] = 881
+			context_dict['ct'] = 'all'
 
 		if  kwargs.has_key('bo_pro_type'):
 			context_dict['pt'] = int(kwargs['bo_pro_type'])
 		else:
-			context_dict['pt'] = 884
+			context_dict['pt'] = 'all'
+
+		if  request.session.has_key('tr_id'):
+			if request.session['tr_id'] == 'all2':
+				context_dict['tr'] = 'all'
+			if request.session['tr_id'] == 10:
+				context_dict['tr'] = 1
+			if request.session['tr_id'] == 15:
+				context_dict['tr'] = 2
+			if request.session['tr_id'] == 20:
+				context_dict['tr'] = 3
+			if request.session['tr_id'] == 25:
+				context_dict['tr'] = 4
 
 
 
-		if request.session['st_id']:
-			if request.session['st_id'] == 88:
+
+		if request.session.has_key('st_id'):
+			if request.session['st_id'] == 'all2':
 				BOND_objs1 = BOND.objects.filter(**kwargs)	
 				context_dict['bonds'] = BOND_objs1
-
+				context_dict['st'] = 'all'
 			if request.session['st_id'] == '1':		
-				context_dict['bonds'] = BOND.objects.filter(bo_end_time__month=3)	
-				context_dict['bonds'] = BOND.objects.filter(Q(bo_end_time__month=7)&Q(bo_end_time__year=2015),**kwargs)		
-		else:
-			BOND_objs1 = BOND.objects.filter(**kwargs)	
-			context_dict['bonds'] = BOND_objs1
+				dt = datetime.datetime.now() + datetime.timedelta(days = 90)			
+				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt).filter(bo_end_time__gte = datetime.datetime.now())
+				context_dict['st'] = 1
+			if request.session['st_id'] == '2':	
+				dt1 = datetime.datetime.now() + datetime.timedelta(days = 90)
+				dt2 = dt1 + datetime.timedelta(days = 90)			
+				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt2).filter(bo_end_time__gte = dt1)
+				context_dict['st'] = 2
+			if request.session['st_id'] == '3':	
+				dt1 = datetime.datetime.now() + datetime.timedelta(days = 180)
+				dt2 = dt1 + datetime.timedelta(days = 90)			
+				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt2).filter(bo_end_time__gte = dt1)
+				context_dict['st'] = 3
+			if request.session['st_id'] == '4':	
+				dt1 = datetime.datetime.now() + datetime.timedelta(days = 270)
+				dt2 = dt1+ datetime.timedelta(days = 90)			
+				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt2).filter(bo_end_time__gte = dt1)
+				context_dict['st'] = 4
+			if request.session['st_id'] == '5':	
+				dt1 = datetime.datetime.now() + datetime.timedelta(days = 360)						
+				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__gte = dt1)
+				context_dict['st'] = 5
+
+
 
 	else:
 		BOND_objs1 = BOND.objects.all()	
 		context_dict['bonds'] = BOND_objs1	
-		context_dict['ct'] = 881
-		context_dict['pt'] = 884
-
-
+		context_dict['ct'] = 'all'
+		context_dict['st'] = 'all'
+		context_dict['tr'] = 'all'
+		context_dict['pt'] = 'all'
+        
 
 	return render_to_response('qdinvest/bond.html',context_dict,context)
 
@@ -129,7 +204,9 @@ def stock(request):
 	ct = request.GET.get('ct','')
 	pt = request.GET.get('pt','')
 	it = request.GET.get('it','')
-	prt = request.GET.get('prt','')	
+	prt = request.GET.get('prt','')
+	pageid = request.GET.get('page','1')
+	context_dict['pageid'] = pageid
 	PRO_TYPE_objs = PRO_TYPE.objects.all()
 	context_dict['pro_types'] = PRO_TYPE_objs
 	COM_TYPE_objs = COM_TYPE.objects.all()
@@ -140,53 +217,53 @@ def stock(request):
 	context_dict['provinces'] = PROVINCE_objs
 
 	if 	ct:			
-		if ct == '881':			
-			request.session['ct_id'] = 88
+		if ct == 'all':			
+			request.session['ct_id'] = 'all2'
 		else:
 			request.session['ct_id'] = ct
 			kwargs['st_com_type'] = ct		
 	else:
 		if  request.session.has_key('ct_id'):
-			if  request.session['ct_id'] == 88:
+			if  request.session['ct_id'] == 'all2':
 				ct = 1
 			else:
 				kwargs['st_com_type'] = request.session['ct_id']
 		
 	if pt:	
-		if pt == '882':
-			request.session['pt_id'] = 88
+		if pt == 'all':
+			request.session['pt_id'] = 'all2'
 		else: 
 			request.session['pt_id'] = pt
 			kwargs['st_pro_type'] = pt		
 	else:
 		if  request.session.has_key('pt_id'):			
-			if  request.session['pt_id'] == 88:				
+			if  request.session['pt_id'] == 'all2':				
 				ct = 1	
 			else:
 				kwargs['st_pro_type'] = request.session['pt_id']		
 
 
 	if it:	
-		if it == '883':
-			request.session['it_id'] = 88
+		if it == 'all':
+			request.session['it_id'] = 'all2'
 		else: 
 			request.session['it_id'] = it
 			kwargs['st_industry'] = it		
 	else:
 		if  request.session.has_key('it_id'):			
-			if  request.session['it_id'] == 88:				
+			if  request.session['it_id'] == 'all2':				
 				ct = 1	
 			else:
 				kwargs['st_industry'] = request.session['it_id']
 	if prt:	
-		if prt == '884':
-			request.session['prt_id'] = 88
+		if prt == 'all':
+			request.session['prt_id'] = 'all2'
 		else: 
 			request.session['prt_id'] = prt
 			kwargs['st_province'] = prt		
 	else:
 		if  request.session.has_key('prt_id'):			
-			if  request.session['prt_id'] == 88:				
+			if  request.session['prt_id'] == 'all2':				
 				ct = 1	
 			else:
 				kwargs['st_province'] = request.session['prt_id']
@@ -197,29 +274,29 @@ def stock(request):
 		if  kwargs.has_key('st_com_type'):
 			context_dict['ct'] = int(kwargs['st_com_type'])
 		else:
-			context_dict['ct'] = 881
+			context_dict['ct'] = "all"
 
 		if  kwargs.has_key('st_pro_type'):
 			context_dict['pt'] = int(kwargs['st_pro_type'])
 		else:
-			context_dict['pt'] = 882
+			context_dict['pt'] = "all"
 
 		if  kwargs.has_key('st_industry'):
 			context_dict['it'] = int(kwargs['st_industry'])
 		else:
-			context_dict['it'] = 883
+			context_dict['it'] = 'all'
 
 		if  kwargs.has_key('st_province'):
 			context_dict['prt'] = int(kwargs['st_province'])
 		else:
-			context_dict['prt'] = 884
+			context_dict['prt'] = 'all'
 	else:		
 		STOCK_objs1 = STOCK.objects.all()	
 		context_dict['stocks'] = STOCK_objs1	
-		context_dict['ct'] = 881
-		context_dict['pt'] = 882
-		context_dict['it'] = 883
-		context_dict['prt'] = 884
+		context_dict['ct'] = 'all'
+		context_dict['pt'] = 'all'
+		context_dict['it'] = 'all'
+		context_dict['prt'] = 'all'
 	return render_to_response('qdinvest/stock.html',context_dict,context)
 
 

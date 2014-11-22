@@ -1,5 +1,6 @@
 {% extends "qdinvest/base.html" %}
 {% load staticfiles %}
+{% load pagination_tags %}
 {% block title %}股权众筹{% endblock %}
 {% block body_block %}
 <!-- location filter -->
@@ -17,12 +18,12 @@
   <div class="filterpart">
      <div class="type">
       <span>企业类型：</span>
-       {% ifequal ct 881 %}
+       {% ifequal ct  'all' %}
        <span class="hover">
        {% else %}
        <span>
        {% endifequal %}
-        <a href="/c/stock/?ct=881">全部</a>
+        <a href="/c/stock/?ct=all">全部</a>
       </span>      
       {% for com_type in com_types%}
         {% ifequal ct com_type.id%}        
@@ -39,12 +40,12 @@
 
     <div class="status">
       <span>项目属性：</span>
-       {% ifequal pt  882 %}
+       {% ifequal pt  'all' %}
       <span class="hover">
         {% else %}
       <span>
         {% endifequal %}
-        <a href="/c/stock/?pt=882">全部</a>
+        <a href="/c/stock/?pt=all">全部</a>
       </span>      
       {% for pro_type in pro_types%}  
        {% ifequal pt pro_type.id%}  
@@ -62,12 +63,12 @@
 
     <div class="trade">
       <span>所属行业：</span>
-     {% ifequal it  883 %}
+     {% ifequal it  'all' %}
       <span class="hover">
       {% else %}
       <span>
       {% endifequal %}
-        <a href="/c/stock/?it=883">全部</a>
+        <a href="/c/stock/?it=all">全部</a>
       </span>
       {%for industry in industrys%}
       {% ifequal it industry.id%}  
@@ -80,45 +81,16 @@
       </span>
       {% endifequal %}
       {% endfor %}
-      <!--span>
-        <a href="javascript:;">文化传媒</a>
-      </span>
-      <span>
-        <a href="javascript:;">互联网与移动互联网</a>
-      </span>
-      <span>
-        <a href="javascript:;">TMT</a>
-      </span>
-      <span>
-        <a href="javascript:;">节能环保</a>
-      </span>
-      <span>
-        <a href="javascript:;">消费服务</a>
-      </span>
-      <span>
-        <a href="javascript:;">现代农业</a>
-      </span>
-      <span>
-        <a href="javascript:;">高端制造</a>
-      </span>
-      <span>
-        <a href="javascript:;">新能源</a>
-      </span>
-      <span>
-        <a href="javascript:;">新材料</a>
-      </span>
-      <span class="extend">
-        <a href="javascript:;">更多</a>
-      </span-->
+
     </div>
     <div class="area">
       <span>所属地区：</span>
-      {% ifequal prt  884 %}
+      {% ifequal prt  'all' %}
       <span class="hover">
       {%else%}
       <span>
       {% endifequal %}
-        <a href="/c/stock/?prt=884">全部</a>
+        <a href="/c/stock/?prt=all">全部</a>
       </span>
       {%for province in provinces %}
        {% ifequal prt province.id%}  
@@ -131,110 +103,13 @@
       </span>
       {% endifequal %}
       {%  endfor%}
-      <!-- <span>
-        <a href="javascript:;">北京</a>
-      </span>
-      <span>
-        <a href="javascript:;">上海</a>
-      </span>
-      <span>
-        <a href="javascript:;">天津</a>
-      </span>
-      <span>
-        <a href="javascript:;">重庆</a>
-      </span>
-      <span>
-        <a href="javascript:;">河北</a>
-      </span>
-      <span>
-        <a href="javascript:;">山西</a>
-      </span>
-      <span>
-        <a href="javascript:;">内蒙古</a>
-      </span>
-      <span>
-        <a href="javascript:;">辽宁</a>
-      </span>
-      <span>
-        <a href="javascript:;">吉林</a>
-      </span>
-      <span>
-        <a href="javascript:;">黑龙江</a>
-      </span>
-      <span>
-        <a href="javascript:;">江苏</a>
-      </span>
-      <span>
-        <a href="javascript:;">安徽</a>
-      </span>
-      <span>
-        <a href="javascript:;">福建</a>
-      </span>
-      <span>
-        <a href="javascript:;">江西</a>
-      </span>
-      <span>
-        <a href="javascript:;">山东</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">河南</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">湖北</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">湖南</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">广东</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">广西</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">海南</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">四川</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">贵州</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">云南</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">西藏</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">陕西</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">甘肃</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">青海</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">宁夏</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">新疆</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">港澳台</a>
-      </span>
-      <span class="ep">
-        <a href="javascript:;">海外</a>
-      </span>
-      <span class="extend pack">
-        <a href="javascript:;">收起</a>
-      </span> -->
+  
     </div>
   </div>
 
-  <!-- list -->
+  
   <ul class="underway list stock">
+    {% autopaginate stocks 10 %}
     {%for stock in  stocks%}
     <li>
       <div class="left img">
@@ -286,238 +161,11 @@
       </div>
     </li>
     {% endfor %}
-    <!--li class="preheat">
-      <div class="left img">
-        <a href="sdetail.html">
-          <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
-        </a>
-      </div>
-      <div class="right">
-        <div class="namebar">
-          <span class="left name">
-            <a href="sdetail.html">比目鱼儿童主题乐园</a>
-          </span>
-          <span class="left local">北京 • |</span>
-          <span class="clazz">
-            <a href="javascript:;">医疗健康</a>
-          </span>
-          <span class="right status">预热中</span>
-          <span class="right cstatus">已挂牌企业</span>
-        </div>
-        <div class="desc">餐饮行业餐具破损现象十分普遍，五星级酒店餐具正常破损率为营业收入千分之三至千分之四，大部分酒店在国内民营企业中...</div>
-        <div class="progressbar">预热中可预约认购提交投资意愿</div>
-        <div class="money">
-          <div class="left">
-            当前融资：
-            <span>￥200,000</span>
-            融资总额：
-            <span>￥2,000,000</span>
-            认购起点：
-            <span>￥4,000</span>
-            出让股权比例：
-            <span>44.14%</span>
-          </div>
-        </div>
-        <div class="right course">
-          约谈
-          <span>23</span>
-          /　关注
-          <span>1,088</span>
-          /　认购结束
-          <span>3,555</span>
-        </div>
-      </div>
-    </li>
 
-    <li class="finished">
-      <div class="left img">
-        <a href="sdetail.html">
-          <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
-        </a>
-      </div>
-      <div class="right">
-        <div class="namebar">
-          <span class="left name">
-            <a href="sdetail.html">比目鱼儿童主题乐园</a>
-          </span>
-          <span class="left local">北京 • |</span>
-          <span class="clazz">
-            <a href="javascript:;">医疗健康</a>
-          </span>
-          <span class="right status">已成功</span>
-          <span class="right cstatus">其他企业</span>
-        </div>
-        <div class="desc">餐饮行业餐具破损现象十分普遍，五星级酒店餐具正常破损率为营业收入千分之三至千分之四，大部分酒店在国内民营企业中...</div>
-        <div class="progressbar">
-          <div class="left gray">
-            <div class="left yellow"></div>
-          </div>
-          <div class="right percent">100%</div>
-        </div>
-        <div class="money">
-          <div class="left">
-            当前融资：
-            <span>￥200,000</span>
-            融资总额：
-            <span>￥2,000,000</span>
-            认购起点：
-            <span>￥4,000</span>
-            出让股权比例：
-            <span>44.14%</span>
-          </div>
-        </div>
-        <div class="right course">
-          约谈
-          <span>23</span>
-          /　关注
-          <span>1,088</span>
-          /　认购结束
-          <span>3,555</span>
-        </div>
-      </div>
-    </li>
-
-    <li>
-      <div class="left img">
-        <a href="sdetail.html">
-          <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
-        </a>
-      </div>
-      <div class="right">
-        <div class="namebar">
-          <span class="left name">
-            <a href="sdetail.html">比目鱼儿童主题乐园</a>
-          </span>
-          <span class="left local">北京 • |</span>
-          <span class="clazz">
-            <a href="javascript:;">医疗健康</a>
-          </span>
-          <span class="right status">融资中</span>
-          <span class="right cstatus">拟挂牌企业</span>
-        </div>
-        <div class="desc">餐饮行业餐具破损现象十分普遍，五星级酒店餐具正常破损率为营业收入千分之三至千分之四，大部分酒店在国内民营企业中...</div>
-        <div class="progressbar">
-          <div class="left gray">
-            <div class="left yellow"></div>
-          </div>
-          <div class="right percent">35%</div>
-        </div>
-        <div class="money">
-          <div class="left">
-            当前融资：
-            <span>￥200,000</span>
-            融资总额：
-            <span>￥2,000,000</span>
-            认购起点：
-            <span>￥4,000</span>
-            出让股权比例：
-            <span>44.14%</span>
-          </div>
-        </div>
-        <div class="right course">
-          约谈
-          <span>23</span>
-          /　关注
-          <span>1,088</span>
-          /　认购结束
-          <span>3,555</span>
-        </div>
-      </div>
-    </li>
-
-    <li class="preheat">
-      <div class="left img">
-        <a href="sdetail.html">
-          <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
-        </a>
-      </div>
-      <div class="right">
-        <div class="namebar">
-          <span class="left name">
-            <a href="sdetail.html">比目鱼儿童主题乐园</a>
-          </span>
-          <span class="left local">北京 • |</span>
-          <span class="clazz">
-            <a href="javascript:;">医疗健康</a>
-          </span>
-          <span class="right status">预热中</span>
-          <span class="right cstatus">已挂牌企业</span>
-        </div>
-        <div class="desc">餐饮行业餐具破损现象十分普遍，五星级酒店餐具正常破损率为营业收入千分之三至千分之四，大部分酒店在国内民营企业中...</div>
-        <div class="progressbar">预热中可预约认购提交投资意愿</div>
-        <div class="money">
-          <div class="left">
-            当前融资：
-            <span>￥200,000</span>
-            融资总额：
-            <span>￥2,000,000</span>
-            认购起点：
-            <span>￥4,000</span>
-            出让股权比例：
-            <span>44.14%</span>
-          </div>
-        </div>
-        <div class="right course">
-          约谈
-          <span>23</span>
-          /　关注
-          <span>1,088</span>
-          /　认购结束
-          <span>3,555</span>
-        </div>
-      </div>
-    </li>
-
-    <li class="finished">
-      <div class="left img">
-        <a href="sdetail.html">
-          <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
-        </a>
-      </div>
-      <div class="right">
-        <div class="namebar">
-          <span class="left name">
-            <a href="sdetail.html">比目鱼儿童主题乐园</a>
-          </span>
-          <span class="left local">北京 • |</span>
-          <span class="clazz">
-            <a href="javascript:;">医疗健康</a>
-          </span>
-          <span class="right status">已成功</span>
-          <span class="right cstatus">其他企业</span>
-        </div>
-        <div class="desc">餐饮行业餐具破损现象十分普遍，五星级酒店餐具正常破损率为营业收入千分之三至千分之四，大部分酒店在国内民营企业中...</div>
-        <div class="progressbar">
-          <div class="left gray">
-            <div class="left yellow"></div>
-          </div>
-          <div class="right percent">100%</div>
-        </div>
-        <div class="money">
-          <div class="left">
-            当前融资：
-            <span>￥200,000</span>
-            融资总额：
-            <span>￥2,000,000</span>
-            认购起点：
-            <span>￥4,000</span>
-            出让股权比例：
-            <span>44.14%</span>
-          </div>
-        </div>
-        <div class="right course">
-          约谈
-          <span>23</span>
-          /　关注
-          <span>1,088</span>
-          /　认购结束
-          <span>3,555</span>
-        </div>
-      </div>
-    </li-->
   </ul>
   <ul class="left page_navi">
-    <li>
+    {% paginate %}
+    <!--li>
       <a href="javascript:;">|&lt;</a>
     </li>
     <li>
@@ -543,17 +191,17 @@
     </li>
     <li>
       <a href="javascript:;">&gt;|</a>
-    </li>
+    </li-->
   </ul>
   <div class="right page_num">
     第
-    <span>1</span>
-    /15页 共
+    <span>{{pageid}}</span>
+    页 共
     <span>102</span>
     页
   </div>
 </div>
 <div class="clearfix"></div>
 
-<!-- footer -->
+
 {% endblock %}
