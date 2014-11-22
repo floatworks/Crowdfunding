@@ -292,7 +292,7 @@ def GetMyProjects(request):
 					stocks_per['st_image'] = str(INVEST_STOCK_obj.st_image)
 					stocks_per['st_total_price'] = INVEST_STOCK_obj.st_total_price
 					#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
-					stocks_per['is_status'] = list(INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0]).values('is_status').distinct())
+					stocks_per['status'] = list(INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0]).values('is_status').distinct())
 					#stocks_per['is_status'] = INVEST_STOCK_obj.is_status
 					stocks_per['st_brief'] = INVEST_STOCK_obj.st_brief 
 					#求最新一条记录的时间
@@ -311,7 +311,7 @@ def GetMyProjects(request):
 					bonds_per['bo_image'] = str(INVEST_BOND_obj.bo_image)
 					bonds_per['bo_total_price'] = INVEST_BOND_obj.bo_total_price
 					#bonds_per['ib_amount'] = INVEST_BOND_obj.ib_amount
-					bonds_per['ib_status'] =  list(INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0]).values('ib_status').distinct())
+					bonds_per['status'] =  list(INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0]).values('ib_status').distinct())
 					#bonds_per['ib_status'] = INVEST_BOND_obj.ib_status
 					bonds_per['bo_brief'] = INVEST_BOND_obj.bo_brief
 					#求最新一条记录的时间
@@ -549,6 +549,7 @@ def ProjectBase(request):
 						stock_dict['st_total_price'] = STOCK_obj.st_total_price
 						stock_dict['st_min_price'] = STOCK_obj.st_min_price
 						stock_dict['st_invest_count'] = STOCK_obj.st_invest_count
+						stock_dict['st_detail'] = '/w/prodetail/tsd'+p_id
 						#获取用户是否已经关注
 						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_obj}):
 							stock_dict['st_if_like'] = 1
@@ -578,6 +579,7 @@ def ProjectBase(request):
 						bond_dict['bo_total_price'] = BOND_obj.bo_total_price
 						bond_dict['bo_scale'] = BOND_obj.bo_scale
 						bond_dict['bo_invest_count'] = BOND_obj.bo_invest_count
+						bond_dict['bo_detail'] = '/w/prodetail/tbd'+p_id
 						#获取用户是否已经关注
 						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_bond':BOND_obj}):
 							bond_dict['bo_if_like'] = 1
