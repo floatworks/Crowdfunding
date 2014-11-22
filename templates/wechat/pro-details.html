@@ -13,9 +13,40 @@
 </head>
 <body>					
 	<div class="pro-content">
-		<strong>重要提示</strong>
 		{% autoescape off %}
+		{% if stock%}
+		<strong>重要提示</strong>
 		{{stock.st_hint}}
+		<strong>公司介绍</strong>
+		{{stock.st_com_brief}}
+		<strong>投资者保护机制</strong>
+		{{stock.st_protect}}
+		<strong>信息披露安排</strong>
+		{{stock.st_inf_expose}}
+		<strong>融资计划</strong>
+		{{stock.st_plan}}
+		<strong>财务情况</strong>
+		{{stock.st_finance}}
+		<strong>优势和劣势</strong>
+		{{stock.st_good_bad}}
+		<strong>市场分析</strong>
+		{{stock.st_market}}
+		<strong>商业模式</strong>
+		{{stock.st_business}}
+		<strong>风险控制</strong>
+		{{stock.st_risk}}
+		<strong>团队介绍</strong>
+		{{stock.st_team}}
+		{% elif bond %}
+		<strong>企业基本信息</strong>
+		{{bond.bo_com_inf}}
+		<strong>财务状况</strong>
+		{{bond.bo_finance}}
+		<strong>项目风险保障</strong>
+		{{bond.bo_risk_inf}}
+		<strong>还款计划</strong>
+		{{bond.bo_repay_plan}}
+		{% endif %}
 		{% endautoescape %}
 	</div>	
 	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
