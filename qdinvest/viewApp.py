@@ -292,9 +292,10 @@ def GetMyProjects(request):
 					stocks_per['st_image'] = str(INVEST_STOCK_obj.st_image)
 					stocks_per['st_total_price'] = INVEST_STOCK_obj.st_total_price
 					#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
+					stocks_per['is_status'] = list(INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0]).values('is_status').distinct())
 					#stocks_per['is_status'] = INVEST_STOCK_obj.is_status
 					stocks_per['st_brief'] = INVEST_STOCK_obj.st_brief 
-					#stocks_per['is_date'] = INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d %H:%M:%S')
+					#求最新一条记录的时间
 					INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0],is_stock__exact = INVEST_STOCK_obj).order_by('-is_date')
 					if INVEST_STOCK_objs:
 						stocks_per['is_date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
@@ -310,9 +311,10 @@ def GetMyProjects(request):
 					bonds_per['bo_image'] = str(INVEST_BOND_obj.bo_image)
 					bonds_per['bo_total_price'] = INVEST_BOND_obj.bo_total_price
 					#bonds_per['ib_amount'] = INVEST_BOND_obj.ib_amount
+					bonds_per['ib_status'] =  list(INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0]).values('ib_status').distinct())
 					#bonds_per['ib_status'] = INVEST_BOND_obj.ib_status
 					bonds_per['bo_brief'] = INVEST_BOND_obj.bo_brief
-					#bonds_per['ib_date'] = INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d %H:%M:%S')
+					#求最新一条记录的时间
 					INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0],ib_bond__exact = INVEST_BOND_obj).order_by('-ib_date')
 					if INVEST_BOND_objs:
 						bonds_per['ib_date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
