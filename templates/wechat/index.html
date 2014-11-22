@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>清大重酬</title>
+	<title>清大众筹</title>
 	<link rel="shortcut icon" href="favicon.png">
 	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
 	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
@@ -31,20 +31,18 @@
 				<div data-role="navbar">
 					<ul>
 						<li>
-							<a href="#items-list" data-ajax="false" data-theme="e">项目列表</a>
+							<a href="#itemsList" data-ajax="false" data-theme="e">项目列表</a>
 						</li>
 						<li>
-							<a href="#items-recommend" data-ajax="false" data-theme="e">推荐项目</a>
+							<a href="#itemsRecommend" data-ajax="false" data-theme="e">推荐项目</a>
 						</li>
-						<!--<li>
-							<a href="ajax-content-ignore.html" data-ajax="false">three</a>
-						</li>-->
 					</ul>
 				</div>
-				<div id="items-list" class="ui-content">
+				<div id="itemsList">
 					<h1>First tab contents</h1>
+					<a href="#pro_detail" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-btn-inline topPlus">项目简介</a>
 				</div>
-				<div id="items-recommend">
+				<div id="itemsRecommend">
 					<ul data-role="listview" data-inset="true">
 						<li>
 							<a href="#">Acura</a>
@@ -65,8 +63,8 @@
 				</div>
 			</div>
 		</div>
-		<div data-role="footer">
-			<div data-role="navbar" data-position="fixed">
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
 				<ul>
 					<li>
 						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
@@ -84,75 +82,50 @@
 			</div>
 		</div>
 	</div>
-	<div data-role="page" id="pdetail" data-title="项目详情" data-theme="a">
+	<div data-role="page" id="pro_detail" data-title="项目详情" data-theme="a">
 		<div data-role="header">
-			<a href="#" class="ui-btn ui-icon-search ui-btn-icon-notext ui-btn-inline topSearch">search</a>
-			<h1>
-				清大众筹
-				<select data-native-menu="false" data-mini="true" data-inline="true" data-icon="carat-d"  data-iconpos="notext">
-					<option value="0">登录</option>
-					<option value="1">注册</option>
-					<option value="2">首页</option>
-				</select>
-
-			</h1>
-			<a href="#" class="ui-btn ui-icon-plus ui-btn-icon-notext ui-btn-inline topPlus">Plus</a>
+			<a href="#" data-rel="back">返回</a>
+			<h1>股权众筹详情</h1>
 		</div>
 		<div role="main" class="ui-content">
 			<div data-role="tabs" id="tabs" >
 				<div data-role="navbar">
 					<ul>
 						<li>
-							<a href="#items-list" data-ajax="false" data-theme="e">项目列表</a>
+							<a href="#base_info" data-ajax="false" data-theme="e">基本信息</a>
 						</li>
 						<li>
-							<a href="#items-recommend" data-ajax="false" data-theme="e">推荐项目</a>
+							<a href="#pro_intro" data-ajax="false" data-theme="e">项目介绍</a>
 						</li>
-						<!--<li>
-							<a href="ajax-content-ignore.html" data-ajax="false">three</a>
-						</li>-->
 					</ul>
 				</div>
-				<div id="items-list" class="ui-content">
-					<h1>First tab contents</h1>
+				<div id="base_info" >
+					<h1>基本详情</h1>
 				</div>
-				<div id="items-recommend">
-					<ul data-role="listview" data-inset="true">
-						<li>
-							<a href="#">Acura</a>
-						</li>
-						<li>
-							<a href="#">Audi</a>
-						</li>
-						<li>
-							<a href="#">BMW</a>
-						</li>
-						<li>
-							<a href="#">Cadillac</a>
-						</li>
-						<li>
-							<a href="#">Ferrari</a>
-						</li>
-					</ul>
+				<div id="pro_intro">
+					<div class="pro-title">
+						<h1>小资太太港式茶餐厅</h1>
+						<p>
+							<span>北京</span>
+							<span>医疗健康</span>
+							<span>拟挂牌</span>
+							<span>剩余天数</span>
+						</p>
+					</div>
+					<div class="pro-content">
+						<strong>重要提示</strong>
+						{% autoescape off %}
+						{{stock.st_hint}}
+						{% endautoescape %}
+					</div>
 				</div>
 			</div>
 		</div>
-		<div data-role="footer">
-			<div data-role="navbar" data-position="fixed">
-				<ul>
-					<li>
-						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
-					</li>
-					<li>
-						<a href="#" data-icon="user">我的帐户</a>
-					</li>
-					<li>
-						<a href="#" data-icon="bullets">我的项目</a>
-					</li>
-					<li>
-						<a href="#" data-icon="gear">设置</a>
-					</li>
-				</ul>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="fieldcontain" >
+				<label for="input-money">button</label>
+				<input type="text" id = "input-money" name="input-money" />
+				<button data-theme="b" class="btn-confirm">确认投标</button>
 			</div>
 		</div>
 	</div>
