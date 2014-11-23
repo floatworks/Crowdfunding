@@ -5,7 +5,7 @@ from django.conf import settings
 import simplejson as json
 from django.contrib.contenttypes.models import ContentType  
 from django.contrib.contenttypes import generic  
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save,post_delete
 from django.dispatch import receiver
 import tools as T
 #from django.core.signals import post_save
@@ -476,10 +476,12 @@ def invest_stock_callback(sender, instance, signal, *args, **kwargs):
 	ac_total_bond =  T.SUMModel(INVEST_BOND,{'ib_user':post_data.is_user},'ib_amount')
 	ACCOUNT_obj.ac_total_subscription = str(ac_total_stock+ac_total_bond)
 	invest_stock = T.SUMModel(INVEST_STOCK,{'is_user':post_data.is_user,'is_status__id':2},'is_amount')
+	invest_stock_3 = T.SUMModel(INVEST_STOCK,{'is_user':post_data.is_user,'is_status__id':3},'is_amount')
 	invest_bond = T.SUMModel(INVEST_BOND,{'ib_user':post_data.is_user,'ib_status__id':2},'ib_amount')
-	ACCOUNT_obj.ac_stock_invest = str(invest_stock)
-	ACCOUNT_obj.ac_bond_invest = str(invest_bond)
-	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_bond)
+	invest_bond_3 = T.SUMModel(INVEST_BOND,{'ib_user':post_data.is_user,'ib_status__id':3},'ib_amount')
+	ACCOUNT_obj.ac_stock_invest = str(invest_stock+invest_stock_3)
+	ACCOUNT_obj.ac_bond_invest = str(invest_bond+invest_bond_3)
+	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_stock_3+invest_bond+invest_bond_3)
 	ACCOUNT_obj.save()
 
 '''
@@ -494,12 +496,15 @@ def invest_bond_callback(sender, instance, signal, *args, **kwargs):
 	ac_total_bond =  T.SUMModel(INVEST_BOND,{'ib_user':post_data.ib_user},'ib_amount')
 	ACCOUNT_obj.ac_total_subscription = str(ac_total_stock+ac_total_bond)
 	invest_stock = T.SUMModel(INVEST_STOCK,{'is_user':post_data.ib_user,'is_status__id':2},'is_amount')
+	invest_stock_3 = T.SUMModel(INVEST_STOCK,{'is_user':post_data.ib_user,'is_status__id':3},'is_amount')
 	invest_bond = T.SUMModel(INVEST_BOND,{'ib_user':post_data.ib_user,'ib_status__id':2},'ib_amount')
-	ACCOUNT_obj.ac_stock_invest = str(invest_stock)
-	ACCOUNT_obj.ac_bond_invest = str(invest_bond)
-	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_bond)
+	invest_bond_3 = T.SUMModel(INVEST_BOND,{'ib_user':post_data.ib_user,'ib_status__id':3},'ib_amount')
+	ACCOUNT_obj.ac_stock_invest = str(invest_stock+invest_stock_3)
+	ACCOUNT_obj.ac_bond_invest = str(invest_bond+invest_bond_3)
+	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_stock_3+invest_bond+invest_bond_3)
 	ACCOUNT_obj.save()
 
 post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
-
-post_save.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond")  
+post_delete.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
+post_save.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond")
+post_delete.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond") 
