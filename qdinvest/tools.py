@@ -6,7 +6,6 @@ from datetime import datetime
 from xml.etree import ElementTree
 import requests
 import re
-from django.db.models import Sum
 
 #查找某个模型的数据是否存在
 def CheckExist(model,kwargs):
@@ -14,16 +13,6 @@ def CheckExist(model,kwargs):
 	if objects:
 		return True
 	return False
-
-#功能类，返回某一张表某个参数的SUM
-#kwargs 条件
-#object SUM对象
-def SUMModel(model,kwargs,object):
-	modelSUM =  model.objects.filter(**kwargs).aggregate(Sum(object))[object+'__sum']
-	if modelSUM:
-		return float(modelSUM)
-	else:
-		return 0
 
 #随机产生六个数字
 def RandCode():
