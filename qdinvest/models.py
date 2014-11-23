@@ -3,6 +3,12 @@ from django.db import models
 from DjangoUeditor.models import UEditorField
 from django.conf import settings
 import simplejson as json
+from django.contrib.contenttypes.models import ContentType  
+from django.contrib.contenttypes import generic  
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+import tools as T
+#from django.core.signals import post_save
 
 '''
 基础用户表
@@ -34,11 +40,11 @@ class ACCOUNT(models.Model):
 	#ac_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='待收收益')
 	#ac_actual_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='实际收益')
 	ac_stock_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='股权投资')
-	ac_bond_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='债权总额')
+	ac_bond_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='债权投资')
 	ac_total_invest = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资总额')
 	ac_stock_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='股权收益')
 	ac_bond_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='债权收益')
-	ac_total_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='收益收益')
+	ac_total_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='收益总额')
 	ac_subscription = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购定金')
 	ac_total_subscription = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='认购总额')
 
@@ -453,3 +459,47 @@ class FEEDBACK(models.Model):
 	class Meta:
 		verbose_name = '用户反馈'
 		verbose_name_plural = '用户反馈管理'
+
+'''
+定义各类出发函数
+'''
+
+'''
+股权认购触发函数
+'''
+@receiver(post_save, sender=INVEST_STOCK, dispatch_uid="unique_invest_stock")
+def invest_stock_callback(sender, instance, signal, *args, **kwargs):
+	post_data = instance
+	ACCOUNT_obj = ACCOUNT.objects.get(ac_user__exact = post_data.is_user)
+	#重新计算该账户总的认购金额
+	ac_total_stock =  T.SUMModel(INVEST_STOCK,{'is_user':post_data.is_user},'is_amount')
+	ac_total_bond =  T.SUMModel(INVEST_BOND,{'ib_user':post_data.is_user},'ib_amount')
+	ACCOUNT_obj.ac_total_subscription = str(ac_total_stock+ac_total_bond)
+	invest_stock = T.SUMModel(INVEST_STOCK,{'is_user':post_data.is_user,'is_status__id':2},'is_amount')
+	invest_bond = T.SUMModel(INVEST_BOND,{'ib_user':post_data.is_user,'ib_status__id':2},'ib_amount')
+	ACCOUNT_obj.ac_stock_invest = str(invest_stock)
+	ACCOUNT_obj.ac_bond_invest = str(invest_bond)
+	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_bond)
+	ACCOUNT_obj.save()
+
+'''
+债权认购触发函数
+'''
+@receiver(post_save, sender=INVEST_BOND, dispatch_uid="unique_invest_bond")
+def invest_bond_callback(sender, instance, signal, *args, **kwargs):
+	post_data = instance
+	ACCOUNT_obj = ACCOUNT.objects.get(ac_user__exact = post_data.ib_user)
+	#重新计算该账户总的认购金额
+	ac_total_stock =  T.SUMModel(INVEST_STOCK,{'is_user':post_data.ib_user},'is_amount')
+	ac_total_bond =  T.SUMModel(INVEST_BOND,{'ib_user':post_data.ib_user},'ib_amount')
+	ACCOUNT_obj.ac_total_subscription = str(ac_total_stock+ac_total_bond)
+	invest_stock = T.SUMModel(INVEST_STOCK,{'is_user':post_data.ib_user,'is_status__id':2},'is_amount')
+	invest_bond = T.SUMModel(INVEST_BOND,{'ib_user':post_data.ib_user,'ib_status__id':2},'ib_amount')
+	ACCOUNT_obj.ac_stock_invest = str(invest_stock)
+	ACCOUNT_obj.ac_bond_invest = str(invest_bond)
+	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_bond)
+	ACCOUNT_obj.save()
+
+post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
+
+post_save.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond")  
