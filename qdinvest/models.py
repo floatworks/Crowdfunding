@@ -505,11 +505,28 @@ def invest_bond_callback(sender, instance, signal, *args, **kwargs):
 	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_stock_3+invest_bond+invest_bond_3)
 	ACCOUNT_obj.save()
 
+'''
+收益更改触发函数
+'''
+def profit_callback(sender, instance, signal, *args, **kwargs):
+	post_data = instance
+	ACCOUNT_obj = ACCOUNT.objects.get(ac_user__exact = post_data.pr_user)
+	#计算收益
+	ac_stock_profit = SUMModel(PROFIT,{'pr_user':post_data.pr_user,'pr_bond':None},'pr_amount')
+	ac_total_profit = SUMModel(PROFIT,{'pr_user':post_data.pr_user},'pr_amount')
+	ACCOUNT_obj.ac_stock_profit = str(ac_stock_profit)
+	ACCOUNT_obj.ac_bond_profit = str(ac_total_profit - ac_stock_profit)
+	ACCOUNT_obj.ac_total_profit = str(ac_total_profit)
+	ACCOUNT_obj.save()
+
+
 post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_delete.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_save.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond")
 post_delete.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond")
 
+post_save.connect(profit_callback, sender=PROFIT,dispatch_uid="unique_profit")
+post_delete.connect(profit_callback, sender=PROFIT,dispatch_uid="unique_profit")
 
 #功能类，返回某一张表某个参数的SUM
 #kwargs 条件
