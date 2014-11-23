@@ -1,34 +1,137 @@
-/*jquery-mobile相关*/
+/*针对jquery-mobile-structure.css相关*/
+
+/******index**********/
+
+/*theme and self*/
 .ui-page-theme-a .ui-header .ui-btn{
 	background-color:transparent;
 	border: 0;
 }
 .ui-page-theme-a .ui-header .ui-btn.topSearch,
 .ui-page-theme-a .ui-header .ui-btn.topPlus {
-	top: 1em
+	top: 1em;
 }
 .ui-page-theme-a .ui-header .ui-btn:hover{
 	background-color: #e0f5ff;
 }
-.ui-content{
-	padding: 0;
+.index .ui-btn.ui-btn-f.ui-btn-active{
+	color: #0069A8 ;
+	border-bottom-color:#0069A8;
+	border-right-color: #E0E0DE;
+	background: -webkit-linear-gradient(270deg, #ffffff,#ffffff 92%,#0069A8 8%,#0069A8);
+	background:-moz-linear-gradient(270deg, #ffffff,#ffffff 92%,#0069A8 8%,#0069A8);
+	background:-o-linear-gradient(270deg, #ffffff,#ffffff 92%,#0069A8 8%,#0069A8);
+	filter:progid:dximagetransform.microsoft.gradient(startcolorstr=#ffffff,endcolorstr=#0069A8,gradienttype=1);
 }
+.index .ui-listview > li p{
+	font-size: .6em;
+	margin: .4em 0;
+}
+.index .ui-listview > li p.progressbar{
+	margin: 0;
+}
+.index .ui-listview > li p.cbrief .hl1{
+	padding-left: .6em;
+	margin-right: .6em;
+	border-left: 1px solid #d0d0d0;
+}
+.index .ui-listview > li p.cpopular .hl1{
+	padding: 0 .4em;
+}
+/*structure*/
 .ui-content{
 	padding: 0;
 }
 
+.index .ui-tabs{
+	padding: 0;
+}
+.index .ui-navbar li .ui-btn {
+	border-top-width: 0;
+	border-bottom-width: 1px;
+	border-left-width:0; 
+	border-right-width: 1px;
+}
+.index .ui-content .ui-navbar li:last-child .ui-btn{
+	border-right-width: 0;
+}
 
-/*单独的*/
-.pro-content{
+.index  .ui-content .ui-listview {
+	margin: 0.3em;
+}
+.index .ui-listview > li{
+	border-width: 1px;
+	border-style: solid;
+	margin-bottom: 0.3em;
+}
+.index .ui-listview > li > a.ui-btn {
+	border-width: 0 0 1px 0;
+	padding: 0.3em 0.6em;
+}
+.index .ui-listview > .ui-li-has-thumb > .ui-btn{
+	padding-left: 6em;
+}
+.index .ui-listview .ui-li-has-thumb > .ui-btn > img{
+	margin: 0.5em .4em;
+}
+.index .ui-listview > li h3{
+	margin: .4em 0 .2em;
+}
+.index .ui-listview .ui-li-aside{
+	top: 0.8em;
+	right: 0.4em;
+}
+.index .ui-listview .ui-li-bottom {
+	padding: 0.3em 0.4em;
+	margin: 0;
+}
+.index .ui-listview .ui-li-bottom span{
+	display: inline-block;
+	margin-right: .5em;
+	font-size: 0.05em;
+}
+.index .ui-listview .ui-li-bottom span:last-child{
+	margin-right: 0;
+}
+.index .ui-listview span em{
+	font-style: normal;
+}
+.index .ui-listview .cbrief .ui-btn-icon-left:after{
+	top: 62%;
+	left: 7.5625em;
+}
+.index .ui-listview .cbrief .ui-btn-icon-left{
+	padding-left: 1.5em;
+	padding-right: .5em;
+}
+.index .ui-listview .progressbar,
+.index .ui-listview .ui-li-bottom,
+.index .ui-listview .cbrief,
+.index .ui-listview .cpopular {
+	white-space: normal;
+}
+/******index**********/
+
+
+/*******detail*******/
+.pro_detail .bottomnav .ui-block-a {
+	width: 70%;
+}
+.pro_detail .bottomnav .ui-block-b {
+	width: 30%;
+}
+.pro_detail .ui-footer button.btn-confirm{
+	width:100%;
+	font-size: 1em;
+}
+
+/********self********/
+.pro_detail .pro-content{
 	padding:  0.2em 0.6em;
 }
-.pro-content p{
+.pro_detail .pro-content p{
 	line-height: 1.6;
 }
-.btn-confirm{
-	width: 12em;
-}
-#input-money{
-	width: 2em;
-}
+/********self********/
+/*******detail*******/
 
