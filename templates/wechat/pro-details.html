@@ -52,6 +52,12 @@
 		{{bond.bo_risk_inf}}
 		<strong>还款计划</strong>
 		{{bond.bo_repay_plan}}
+		{% elif notice %}
+			{% if notice.no_body %}
+			{{notice.no_body}}
+			{% elif notice.nu_body %}
+			{{notice.nu_body}}
+			{% endif %}
 		{% endif %}
 		{% endautoescape %}
 	</div>	
