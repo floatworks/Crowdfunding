@@ -310,18 +310,30 @@ def account(request):
 
 def login(request):
 	context = RequestContext(request)
-	context_dict = {}
-	if request.method == 'POST':		
-		u_name = request.POST.get('username','')
-		u_pwd = request.POST.get('password','')
+	context_dict = {}	
+	if request.method == 'POST':
+		if 'username' in request.POST:
+			u_name = request.POST.get('username','')
+			if not u_name:
+				context_dict['errors1']='请输入姓名'
+			else:
+				context_dict['username'] = u_name
+		if  'password' in  request.POST:
+			u_pwd = request.POST.get('password','')
+			if  not u_pwd:
+				context_dict['errors2']='请输入密码'
+			else:
+				context_dict['password'] = u_pwd
 		print u_name,u_pwd
 		if T.CheckExist(USERS,{'u_name':u_name,'u_pwd':u_pwd}):
 			USERS_obj = USERS.objects.get(u_name = u_name,u_pwd=u_pwd)
 			request.session['username'] = USERS_obj.u_name
-			request.session['user_id'] = USERS_obj.id
+			request.session['user_id'] = USERS_obj.id			
 			return HttpResponseRedirect('/c/account/')
 		else:
-			return HttpResponseRedirect('/c/login/')
+			if u_name and u_pwd:
+				context_dict['errors'] = '用户名与密码不匹配，请重新输入'
+				return render_to_response('qdinvest/login.html',context_dict,context)
 	return render_to_response('qdinvest/login.html',context_dict,context)	
 
 
