@@ -7,15 +7,10 @@ from django.http import Http404
 
 from models import *
 
-def Index(request,id):
+def Index(request):
 	context = RequestContext(request)
 	context_dict = {}
-	try:
-		STOCK_obj = STOCK.objects.get(id__exact = id)
-		context_dict['stock'] = STOCK_obj
-	except STOCK.DoesNotExist:
-		raise Http404
-	print context_dict
+	
 	return render_to_response('wechat/index.html',context_dict,context)
 
 #手机端详细页面HTML
