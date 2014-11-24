@@ -38,12 +38,13 @@
 .index .ui-listview > li p.cpopular .hl1{
 	padding: 0 .4em;
 }
+
 /*structure*/
 .ui-content{
 	padding: 0;
 }
 
-.index .ui-tabs{
+.ui-tabs{
 	padding: 0;
 }
 .index .ui-navbar li .ui-btn {
@@ -114,6 +115,7 @@
 
 
 /*******detail*******/
+
 .pro_detail .bottomnav .ui-block-a {
 	width: 70%;
 }
@@ -134,4 +136,3 @@
 }
 /********self********/
 /*******detail*******/
-

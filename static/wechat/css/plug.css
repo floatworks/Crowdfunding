@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+/*轮播的图片需要640px *260px 比例，否则压缩或拉伸*/
+div.slideBox{ position:relative; overflow:hidden;border-bottom: 1px solid #cccccc;}
+div.slideBox ul.items{ position:absolute; float:left; background:none; list-style:none; padding:0; margin:0;}
+div.slideBox ul.items li{ float:left; background:none; list-style:none; padding:0; margin:0;}
+div.slideBox ul.items li a{ float:left; line-height:normal !important; padding:0 !important; border:none/*For IE.ADD.JENA.201206300844*/;}
+div.slideBox ul.items li a img{ width:640px; height:260px; margin:0 !important; padding:0 !important; display:block; border:none/*For IE.ADD.JENA.201206300844*/;}
+div.slideBox div.tips{ position:absolute; bottom:0; width:100%; height:2.4em; background-color:transparent; overflow:hidden;}
+div.slideBox div.tips div.title{ position:absolute; left:0; top:0; height:100%;}
+div.slideBox div.tips div.title a{ color:#FFF; font-size:18px; line-height:50px; margin-left:10px; text-decoration:none;}
+div.slideBox div.tips div.title a:hover{ text-decoration:underline !important;}
+div.slideBox div.tips div.nums{ position:absolute; right:0; top:0; height:100%;}
+div.slideBox div.tips div.nums a{ display:inline-block; >float:left/*For IE.ADD.JENA.201206300844*/; width:.6em; height:.6em; background-color:#FFF; text-indent:-99999px; margin:15px 10px 0px 0px;}
+div.slideBox div.tips div.nums a.active{ background-color:#0099ff;}
+
+.progress{ height: 0.6em; width: 85%; background-color: #dddddd; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: inline-block; }
+.num{ width: 15%; }
+.progress .bar{ width: 75%; height: 0.6em; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: block; }
+.less .progress .bar{ background-color: #0099ff;}
+.less .num{ color: #0099ff;}
+.more .progress .bar{ background-color: #ff8c19; }
+.more .num{ color: #ff8c19;}
+
+

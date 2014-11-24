@@ -1209,8 +1209,8 @@ html .ui-bar-f .ui-slider-track .ui-btn-active,
 html .ui-body-f .ui-slider-track .ui-btn-active,
 html body .ui-group-theme-f .ui-slider-track .ui-btn-active,
 html body div.ui-slider-track.ui-body-f .ui-btn-active {
-	background-color: #0069A8 /*{f-active-background-color}*/;
-	border-color: #0069A8 /*{f-active-border}*/;
+	background-color: #E0E0DE /*{f-active-background-color}*/;
+	border-color: #E0E0DE /*{f-active-border}*/;
 	color: #ffffff /*{f-active-color}*/;
 	text-shadow: 0 /*{f-active-shadow-x}*/ 0 /*{f-active-shadow-y}*/ 0 /*{f-active-shadow-radius}*/ transparent /*{f-active-shadow-color}*/;
 }
@@ -1259,36 +1259,4 @@ html body .ui-group-theme-f .ui-li-bottom{
 	border-color: #cccccc /*{f-bup-border}*/;
 }
 
-.progress{
-	height: 0.6em;
-	width: 85%;
-	background-color: #dddddd;
-	-moz-border-radius: 20px; /* Firefox */
-  	-webkit-border-radius: 20px; /* Safari 和 Chrome */
-  	border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
-	display: inline-block;
-}
-.num{
-	width: 15%;
-}
 
-.progress .bar{
-	width: 75%;
-	height: 0.6em;
-	-moz-border-radius: 20px; /* Firefox */
-  	-webkit-border-radius: 20px; /* Safari 和 Chrome */
-  	border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
-  	display: block;
-}
-.less .progress .bar{
-	background-color: #0099ff;
-}
-.less .num{
-	color: #0099ff;
-}
-.more .progress .bar{
-	background-color: #ff8c19;
-}
-.more .num{
-	color: #ff8c19;
-}

@@ -10,6 +10,7 @@
 	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
 	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
 	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/plug.css'%}" rel="stylesheet" charset="utf-8" />
 </head>
 <body>
 	<div data-role ="page" id="index" data-title="主页" class="index">
@@ -43,39 +44,55 @@
 					<ul data-role ="listview" data-theme ="f" >
 						<li data-icon="false">
 							<a href="#pro_detail">
-								<img src="{% static 'wechat/css/themes/images/example_1.png'%}" />
+								<img src="{% static 'wechat/images/example_1.png'%}" />
 								<h3>小资太太港式茶餐厅</h3>
 								<p class="progressbar" data="75">
-									<span class="progress">
-										<b class="bar"></b>
+									<span class="progress"> <b class="bar"></b>
 									</span>
 									<span class="num">0</span>
 								</p>
 								<p class="cbrief">
-									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京 </span>
-									<span class="hl1">医疗健康 </span>
+									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京</span>
+									<span class="hl1">医疗健康</span>
 									<span class="hl2">拟挂牌</span>
 								</p>
 								<p class="cpopular">
-									<span>热度<em class="hl1">2000</em></span>/
-									<span>关注<em class="hl1">2000</em></span>/
-									<span>认购<em class="hl1">200</em></span>
+									<span>
+										热度 <em class="hl1">2000</em>
+									</span>
+									/
+									<span>
+										关注 <em class="hl1">2000</em>
+									</span>
+									/
+									<span>
+										认购
+										<em class="hl1">200</em>
+									</span>
 								</p>
 								<p class="ui-li-aside">筹资中</p>
 							</a>
 							<p class="ui-li-bottom">
-								<span>当前融资: <em>￥20000</em></span>
-								<span>融资总额: <em>￥20000</em></span>
-								<span>认购起点: <em>￥2000</em></span>
+								<span>
+									当前融资:
+									<em>￥20000</em>
+								</span>
+								<span>
+									融资总额:
+									<em>￥20000</em>
+								</span>
+								<span>
+									认购起点:
+									<em>￥2000</em>
+								</span>
 							</p>
 						</li>
 						<li data-icon="false">
 							<a href="#pro_detail">
-								<img src="{% static 'wechat/css/themes/images/example_1.png'%}" />
+								<img src="{% static 'wechat/images/example_1.png'%}" />
 								<h3>农业公司经营贷款</h3>
 								<p class="progressbar" data="95">
-									<span class="progress">
-										<b class="bar"></b>
+									<span class="progress"> <b class="bar"></b>
 									</span>
 									<span class="num">0</span>
 								</p>
@@ -84,14 +101,23 @@
 								<p class="ui-li-aside">投标中</p>
 							</a>
 							<p class="ui-li-bottom">
-								<span>年化利率: <em class="hl1">￥200,00</em></span>
-								<span>融资总额: <em class="hl1">￥200,00</em></span>
-								<span>授信额度: <em class="hl1">￥200,00</em></span>
+								<span>
+									年化利率:
+									<em class="hl1">￥200,00</em>
+								</span>
+								<span>
+									融资总额:
+									<em class="hl1">￥200,00</em>
+								</span>
+								<span>
+									授信额度:
+									<em class="hl1">￥200,00</em>
+								</span>
 							</p>
 						</li>
 						<li data-icon="false">
 							<a href="#pro_detail">
-								<img src="{% static 'wechat/css/themes/images/example_1.png'%}" />
+								<img src="{% static 'wechat/images/example_1.png'%}" />
 								<h3>小资太太港式茶餐厅</h3>
 								<p class="progressbar" data="47">
 									<span class="progress">
@@ -100,26 +126,46 @@
 									<span class="num">0</span>
 								</p>
 								<p class="cbrief">
-									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京 </span>
-									<span class="hl1">医疗健康 </span>
+									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京</span>
+									<span class="hl1">医疗健康</span>
 									<span class="hl2">拟挂牌</span>
 								</p>
 								<p class="cpopular">
-									<span>热度<em class="hl1">2000</em></span>/
-									<span>关注<em class="hl1">2000</em></span>/
-									<span>认购<em class="hl1">200</em></span>
+									<span>
+										热度
+										<em class="hl1">2000</em>
+									</span>
+									/
+									<span>
+										关注
+										<em class="hl1">2000</em>
+									</span>
+									/
+									<span>
+										认购
+										<em class="hl1">200</em>
+									</span>
 								</p>
 								<p class="ui-li-aside">筹资中</p>
 							</a>
 							<p class="ui-li-bottom">
-								<span>当前融资: <em>￥20000</em></span>
-								<span>融资总额: <em>￥20000</em></span>
-								<span>认购起点: <em>￥2000</em></span>
+								<span>
+									当前融资:
+									<em>￥20000</em>
+								</span>
+								<span>
+									融资总额:
+									<em>￥20000</em>
+								</span>
+								<span>
+									认购起点:
+									<em>￥2000</em>
+								</span>
 							</p>
 						</li>
 						<li data-icon="false">
 							<a href="#pro_detail">
-								<img src="{% static 'wechat/css/themes/images/example_1.png'%}" />
+								<img src="{% static 'wechat/images/example_1.png'%}" />
 								<h3>农业公司经营贷款</h3>
 								<p class="progressbar" data="25">
 									<span class="progress">
@@ -132,15 +178,131 @@
 								<p class="ui-li-aside">投标中</p>
 							</a>
 							<p class="ui-li-bottom">
-								<span>年化利率: <em class="hl1">￥200,00</em></span>
-								<span>融资总额: <em class="hl1">￥200,00</em></span>
-								<span>授信额度: <em class="hl1">￥200,00</em></span>
+								<span>
+									年化利率:
+									<em class="hl1">￥200,00</em>
+								</span>
+								<span>
+									融资总额:
+									<em class="hl1">￥200,00</em>
+								</span>
+								<span>
+									授信额度:
+									<em class="hl1">￥200,00</em>
+								</span>
 							</p>
 						</li>
 					</ul>
 				</div>
 				<div id="itemsRecommend">
-					
+					<div id= "carousel" class="slideBox">
+						<ul class="items">
+							<li>
+								<a href="#">
+									<img src="{% static 'wechat/images/img_1.png'%}" />
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="{% static 'wechat/images/img_1.png'%}" />
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="{% static 'wechat/images/img_1.png'%}" />
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="{% static 'wechat/images/img_1.png'%}" />
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="{% static 'wechat/images/img_1.png'%}" />
+								</a>
+							</li>
+						</ul>
+					</div>
+					<ul data-role ="listview" data-theme ="f" >
+						<li data-icon="false">
+							<a href="#pro_detail">
+								<img src="{% static 'wechat/images/example_1.png'%}" />
+								<h3>小资太太港式茶餐厅</h3>
+								<p class="progressbar" data="45">
+									<span class="progress">
+										<b class="bar"></b>
+									</span>
+									<span class="num">0</span>
+								</p>
+								<p class="cbrief">
+									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京</span>
+									<span class="hl1">医疗健康</span>
+									<span class="hl2">拟挂牌</span>
+								</p>
+								<p class="cpopular">
+									<span>
+										热度
+										<em class="hl1">2000</em>
+									</span>
+									/
+									<span>
+										关注
+										<em class="hl1">2000</em>
+									</span>
+									/
+									<span>
+										认购
+										<em class="hl1">200</em>
+									</span>
+								</p>
+								<p class="ui-li-aside">筹资中</p>
+							</a>
+							<p class="ui-li-bottom">
+								<span>
+									当前融资:
+									<em>￥20000</em>
+								</span>
+								<span>
+									融资总额:
+									<em>￥20000</em>
+								</span>
+								<span>
+									认购起点:
+									<em>￥2000</em>
+								</span>
+							</p>
+						</li>
+						<li data-icon="false">
+							<a href="#pro_detail">
+								<img src="{% static 'wechat/images/example_1.png'%}" />
+								<h3>农业公司经营贷款</h3>
+								<p class="progressbar" data="35">
+									<span class="progress">
+										<b class="bar"></b>
+									</span>
+									<span class="num">0</span>
+								</p>
+								<p>融资企业：云南中铭</p>
+								<p>经营用途：企业流动性资金</p>
+								<p class="ui-li-aside">投标中</p>
+							</a>
+							<p class="ui-li-bottom">
+								<span>
+									年化利率:
+									<em class="hl1">￥200,00</em>
+								</span>
+								<span>
+									融资总额:
+									<em class="hl1">￥200,00</em>
+								</span>
+								<span>
+									授信额度:
+									<em class="hl1">￥200,00</em>
+								</span>
+							</p>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -163,58 +325,9 @@
 			</div>
 		</div>
 	</div>
-	<div data-role="page" id="pro_detail" data-title="项目详情" data-theme="a" class="pro_detail">
-		<div data-role="header">
-			<a href="#" data-rel="back">返回</a>
-			<h1>股权众筹详情</h1>
-		</div>
-		<div role="main" class="ui-content">
-			<div data-role="tabs" id="tabs" >
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#base_info" data-ajax="false" data-theme="e">基本信息</a>
-						</li>
-						<li>
-							<a href="#pro_intro" data-ajax="false" data-theme="e">项目介绍</a>
-						</li>
-					</ul>
-				</div>
-				<div id="base_info" >
-					<h1>基本详情</h1>
-				</div>
-				<div id="pro_intro">
-					<div class="pro-title">
-						<h1>小资太太港式茶餐厅</h1>
-						<p>
-							<span>北京</span>
-							<span>医疗健康</span>
-							<span>拟挂牌</span>
-							<span>剩余天数</span>
-						</p>
-					</div>
-					<div class="pro-content"> <strong>重要提示</strong>
-						{% autoescape off %}
-						{{stock.st_hint}}
-						{% endautoescape %}
-					</div>
-				</div>
-			</div>
-		</div>
-		<div data-role="footer" data-position="fixed" data-theme="e">
-			<div class="ui-grid-a ui-responsive bottomnav">
-				<div class="ui-block-a">
-					<input type="text" id = "input-money" name="input-money" placeholder="认购金额￥1万元起" />
-				</div>
-				<div class="ui-block-b">
-					<button data-theme="b" class="btn-confirm">确认投标</button>
-				</div>
-			</div>
-
-		</div>
-	</div>
 	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
 	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/plug.js'%}"></script>
 	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
 </body>
 </html>

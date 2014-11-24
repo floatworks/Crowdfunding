@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>清大众筹</title>
+	<link rel="shortcut icon" href="favicon.png">
+	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
+</head>
+<body>
+	<div data-role="page" id="pro_detail" data-title="项目详情" class="pro_detail">
+		<div data-role="header">
+			<a href="#" data-rel="back">返回</a>
+			<h1>股权众筹详情</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<div data-role="tabs" id="tabs" >
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#base_info" data-theme="f" class="ui-btn-active" >基本信息</a>
+						</li>
+						<li>
+							<a href="#pro_intro" data-theme="f">项目介绍</a>
+						</li>
+						<li>
+							<a href="#invest_manage" data-theme="f">投后管理</a>
+						</li>
+					</ul>
+				</div>
+				<div id="base_info" data-theme ="f">
+					<div class="co_img">
+						<img src="{% static 'wechat/images/co_img_1.png'%}">
+					</div>
+				</div>
+				<div id="pro_intro">
+					<div class="pro-title">
+						<h1>小资太太港式茶餐厅</h1>
+						<p>
+							<span>北京</span>
+							<span>医疗健康</span>
+							<span>拟挂牌</span>
+							<span>剩余天数</span>
+						</p>
+					</div>
+					<div class="pro-content"> <strong>重要提示</strong>
+						{% autoescape off %}
+						{{stock.st_hint}}
+						{% endautoescape %}
+					</div>
+				</div>
+				<div id="invest_manage">
+
+					<h1>投后管理</h1>
+
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" data-position="fixed" data-theme="e">
+			<div class="ui-grid-a ui-responsive bottomnav">
+				<div class="ui-block-a">
+					<input type="text" id = "input-money" name="input-money" placeholder="认购金额￥1万元起" />
+				</div>
+				<div class="ui-block-b">
+					<button data-theme="b" class="btn-confirm">确认投标</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
+</body>
+</html>

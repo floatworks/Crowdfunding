@@ -54,3 +54,10 @@ def NoticeDetail(request,n_type,n_id):
 			raise Http404
 	else:
 		raise Http404
+
+
+#微信端获取项目详细页面
+def Projectdetail(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('wechat/proDetail.html',context_dict,context)
