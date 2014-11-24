@@ -539,6 +539,16 @@ def profit_callback(sender, instance, signal, *args, **kwargs):
 	ACCOUNT_obj.ac_total_profit = str(ac_total_profit)
 	ACCOUNT_obj.save()
 
+'''
+定金更改触发函数
+'''
+def payment_callback(sender, instance, signal, *args, **kwargs):
+	post_data = instance
+	ACCOUNT_obj = ACCOUNT.objects.get(ac_user__exact = post_data.pa_user)
+	ac_subscription = SUMModel(PAYMENT,{'pa_user':post_data.pa_user,'pa_status':0},'pa_amount')
+	ACCOUNT_obj.ac_subscription = str(ac_subscription)
+	ACCOUNT_obj.save()
+
 
 post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_delete.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
@@ -547,6 +557,9 @@ post_delete.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="uniqu
 
 post_save.connect(profit_callback, sender=PROFIT,dispatch_uid="unique_profit")
 post_delete.connect(profit_callback, sender=PROFIT,dispatch_uid="unique_profit")
+
+post_save.connect(payment_callback, sender=PAYMENT,dispatch_uid="unique_payment")
+post_delete.connect(payment_callback, sender=PAYMENT,dispatch_uid="unique_payment")
 
 #功能类，返回某一张表某个参数的SUM
 #kwargs 条件
