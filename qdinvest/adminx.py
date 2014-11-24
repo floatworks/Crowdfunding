@@ -20,6 +20,7 @@ class GlobalSetting(object):
                 {'title': '用户管理', 'icon': 'fa fa-user', 'url': self.get_model_url(USERS, 'changelist')},
                 {'title': '账户管理', 'icon': 'fa fa-file', 'url': self.get_model_url(ACCOUNT, 'changelist')},
                 {'title': '收益管理', 'icon': 'fa fa-cny', 'url': self.get_model_url(PROFIT, 'changelist')},
+                {'title': '定金管理', 'icon': 'fa fa-usd', 'url': self.get_model_url(PAYMENT, 'changelist')},
             )},
             {'title':'众筹管理','menus':(
             	{'title':'股权众筹','icon': 'fa fa-line-chart','url':self.get_model_url(STOCK,'changelist')},
@@ -184,8 +185,19 @@ class NOTICE_READAdmin(object):
 用户收益表
 '''
 class PROFITAdmin(object):
+	#def formfield_for_foreignkey(self, db_field, request, **kwargs):
+	#	if db_field.name == "pr_user":
+	#		kwargs["queryset"] = USERS.objects.filter(u_status=3)
+	#	return super(PROFITAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 	list_display = ['pr_user','pr_amount','pr_date','pr_stock','pr_bond']
-	search_fiedls = ['pr_user'] 
+	search_fiedls = ['pr_user']
+
+
+
+class PAYMENTAdmin(object):
+	list_display = ['pa_user','pa_amount','pa_date','pa_stock','pa_bond','pa_status']
+	search_fiedls = ['pa_user']
+	list_editable = ['pa_status']
 
 
 '''
@@ -252,6 +264,7 @@ xadmin.site.register(NOTICE_READ,NOTICE_READAdmin)
 xadmin.site.register(RANDOMCODE,RANDOMCODEAdmin)
 xadmin.site.register(SETTINGS,SETTINGSAdmin)
 xadmin.site.register(FEEDBACK,FEEDBACKAdmin)
+xadmin.site.register(PAYMENT,PAYMENTAdmin)
 
 
 

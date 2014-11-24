@@ -367,6 +367,11 @@ def ProjectInvest(request):
 						for INVEST_STOCK_obj in INVEST_STOCK_objs:
 							invests.append({'is_amount':INVEST_STOCK_obj.is_amount,'is_date':INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d'),'is_status':INVEST_STOCK_obj.is_status.id})
 							st_invest_price += INVEST_STOCK_obj.is_amount
+						#判断是否已经交定金
+						if T.CheckExist(PAYMENT,{'pa_user':USERS_objs[0],'pa_stock':STOCK_obj,'pa_status':0}):
+							project['is_payment'] = 1
+						else:
+							project['is_payment'] = 0
 						project['st_invest_price'] = st_invest_price
 						response_dict['project'] = project
 						response_dict['invests'] = invests
@@ -389,6 +394,11 @@ def ProjectInvest(request):
 						for INVEST_BOND_obj in INVEST_BOND_objs:
 							invests.append({'ib_amount':INVEST_BOND_obj.ib_amount,'ib_date':INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d'),'ib_status':INVEST_BOND_obj.ib_status.id})
 							bo_invest_price += INVEST_BOND_obj.ib_amount
+						#判断是否已经交定金
+						if T.CheckExist(PAYMENT,{'pa_user':USERS_objs[0],'pa_bond':BOND_obj,'pa_status':0}):
+							project['is_payment'] = 1
+						else:
+							project['is_payment'] = 0
 						project['bo_invest_price'] = bo_invest_price
 						response_dict['project'] = project
 						response_dict['invests'] = invests
