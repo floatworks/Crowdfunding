@@ -11,6 +11,7 @@ import tools as T
 import simplejson as json
 import datetime
 from datetime import timedelta
+import datetime,time
 
 from  models import *
 
@@ -36,7 +37,7 @@ def index(request):
 	context_dict['stocks3'] = STOCK_objs3 
 	context_dict['bonds'] = BOND_objs
 	context_dict['bonds2'] = BOND_objs2
-	context_dict['bonds3'] = BOND_objs3
+
 	return render_to_response('qdinvest/index.html',context_dict,context)
 
 def bond(request):
@@ -46,7 +47,9 @@ def bond(request):
 	ct = request.GET.get('ct','')
 	st = request.GET.get('st','')
 	tr = request.GET.get('tr','')
-	pt = request.GET.get('pt','')	
+	pt = request.GET.get('pt','')
+	pageid = request.GET.get('page','1')
+	context_dict['pageid'] = pageid	
 	COM_TYPE_objs = COM_TYPE.objects.all()
 	context_dict['com_types'] = COM_TYPE_objs	
 	PRO_TYPE_objs = PRO_TYPE.objects.all()
@@ -215,7 +218,7 @@ def stock(request):
 	context_dict['industrys'] = INDUSTRY_objs
 	PROVINCE_objs = PROVINCE.objects.all()
 	context_dict['provinces'] = PROVINCE_objs
-
+  
 	if 	ct:			
 		if ct == 'all':			
 			request.session['ct_id'] = 'all2'
@@ -308,7 +311,7 @@ def account(request):
 def login(request):
 	context = RequestContext(request)
 	context_dict = {}
-	if request.method == 'POST':
+	if request.method == 'POST':		
 		u_name = request.POST.get('username','')
 		u_pwd = request.POST.get('password','')
 		print u_name,u_pwd
@@ -319,7 +322,30 @@ def login(request):
 			return HttpResponseRedirect('/c/account/')
 		else:
 			return HttpResponseRedirect('/c/login/')
-	return render_to_response('qdinvest/login.html',context_dict,context)
+	return render_to_response('qdinvest/login.html',context_dict,context)	
+
+
+def logout(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.session.has_key('username'):
+		del request.session['username']
+		del request.session['user_id']	
+		return HttpResponseRedirect('/c/login/')
+	else:	
+		return render_to_response('qdinvest/login.html',context_dict,context)
+
+
+	
+
+
+
+
+
+
+
+
+
 
 def bdetail(request,t_id):
 	context = RequestContext(request)	

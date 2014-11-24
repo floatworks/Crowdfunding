@@ -159,45 +159,20 @@
           <span>{{stock.st_total_price}}</span>
         </div>
       </div>
-    </li>
+    </li> 
+   {{ stock.paginator.num_pages }}
     {% endfor %}
 
   </ul>
   <ul class="left page_navi">
     {% paginate %}
-    <!--li>
-      <a href="javascript:;">|&lt;</a>
-    </li>
-    <li>
-      <a href="javascript:;">&lt;</a>
-    </li>
-    <li>
-      <a href="javascript:;" class="hover">1</a>
-    </li>
-    <li>
-      <a href="javascript:;">2</a>
-    </li>
-    <li>
-      <a href="javascript:;">3</a>
-    </li>
-    <li>
-      <a href="javascript:;">4</a>
-    </li>
-    <li>
-      <a href="javascript:;">5</a>
-    </li>
-    <li>
-      <a href="javascript:;">&gt;</a>
-    </li>
-    <li>
-      <a href="javascript:;">&gt;|</a>
-    </li-->
+
   </ul>
   <div class="right page_num">
     第
     <span>{{pageid}}</span>
     页 共
-    <span>102</span>
+    <span></span>
     页
   </div>
 </div>
