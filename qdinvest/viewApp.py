@@ -236,6 +236,7 @@ def GetProjects(request):
 					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
 					stocks_per['st_industry'] = STOCK_obj.st_industry.in_name
 					stocks_per['st_com_type'] = STOCK_obj.st_com_type.ct_name
+					stocks_per['st_view_count'] = STOCK_obj.st_view_count
 					stocks_per['st_like_count'] = STOCK_obj.st_like_count
 					stocks_per['st_invest_count'] = STOCK_obj.st_invest_count
 					stocks_per['st_current_price'] = STOCK_obj.st_current_price
