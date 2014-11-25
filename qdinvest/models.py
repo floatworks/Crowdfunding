@@ -109,6 +109,11 @@ class COM_TYPE(models.Model):
 		verbose_name = '企业类型'
 		verbose_name_plural = '企业类型管理'
 
+RECOMMEND_STATUS =(
+	(0,u'不推荐'),
+	(1,u'推荐'),
+	)
+
 '''
 股权众筹
 '''
@@ -121,6 +126,7 @@ class STOCK(models.Model):
 	st_begin_time = models.DateTimeField(verbose_name="开始时间")
 	st_end_time = models.DateTimeField(verbose_name="结束时间")
 	st_create_time = models.DateTimeField(verbose_name="创建时间")
+	st_is_commend = models.IntegerField(verbose_name="是否推荐",default=0,choices=RECOMMEND_STATUS)
 	st_scale = models.FloatField(verbose_name="出让比例")
 	st_total_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='投资总额')
 	st_current_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='当前已经认购')
@@ -194,6 +200,7 @@ class BOND(models.Model):
 	bo_begin_time = models.DateTimeField(verbose_name="开始时间")
 	bo_create_time = models.DateTimeField(verbose_name="创建时间")
 	bo_end_time = models.DateTimeField(verbose_name="结束时间")
+	bo_is_commend = models.IntegerField(verbose_name="是否推荐",default=0,choices=RECOMMEND_STATUS)
 	bo_scale = models.FloatField(verbose_name="年转化率",help_text="单位:%")
 	bo_province = models.ForeignKey(PROVINCE,verbose_name="所属地区")
 	bo_industry = models.ForeignKey(INDUSTRY,verbose_name="所属行业")

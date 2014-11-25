@@ -152,8 +152,90 @@
 						</ul>
 					</div>
 					<ul data-role ="listview" data-theme ="f" >
+						{% for project in projects_commend%}
+						{% ifequal project.type 'stock' %}
 						<li data-icon="false">
+<<<<<<< HEAD
 							<a href="/w/projectdetail">
+=======
+							<a href="#pro_detail">
+								<img src="/media/{{project.image}}" />
+								<h3>{{project.title}}</h3>
+								<p class="progressbar" data="75">
+									<span class="progress"> <b class="bar"></b>
+									</span>
+									<span class="num">0</span>
+								</p>
+								<p class="cbrief">
+									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
+									<span class="hl1">{{project.industry}}</span>
+									<span class="hl2">{{project.com_type}}</span>
+								</p>
+								<p class="cpopular">
+									<span>
+										热度 <em class="hl1">{{project.view_count}}</em>
+									</span>
+									/
+									<span>
+										关注 <em class="hl1">{{project.like_count}}</em>
+									</span>
+									/
+									<span>
+										认购
+										<em class="hl1">{{project.invest_count}}</em>
+									</span>
+								</p>
+								<p class="ui-li-aside">{{project.pro_type}}</p>
+							</a>
+							<p class="ui-li-bottom">
+								<span>
+									当前融资:
+									<em>￥{{project.current_price}}</em>
+								</span>
+								<span>
+									融资总额:
+									<em>￥{{project.total_price}}</em>
+								</span>
+								<span>
+									认购起点:
+									<em>￥{{project.min_price}}</em>
+								</span>
+							</p>
+						</li>
+						{% else %}
+						<li data-icon="false">
+							<a href="#pro_detail">
+								<img src="/media/{{project.image}}" />
+								<h3>{{project.title}}</h3>
+								<p class="progressbar" data="95">
+									<span class="progress"> <b class="bar"></b>
+									</span>
+									<span class="num">0</span>
+								</p>
+								<p>{{project.com_name}}</p>
+								<p>{{project.brief}}</p>
+								<p class="ui-li-aside">{{project.pro_type}}</p>
+							</a>
+							<p class="ui-li-bottom">
+								<span>
+									年化利率:
+									<em class="hl1">{{project.scale}}%</em>
+								</span>
+								<span>
+									融资总额:
+									<em class="hl1">￥{{project.current_price}}</em>
+								</span>
+								<span>
+									授信额度:
+									<em class="hl1">￥{{project.min_price}}</em>
+								</span>
+							</p>
+						</li>
+						{% endifequal %}
+						{% endfor %}
+						<!--li data-icon="false">
+							<a href="#pro_detail">
+>>>>>>> origin/master
 								<img src="{% static 'wechat/images/example_1.png'%}" />
 								<h3>小资太太港式茶餐厅</h3>
 								<p class="progressbar" data="45">
@@ -228,7 +310,7 @@
 									<em class="hl1">￥200,00</em>
 								</span>
 							</p>
-						</li>
+						</li-->
 					</ul>
 				</div>
 			</div>
