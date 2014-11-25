@@ -115,6 +115,51 @@
 
 
 /*******detail*******/
+.pro_detail .ui-btn.ui-btn-f.ui-btn-active{
+	color: #ffffff ;
+	background-color: #0069A8;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+}
+
+.pro_detail  .ui-tabs .ui-navbar li{
+	padding: .5em 1em;
+	background-color: #ffffff; 
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+ 
+.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:after,
+.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:before {
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  
+  position: absolute;
+  width: 0;
+}
+ 
+.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:after {
+  border-width: .5em;
+  border-bottom-color: #ffffff;
+  top: 1.4em;
+  left: 48%;
+}
+ 
+.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:before {
+  border-width: .6em;
+  border-bottom-color: #ccc;
+  top: 1.2em;
+  left: 48%;
+}
+
+.pro_detail .ui-tabs .ui-navbar li .ui-btn {
+	border-width: 0;
+	padding: .2em 0;
+}
+
+
+
 
 .pro_detail .bottomnav .ui-block-a {
 	width: 70%;
