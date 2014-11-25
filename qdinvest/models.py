@@ -352,6 +352,9 @@ class NOTICE(models.Model):
 	no_sort = models.IntegerField(verbose_name="优先级")
 	no_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
 
+	def __unicode__(self):
+		return self.no_title
+
 	class Meta:
 		verbose_name = '系统通知'
 		verbose_name_plural = '系统通知管理'
@@ -371,6 +374,9 @@ class NOTICE_USER(models.Model):
 	nu_is_read = models.IntegerField(verbose_name="是否已读",default=0,help_text="0 未读 1 已读")
 	nu_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
 
+	def __unicode__(self):
+		return self.nu_title
+	
 	class Meta:
 		verbose_name = '用户通知'
 		verbose_name_plural = '用户通知管理'''
