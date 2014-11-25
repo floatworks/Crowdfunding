@@ -1,5 +1,6 @@
 {% extends "qdinvest/base.html" %}
 {% load staticfiles %}
+{% load extra_tags %}
 {% block title %}债权众筹详情{% endblock %}
 {% block body_block %}
 <div class="wrap level body">
@@ -57,8 +58,8 @@
     <div class="right operate">
       <div class="remain">
         剩余
-        <span class="bygc">{{bond.bo_begin_time|timesince:bond.bo_end_time}}</span>
-       
+        <span class="bygc">{{bond.bo_end_time|lastDays}}</span>
+        天
       </div>
       <div class="offer">
         已认购：
@@ -283,8 +284,8 @@
         {%if invest_bonds%}
         {%for invest_bond in invest_bonds%}
         <tr>
-           <td>{{invest_bond.ib_user}}</td>
           <td>{{invest_bond.ib_date.date}}</td>
+          <td>{{invest_bond.ib_user}}</td>
           <td>{{invest_bond.ib_amount}}</td>
         </tr>
         {% endfor %}

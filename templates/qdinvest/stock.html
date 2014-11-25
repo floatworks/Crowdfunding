@@ -113,8 +113,8 @@
     {%for stock in  stocks%}
     <li>
       <div class="left img">
-        <a href="sdetail.html">
-          <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
+        <a href="/c/stock/sdetail/{{stock.id}}">
+          <img src="/media/{{stock.st_image}}" width="250px" height="132px" />
         </a>
       </div>
       <div class="right">
@@ -129,9 +129,7 @@
           <span class="right status">{{stock.st_pro_type}}</span>
           <span class="right cstatus">{{stock.st_com_type}}</span>
         </div>
-        <div class="desc">{% autoescape off %} 
-                          {{stock.st_hint|slice:"55"}}
-                           {% endautoescape %}... </div>
+        <div class="desc">{{stock.st_brief|slice:"55"}}</div>
         <div class="progressbar">
           <div class="left gray">
             <div class="left yellow"></div>
@@ -151,8 +149,8 @@
           </div>
         </div>
         <div class="right course">      
-          /  点击
-          <span>{{stock.st_like_count}}</span>
+          热度
+          <span>{{stock.st_view_count}}</span>
           /　关注
           <span>{{stock.st_like_count}}</span>
           /　认购结束

@@ -1,5 +1,6 @@
 {% extends "qdinvest/base.html" %}
 {% load staticfiles %}
+{% load extra_tags %}
 {% block title %}股权众筹详情{% endblock %}
 {% block body_block %}
 
@@ -63,8 +64,8 @@
         <div class="right operate">
             <div class="remain">
                 剩余
-                <span> {{stock.st_begin_time|timesince:stock.st_end_time}}</span>
-                
+                <span> {{stock.st_end_time|lastDays}}</span>
+                天
             </div>
             <div class="offer">
                 已认购：

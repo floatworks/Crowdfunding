@@ -1,5 +1,6 @@
 {% extends "qdinvest/base.html" %}
 {% load staticfiles %}
+{% load extra_tags %}
 {% block title %}清大众筹{% endblock %}
 {% block body_block %}
 <!-- banner -->
@@ -50,12 +51,12 @@
         {% for stock in stocks%}            
             <li>
             <div class="img">
-            <a href="javascript:;">
-              <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
+            <a href="/c/stock/sdetail/{{stock.id}}">
+              <img src="/media/{{stock.st_image}}" width="314px" height="162px" />
             </a>
             <div class="tip">
-              <p class="intro">{{stock.st_title}}</p>
-              <p class="remain">剩余时间：{{stock.st_begin_time|timesince:stock.st_end_time}}</p>
+              <p class="intro">{{stock.st_brief}}</p>
+              <p class="remain">剩余时间：{{stock.st_end_time|lastDays}} 天</p>
             </div>
             </div>
           <div class="namebar">
@@ -92,7 +93,7 @@
             <span class="right status">{{stock.st_com_type}}</span>
           </div>
           <div class="course">
-            /  点击
+            热度
             <span>{{stock.st_like_count}}</span>
             /　关注
             <span>{{stock.st_like_count}}</span>
@@ -117,11 +118,11 @@
         <li class="preheat">
           <div class="img">
             <a href="javascript:;">
-              <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
+              <img src="/media/{{stock.st_image}}" width="314px" height="162px" />
             </a>
             <div class="tip">
-              <p class="intro">{{stock.st_title}}</p>
-              <p class="remain">剩余时间：{{stock.st_begin_time|timesince:stock.st_end_time}}</p>
+              <p class="intro">{{stock.st_brief}}</p>
+              <p class="remain">剩余时间：{{stock.st_end_time|lastDays}} 天</p>
             </div>
           </div>
           <div class="namebar">
@@ -153,7 +154,7 @@
             <span class="right status">{{stock.st_com_type}}</span>
           </div>
            <div class="course">
-            /  点击
+            热度
             <span>{{stock.st_like_count}}</span>
             /　关注
             <span>{{stock.st_like_count}}</span>
@@ -179,11 +180,11 @@
         <li class="finished">
           <div class="img">
             <a href="javascript:;">
-              <img src="{% static 'images/e1.png'%}" width="314px" height="162px" />
+              <img src="/media/{{stock.st_image}}" width="314px" height="162px" />
             </a>
             <div class="tip">
-              <p class="intro">{{stock.st_title}}</p>
-              <p class="remain">剩余时间：{{stock.st_begin_time|timesince:stock.st_end_time}}</p>
+              <p class="intro">{{stock.st_brief}}</p>
+              <p class="remain">剩余时间：{{stock.st_end_time|lastDays}} 天</p>
             </div>
           </div>
           <div class="namebar">
@@ -220,7 +221,7 @@
             <span class="right status">{{stock.st_com_type}}</span>
           </div>
            <div class="course">  
-            /  点击
+            热度
             <span>{{stock.st_like_count}}</span>                  
             /　关注
             <span>{{stock.st_like_count}}</span>             
@@ -364,253 +365,6 @@
       </ul>
     </div>
   </div>
-  <!--div class="tabitem transfer">
-    <div class="wrap level">
-      <div class="title">
-        <span class="left">进行中的项目</span>
-        <span class="right">
-          <a href="javascript:;">查看更多&gt;</a>
-        </span>
-      </div>
-      <ul class="left">
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bg">债权转让</span>
-            <span class="right bb">进行中</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bp">债权转让</span>
-            <span class="right bb">进行中</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bp">债权转让</span>
-            <span class="right bb">进行中</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bg">债权转让</span>
-            <span class="right bb">进行中</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="clearfix"></div>
-    <div class="wrap level">
-      <div class="title">
-        <span class="left">已完成的项目</span>
-        <span class="right">
-          <a href="javascript:;">查看更多&gt;</a>
-        </span>
-      </div>
-      <ul class="left">
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bg">债权转让</span>
-            <span class="right by">已完成</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bp">债权转让</span>
-            <span class="right by">已完成</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bp">债权转让</span>
-            <span class="right by">已完成</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-        <li>
-          <div class="nbar">
-            <span class="left">蓝莓种植企业经营贷款 724-1-2</span>
-            <span class="right bg">债权转让</span>
-            <span class="right by">已完成</span>
-          </div>
-          <div class="lbar">
-            <span class="left">
-              实际年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="left">
-              原标年化：
-              <span class="y">10%</span>
-            </span>
-            <span class="right y">查看详情&gt;&gt;</span>
-          </div>
-          <div class="pbar">
-            债权总价
-            <span class="b">7,000,000</span>
-            转让总价
-            <span class="b">7,000,000</span>
-            公允价值
-            <span class="b">7,000,000</span>
-            剩余期限
-            <span class="b">293天</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div-->
 </div>
 <div class="clearfix"></div>
 {% endblock %}
