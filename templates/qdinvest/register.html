@@ -1,0 +1,45 @@
+{% extends "qdinvest/base.html" %}
+{% load staticfiles %}
+{% block title %}注册{% endblock %}
+{% block body_block %}
+<!-- loginbar -->
+<div class="loginbar">
+  <div class="lbanner left"></div>
+  <div class="loginform right">
+    <div class="title">
+      <h3 class="left">新用户注册</h3>      
+    </div>
+
+    <form method="post" class="form">
+      <div>
+        <label>
+        <input type="text" placeholder="用户名" name="username"  value= "{{username}}"/>   
+         </label>   
+      </div>
+      <div>
+        <input type="password" placeholder="密码" name="password" value= "{{password}}"/>  **不少于6位字符
+
+      </div>     
+       <div>
+        <input type="text" placeholder="手机号" name="telephone" value= "{{password}}"/>  **请输入11位
+      </div>
+      <div>
+     用户状态：<tr><input type="radio" name="用户状态" name="state" value= "0" /> 0
+                   <input type="radio" name="用户状态" name="state" value= "1" /> 1 </tr>
+      </div>
+   
+
+      <input type="submit" value="注册" />
+      <span>
+        <input type="checkbox" />
+        <a href="javascript:;">保持登陆</a>
+      </span>
+      <span>
+        <a href="javascript:;">忘记密码？</a>
+      </span>
+    </form>
+   
+  </div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}

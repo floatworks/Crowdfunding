@@ -188,7 +188,6 @@ def bond(request):
 				context_dict['st'] = 5
 
 
-
 	else:
 		BOND_objs1 = BOND.objects.all()	
 		context_dict['bonds'] = BOND_objs1	
@@ -347,18 +346,6 @@ def logout(request):
 	else:	
 		return render_to_response('qdinvest/login.html',context_dict,context)
 
-
-	
-
-
-
-
-
-
-
-
-
-
 def bdetail(request,t_id):
 	context = RequestContext(request)	
 	context_dict = {}
@@ -383,3 +370,7 @@ def db(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('qdinvest/models_doc.html',context_dict,context)
+def register(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('qdinvest/register.html',context_dict,context)
