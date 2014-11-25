@@ -88,8 +88,8 @@
 }
 .index .ui-listview .ui-li-bottom span{
 	display: inline-block;
-	margin-right: .5em;
-	font-size: 0.05em;
+	margin-right: 0.5em;
+	font-size: 0.6em;
 }
 .index .ui-listview .ui-li-bottom span:last-child{
 	margin-right: 0;
