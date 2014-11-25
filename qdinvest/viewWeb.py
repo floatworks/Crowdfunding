@@ -196,7 +196,7 @@ def bond(request):
 		context_dict['tr'] = 'all'
 		context_dict['pt'] = 'all'
         
-
+	context_dict['page_num'] = (len(context_dict['bonds'])+9)/10
 	return render_to_response('qdinvest/bond.html',context_dict,context)
 
 def stock(request):
@@ -299,6 +299,7 @@ def stock(request):
 		context_dict['pt'] = 'all'
 		context_dict['it'] = 'all'
 		context_dict['prt'] = 'all'
+	context_dict['page_num'] = (len(context_dict['stocks'])+9)/10
 	return render_to_response('qdinvest/stock.html',context_dict,context)
 
 
