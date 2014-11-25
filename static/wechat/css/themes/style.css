@@ -45,8 +45,15 @@
 }
 
 .ui-tabs{
-	padding: 0;
+	padding: 2em 0 0 0;
 }
+.ui-navbar-fixed{
+	top: 2.7em;
+	width: 100%;
+	position: fixed;
+	z-index: 1000;
+}
+
 .index .ui-navbar li .ui-btn {
 	border-top-width: 0;
 	border-bottom-width: 1px;
