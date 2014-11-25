@@ -434,7 +434,7 @@ def GetProjectsSort(request):
 			if T.CheckToken(USERS_objs[0],token,0):
 				response_dict['status'] = 1
 				stocks_data = []
-				STOCK_objs = STOCK.objects.order_by('st_sort')[num*20:(num+1)*20]
+				STOCK_objs = STOCK.objects.filter(st_is_commend = 1).order_by('-st_create_time')[num*20:(num+1)*20]
 				for STOCK_obj in STOCK_objs:
 					stocks_per = {}
 					stocks_per['id'] = STOCK_obj.id
@@ -453,7 +453,7 @@ def GetProjectsSort(request):
 					stocks_data.append(stocks_per)
 				response_dict['stocks'] = stocks_data
 				bonds_data = []
-				BOND_objs = BOND.objects.order_by('bo_sort')[num*20:(num+1)*20]
+				BOND_objs = BOND.objects.filter(bo_is_commend = 1).order_by('-bo_create_time')[num*20:(num+1)*20]
 				for BOND_obj in BOND_objs:
 					bonds_per = {}
 					bonds_per['id'] = BOND_obj.id
