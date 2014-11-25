@@ -337,6 +337,16 @@ class TALK(models.Model):
 		verbose_name = '用户讨论'
 		verbose_name_plural = '股权众筹用户讨论记录'
 
+NOTICES_STATUS = (
+	(0, u"未删除"),
+    (1, u"已删除"),
+	)
+NOTICES_TYPE = (
+	(0, u"紧急通知"),
+    (1, u"维护通知"),
+    (2, u"推广通知"),
+    (3, u"广告"),
+	)
 
 '''
 系统通知表
@@ -348,9 +358,9 @@ class NOTICE(models.Model):
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000})
 	no_time = models.DateTimeField(verbose_name="通知时间")
-	no_type = models.IntegerField(verbose_name="通知类型",help_text="1:紧急通知 2:维护通知 3:广告 4:其他")
+	no_type = models.IntegerField(verbose_name="通知类型",choices=NOTICES_TYPE)
 	no_sort = models.IntegerField(verbose_name="优先级")
-	no_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
+	no_is_delete = models.IntegerField(verbose_name="是否删除",default=0,choices=NOTICES_STATUS)
 
 	def __unicode__(self):
 		return self.no_title
@@ -358,6 +368,15 @@ class NOTICE(models.Model):
 	class Meta:
 		verbose_name = '系统通知'
 		verbose_name_plural = '系统通知管理'
+
+NOTICE_USER_IS_READ = (
+	(0, u"未读"),
+    (1, u"已读"),
+	)
+NOTICES_USER_TYPE = (
+	(0, u"收益通知"),
+    (1, u"其他"),
+	)
 
 '''
 用户通知表
@@ -370,13 +389,13 @@ class NOTICE_USER(models.Model):
 		upload_settings={'imageMaxSize':2048000})
 	nu_time = models.DateTimeField(verbose_name="通知时间")
 	nu_user = models.ForeignKey(USERS,verbose_name="用户")
-	nu_type = models.IntegerField(verbose_name="通知类型",help_text="1:收益通知 2:其他")
-	nu_is_read = models.IntegerField(verbose_name="是否已读",default=0,help_text="0 未读 1 已读")
-	nu_is_delete = models.IntegerField(verbose_name="是否删除",default=0,help_text="0 未删除 1 已删除")
+	nu_type = models.IntegerField(verbose_name="通知类型",choices=NOTICES_USER_TYPE)
+	nu_is_read = models.IntegerField(verbose_name="是否已读",default=0,choices=NOTICE_USER_IS_READ)
+	nu_is_delete = models.IntegerField(verbose_name="是否删除",default=0,choices=NOTICES_STATUS)
 
 	def __unicode__(self):
 		return self.nu_title
-	
+
 	class Meta:
 		verbose_name = '用户通知'
 		verbose_name_plural = '用户通知管理'''

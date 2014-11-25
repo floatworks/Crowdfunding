@@ -165,6 +165,7 @@ class NOTICEAdmin(object):
 	list_display = ['no_title','no_brief','no_time','no_type','no_sort','no_is_delete']
 	search_fiedls = ['no_title'] 
 	style_fields  = {'no_body':'ueditor'}
+	list_editable = ['no_is_delete','no_sort','no_type']
 
 '''
 用户通知表
@@ -173,6 +174,7 @@ class NOTICE_USERAdmin(object):
 	list_display = ['nu_title','nu_brief','nu_time','nu_user','nu_type','nu_is_read','nu_is_delete']
 	search_fiedls = ['nu_title'] 
 	style_fields  = {'nu_body':'ueditor'}
+	list_editable = ['nu_is_delete','nu_sort','nu_type']
 
 '''
 系统通知查看
