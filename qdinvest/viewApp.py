@@ -904,11 +904,11 @@ def NoticeDetail(request):
 					NOTICE_objs = NOTICE.objects.filter(id__exact = n_id)
 					if NOTICE_objs:
 						response_dict['status'] = 1
-						notice = {}
-						notice['title'] = NOTICE_objs[0].no_title
-						notice['body'] = NOTICE_objs[0].no_body
-						notice['time'] = NOTICE_objs[0].no_time.strftime('%Y-%m-%d %H:%M:%S')
-						response_dict['notice'] = notice
+						# notice = {}
+						# notice['title'] = NOTICE_objs[0].no_title
+						# notice['body'] = NOTICE_objs[0].no_body
+						# notice['time'] = NOTICE_objs[0].no_time.strftime('%Y-%m-%d %H:%M:%S')
+						# response_dict['notice'] = notice
 						if not T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_objs[0]}):
 							NOTICE_READ_new = NOTICE_READ(nr_user = USERS_objs[0],nr_notice = NOTICE_objs[0])
 							NOTICE_READ_new.save()
@@ -918,11 +918,11 @@ def NoticeDetail(request):
 					NOTICE_USER_objs = NOTICE_USER.objects.filter(id__exact = n_id)
 					if NOTICE_USER_objs:
 						response_dict['status'] = 1
-						notice = {}
-						notice['title'] = NOTICE_USER_objs[0].nu_title
-						notice['body'] = NOTICE_USER_objs[0].nu_body
-						notice['time'] = NOTICE_USER_objs[0].nu_time.strftime('%Y-%m-%d %H:%M:%S')
-						response_dict['notice'] = notice
+						# notice = {}
+						# notice['title'] = NOTICE_USER_objs[0].nu_title
+						# notice['body'] = NOTICE_USER_objs[0].nu_body
+						# notice['time'] = NOTICE_USER_objs[0].nu_time.strftime('%Y-%m-%d %H:%M:%S')
+						# response_dict['notice'] = notice
 						#标记为已经阅读
 						NOTICE_USER_objs[0].nu_is_read = 1
 						NOTICE_USER_objs[0].save()
