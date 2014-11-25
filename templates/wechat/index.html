@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div data-role ="page" id="index" data-title="清大众筹" class="index">
-		<div data-role ="header" data-position="fixed">
+		<div data-role ="header" data-position="fixed" >
 			<!--a href="#" class="ui-btn ui-icon-search ui-btn-icon-notext ui-btn-inline topSearch">search</a-->
 			<h1>
 				清大众筹
@@ -44,7 +44,7 @@
 						{% for project in projects%}
 							{% ifequal project.type 'stock' %}
 						<li data-icon="false">
-							<a href="/w/projectdetail">
+							<a href="#pro_detail">
 								<img src="/media/{{project.image}}" />
 								<h3>{{project.title}}</h3>
 								<p class="progressbar" data="75">
@@ -90,7 +90,7 @@
 						</li>
 						{% else %}
 						<li data-icon="false">
-							<a href="/w/projectdetail">
+							<a href="#pro_detail">
 								<img src="/media/{{project.image}}" />
 								<h3>{{project.title}}</h3>
 								<p class="progressbar" data="95">
@@ -155,9 +155,6 @@
 						{% for project in projects_commend%}
 						{% ifequal project.type 'stock' %}
 						<li data-icon="false">
-<<<<<<< HEAD
-							<a href="/w/projectdetail">
-=======
 							<a href="#pro_detail">
 								<img src="/media/{{project.image}}" />
 								<h3>{{project.title}}</h3>
@@ -235,7 +232,6 @@
 						{% endfor %}
 						<!--li data-icon="false">
 							<a href="#pro_detail">
->>>>>>> origin/master
 								<img src="{% static 'wechat/images/example_1.png'%}" />
 								<h3>小资太太港式茶餐厅</h3>
 								<p class="progressbar" data="45">
@@ -283,7 +279,7 @@
 							</p>
 						</li>
 						<li data-icon="false">
-							<a href="/w/projectdetail">
+							<a href="#pro_detail">
 								<img src="{% static 'wechat/images/example_1.png'%}" />
 								<h3>农业公司经营贷款</h3>
 								<p class="progressbar" data="35">
