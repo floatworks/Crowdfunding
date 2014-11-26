@@ -590,9 +590,12 @@ def notice_callback(sender, instance, signal, *args, **kwargs):
 	#调用推送接口，推送系统通知
 	if kwargs['created']:
 		P.PushMessage(alert=instance.no_brief,title=instance.no_title,n_type='sys',n_id=instance.id)
-	print signal
-	print args
-	print kwargs
+		#增加系统消息，所有人的未读消息数量增加1
+		ACCOUNT_objs = ACCOUNT.objects.all()
+		for ACCOUNT_obj in ACCOUNT_objs:
+			print ACCOUNT_obj
+			ACCOUNT_obj.ac_infos += 1
+			ACCOUNT_obj.save()
 
 '''
 用户消息触发函数
@@ -600,6 +603,9 @@ def notice_callback(sender, instance, signal, *args, **kwargs):
 def notice_user_callback(sender, instance, signal, *args, **kwargs):
 	if kwargs['created']:
 		P.PushMessageUser(alert=instance.nu_brief,title=instance.nu_title,n_type='user',n_id=instance.id,user=instance.nu_user.u_name)
+		ACCOUNT_obj = ACCOUNT.objects.get(ac_user=instance.nu_user)
+		ACCOUNT_obj.ac_infos += 1
+		ACCOUNT_obj.save()
 
 post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_delete.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
