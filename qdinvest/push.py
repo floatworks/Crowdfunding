@@ -21,7 +21,7 @@ def PushMessage(alert,title,n_type,n_id):
 			)
 		)
 	push.platform = jpush.platform('ios', 'android')
-	push.options = {"apns_production":True}
+	push.options = {"apns_production":False}
 	try:
 		push.send()
 	except:
@@ -44,7 +44,7 @@ def PushMessageUser(alert,title,n_type,n_id,user):
 			)
 		)
 	push.platform = jpush.platform('ios', 'android')
-	push.options = {"apns_production":True}
+	push.options = {"apns_production":False}
 	try:
 		push.send()
 	except:
