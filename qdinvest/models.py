@@ -586,10 +586,10 @@ def payment_callback(sender, instance, signal, *args, **kwargs):
 系统消息触发函数
 '''
 def notice_callback(sender, instance, signal, *args, **kwargs):
-	no_brief = instance.no_brief
+	#no_brief = instance.no_brief
 	#调用推送接口，推送系统通知
 	if kwargs['created']:
-		P.PushMessage(no_brief)
+		P.PushMessage(alert=instance.no_brief,title=instance.no_title,n_type='sys',n_id=instance.id)
 	print signal
 	print args
 	print kwargs
