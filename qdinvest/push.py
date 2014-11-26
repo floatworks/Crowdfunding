@@ -12,6 +12,7 @@ def PushMessage(alert,title,n_type,n_id):
 	push.notification = jpush.notification(
 		ios=jpush.ios(
 			alert=alert,
+			badge="+1",
 			extras={"n_type":n_type,"n_id":n_id}
 			),
 		android=jpush.android(
@@ -35,6 +36,7 @@ def PushMessageUser(alert,title,n_type,n_id,user):
 	push.notification = jpush.notification(
 			ios=jpush.ios(
 			alert=alert,
+			badge="+1",
 			extras={"n_type":n_type,"n_id":n_id}
 			),
 		android=jpush.android(
