@@ -912,6 +912,9 @@ def NoticeDetail(request):
 						if not T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_objs[0]}):
 							NOTICE_READ_new = NOTICE_READ(nr_user = USERS_objs[0],nr_notice = NOTICE_objs[0])
 							NOTICE_READ_new.save()
+							ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+							ACCOUNT_obj.ac_infos -= 1
+							ACCOUNT_obj.save()
 					else:
 						response_dict['status'] = 0
 				elif n_type == 'user':
@@ -926,6 +929,10 @@ def NoticeDetail(request):
 						#标记为已经阅读
 						NOTICE_USER_objs[0].nu_is_read = 1
 						NOTICE_USER_objs[0].save()
+
+						ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+						ACCOUNT_obj.ac_infos -= 1
+						ACCOUNT_obj.save()
 					else:
 						response_dict['status'] = 0
 				else:

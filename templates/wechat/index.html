@@ -42,7 +42,7 @@
 				<div id="itemsList" data-theme ="f">
 					<ul data-role ="listview" data-theme ="f" >
 						{% for project in projects%}
-							{% ifequal project.type 'stock' %}
+						{% ifequal project.type 'stock' %}
 						<li data-icon="false">
 							<a href="#pro_detail">
 								<img src="/media/{{project.image}}" />
