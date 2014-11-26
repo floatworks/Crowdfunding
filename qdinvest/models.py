@@ -9,6 +9,7 @@ from django.dispatch import receiver
 from django.db.models import Sum
 
 import simplejson as json
+import push as P
 #from django.core.signals import post_save
 
 '''
@@ -581,6 +582,17 @@ def payment_callback(sender, instance, signal, *args, **kwargs):
 	ACCOUNT_obj.ac_subscription = str(ac_subscription)
 	ACCOUNT_obj.save()
 
+'''
+系统消息触发函数
+'''
+def notice_callback(sender, instance, signal, *args, **kwargs):
+	no_brief = instance.no_brief
+	#调用推送接口，推送系统通知
+	if kwargs['created']:
+		P.PushMessage(no_brief)
+	print signal
+	print args
+	print kwargs
 
 post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_delete.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
@@ -592,6 +604,8 @@ post_delete.connect(profit_callback, sender=PROFIT,dispatch_uid="unique_profit")
 
 post_save.connect(payment_callback, sender=PAYMENT,dispatch_uid="unique_payment")
 post_delete.connect(payment_callback, sender=PAYMENT,dispatch_uid="unique_payment")
+
+post_save.connect(notice_callback,sender=NOTICE,dispatch_uid="unique_notice")
 
 #功能类，返回某一张表某个参数的SUM
 #kwargs 条件
