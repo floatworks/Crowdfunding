@@ -21,6 +21,30 @@ def PushMessage(alert,title,n_type,n_id):
 			)
 		)
 	push.platform = jpush.platform('ios', 'android')
+	push.options = {"apns_production":True}
+	try:
+		push.send()
+	except:
+		traceback.print_exc()
+
+def PushMessageUser(alert,title,n_type,n_id,user):
+	push = _jpush.create_push()
+	push.audience = jpush.audience(
+		jpush.alias(user)
+		)
+	push.notification = jpush.notification(
+			ios=jpush.ios(
+			alert=alert,
+			extras={"n_type":n_type,"n_id":n_id}
+			),
+		android=jpush.android(
+			alert=alert,
+			title=title,
+			extras={"n_type":n_type,"n_id":n_id}
+			)
+		)
+	push.platform = jpush.platform('ios', 'android')
+	push.options = {"apns_production":True}
 	try:
 		push.send()
 	except:

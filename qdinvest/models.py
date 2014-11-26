@@ -594,6 +594,13 @@ def notice_callback(sender, instance, signal, *args, **kwargs):
 	print args
 	print kwargs
 
+'''
+用户消息触发函数
+'''
+def notice_user_callback(sender, instance, signal, *args, **kwargs):
+	if kwargs['created']:
+		P.PushMessageUser(alert=instance.nu_brief,title=instance.nu_title,n_type='user',n_id=instance.id,user=instance.nu_user.u_name)
+
 post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_delete.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_save.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond")
@@ -606,6 +613,8 @@ post_save.connect(payment_callback, sender=PAYMENT,dispatch_uid="unique_payment"
 post_delete.connect(payment_callback, sender=PAYMENT,dispatch_uid="unique_payment")
 
 post_save.connect(notice_callback,sender=NOTICE,dispatch_uid="unique_notice")
+
+post_save.connect(notice_user_callback,sender=NOTICE_USER,dispatch_uid="unique_notice_user")
 
 #功能类，返回某一张表某个参数的SUM
 #kwargs 条件
