@@ -446,6 +446,7 @@ def GetProjectsSort(request):
 					stocks_per['st_com_type'] = STOCK_obj.st_com_type.ct_name
 					stocks_per['st_like_count'] = STOCK_obj.st_like_count
 					stocks_per['st_invest_count'] = STOCK_obj.st_invest_count
+					stocks_per['st_view_count'] = STOCK_obj.st_view_count
 					stocks_per['st_current_price'] = STOCK_obj.st_current_price
 					stocks_per['st_total_price'] = STOCK_obj.st_total_price
 					stocks_per['st_min_price'] = STOCK_obj.st_min_price
@@ -601,6 +602,7 @@ def ProjectBase(request):
 						bond_dict['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
 						bond_dict['bo_end_time'] = BOND_obj.bo_end_time.strftime('%Y-%m-%d %H:%M:%S')
 						bond_dict['bo_current_price'] = BOND_obj.bo_current_price
+						bond_dict['bo_min_price'] = BOND_obj.bo_min_price
 						bond_dict['bo_total_price'] = BOND_obj.bo_total_price
 						bond_dict['bo_scale'] = BOND_obj.bo_scale
 						bond_dict['bo_invest_count'] = BOND_obj.bo_invest_count
@@ -934,13 +936,14 @@ def NoticeDetail(request):
 						# notice['body'] = NOTICE_USER_objs[0].nu_body
 						# notice['time'] = NOTICE_USER_objs[0].nu_time.strftime('%Y-%m-%d %H:%M:%S')
 						# response_dict['notice'] = notice
+						if NOTICE_USER_objs[0].nu_is_read == 0:
+							ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+							ACCOUNT_obj.ac_infos -= 1
+							ACCOUNT_obj.save()
 						#标记为已经阅读
 						NOTICE_USER_objs[0].nu_is_read = 1
 						NOTICE_USER_objs[0].save()
 
-						ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
-						ACCOUNT_obj.ac_infos -= 1
-						ACCOUNT_obj.save()
 					else:
 						response_dict['status'] = 0
 				else:
