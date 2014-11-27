@@ -14,12 +14,6 @@ div.slideBox div.tips div.nums{ position:absolute; right:0; top:0; height:100%;}
 div.slideBox div.tips div.nums a{ display:inline-block; >float:left/*For IE.ADD.JENA.201206300844*/; width:.6em; height:.6em; background-color:#FFF; text-indent:-99999px; margin:15px 10px 0px 0px;}
 div.slideBox div.tips div.nums a.active{ background-color:#0099ff;}
 
-.progress{ height: 0.6em; width: 85%; background-color: #dddddd; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: inline-block; }
-.num{ width: 15%; }
-.progress .bar{ width: 75%; height: 0.6em; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: block; }
-.less .progress .bar{ background-color: #0099ff;}
-.less .num{ color: #0099ff;}
-.more .progress .bar{ background-color: #ff8c19; }
-.more .num{ color: #ff8c19;}
+
 
 

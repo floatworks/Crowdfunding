@@ -1,10 +1,20 @@
+.progress{ height: 0.6em; width: 85%; background-color: #dddddd; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: inline-block; }
+.num{ width: 15%; }
+.progress .bar{ width: 75%; height: 0.6em; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: block; }
+.less .progress .bar{ background-color: #0099ff;}
+.less .num{ color: #0099ff;}
+.more .progress .bar{ background-color: #ff8c19; }
+.more .num{ color: #ff8c19;}
+
+
 /*针对jquery-mobile-structure.css相关*/
 
 /******index**********/
 
 /*theme and self*/
 .ui-page-theme-a .ui-header .ui-btn{
-	background-color:transparent;
+	background-color: transparent;
+	color: #E0F5FF;
 	border: 0;
 }
 .ui-page-theme-a .ui-header .ui-btn.topSearch,
@@ -12,7 +22,8 @@
 	top: 1em;
 }
 .ui-page-theme-a .ui-header .ui-btn:hover{
-	background-color: #e0f5ff;
+	background-color: transparent;
+	color: #ffffff;
 }
 .index .ui-btn.ui-btn-f.ui-btn-active{
 	color: #0069A8 ;
@@ -42,13 +53,16 @@
 /*structure*/
 .ui-content{
 	padding: 0;
+	overflow: hidden;
 }
 
 .ui-tabs{
 	padding: 2em 0 0 0;
 }
 .ui-navbar-fixed{
-	top: 2.7em;
+	margin-top: 2.7em;
+	top: 0;
+	left: 0;
 	width: 100%;
 	position: fixed;
 	z-index: 1000;
@@ -122,61 +136,277 @@
 
 
 /*******detail*******/
-.pro_detail .ui-btn.ui-btn-f.ui-btn-active{
+.pro_detail{
+	background-color: #fff;
+}
+.pro_detail  .ui-tabs{
+	padding-top: 6.45em;
+}
+.pro_detail .ui-tabs .ui-navbar li{
+	position: relative;
+}
+
+.pro_detail .ui-tabs .ui-navbar li .ui-btn {
+	padding: .7em 1.2em;
+	border-width: 0;
+	background-color: #FAFAFA; 
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+.pro_detail .ui-tabs .ui-navbar li .ui-btn span{
+	display: block;
+	padding: .2em 0;
+}
+
+.pro_detail .ui-tabs .ui-navbar li .ui-btn.ui-btn-active span{
 	color: #ffffff ;
 	background-color: #0069A8;
 	-webkit-border-radius: 1em;
 	border-radius: 1em;
-}
-
-.pro_detail  .ui-tabs .ui-navbar li{
-	padding: .5em 1em;
-	background-color: #ffffff; 
-	position: relative;
-	border-bottom: 1px solid #ccc;
-}
- 
-.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:after,
-.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:before {
+} 
+.pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:after,
+.pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:before {
   border: solid transparent;
   content: ' ';
   height: 0;
-  
   position: absolute;
   width: 0;
+  margin-left: -0.6em;
+  z-index: 10;
 }
  
-.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:after {
+.pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:after {
   border-width: .5em;
   border-bottom-color: #ffffff;
-  top: 1.4em;
-  left: 48%;
+  top: 1.5em;
+  left: 50%;
 }
  
-.pro_detail  .ui-tabs .ui-navbar li.ui-state-active:before {
-  border-width: .6em;
+.pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:before {
+  border-width: .5em;
   border-bottom-color: #ccc;
-  top: 1.2em;
-  left: 48%;
+  top: 1.4em;
+  left: 50%;
+}
+.pro_detail .ui-navbar-fixed{
+	padding-top: 0;
+	top: 0em;
+	left: 0;
+	width: 100%;
+	position: fixed;
+	z-index: 1000;
 }
 
-.pro_detail .ui-tabs .ui-navbar li .ui-btn {
-	border-width: 0;
-	padding: .2em 0;
+.pro_detail .ui-navbar-fixed .relative{
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+.pro_detail .ui-navbar-fixed .relative .co_covers{
+	width: 100%;
+	position: relative;
+}
+.pro_detail .co_covers img{
+	width: 100%;
 }
 
+.pro_detail .relative .co_covers .popular{
+	position: absolute;
+	bottom: .3em;
+	width: 100%;
+}
+.pro_detail .co_covers .popular .ui-grid-b{
+	background-color: #000000;
+	filter: Alpha(Opacity=60);
+	opacity: .6;
+	padding: .4em 0;
+	line-height: .9;
+}
+.pro_detail .co_covers .popular .ui-block-b,
+.pro_detail .co_covers .popular .ui-block-c{
+	border-left: 1px solid #949494;
+}
 
+.pro_detail .co_covers .popular p {
+	margin: 0; 
+	font-size: 1.2em;
+	color: #ffffff;
+	text-align: center;
+	text-shadow: 1px /*{a-bar-shadow-x}*/ 1px /*{a-bar-shadow-y}*/ 0 /*{a-bar-shadow-radius}*/ #404040 /*{a-bar-shadow-color}*/;
+}
+.pro_detail .co_covers .popular p span{
+	font-size: .5em;
+	color: #b4ff00;
+}
+.pro_detail .relative .co_covers .follow {
+	position: absolute;
+	top: 3%;
+	right: 3%;
+}
+.pro_detail .co_covers .follow .follow-heart{
+	width: 3em;
+	height: 3em;
+	margin:0;
+	background-color: #7F7F7F;
+	-moz-border-radius: .5em; /* Firefox */ 
+	-webkit-border-radius: .5em; /* Safari 和 Chrome */ 
+	border-radius: .5em; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+	position: relative;
+	display: block;
+	filter: Alpha(Opacity=60);
+	opacity: .6;
+
+}
+.pro_detail .co_covers .follow .follow-heart:before,
+.pro_detail .co_covers .follow .follow-heart:after{
+	content: " ";
+	width: 1.2em;
+	height: 1.8em;
+	background: #fff;
+	border-radius: 1.5em 1.5em 0 0;
+	position: absolute;
+	top:18%;
+}
+.pro_detail .co_covers .follow .follow-heart:before{
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	left: 22%;
+
+}
+.pro_detail .co_covers .follow .follow-heart:after{
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	left: 38%;
+
+}
+.pro_detail .co_covers .follow .follow-heart.active{
+	filter: Alpha(Opacity=100);
+	opacity: 1;
+	background-color: #9f9f9f;
+}
+.pro_detail .co_covers .follow .follow-heart.active:before,
+.pro_detail .co_covers .follow .follow-heart.active:after{
+	background-color: #ff0c23;
+	
+
+}
+
+.pro_detail .relative .co_covers .progressbar{
+	margin: 0;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+.pro_detail .progress .bar{ 
+	width: 70%; 
+	height: 0.3em; 
+	-moz-border-radius: 0; /* Firefox */ 
+	-webkit-border-radius: 0; /* Safari 和 Chrome */ 
+	border-radius: 0; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ 
+	background-color: #ff8c19;
+}
+.pro_detail .progress{ 
+	height: 0.3em; 
+	width: 100%; 
+	-moz-border-radius: 0; /* Firefox */
+	-webkit-border-radius: 0; /* Safari 和 Chrome */ 
+	border-radius: 0; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ 
+	display: block;
+}
+.pro_detail .relative .ui-grid-solo{
+	position: relative;
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.pro_detail .ui-grid-solo h3{
+	text-align: center;
+	margin: .5em 0 .2em;
+	font-weight: normal;
+}
+.pro_detail .ui-grid-solo  p{
+	font-size: .8em;
+	margin: .5em 0 .7em;
+	font-weight: normal;
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: center;
+}
+.pro_detail .ui-grid-solo .ui-li-aside{
+	top: 0.4em;
+	right: 0.4em;
+	position: absolute;
+	text-align: right;
+}
+.pro_detail .ui-grid-solo .cbrief .ui-btn-icon-left:after{
+	top: 50%;
+	left: 50%;
+	margin-left: -9em;
+}
+.pro_detail .ui-grid-solo .cbrief .ui-btn-icon-left{
+	padding-left: 1.5em;
+	padding-right: .5em;
+}
+.pro_detail .ui-grid-solo .cbrief{
+	white-space: normal;
+	position: relative;
+}
+.pro_detail .ui-grid-solo p.cbrief .hl1{
+	padding-left: .6em;
+	margin-right: .6em;
+	border-left: 1px solid #d0d0d0;
+}.pro_detail .ui-grid-solo p.cbrief .hl3{
+	padding-left: .6em;
+}
+.pro_detail .ui-content .ui-listview{
+	margin:0;
+}
+.pro_detail .ui-content .ui-listview li:first-child{
+	border-top-width: 0;
+}
+.pro_detail .ui-content .ui-listview li:last-child .ui-btn{
+	border-bottom-width: 0;
+}
+.pro_detail .ui-content .ui-listview .ui-grid-b{
+	text-align: center;
+}
+.pro_detail .ui-listview .ui-grid-b p{
+	font-size: 1em;
+	margin: 0;
+}
+.pro_detail .ui-listview .ui-grid-b p span{
+	font-size: .6em;
+	color: #0069a8;
+}
+.pro_detail .ui-content .ui-listview li .ui-btn{
+	background-color: #fff;
+	color: #111;
+	border-color: #ccc;
+}
 
 
 .pro_detail .bottomnav .ui-block-a {
 	width: 70%;
 }
+.bottomnav .ui-block-a .ui-input-text input{
+	border: 1px solid #ccc;
+	padding: .6em;
+	line-height: 1.3;
+	margin-left: .3em;
+}
 .pro_detail .bottomnav .ui-block-b {
 	width: 30%;
 }
 .pro_detail .ui-footer button.btn-confirm{
-	width:100%;
+	width:95%;
 	font-size: 1em;
+	padding: .62em;
+	margin-top: .56em;
+	font-weight: normal;
 }
 
 /********self********/
