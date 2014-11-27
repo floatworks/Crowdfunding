@@ -11,25 +11,86 @@
 	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
 	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
 	<link href="{% static 'wechat/css/plug.css'%}" rel="stylesheet" charset="utf-8" />
+
+	<style type="text/css">
+
+
+
+/*#itemsList {
+	position:absolute;
+	z-index:4;
+	top:45px; bottom:48px; left:-9999px;
+}*/
+#scroller {
+	position:absolute;
+	width: 100%;
+}
+
+
+
+
+/**
+ *
+ * Pull down styles
+ *
+ */
+#pullDown, #pullUp {
+	background:#fff;
+	height:40px;
+	line-height:40px;
+	padding:5px 10px;
+	border-bottom:1px solid #ccc;
+	font-weight:bold;
+	font-size:14px;
+	color:#888;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+	display:block; float:left;
+	width:40px; height:40px;
+	background:url(pull-icon@2x.png) 0 0 no-repeat;
+	-webkit-background-size:40px 80px; background-size:40px 80px;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+
+</style>
 </head>
 <body>
 	<div data-role ="page" id="index" data-title="清大众筹" class="index">
 		<div data-role ="header" data-position="fixed" data-tap-toggle="false">
-			<!--a href="#" class="ui-btn ui-icon-search ui-btn-icon-notext ui-btn-inline topSearch">search</a-->
-			<h1>
-				清大众筹
-				<!--select data-native-menu="false" data-mini="true" data-inline="true" data-icon="carat-d"  data-iconpos="notext">
-					<option value="0">股权众筹</option>
-					<option value="1">债权众筹</option>
-					<option value="2">众筹转让</option>
-					<option value="3">全部</option>
-				</select-->
-
-			</h1>
-		</div>
-		<div role="main" class="ui-content">
+			<h1>清大众筹</h1>
 			<div data-role="tabs" id="tabs" >
-				<div data-role="navbar" class="ui-navbar-fixed">
+			<div data-role="navbar" class="ui-navbar-fixed">
 					<ul>
 						<li>
 							<a href="#itemsList" data-theme="f" class="ui-btn-active" >项目列表</a>
@@ -39,89 +100,106 @@
 						</li>
 					</ul>
 				</div>
+			</div>
+		</div>
+		<div role="main" class="ui-content">
+			
+				
 				<div id="itemsList" data-theme ="f">
-					<ul data-role ="listview" data-theme ="f" >
-						{% for project in projects%}
-						{% ifequal project.type 'stock' %}
-						<li data-icon="false">
-							<a href="#pro_detail">
-								<img src="/media/{{project.image}}" />
-								<h3>{{project.title}}</h3>
-								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress"> <b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p class="cbrief">
-									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
-									<span class="hl1">{{project.industry}}</span>
-									<span class="hl2">{{project.com_type}}</span>
-								</p>
-								<p class="cpopular">
-									<span>
-										热度 <em class="hl1">{{project.view_count}}</em>
-									</span>
-									/
-									<span>
-										关注 <em class="hl1">{{project.like_count}}</em>
-									</span>
-									/
-									<span>
-										认购
-										<em class="hl1">{{project.invest_count}}</em>
-									</span>
-								</p>
-								<p class="ui-li-aside">{{project.pro_type}}</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									当前融资:
-									<em>￥{{project.current_price}}</em>
-								</span>
-								<span>
-									融资总额:
-									<em>￥{{project.total_price}}</em>
-								</span>
-								<span>
-									认购起点:
-									<em>￥{{project.min_price}}</em>
-								</span>
-							</p>
-						</li>
-						{% else %}
-						<li data-icon="false">
-							<a href="#pro_detail">
-								<img src="/media/{{project.image}}" />
-								<h3>{{project.title}}</h3>
-								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress"> <b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p>{{project.com_name}}</p>
-								<p>{{project.brief}}</p>
-								<p class="ui-li-aside">{{project.pro_type}}</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									年化利率:
-									<em class="hl1">{{project.scale}}%</em>
-								</span>
-								<span>
-									融资总额:
-									<em class="hl1">￥{{project.current_price}}</em>
-								</span>
-								<span>
-									授信额度:
-									<em class="hl1">￥{{project.min_price}}</em>
-								</span>
-							</p>
-						</li>
-						{% endifequal %}
-						{% endfor %}
-					</ul>
+					<div id="wrapper" data-role="content">
+						<div id="scroller">
+							<div id="pullDown">
+								<span class="pullDownIcon"></span>
+								<span class="pullDownLabel">Pull down to refresh...</span>
+							</div>
+							<ul data-role ="listview" data-theme ="f" id="thelist">
+								{% for project in projects%}
+								{% ifequal project.type 'stock' %}
+								<li data-icon="false">
+									<a href="#pro_detail">
+										<img src="/media/{{project.image}}" />
+										<h3>{{project.title}}</h3>
+										<p class="progressbar" data="{{project.progress}}">
+											<span class="progress"> <b class="bar"></b>
+											</span>
+											<span class="num">0</span>
+										</p>
+										<p class="cbrief">
+											<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
+											<span class="hl1">{{project.industry}}</span>
+											<span class="hl2">{{project.com_type}}</span>
+										</p>
+										<p class="cpopular">
+											<span>
+												热度 <em class="hl1">{{project.view_count}}</em>
+											</span>
+											/
+											<span>
+												关注 <em class="hl1">{{project.like_count}}</em>
+											</span>
+											/
+											<span>
+												认购
+												<em class="hl1">{{project.invest_count}}</em>
+											</span>
+										</p>
+										<p class="ui-li-aside">{{project.pro_type}}</p>
+									</a>
+									<p class="ui-li-bottom">
+										<span>
+											当前融资:
+											<em>￥{{project.current_price}}</em>
+										</span>
+										<span>
+											融资总额:
+											<em>￥{{project.total_price}}</em>
+										</span>
+										<span>
+											认购起点:
+											<em>￥{{project.min_price}}</em>
+										</span>
+									</p>
+								</li>
+								{% else %}
+								<li data-icon="false">
+									<a href="#pro_detail">
+										<img src="/media/{{project.image}}" />
+										<h3>{{project.title}}</h3>
+										<p class="progressbar" data="{{project.progress}}">
+											<span class="progress"> <b class="bar"></b>
+											</span>
+											<span class="num">0</span>
+										</p>
+										<p>{{project.com_name}}</p>
+										<p>{{project.brief}}</p>
+										<p class="ui-li-aside">{{project.pro_type}}</p>
+									</a>
+									<p class="ui-li-bottom">
+										<span>
+											年化利率:
+											<em class="hl1">{{project.scale}}%</em>
+										</span>
+										<span>
+											融资总额:
+											<em class="hl1">￥{{project.current_price}}</em>
+										</span>
+										<span>
+											授信额度:
+											<em class="hl1">￥{{project.min_price}}</em>
+										</span>
+									</p>
+								</li>
+								{% endifequal %}
+							{% endfor %}
+							</ul>
+							<div id="pullUp">
+								<span class="pullUpIcon"></span>
+								<span class="pullUpLabel">Pull up to refresh...</span>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div id="itemsRecommend">
+				<!--div id="itemsRecommend">
 					<div id= "carousel" class="slideBox">
 						<ul class="items">
 							<li>
@@ -151,6 +229,12 @@
 							</li>
 						</ul>
 					</div>
+					<div id="wrapper" data-role="content">
+						<div id="scroller">
+							<div id="pullDown">
+								<span class="pullDownIcon"></span>
+								<span class="pullDownLabel">Pull down to refresh...</span>
+							</div>
 					<ul data-role ="listview" data-theme ="f" >
 						{% for project in projects_commend%}
 						{% ifequal project.type 'stock' %}
@@ -159,7 +243,8 @@
 								<img src="/media/{{project.image}}" />
 								<h3>{{project.title}}</h3>
 								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress"> <b class="bar"></b>
+									<span class="progress">
+										<b class="bar"></b>
 									</span>
 									<span class="num">0</span>
 								</p>
@@ -170,11 +255,13 @@
 								</p>
 								<p class="cpopular">
 									<span>
-										热度 <em class="hl1">{{project.view_count}}</em>
+										热度
+										<em class="hl1">{{project.view_count}}</em>
 									</span>
 									/
 									<span>
-										关注 <em class="hl1">{{project.like_count}}</em>
+										关注
+										<em class="hl1">{{project.like_count}}</em>
 									</span>
 									/
 									<span>
@@ -205,7 +292,8 @@
 								<img src="/media/{{project.image}}" />
 								<h3>{{project.title}}</h3>
 								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress"> <b class="bar"></b>
+									<span class="progress">
+										<b class="bar"></b>
 									</span>
 									<span class="num">0</span>
 								</p>
@@ -230,109 +318,196 @@
 						</li>
 						{% endifequal %}
 						{% endfor %}
-						<!--li data-icon="false">
-							<a href="#pro_detail">
-								<img src="{% static 'wechat/images/example_1.png'%}" />
-								<h3>小资太太港式茶餐厅</h3>
-								<p class="progressbar" data="45">
-									<span class="progress">
-										<b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p class="cbrief">
-									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京</span>
-									<span class="hl1">医疗健康</span>
-									<span class="hl2">拟挂牌</span>
-								</p>
-								<p class="cpopular">
-									<span>
-										热度
-										<em class="hl1">2000</em>
-									</span>
-									/
-									<span>
-										关注
-										<em class="hl1">2000</em>
-									</span>
-									/
-									<span>
-										认购
-										<em class="hl1">200</em>
-									</span>
-								</p>
-								<p class="ui-li-aside">筹资中</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									当前融资:
-									<em>￥20000</em>
-								</span>
-								<span>
-									融资总额:
-									<em>￥20000</em>
-								</span>
-								<span>
-									认购起点:
-									<em>￥2000</em>
-								</span>
-							</p>
-						</li>
-						<li data-icon="false">
-							<a href="#pro_detail">
-								<img src="{% static 'wechat/images/example_1.png'%}" />
-								<h3>农业公司经营贷款</h3>
-								<p class="progressbar" data="35">
-									<span class="progress">
-										<b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p>融资企业：云南中铭</p>
-								<p>经营用途：企业流动性资金</p>
-								<p class="ui-li-aside">投标中</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									年化利率:
-									<em class="hl1">￥200,00</em>
-								</span>
-								<span>
-									融资总额:
-									<em class="hl1">￥200,00</em>
-								</span>
-								<span>
-									授信额度:
-									<em class="hl1">￥200,00</em>
-								</span>
-							</p>
-						</li-->
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div data-role="footer" data-position="fixed" data-tap-toggle="false">
-			<div data-role="navbar">
-				<ul>
-					<li>
-						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
-					</li>
-					<li>
-						<a href="#" data-icon="user">我的帐户</a>
-					</li>
-					<li>
-						<a href="#" data-icon="bullets">我的项目</a>
-					</li>
-					<li>
-						<a href="#" data-icon="gear">设置</a>
-					</li>
 				</ul>
-			</div>
+				<div id="pullUp">
+								<span class="pullUpIcon"></span>
+								<span class="pullUpLabel">Pull up to refresh...</span>
+							</div>
+						</div>
+					</div>
+				</div-->
+			
+		</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<div data-role="navbar">
+			<ul>
+				<li>
+					<a href="#" data-icon="home" class="ui-btn-active">主页</a>
+				</li>
+				<li>
+					<a href="#" data-icon="user">我的帐户</a>
+				</li>
+				<li>
+					<a href="#" data-icon="bullets">我的项目</a>
+				</li>
+				<li>
+					<a href="#" data-icon="gear">设置</a>
+				</li>
+			</ul>
 		</div>
 	</div>
-	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/plug.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
+</div>
+<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/plug.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/iscroll.js'%}"></script>
+<script type="text/javascript">
+
+var myScroll,
+	pullDownEl, pullDownOffset,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;
+
+/**
+ * 下拉刷新 （自定义实现此方法）
+ * myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+ */
+function pullDownAction () {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+		/*
+		var el, li, i;
+		el = document.getElementById('thelist');
+
+		for (i=0; i<3; i++) {
+			li = document.createElement('li');
+			li.innerText = 'Generated row ' + (++generatedCount);
+			el.insertBefore(li, el.childNodes[0]);
+		}
+
+		<li><a href="#">
+				<img src="images/album-bb.jpg">
+				<h2>Broken Bells</h2>
+				<p>Broken Bells</p></a>
+			</li>
+		*/
+
+			var content = "";
+			for (var i=1;i<3;i++){
+				content = content + "<li>";
+				content = content + "<a href=\"index2.html\">";
+				content = content + "<img src=\"images/album-bb.jpg\" />";
+				content = content + "<h2>";
+				content = content + "下拉新增内容<br/>"+new Date();
+				content = content + "</h2>";
+				content = content + "<p>";
+				content = content + "Broken Bells";
+				content = content + "</p>";				
+				content = content + "</a>";
+				content = content + "</li>";
+			}
+			$("#thelist").prepend(content).listview('refresh');
+
+
+		
+		myScroll.refresh();		//数据加载完成后，调用界面更新方法   Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+}
+
+/**
+ * 滚动翻页 （自定义实现此方法）
+ * myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+ */
+function pullUpAction () {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+		/*		
+		var el, li, i;
+		el = document.getElementById('thelist');
+
+		for (i=0; i<3; i++) {
+			li = document.createElement('li');
+			li.innerText = 'Generated row ' + (++generatedCount);
+			el.appendChild(li, el.childNodes[0]);
+		}
+		*/
+		
+		var content = "";
+		for (var i=1;i<3;i++){
+			content = content + "<li>";
+			content = content + "<a href=\"#\">";
+			content = content + "<img src=\"images/album-bb.jpg\" />";
+			content = content + "<h2>";
+			content = content + "下拉新增内容<br/>"+new Date();
+			content = content + "</h2>";
+			content = content + "<p>";
+			content = content + "Broken Bells";
+			content = content + "</p>";				
+			content = content + "</a>";
+			content = content + "</li>";
+		}
+		$("#thelist").append(content).listview('refresh');
+
+		myScroll.refresh();		// 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
+	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+}
+
+/**
+ * 初始化iScroll控件
+ */
+function loaded() {
+	//清除所占的内存空间
+	if(myScroll!=null){
+		myScroll.destroy();
+	}
+
+	pullDownEl = document.getElementById('pullDown');
+	pullDownOffset = pullDownEl.offsetHeight;
+	pullUpEl = document.getElementById('pullUp');	
+	pullUpOffset = pullUpEl.offsetHeight;
+	
+	myScroll = new iScroll('wrapper', {
+		useTransition: true,    //默认为true
+		//useTransition: false, 
+		topOffset: pullDownOffset,
+		onRefresh: function () {
+			if (pullDownEl.className.match('loading')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+			} else if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+			}
+		},
+		onScrollMove: function () {
+			if (this.y > 5 && !pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'flip';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '松手开始更新...';
+				this.minScrollY = 0;
+			} else if (this.y < 5 && pullDownEl.className.match('flip')) {
+				pullDownEl.className = '';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '下拉刷新...';
+				this.minScrollY = -pullDownOffset;
+			} else if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'flip';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+				this.maxScrollY = this.maxScrollY;
+			} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+				this.maxScrollY = pullUpOffset;
+			}
+		},
+		onScrollEnd: function () {
+			if (pullDownEl.className.match('flip')) {
+				pullDownEl.className = 'loading';
+				pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';				
+				pullDownAction();	// Execute custom function (ajax call?)
+			} else if (pullUpEl.className.match('flip')) {
+				pullUpEl.className = 'loading';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';				
+				pullUpAction();	// Execute custom function (ajax call?)
+			}
+		}
+	});
+	
+	document.getElementById('wrapper').style.left = '0'; 
+}
+
+//初始化绑定iScroll控件 
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+//document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+document.addEventListener('DOMContentLoaded', loaded, false); 
+</script>
 </body>
 </html>
