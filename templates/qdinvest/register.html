@@ -7,36 +7,32 @@
   <div class="lbanner left"></div>
   <div class="loginform right">
     <div class="title">
-      <h3 class="left">新用户注册</h3>      
+      <h3 class="left">新用户注册</h3>  
+          {% if registered %}
+        <p>注册成功，点此<a href="/c/login/">登录</a></p>
+          {% else %}
+      
+             <span class="right">
+             如果您已拥有账号,则可<a href="/c/login/">点此登陆</a>
+           </span>
+      
+      {% endif %}    
     </div>
 
-    <form method="post" class="form">
-      <div>
-        <label>
-        <input type="text" placeholder="用户名" name="username"  value= "{{username}}"/>   
-         </label>   
+    <form id= 'client_form'  method="post" class="form">
+      <div>       
+        <input  id = "username" type="text" placeholder="用户名             6至15位数字或字母" name="u_name" />
+          <span name='name' id="u_name" class='red'></span>              
       </div>
-      <div>
-        <input type="password" placeholder="密码" name="password" value= "{{password}}"/>  **不少于6位字符
-
+      <div>     
+     <input   id ='password' type="password"  placeholder="密码             6至15位，必须包含数字和字母"  name="u_pwd"/> 
+        <span id='u_pwd' class='red'></span>
       </div>     
        <div>
-        <input type="text" placeholder="手机号" name="telephone" value= "{{password}}"/>  **请输入11位
-      </div>
-      <div>
-     用户状态：<tr><input type="radio" name="用户状态" name="state" value= "0" /> 0
-                   <input type="radio" name="用户状态" name="state" value= "1" /> 1 </tr>
-      </div>
-   
-
-      <input type="submit" value="注册" />
-      <span>
-        <input type="checkbox" />
-        <a href="javascript:;">保持登陆</a>
-      </span>
-      <span>
-        <a href="javascript:;">忘记密码？</a>
-      </span>
+        <input id='telephone' type="text" placeholder="手机号                必填"  name="u_tel" />  
+        <span id='u_tel' class='red'></span>
+      </div> 
+      <input id='submit' type="submit" value="注册" />      
     </form>
    
   </div>

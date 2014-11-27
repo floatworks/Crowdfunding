@@ -6,6 +6,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.db.models import Q
+from qdinvest.forms import USERSFORM
 
 import tools as T
 import simplejson as json
@@ -371,7 +372,24 @@ def db(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('qdinvest/models_doc.html',context_dict,context)
+
+
 def register(request):
 	context = RequestContext(request)
 	context_dict = {}
+	registered = False
+
+	if request.method == 'POST':
+		userData = request.POST.copy()
+		userData.appendlist('u_status',0)
+		userForm = USERSFORM(data = userData)
+		if userForm.is_valid():			
+			registered = True
+			userForm.save()
+			context_dict['registered'] = registered
+			return render_to_response('qdinvest/login.html',context_dict,context)
+		else:
+			print userForm.errors
+	
+	context_dict['registered'] = registered
 	return render_to_response('qdinvest/register.html',context_dict,context)
