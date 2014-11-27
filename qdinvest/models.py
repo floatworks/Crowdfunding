@@ -33,10 +33,10 @@ class USERS(models.Model):
 '''
 class ACCOUNT(models.Model):
 	ac_user = models.OneToOneField(USERS,verbose_name="用户")
-	ac_like = models.IntegerField(default=0,verbose_name="关注的项目数")
-	ac_support = models.IntegerField(default=0,verbose_name="支持的项目数")
-	ac_sponsor = models.IntegerField(default=0,verbose_name="发起的项目数")
-	ac_infos = models.IntegerField(default=0,verbose_name="未读消息数量")
+	ac_like = models.IntegerField(default=0,verbose_name="关注项目数")
+	ac_support = models.IntegerField(default=0,verbose_name="支持项目数")
+	ac_sponsor = models.IntegerField(default=0,verbose_name="发起项目数")
+	ac_infos = models.IntegerField(default=0,verbose_name="未读消息数")
 	#ac_balance = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='账户余额')
 	#ac_frozen = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='冻结资金')
 	#ac_soon_profit = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='待收收益')

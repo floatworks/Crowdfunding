@@ -744,6 +744,10 @@ def Invest(request):
 					if p_type == 'stock':
 						STOCK_objs = STOCK.objects.filter(id__exact = p_id)
 						if STOCK_objs:
+							if not T.CheckExist(INVEST_STOCK,{'is_user':USERS_objs[0],'is_stock':STOCK_objs[0]}):
+								ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+								ACCOUNT_obj.ac_support += 1
+								ACCOUNT_obj.save()
 							response_dict['status'] = 1
 							INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
 							INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_objs[0],is_stock = STOCK_objs[0],is_amount = price,is_date = datetime.now(),is_status = INVEST_STATUS_obj)
@@ -759,6 +763,10 @@ def Invest(request):
 					elif p_type == 'bond':
 						BOND_objs = BOND.objects.filter(id__exact = p_id)
 						if BOND_objs:
+							if not T.CheckExist(INVEST_BOND,{'ib_user':USERS_objs[0],'ib_bond':BOND_objs[0]}):
+								ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+								ACCOUNT_obj.ac_support += 1
+								ACCOUNT_obj.save()
 							response_dict['status'] = 1
 							INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
 							INVEST_BOND_new = INVEST_BOND(ib_user = USERS_objs[0],ib_bond = BOND_objs[0],ib_amount = price,ib_date = datetime.now(),ib_status = INVEST_STATUS_obj)
