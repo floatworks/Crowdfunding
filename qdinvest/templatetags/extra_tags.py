@@ -9,7 +9,3 @@ def lastDays(endDate):
 	if days < 0:
 		days = 0
 	return days
-
-@register.filter(name='format')  
-def format(string_, fmt):  
-    return fmt % string_

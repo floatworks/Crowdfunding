@@ -72,3 +72,14 @@ def CheckToken(user,token,add):
 			TOKEN_new = TOKEN(t_user = user,t_token = token,t_time = datetime.now())
 			TOKEN_new.save()
 		return False
+
+#计算百分比
+def Scale(divend,div):  
+	result = float(divend)*100/float(div)
+	result = int(result)
+	if result < 0:
+		return 0
+	elif result > 100:
+		return 100
+	else:
+		return result
