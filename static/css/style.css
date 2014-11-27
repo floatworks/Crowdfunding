@@ -315,6 +315,7 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .body .intro .about .projectinfo table .ti{ width:110px; text-align:right; padding-right:10px;}
 .body .intro .about .projectinfo table .te{ width:280px; text-align:left;}
 .body .intro .about .projectinfo table .ts{ width:160px; text-align:left;}
+.body .intro .about .projectinfo .video{ padding: 0 30px;}
 .body .intro .about .tabitem .h1{ color:#666;}
 .body .intro .about .tabitem h1{ height:60px;font-size:18px; line-height:60px; padding:0 10px;}
 .body .intro .about .tabitem h2{ height:45px; color:#666; font-size:18px; line-height:45px; padding:0 10px; border-top:1px dotted #eee;}

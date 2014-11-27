@@ -125,6 +125,10 @@
             <td class="te"  colspan="3">{% autoescape off %}{{bond.bo_com_inf}} {% endautoescape %}</td>
           </tr>
         </table>
+        {% if bond.bo_video %}
+          <h2>宣传视频</h2>     
+          <div id='plv_video' data='{{bond.bo_video}}' class="video"></div>
+        {% endif %}
         <div class="transferlist">
         <h2>企业基本信息</h2>          
           {% autoescape off %} 
