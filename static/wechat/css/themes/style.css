@@ -25,6 +25,13 @@
 	background-color: transparent;
 	color: #ffffff;
 }
+.ui-page-theme-a .ui-header .ui-tabs .ui-btn{
+	background-color: #ffffff /*{f-bup-background-color}*/;
+	border-color: #cccccc /*{f-bup-border}*/;
+	color: #111111 /*{f-bup-color}*/;
+	border-style:solid;
+}
+
 .index .ui-btn.ui-btn-f.ui-btn-active{
 	color: #0069A8 ;
 	border-bottom-color:#0069A8;
@@ -68,13 +75,13 @@
 	z-index: 1000;
 }
 
-.index .ui-navbar li .ui-btn {
+.index .ui-tabs .ui-navbar li .ui-btn {
 	border-top-width: 0;
 	border-bottom-width: 1px;
 	border-left-width:0; 
 	border-right-width: 1px;
 }
-.index .ui-content .ui-navbar li:last-child .ui-btn{
+.index .ui-tabs .ui-navbar li:last-child .ui-btn{
 	border-right-width: 0;
 }
 

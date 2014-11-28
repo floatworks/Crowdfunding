@@ -14,6 +14,84 @@ div.slideBox div.tips div.nums{ position:absolute; right:0; top:0; height:100%;}
 div.slideBox div.tips div.nums a{ display:inline-block; >float:left/*For IE.ADD.JENA.201206300844*/; width:.6em; height:.6em; background-color:#FFF; text-indent:-99999px; margin:15px 10px 0px 0px;}
 div.slideBox div.tips div.nums a.active{ background-color:#0099ff;}
 
+#wrapper {
+	position:absolute; z-index:1;
+	top:4.75em; bottom:3.7em; 
+	width:100%;
+	overflow:hidden;
+}
+
+#scroller {
+	position:absolute; z-index:1;
+	width:100%;
+	padding:0;
+	overflow:hidden;
+}
+
+#pullDown, #pullUp {
+	background:#fff;
+	height:2em;
+	line-height: 2.2;
+	padding:0px;
+	border-bottom:1px solid #ccc;
+	font-weight:bold;
+	font-size:.7em;
+	color:#888;
+	text-align: center;
+	position: relative;
+}
+
+
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+	position: absolute;
+	left: 50%;
+	top: 5%;
+	width:2em; height:2em;
+	background:url(themes/images/pull-icon@2x.png) 0 0 no-repeat;
+	-webkit-background-size:2em 4em; background-size:2em 4em;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;
+	margin-left: -5.3em;
+}
+
+#pullDown .pullUpLabel{
+	display: block;
+	width:2em; height:2em;
+	line-height:40px;
+	height:2em;
+	margin-top: 0;
+}
+#pullDown .pullDownIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+	-webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+	background-position:0 100%;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+
+	-webkit-animation-name:loading;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+
 
 
 

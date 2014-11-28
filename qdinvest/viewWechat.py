@@ -14,10 +14,10 @@ def Index(request):
 	context = RequestContext(request)
 	context_dict = {}
 	projects = []
-	projects_commend = []
+	#projects_commend = []
 
-	STOCK_objs = STOCK.objects.order_by('-st_create_time')
-	BOND_objs = BOND.objects.order_by('-bo_create_time')
+	STOCK_objs = STOCK.objects.order_by('-st_create_time')[:5]
+	BOND_objs = BOND.objects.order_by('-bo_create_time')[:5]
 	
 	for STOCK_obj in STOCK_objs:
 		stock_data = {}
@@ -37,8 +37,8 @@ def Index(request):
 		stock_data['create_time'] = STOCK_obj.st_create_time.strftime('%Y-%m-%d %H:%M:%S')
 		stock_data['progress'] = T.Scale(STOCK_obj.st_current_price,STOCK_obj.st_total_price)
 		projects.append(stock_data)
-		if STOCK_obj.st_is_commend == 1:
-			projects_commend.append(stock_data)
+		#if STOCK_obj.st_is_commend == 1:
+		#	projects_commend.append(stock_data)
 	for BOND_obj in BOND_objs:
 		bond_data = {}
 		bond_data['type'] = 'bond'
@@ -55,13 +55,13 @@ def Index(request):
 		bond_data['create_time'] = BOND_obj.bo_create_time.strftime('%Y-%m-%d %H:%M:%S')
 		bond_data['progress'] = T.Scale(BOND_obj.bo_current_price,BOND_obj.bo_total_price)
 		projects.append(bond_data)
-		if BOND_obj.bo_is_commend == 1:
-			projects_commend.append(bond_data)
+		#if BOND_obj.bo_is_commend == 1:
+		#	projects_commend.append(bond_data)
 
 	projects = sorted(projects,key = operator.itemgetter('create_time'),reverse=True)
-	projects_commend = sorted(projects_commend,key = operator.itemgetter('create_time'),reverse=True)
+	#projects_commend = sorted(projects_commend,key = operator.itemgetter('create_time'),reverse=True)
 	context_dict['projects'] = projects
-	context_dict['projects_commend'] = projects_commend
+	#context_dict['projects_commend'] = projects_commend
 	#if settings.DEBUG:
 	#	print context_dict
 	return render_to_response('wechat/index.html',context_dict,context)
