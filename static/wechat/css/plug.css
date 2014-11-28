@@ -14,6 +14,8 @@ div.slideBox div.tips div.nums{ position:absolute; right:0; top:0; height:100%;}
 div.slideBox div.tips div.nums a{ display:inline-block; >float:left/*For IE.ADD.JENA.201206300844*/; width:.6em; height:.6em; background-color:#FFF; text-indent:-99999px; margin:15px 10px 0px 0px;}
 div.slideBox div.tips div.nums a.active{ background-color:#0099ff;}
 
+html {overflow-y: hidden; }
+
 #wrapper {
 	position:absolute; z-index:1;
 	top:4.75em; bottom:3.7em; 

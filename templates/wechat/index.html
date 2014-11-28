@@ -20,109 +20,110 @@
 				<div data-role="navbar" class="ui-navbar-fixed">
 					<ul>
 						<li>
-							<a href="#itemsList" data-theme="f" class="ui-btn-active" >项目列表</a>
+							<a id="t_itemsList" data-theme="f" class="ui-btn-active" >项目列表</a>
 						</li>
 						<li>
-							<a href="#itemsRecommend" data-theme="f">推荐项目</a>
+							<a id="t_itemsRecommend" data-theme="f">推荐项目</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div id="wrapper" class="ui-content">
-			<div id="scroller">
-				<div id="pullDown">
-					<span class="pullDownIcon"></span>
-					<span class="pullDownLabel">下拉刷新...</span>
-				</div>
-				<ul data-role ="listview" data-theme ="f" id="thelist">
-					{% for project in projects%}
-								{% ifequal project.type 'stock' %}
-					<li data-icon="false">
-						<a href="#pro_detail">
-							<img src="/media/{{project.image}}" />
-							<h3>{{project.title}}</h3>
-							<p class="progressbar" data="{{project.progress}}">
-								<span class="progress"> <b class="bar"></b>
-								</span>
-								<span class="num">0</span>
-							</p>
-							<p class="cbrief">
-								<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
-								<span class="hl1">{{project.industry}}</span>
-								<span class="hl2">{{project.com_type}}</span>
-							</p>
-							<p class="cpopular">
+		<div id="itemsList">
+			<div id="wrapper" class="ui-content">
+				<div id="scroller">
+					<div id="pullDown">
+						<span class="pullDownIcon"></span>
+						<span class="pullDownLabel">下拉刷新...</span>
+					</div>
+					<ul data-role ="listview" data-theme ="f" id="thelist">
+						{% for project in projects%}
+					{% ifequal project.type 'stock' %}
+						<li data-icon="false">
+							<a href="#pro_detail">
+								<img src="/media/{{project.image}}" />
+								<h3>{{project.title}}</h3>
+								<p class="progressbar" data="{{project.progress}}">
+									<span class="progress"> <b class="bar"></b>
+									</span>
+									<span class="num">0</span>
+								</p>
+								<p class="cbrief">
+									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
+									<span class="hl1">{{project.industry}}</span>
+									<span class="hl2">{{project.com_type}}</span>
+								</p>
+								<p class="cpopular">
+									<span>
+										热度 <em class="hl1">{{project.view_count}}</em>
+									</span>
+									/
+									<span>
+										关注 <em class="hl1">{{project.like_count}}</em>
+									</span>
+									/
+									<span>
+										认购
+										<em class="hl1">{{project.invest_count}}</em>
+									</span>
+								</p>
+								<p class="ui-li-aside">{{project.pro_type}}</p>
+							</a>
+							<p class="ui-li-bottom">
 								<span>
-									热度 <em class="hl1">{{project.view_count}}</em>
+									当前融资:
+									<em>￥{{project.current_price}}</em>
 								</span>
-								/
 								<span>
-									关注 <em class="hl1">{{project.like_count}}</em>
+									融资总额:
+									<em>￥{{project.total_price}}</em>
 								</span>
-								/
 								<span>
-									认购
-									<em class="hl1">{{project.invest_count}}</em>
+									认购起点:
+									<em>￥{{project.min_price}}</em>
 								</span>
 							</p>
-							<p class="ui-li-aside">{{project.pro_type}}</p>
-						</a>
-						<p class="ui-li-bottom">
-							<span>
-								当前融资:
-								<em>￥{{project.current_price}}</em>
-							</span>
-							<span>
-								融资总额:
-								<em>￥{{project.total_price}}</em>
-							</span>
-							<span>
-								认购起点:
-								<em>￥{{project.min_price}}</em>
-							</span>
-						</p>
-					</li>
-					{% else %}
-					<li data-icon="false">
-						<a href="#pro_detail">
-							<img src="/media/{{project.image}}" />
-							<h3>{{project.title}}</h3>
-							<p class="progressbar" data="{{project.progress}}">
-								<span class="progress"> <b class="bar"></b>
+						</li>
+						{% else %}
+						<li data-icon="false">
+							<a href="#pro_detail">
+								<img src="/media/{{project.image}}" />
+								<h3>{{project.title}}</h3>
+								<p class="progressbar" data="{{project.progress}}">
+									<span class="progress"> <b class="bar"></b>
+									</span>
+									<span class="num">0</span>
+								</p>
+								<p>{{project.com_name}}</p>
+								<p>{{project.brief}}</p>
+								<p class="ui-li-aside">{{project.pro_type}}</p>
+							</a>
+							<p class="ui-li-bottom">
+								<span>
+									年化利率:
+									<em class="hl1">{{project.scale}}%</em>
 								</span>
-								<span class="num">0</span>
+								<span>
+									融资总额:
+									<em class="hl1">￥{{project.current_price}}</em>
+								</span>
+								<span>
+									授信额度:
+									<em class="hl1">￥{{project.min_price}}</em>
+								</span>
 							</p>
-							<p>{{project.com_name}}</p>
-							<p>{{project.brief}}</p>
-							<p class="ui-li-aside">{{project.pro_type}}</p>
-						</a>
-						<p class="ui-li-bottom">
-							<span>
-								年化利率:
-								<em class="hl1">{{project.scale}}%</em>
-							</span>
-							<span>
-								融资总额:
-								<em class="hl1">￥{{project.current_price}}</em>
-							</span>
-							<span>
-								授信额度:
-								<em class="hl1">￥{{project.min_price}}</em>
-							</span>
-						</p>
-					</li>
-					{% endifequal %}
+						</li>
+						{% endifequal %}
 							{% endfor %}
-				</ul>
-				<div id="pullUp">
-					<span class="pullUpIcon"></span>
-					<span class="pullUpLabel">上拉加载更多...</span>
+					</ul>
+					<div id="pullUp">
+						<span class="pullUpIcon"></span>
+						<span class="pullUpLabel">上拉加载更多...</span>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!--/div>
-		<div id="itemsRecommend">
+		<div id="itemsRecommend" style="display:none">
 			<div id= "carousel" class="slideBox">
 				<ul class="items">
 					<li>
@@ -152,15 +153,9 @@
 					</li>
 				</ul>
 			</div>
-			<div id="wrapper" data-role="content">
-				<div id="scroller">
-					<div id="pullDown">
-						<span class="pullDownIcon"></span>
-						<span class="pullDownLabel">Pull down to refresh...</span>
-					</div>
-					<ul data-role ="listview" data-theme ="f" >
+			<ul data-role ="listview" data-theme ="f" >
 						{% for project in projects_commend%}
-						{% ifequal project.type 'stock' %}
+							{% ifequal project.type 'stock' %}
 						<li data-icon="false">
 							<a href="#pro_detail">
 								<img src="/media/{{project.image}}" />
@@ -240,42 +235,33 @@
 							</p>
 						</li>
 						{% endifequal %}
-						{% endfor %}
-					</ul>
-					<div id="pullUp">
-						<span class="pullUpIcon"></span>
-						<span class="pullUpLabel">Pull up to refresh...</span>
-					</div>
-				</div>
-			</div>
-		</div-->
-
-		<!-- </div>
-		-->
-		<div data-role="footer" data-position="fixed" data-tap-toggle="false">
-			<div data-role="navbar">
-				<ul>
-					<li>
-						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
-					</li>
-					<li>
-						<a href="#" data-icon="user">我的帐户</a>
-					</li>
-					<li>
-						<a href="#" data-icon="bullets">我的项目</a>
-					</li>
-					<li>
-						<a href="#" data-icon="gear">设置</a>
-					</li>
-				</ul>
-			</div>
+							{% endfor %}
+			</ul>
+		</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<div data-role="navbar">
+			<ul>
+				<li>
+					<a href="#" data-icon="home" class="ui-btn-active">主页</a>
+				</li>
+				<li>
+					<a href="#" data-icon="user">我的帐户</a>
+				</li>
+				<li>
+					<a href="#" data-icon="bullets">我的项目</a>
+				</li>
+				<li>
+					<a href="#" data-icon="gear">设置</a>
+				</li>
+			</ul>
 		</div>
 	</div>
-	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/plug.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/iscroll.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/index.js'%}"></script>
+</div>
+<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/plug.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/iscroll.js'%}"></script>
+<script type="text/javascript"  src="{% static 'wechat/js/index.js'%}"></script>
 </body>
 </html>
