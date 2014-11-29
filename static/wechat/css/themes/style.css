@@ -147,7 +147,7 @@
 	background-color: #fff;
 }
 .pro_detail  .ui-tabs{
-	padding-top: 6.45em;
+	padding: 6.45em 0 0 0;
 }
 .pro_detail .ui-tabs .ui-navbar li{
 	position: relative;
@@ -186,14 +186,14 @@
   border-width: .5em;
   border-bottom-color: #ffffff;
   top: 1.5em;
-  left: 50%;
+  left: 52%;
 }
  
 .pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:before {
   border-width: .5em;
   border-bottom-color: #ccc;
   top: 1.4em;
-  left: 50%;
+  left: 52%;
 }
 .pro_detail .ui-navbar-fixed{
 	padding-top: 0;
@@ -411,7 +411,7 @@
 .pro_detail .ui-footer button.btn-confirm{
 	width:95%;
 	font-size: 1em;
-	padding: .62em;
+	padding: .6em;
 	margin-top: .56em;
 	font-weight: normal;
 }
@@ -425,3 +425,69 @@
 }
 /********self********/
 /*******detail*******/
+
+
+/*******login*******/
+.login {
+	height: 100%;
+	background-image: url(/static/wechat/css/themes/images/login_bg.png);
+	background-repeat: no-repeat;
+	background-color: transparent;
+	background-size: 100%;
+	background-position: center;
+}
+
+.login .absolute{
+	position: absolute;
+	left: 10%;
+	top: 15%;
+	width: 80%;
+	text-align: center;
+}
+.login img{
+	width: 100%;
+	max-width: 25em;
+}
+.login .ui-controlgroup{
+	margin: 0;
+	position: relative;
+	border: 1px solid #00518c;
+}
+.login .ui-controlgroup-controls .ui-input-text{
+	margin: 0;
+	padding: 0 1em;
+	border-width: 0;
+}
+.login .ui-controlgroup-vertical .ui-input-text:first-child input{
+	border-bottom: 1px  solid #ccc;
+}
+.login .ui-input-text input{
+	padding: .8em 0 .8em 2em;
+	background-repeat: no-repeat;
+	background-size: auto 50%;
+	background-position: left;
+}
+.login .ui-input-text input[type="text"]{
+	background-image: url(/static/wechat/css/themes/images/login_user.png);
+}
+.login .ui-input-text input[type="password"]{
+	background-image: url(/static/wechat/css/themes/images/login_pwd.png);
+}
+.login .ui-controlgroup-controls a{
+	color: #379945;
+	position: absolute;
+	bottom: .8em;
+	right: 1em;
+
+}
+.login .ui-grid-a .ui-block-a{
+	padding-right: .25em;
+}
+.login .ui-grid-a .ui-block-b{
+	padding-left: .25em;
+}
+.login .ui-grid-a .ui-btn {
+	font-weight: normal;
+}
+
+/*******login*******/

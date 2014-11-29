@@ -234,3 +234,9 @@ def Projectdetail(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('wechat/proDetail.html',context_dict,context)
+
+#微信端登录
+def Login(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('wechat/login.html',context_dict,context)
