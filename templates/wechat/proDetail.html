@@ -6,107 +6,105 @@
 		<a href="#" data-rel="back">&lt; 返回</a>
 		<h1>股权众筹详情</h1>
 	</div>
-	<div role="main" class="ui-content">
 
-		<div data-role="tabs" id="detailtabs">
-			<div data-role="navbar" class="ui-navbar-fixed">
-				<div class="relative">
-					<div class="co_covers">
-						<img src="{% static 'wechat/images/co_img_1.png'%}" />
-						<div class="follow">
-							<p href="#" class="follow-heart">&nbsp;</p>
-						</div>
-						<div class="popular">
-							<div class="ui-grid-b">
-								<div class="ui-block-a">
-									<p>239</p>
-									<p>
-										<span>热度</span>
-									</p>
-								</div>
-								<div class="ui-block-b">
-									<p>3088</p>
-									<p>
-										<span>关注</span>
-									</p>
-								</div>
-								<div class="ui-block-c">
-									<p>1916</p>
-									<p>
-										<span>认购</span>
-									</p>
-								</div>
+	<div data-role="tabs" id="detailtabs">
+		<div data-role="navbar" class="ui-navbar-fixed">
+			<div class="relative">
+				<div class="co_covers">
+					<img src="{% static 'wechat/images/co_img_1.png'%}" />
+					<div class="follow">
+						<p href="#" class="follow-heart">&nbsp;</p>
+					</div>
+					<div class="popular">
+						<div class="ui-grid-b">
+							<div class="ui-block-a">
+								<p>239</p>
+								<p>
+									<span>热度</span>
+								</p>
+							</div>
+							<div class="ui-block-b">
+								<p>3088</p>
+								<p>
+									<span>关注</span>
+								</p>
+							</div>
+							<div class="ui-block-c">
+								<p>1916</p>
+								<p>
+									<span>认购</span>
+								</p>
 							</div>
 						</div>
-						<div class="progressbar" data="45">
-							<span class="progress"> <b class="bar"></b>
-							</span>
-						</div>
 					</div>
+					<div class="progressbar" data="45">
+						<span class="progress"> <b class="bar"></b>
+						</span>
+					</div>
+				</div>
 
-					<ul>
-						<li>
-							<a href="#base_info" data-theme="f" data-ajax="false"  class="ui-btn-active" >
-								<span>基本信息</span>
-							</a>
-						</li>
-						<li>
-							<a href="#pro_intro" data-theme="f" data-ajax="false">
-								<span>项目详情</span>
-							</a>
-						</li>
-						<li>
-							<a href="#invest_manage" data-theme="f" data-ajax="false" data-prefetch="ture" >
-								<span>投后管理</span>
-							</a>
-						</li>
-					</ul>
-					<div class="ui-grid-solo">
-						<div class="ui-block-a">
-							<h3>小资太太茶餐厅</h3>
-							<p class="cbrief">
-								<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京</span>
-								<span class="hl1">医疗健康</span>
-								<span class="hl2">拟挂牌</span>
-								<span class="hl3">剩余28天</span>
-							</p>
-							<p class="ui-li-aside">筹资中</p>
-						</div>
+				<ul>
+					<li>
+						<a href="#base_info" data-theme="f" data-ajax="false"  class="ui-btn-active" >
+							<span>基本信息</span>
+						</a>
+					</li>
+					<li>
+						<a href="#pro_intro" data-theme="f" data-ajax="false">
+							<span>项目详情</span>
+						</a>
+					</li>
+					<li>
+						<a href="#invest_manage" data-theme="f" data-ajax="false" data-prefetch="ture" >
+							<span>投后管理</span>
+						</a>
+					</li>
+				</ul>
+				<div class="ui-grid-solo">
+					<div class="ui-block-a">
+						<h3>小资太太茶餐厅</h3>
+						<p class="cbrief">
+							<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京</span>
+							<span class="hl1">医疗健康</span>
+							<span class="hl2">拟挂牌</span>
+							<span class="hl3">剩余28天</span>
+						</p>
+						<p class="ui-li-aside">筹资中</p>
 					</div>
 				</div>
 			</div>
-			<div id="base_info">
-				<ul data-role="listview">
-					<li class="ui-grid-b">
-						<div class="ui-block-a">
-							<p>￥2000</p>
-							<p>
-								<span>当前融资</span>
-							</p>
-						</div>
-						<div class="ui-block-b">
-							<p>￥2000</p>
-							<p>
-								<span>融资总额</span>
-							</p>
-						</div>
-						<div class="ui-block-c">
-							<p>￥2000</p>
-							<p>
-								<span>年化利率</span>
-							</p>
-						</div>
-					</li>
-					<li>
-						<a href="#pro_detail_list" class="ui-alt-icon">投标计划</a>
-					</li>
-				</ul>
-			</div>
-			<div id="pro_intro">
-				<div class="pro-content"></div>
-			</div>
-			<div id="invest_manage"></div>
 		</div>
+		<div id="base_info" class="ui-content">
+			<ul data-role="listview">
+				<li class="ui-grid-b">
+					<div class="ui-block-a">
+						<p>￥2000</p>
+						<p>
+							<span>当前融资</span>
+						</p>
+					</div>
+					<div class="ui-block-b">
+						<p>￥2000</p>
+						<p>
+							<span>融资总额</span>
+						</p>
+					</div>
+					<div class="ui-block-c">
+						<p>￥2000</p>
+						<p>
+							<span>年化利率</span>
+						</p>
+					</div>
+				</li>
+				<li>
+					<a href="#pro_detail_list" class="ui-alt-icon">投标计划</a>
+				</li>
+			</ul>
+		</div>
+		<div id="pro_intro" class="ui-content">
+			<div class="pro-content"></div>
+		</div>
+		<div id="invest_manage" class="ui-content"></div>
 	</div>
 	<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme="b">
 		<div class="ui-grid-a bottomnav">
