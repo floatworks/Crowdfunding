@@ -7,6 +7,7 @@ from django.http import Http404
 from django.conf import settings
 import operator
 import traceback
+from datetime import datetime
 
 from models import *
 import tools as T
@@ -245,10 +246,14 @@ def ProjectDetail(request,p_type,p_id):
 			context_dict['title'] = STOCK_obj.st_title
 			context_dict['image'] = STOCK_obj.st_image
 			#获取用户是否已经关注
-			#if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_obj}):
-			#	context_dict['st_if_like'] = 1
-			#else:
-			#	context_dict['st_if_like'] = 0
+			if request.session.get('HAS_LOGIN',False):
+				USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+				if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_stock':STOCK_obj}):
+					context_dict['if_like'] = 1
+				else:
+					context_dict['if_like'] = 0
+			else:
+				context_dict['if_like'] = 0
 			context_dict['view_count'] = STOCK_obj.st_view_count
 			context_dict['like_count'] = STOCK_obj.st_like_count
 			context_dict['invest_count'] = STOCK_obj.st_invest_count
@@ -280,10 +285,14 @@ def ProjectDetail(request,p_type,p_id):
 			context_dict['title'] = BOND_obj.bo_title
 			context_dict['image'] = BOND_obj.bo_image
 			#获取用户是否已经关注
-			#if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_obj}):
-			#	context_dict['st_if_like'] = 1
-			#else:
-			#	context_dict['st_if_like'] = 0
+			if request.session.get('HAS_LOGIN',False):
+				USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+				if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_bond':BOND_obj}):
+					context_dict['if_like'] = 1
+				else:
+					context_dict['if_like'] = 0
+			else:
+				context_dict['if_like'] = 0
 			context_dict['view_count'] = BOND_obj.bo_view_count
 			context_dict['like_count'] = BOND_obj.bo_like_count
 			context_dict['invest_count'] = BOND_obj.bo_invest_count
@@ -316,7 +325,91 @@ def ProLike(request):
 	response_dict = {}
 	if not T.CheckIsLogin(request):
 		response_dict['status'] = -1
+	else:
+		if request.method == 'POST':
+			p_type = request.POST.get('type','')
+			p_id = request.POST.get('id','-1')
+			focus = request.POST.get('focus','')
+			p_id = int(p_id)
+			print p_type,p_id,focus
 
+			USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+			if focus == 'like':
+				if p_type == 'stock':
+					STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+					if STOCK_objs:
+						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_stock':STOCK_objs[0]}):
+							response_dict['status'] = 2
+						else:
+							USER_FOCUS_new = USER_FOCUS(uf_user = USERS_obj,uf_stock = STOCK_objs[0],uf_update_time = datetime.now())
+							USER_FOCUS_new.save()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like += 1
+								ACCOUNT_objs[0].save()
+							STOCK_objs[0].st_like_count += 1
+							STOCK_objs[0].save()
+							response_dict['status'] = 1
+					else:
+						response_dict['status'] = 0
+				elif p_type == 'bond':
+					BOND_objs = BOND.objects.filter(id__exact = p_id)
+					if BOND_objs:
+						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_bond':BOND_objs[0]}):
+							response_dict['status'] = 2
+						else:
+							USER_FOCUS_new = USER_FOCUS(uf_user = USERS_obj,uf_bond = BOND_objs[0],uf_update_time = datetime.now())
+							USER_FOCUS_new.save()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like += 1
+								ACCOUNT_objs[0].save()
+							BOND_objs[0].bo_like_count += 1
+							BOND_objs[0].save()
+							response_dict['status'] = 1
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			elif focus == 'unlike':
+				if p_type == 'stock':
+					STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+					if STOCK_objs:
+						USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_obj,uf_stock = STOCK_objs[0])
+						if USER_FOCUS_objs:
+							USER_FOCUS_objs[0].delete()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like -= 1
+								ACCOUNT_objs[0].save()
+							STOCK_objs[0].st_like_count -= 1
+							STOCK_objs[0].save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 2
+					else:
+						response_dict['status'] = 0
+				elif p_type == 'bond':
+					BOND_objs = BOND.objects.filter(id__exact = p_id)
+					if BOND_objs:
+						USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_obj,uf_bond = BOND_objs[0])
+						if USER_FOCUS_objs:
+							USER_FOCUS_objs[0].delete()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like -= 1
+								ACCOUNT_objs[0].save()
+							BOND_objs[0].bo_like_count -= 1
+							BOND_objs[0].save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 2
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = 0
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
@@ -326,4 +419,19 @@ def ProLike(request):
 def Login(request):
 	context = RequestContext(request)
 	context_dict = {}
+
+	if request.method == 'POST':
+		username = request.POST.get('user','')
+		password = request.POST.get('pwd','')
+
+		USERS_objs = USERS.objects.filter(u_name = username,u_pwd = password)
+		if USERS_objs:
+			request.session['HAS_LOGIN'] = True
+			request.session['USER_ID'] = USERS_objs[0].id
+			request.session['USER_NAME'] = USERS_objs[0].u_name
+			return HttpResponseRedirect(request.session['origin_path'])
+		else:
+			return render_to_response('wechat/login.html',context_dict,context)
+
+
 	return render_to_response('wechat/login.html',context_dict,context)

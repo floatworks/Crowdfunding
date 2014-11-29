@@ -14,7 +14,11 @@
 				<div class="co_covers">
 					<img src="/media/{{image}}" />
 					<div class="follow">
-						<p href="#" class="follow-heart" type="{{p_type}}" pid="{{id}}">&nbsp;</p>
+						{% ifequal if_like 0 %}
+							<p href="#" class="follow-heart" type="{{p_type}}" pid="{{id}}">&nbsp;</p>
+						{% else %}
+							<p href="#" class="follow-heart active" type="{{p_type}}" pid="{{id}}">&nbsp;</p>
+						{% endifequal %}
 					</div>
 					<div class="popular">
 						<div class="ui-grid-b">

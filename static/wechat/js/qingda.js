@@ -74,7 +74,9 @@ $(".follow").delegate(".follow-heart", "click", function() {
 				'focus': 'unlike'
 			},
 			function(data, status) {
-				alert("Data: " + data + "\nStatus: " + status);
+				if(data.status == -1){
+					window.location.href="/w/login/"; 
+				}
 			});
 	} else {
 		$(this).addClass('active');
