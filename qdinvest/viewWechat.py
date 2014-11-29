@@ -240,6 +240,8 @@ def ProjectDetail(request,p_type,p_id):
 	if p_type == 's':
 		try:
 			STOCK_obj = STOCK.objects.get(id__exact = p_id)
+			context_dict['p_type'] = 'stock'
+			context_dict['id'] = STOCK_obj.id
 			context_dict['title'] = STOCK_obj.st_title
 			context_dict['image'] = STOCK_obj.st_image
 			#获取用户是否已经关注
@@ -273,6 +275,8 @@ def ProjectDetail(request,p_type,p_id):
 	elif p_type == 'b':
 		try:
 			BOND_obj = BOND.objects.get(id__exact = p_id)
+			context_dict['p_type'] = 'bond'
+			context_dict['id'] = BOND_obj.id
 			context_dict['title'] = BOND_obj.bo_title
 			context_dict['image'] = BOND_obj.bo_image
 			#获取用户是否已经关注
@@ -306,6 +310,16 @@ def ProjectDetail(request,p_type,p_id):
 			raise Http404
 	else:
 		raise Http404
+
+#微信端用户喜欢界面
+def ProLike(request):
+	response_dict = {}
+	if not T.CheckIsLogin(request):
+		response_dict['status'] = -1
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 	
 
 #微信端登录
