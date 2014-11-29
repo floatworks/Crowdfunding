@@ -1,243 +1,231 @@
-<!DOCTYPE html>
+{% extends "wechat/base.html" %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>清大众筹</title>
-	<link rel="shortcut icon" href="favicon.png">
-	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/plug.css'%}" rel="stylesheet" charset="utf-8" />
-</head>
-<body>
-	<div data-role ="page" id="index" data-title="清大众筹" class="index">
-		<div data-role ="header" data-position="fixed" data-tap-toggle="false">
-			<h1>清大众筹</h1>
-			<div data-role="tabs" id="tabs" >
-				<div data-role="navbar" class="ui-navbar-fixed">
-					<ul>
-						<li>
-							<a id="t_itemsList" data-theme="f" class="ui-btn-active" >项目列表</a>
-						</li>
-						<li>
-							<a id="t_itemsRecommend" data-theme="f">推荐项目</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div id="itemsList">
-			<div id="wrapper" class="ui-content">
-				<div id="scroller">
-					<div id="pullDown">
-						<span class="pullDownIcon"></span>
-						<span class="pullDownLabel">下拉刷新...</span>
-					</div>
-					<ul data-role ="listview" data-theme ="f" id="thelist">
-						{% for project in projects%}
-					{% ifequal project.type 'stock' %}
-						<li data-icon="false">
-							<a href="#pro_detail">
-								<img src="/media/{{project.image}}" />
-								<h3>{{project.title}}</h3>
-								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress"> <b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p class="cbrief">
-									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
-									<span class="hl1">{{project.industry}}</span>
-									<span class="hl2">{{project.com_type}}</span>
-								</p>
-								<p class="cpopular">
-									<span>
-										热度 <em class="hl1">{{project.view_count}}</em>
-									</span>
-									/
-									<span>
-										关注 <em class="hl1">{{project.like_count}}</em>
-									</span>
-									/
-									<span>
-										认购
-										<em class="hl1">{{project.invest_count}}</em>
-									</span>
-								</p>
-								<p class="ui-li-aside">{{project.pro_type}}</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									当前融资:
-									<em>￥{{project.current_price}}</em>
-								</span>
-								<span>
-									融资总额:
-									<em>￥{{project.total_price}}</em>
-								</span>
-								<span>
-									认购起点:
-									<em>￥{{project.min_price}}</em>
-								</span>
-							</p>
-						</li>
-						{% else %}
-						<li data-icon="false">
-							<a href="#pro_detail">
-								<img src="/media/{{project.image}}" />
-								<h3>{{project.title}}</h3>
-								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress"> <b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p>{{project.com_name}}</p>
-								<p>{{project.brief}}</p>
-								<p class="ui-li-aside">{{project.pro_type}}</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									年化利率:
-									<em class="hl1">{{project.scale}}%</em>
-								</span>
-								<span>
-									融资总额:
-									<em class="hl1">￥{{project.current_price}}</em>
-								</span>
-								<span>
-									授信额度:
-									<em class="hl1">￥{{project.min_price}}</em>
-								</span>
-							</p>
-						</li>
-						{% endifequal %}
-							{% endfor %}
-					</ul>
-					<div id="pullUp">
-						<span class="pullUpIcon"></span>
-						<span class="pullUpLabel">上拉加载更多...</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="itemsRecommend" style="display:none">
-			<div id= "carousel" class="slideBox">
-				<ul class="items">
+{% block body_block %}
+<div data-role ="page" id="index" data-title="清大众筹" class="index">
+	<div data-role ="header" data-position="fixed" data-tap-toggle="false">
+		<h1>清大众筹</h1>
+		<div data-role="tabs" id="tabs" >
+			<div data-role="navbar" class="ui-navbar-fixed">
+				<ul>
 					<li>
-						<a href="#">
-							<img src="{% static 'wechat/images/img_1.png'%}" />
-						</a>
+						<a id="t_itemsList" data-theme="f" class="ui-btn-active" >项目列表</a>
 					</li>
 					<li>
-						<a href="#">
-							<img src="{% static 'wechat/images/img_1.png'%}" />
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="{% static 'wechat/images/img_1.png'%}" />
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="{% static 'wechat/images/img_1.png'%}" />
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img src="{% static 'wechat/images/img_1.png'%}" />
-						</a>
+						<a id="t_itemsRecommend" data-theme="f">推荐项目</a>
 					</li>
 				</ul>
 			</div>
-			<ul data-role ="listview" data-theme ="f" >
-						{% for project in projects_commend%}
-							{% ifequal project.type 'stock' %}
-						<li data-icon="false">
-							<a href="#pro_detail">
-								<img src="/media/{{project.image}}" />
-								<h3>{{project.title}}</h3>
-								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress">
-										<b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p class="cbrief">
-									<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
-									<span class="hl1">{{project.industry}}</span>
-									<span class="hl2">{{project.com_type}}</span>
-								</p>
-								<p class="cpopular">
-									<span>
-										热度
-										<em class="hl1">{{project.view_count}}</em>
-									</span>
-									/
-									<span>
-										关注
-										<em class="hl1">{{project.like_count}}</em>
-									</span>
-									/
-									<span>
-										认购
-										<em class="hl1">{{project.invest_count}}</em>
-									</span>
-								</p>
-								<p class="ui-li-aside">{{project.pro_type}}</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									当前融资:
-									<em>￥{{project.current_price}}</em>
+		</div>
+	</div>
+	<div id="itemsList">
+		<div id="wrapper" class="ui-content">
+			<div id="scroller">
+				<div id="pullDown">
+					<span class="pullDownIcon"></span>
+					<span class="pullDownLabel">下拉刷新...</span>
+				</div>
+				<ul data-role ="listview" data-theme ="f" id="thelist">
+					{% for project in projects%}
+						{% ifequal project.type 'stock' %}
+					<li data-icon="false">
+						<a href="/w/pd/tsd{{project.id}}" data-ajax="false">
+							<img src="/media/{{project.image}}" />
+							<h3>{{project.title}}</h3>
+							<p class="progressbar" data="{{project.progress}}">
+								<span class="progress"> <b class="bar"></b>
 								</span>
+								<span class="num">{{project.progress}}%</span>
+							</p>
+							<p class="cbrief">
+								<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
+								<span class="hl1">{{project.industry}}</span>
+								<span class="hl2">{{project.com_type}}</span>
+							</p>
+							<p class="cpopular">
 								<span>
-									融资总额:
-									<em>￥{{project.total_price}}</em>
+									热度 <em class="hl1">{{project.view_count}}</em>
 								</span>
+								/
 								<span>
-									认购起点:
-									<em>￥{{project.min_price}}</em>
+									关注 <em class="hl1">{{project.like_count}}</em>
+								</span>
+								/
+								<span>
+									认购
+									<em class="hl1">{{project.invest_count}}</em>
 								</span>
 							</p>
-						</li>
-						{% else %}
-						<li data-icon="false">
-							<a href="#pro_detail">
-								<img src="/media/{{project.image}}" />
-								<h3>{{project.title}}</h3>
-								<p class="progressbar" data="{{project.progress}}">
-									<span class="progress">
-										<b class="bar"></b>
-									</span>
-									<span class="num">0</span>
-								</p>
-								<p>{{project.com_name}}</p>
-								<p>{{project.brief}}</p>
-								<p class="ui-li-aside">{{project.pro_type}}</p>
-							</a>
-							<p class="ui-li-bottom">
-								<span>
-									年化利率:
-									<em class="hl1">{{project.scale}}%</em>
+							<p class="ui-li-aside">{{project.pro_type}}</p>
+						</a>
+						<p class="ui-li-bottom">
+							<span>
+								当前融资:
+								<em>￥{{project.current_price}}</em>
+							</span>
+							<span>
+								融资总额:
+								<em>￥{{project.total_price}}</em>
+							</span>
+							<span>
+								认购起点:
+								<em>￥{{project.min_price}}</em>
+							</span>
+						</p>
+					</li>
+					{% else %}
+					<li data-icon="false">
+						<a href="/w/pd/tbd{{project.id}}" data-ajax="false">
+							<img src="/media/{{project.image}}" />
+							<h3>{{project.title}}</h3>
+							<p class="progressbar" data="{{project.progress}}">
+								<span class="progress"> <b class="bar"></b>
 								</span>
-								<span>
-									融资总额:
-									<em class="hl1">￥{{project.current_price}}</em>
-								</span>
-								<span>
-									授信额度:
-									<em class="hl1">￥{{project.min_price}}</em>
-								</span>
+								<span class="num">0</span>
 							</p>
-						</li>
-						{% endifequal %}
+							<p>{{project.com_name}}</p>
+							<p>{{project.brief}}</p>
+							<p class="ui-li-aside">{{project.pro_type}}</p>
+						</a>
+						<p class="ui-li-bottom">
+							<span>
+								年化利率:
+								<em class="hl1">{{project.scale}}%</em>
+							</span>
+							<span>
+								融资总额:
+								<em class="hl1">￥{{project.current_price}}</em>
+							</span>
+							<span>
+								授信额度:
+								<em class="hl1">￥{{project.min_price}}</em>
+							</span>
+						</p>
+					</li>
+					{% endifequal %}
 							{% endfor %}
+				</ul>
+				<div id="pullUp">
+					<span class="pullUpIcon"></span>
+					<span class="pullUpLabel">上拉加载更多...</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="itemsRecommend" style="display:none">
+		<div id= "carousel" class="slideBox">
+			<ul class="items">
+				<li>
+					<a href="#">
+						<img src="{% static 'wechat/images/img_1.png'%}" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="{% static 'wechat/images/img_1.png'%}" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="{% static 'wechat/images/img_1.png'%}" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="{% static 'wechat/images/img_1.png'%}" />
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="{% static 'wechat/images/img_1.png'%}" />
+					</a>
+				</li>
 			</ul>
 		</div>
+		<ul data-role ="listview" data-theme ="f" >
+			{% for project in projects_commend%}
+							{% ifequal project.type 'stock' %}
+			<li data-icon="false">
+				<a href="/w/pd/tsd{{project.id}}" data-ajax="false">
+					<img src="/media/{{project.image}}" />
+					<h3>{{project.title}}</h3>
+					<p class="progressbar" data="{{project.progress}}">
+						<span class="progress">
+							<b class="bar"></b>
+						</span>
+						<span class="num">0</span>
+					</p>
+					<p class="cbrief">
+						<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{project.province}}</span>
+						<span class="hl1">{{project.industry}}</span>
+						<span class="hl2">{{project.com_type}}</span>
+					</p>
+					<p class="cpopular">
+						<span>
+							热度
+							<em class="hl1">{{project.view_count}}</em>
+						</span>
+						/
+						<span>
+							关注
+							<em class="hl1">{{project.like_count}}</em>
+						</span>
+						/
+						<span>
+							认购
+							<em class="hl1">{{project.invest_count}}</em>
+						</span>
+					</p>
+					<p class="ui-li-aside">{{project.pro_type}}</p>
+				</a>
+				<p class="ui-li-bottom">
+					<span>
+						当前融资:
+						<em>￥{{project.current_price}}</em>
+					</span>
+					<span>
+						融资总额:
+						<em>￥{{project.total_price}}</em>
+					</span>
+					<span>
+						认购起点:
+						<em>￥{{project.min_price}}</em>
+					</span>
+				</p>
+			</li>
+			{% else %}
+			<li data-icon="false">
+				<a href="/w/pd/tbd{{project.id}}" data-ajax="false">
+					<img src="/media/{{project.image}}" />
+					<h3>{{project.title}}</h3>
+					<p class="progressbar" data="{{project.progress}}">
+						<span class="progress">
+							<b class="bar"></b>
+						</span>
+						<span class="num">0</span>
+					</p>
+					<p>{{project.com_name}}</p>
+					<p>{{project.brief}}</p>
+					<p class="ui-li-aside">{{project.pro_type}}</p>
+				</a>
+				<p class="ui-li-bottom">
+					<span>
+						年化利率:
+						<em class="hl1">{{project.scale}}%</em>
+					</span>
+					<span>
+						融资总额:
+						<em class="hl1">￥{{project.current_price}}</em>
+					</span>
+					<span>
+						授信额度:
+						<em class="hl1">￥{{project.min_price}}</em>
+					</span>
+				</p>
+			</li>
+			{% endifequal %}
+							{% endfor %}
+		</ul>
+	</div>
 	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
 		<div data-role="navbar">
 			<ul>
@@ -257,11 +245,4 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
-<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
-<script type="text/javascript"  src="{% static 'wechat/js/plug.js'%}"></script>
-<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
-<script type="text/javascript"  src="{% static 'wechat/js/iscroll.js'%}"></script>
-<script type="text/javascript"  src="{% static 'wechat/js/index.js'%}"></script>
-</body>
-</html>
+{% endblock %}

@@ -23,6 +23,7 @@ def Index(request):
 	for STOCK_obj in STOCK_objs:
 		stock_data = {}
 		stock_data['type'] = 'stock'
+		stock_data['id'] = STOCK_obj.id
 		stock_data['title'] = STOCK_obj.st_title
 		stock_data['image'] = str(STOCK_obj.st_image)
 		stock_data['pro_type'] = STOCK_obj.st_pro_type.pt_name
@@ -64,6 +65,7 @@ def Index(request):
 	for STOCK_obj in STOCK_com_objs:
 		stock_data = {}
 		stock_data['type'] = 'stock'
+		stock_data['id'] = STOCK_obj.id
 		stock_data['title'] = STOCK_obj.st_title
 		stock_data['image'] = str(STOCK_obj.st_image)
 		stock_data['pro_type'] = STOCK_obj.st_pro_type.pt_name
@@ -118,6 +120,7 @@ def GetProList(request,count):
 	for STOCK_obj in STOCK_objs:
 		stock_data = {}
 		stock_data['type'] = 'stock'
+		stock_data['id'] = STOCK_obj.id
 		stock_data['title'] = STOCK_obj.st_title
 		stock_data['image'] = str(STOCK_obj.st_image)
 		stock_data['pro_type'] = STOCK_obj.st_pro_type.pt_name
@@ -230,7 +233,8 @@ def ProManage(request,p_type,p_id):
 
 
 #微信端获取项目详细页面
-def Projectdetail(request):
+def ProjectDetail(request,p_type,p_id):
 	context = RequestContext(request)
 	context_dict = {}
+	print p_type,p_id
 	return render_to_response('wechat/proDetail.html',context_dict,context)
