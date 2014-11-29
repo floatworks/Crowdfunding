@@ -429,7 +429,10 @@ def Login(request):
 			request.session['HAS_LOGIN'] = True
 			request.session['USER_ID'] = USERS_objs[0].id
 			request.session['USER_NAME'] = USERS_objs[0].u_name
-			return HttpResponseRedirect(request.session['origin_path'])
+			origin_path = request.session.get('origin_path','/w')
+			if origin_path == '/w/login/' or origin_path == '/w/login':
+				origin_path = '/w'
+			return HttpResponseRedirect(origin_path)
 		else:
 			return render_to_response('wechat/login.html',context_dict,context)
 
