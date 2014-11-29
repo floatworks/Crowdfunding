@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 	url(r'^nodetail/t(\w+)d(\d+)$', viewWechat.NoticeDetail, name='NoticeDetail'),
 	url(r'^promanage/t(\w+)d(\d+)$', viewWechat.ProManage, name='ProManage'),
 	url(r'^pd/t(\w+)d(\d+)$', viewWechat.ProjectDetail, name='ProjectDetail'),
+	url(r'^login', viewWechat.Login, name='Login'),
 	)

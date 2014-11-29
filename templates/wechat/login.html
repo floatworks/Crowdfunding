@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>清大众筹</title>
+	<link rel="shortcut icon" href="favicon.png">
+	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
+</head>
+<body>
+	<div data-role ="page" id="login" data-title="用户登录" class="login" data-theme="d">
+		
+
+			
+			<div class="absolute">
+				<img src="{% static 'wechat/css/themes/images/login_logo.png'%}" />
+				<div data-role="controlgroup">
+					<input type="text" name="user" id="user" placeholder="帐号，注册时输入的用户名" />
+					<input type="password" name="password" id="password" placeholder="密码，3次机会" />
+					<a href="#">忘记密码</a>
+				</div>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a" >
+						<button data-theme="b" >注册</button>
+					</div>
+					<div class="ui-block-b" >
+						<button data-theme="c" >登录</button>
+					</div>
+				</div>
+
+				<div class="ui-grid-solo">体验一下 &gt;</div>
+</div>
+			
+		
+	</div>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
+</body>
+</html>
