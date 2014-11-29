@@ -1,43 +1,44 @@
 {% extends "wechat/base.html" %}
 {% load staticfiles %}
+{% load extra_tags%}
 {% block body_block %}
-<div data-role="page" id="pro_detail" data-title="众筹详情" class="pro_detail">
+<div data-role="page" id="pro_detail" data-title="清大众筹" class="pro_detail">
 	<div data-role="header" data-position="fixed" data-tap-toggle="false">
 		<a href="#" data-rel="back">&lt; 返回</a>
-		<h1>股权众筹详情</h1>
+		<h1>{{title}}</h1>
 	</div>
 
 	<div data-role="tabs" id="detailtabs">
 		<div data-role="navbar" class="ui-navbar-fixed">
 			<div class="relative">
 				<div class="co_covers">
-					<img src="{% static 'wechat/images/co_img_1.png'%}" />
+					<img src="/media/{{image}}" />
 					<div class="follow">
 						<p href="#" class="follow-heart">&nbsp;</p>
 					</div>
 					<div class="popular">
 						<div class="ui-grid-b">
 							<div class="ui-block-a">
-								<p>239</p>
+								<p>{{view_count}}</p>
 								<p>
 									<span>热度</span>
 								</p>
 							</div>
 							<div class="ui-block-b">
-								<p>3088</p>
+								<p>{{like_count}}</p>
 								<p>
 									<span>关注</span>
 								</p>
 							</div>
 							<div class="ui-block-c">
-								<p>1916</p>
+								<p>{{invest_count}}</p>
 								<p>
 									<span>认购</span>
 								</p>
 							</div>
 						</div>
 					</div>
-					<div class="progressbar" data="45">
+					<div class="progressbar" data="{{progress}}">
 						<span class="progress"> <b class="bar"></b>
 						</span>
 					</div>
@@ -62,14 +63,14 @@
 				</ul>
 				<div class="ui-grid-solo">
 					<div class="ui-block-a">
-						<h3>小资太太茶餐厅</h3>
+						<h3>{{title}}</h3>
 						<p class="cbrief">
-							<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">北京</span>
-							<span class="hl1">医疗健康</span>
-							<span class="hl2">拟挂牌</span>
-							<span class="hl3">剩余28天</span>
+							<span class="ui-alt-icon ui-icon-location ui-btn-icon-left">{{province}}</span>
+							<span class="hl1">{{st_industry}}</span>
+							<span class="hl2">{{st_com_type}}</span>
+							<span class="hl3">剩余{{end_time|lastDays}}天</span>
 						</p>
-						<p class="ui-li-aside">筹资中</p>
+						<p class="ui-li-aside">{{st_pro_type}}</p>
 					</div>
 				</div>
 			</div>
@@ -78,33 +79,86 @@
 			<ul data-role="listview">
 				<li class="ui-grid-b">
 					<div class="ui-block-a">
-						<p>￥2000</p>
+						<p>{{current_price|toTenThous}}万</p>
 						<p>
 							<span>当前融资</span>
 						</p>
 					</div>
 					<div class="ui-block-b">
-						<p>￥2000</p>
+						<p>{{total_price|toTenThous}}万</p>
 						<p>
 							<span>融资总额</span>
 						</p>
 					</div>
 					<div class="ui-block-c">
-						<p>￥2000</p>
+						{% if scale %}
+						<p>{{scale}}%</p>
 						<p>
 							<span>年化利率</span>
 						</p>
+						{% else %}
+						<p>{{min_price|toTenThous}}万</p>
+						<p>
+							<span>认购起点</span>
+						</p>
+						{% endif %}
 					</div>
 				</li>
 				<li>
-					<a href="#pro_detail_list" class="ui-alt-icon">投标计划</a>
+					<a href="#pro_detail_list" class="ui-alt-icon">认购历史</a>
 				</li>
 			</ul>
 		</div>
 		<div id="pro_intro" class="ui-content">
-			<div class="pro-content"></div>
+			<div class="pro-content">
+				{% autoescape off %}
+				{% if stock%}
+				{% if stock.st_video %}
+		            <div id='plv_video' data='{{stock.st_video}}'></div>
+		        {% endif %}
+				<strong>重要提示</strong>
+				{{stock.st_hint}}
+				<strong>公司介绍</strong>
+				{{stock.st_com_brief}}
+				<strong>投资者保护机制</strong>
+				{{stock.st_protect}}
+				<strong>信息披露安排</strong>
+				{{stock.st_inf_expose}}
+				<strong>融资计划</strong>
+				{{stock.st_plan}}
+				<strong>财务情况</strong>
+				{{stock.st_finance}}
+				<strong>优势和劣势</strong>
+				{{stock.st_good_bad}}
+				<strong>市场分析</strong>
+				{{stock.st_market}}
+				<strong>商业模式</strong>
+				{{stock.st_business}}
+				<strong>风险控制</strong>
+				{{stock.st_risk}}
+				<strong>团队介绍</strong>
+				{{stock.st_team}}
+				{% elif bond %}
+				{% if bond.bo_video %}
+		            <div id='plv_video' data='{{bond.bo_video}}'></div>
+		        {% endif %}
+				<strong>企业基本信息</strong>
+				{{bond.bo_com_inf}}
+				<strong>财务状况</strong>
+				{{bond.bo_finance}}
+				<strong>项目风险保障</strong>
+				{{bond.bo_risk_inf}}
+				<strong>还款计划</strong>
+				{{bond.bo_repay_plan}}
+				{% endif %}
+				{% endautoescape %}
+			</div>
 		</div>
-		<div id="invest_manage" class="ui-content"></div>
+		<div id="invest_manage" class="ui-content">
+			{% autoescape off %}
+			{{promanage}}
+			{% endautoescape %}
+		</div>
 	</div>
 	<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme="b">
 		<div class="ui-grid-a bottomnav">
@@ -125,26 +179,13 @@
 	</div>
 	<div role="main" class="ui-content">
 		<ul data-role="listview">
+			{% for invest in invests%}
 			<li class="ui-grid-b">
-				<div class="ui-block-a">2014-07-26</div>
-				<div class="ui-block-b">祥云****</div>
-				<div class="ui-block-c">￥1000</div>
+				<div class="ui-block-a">{{invest.date|date:"Y-m-d"}}</div>
+				<div class="ui-block-b">{{invest.user|slice:"1"}}**</div>
+				<div class="ui-block-c">￥{{invest.price}}</div>
 			</li>
-			<li class="ui-grid-b">
-				<div class="ui-block-a">2014-07-26</div>
-				<div class="ui-block-b">七彩****</div>
-				<div class="ui-block-c">￥1000</div>
-			</li>
-			<li class="ui-grid-b">
-				<div class="ui-block-a">2014-07-26</div>
-				<div class="ui-block-b">七彩****</div>
-				<div class="ui-block-c">￥1000</div>
-			</li>
-			<li class="ui-grid-b">
-				<div class="ui-block-a">2014-07-26</div>
-				<div class="ui-block-b">七彩****</div>
-				<div class="ui-block-c">￥1000</div>
-			</li>
+			{% endfor %}
 		</ul>
 	</div>
 </div>

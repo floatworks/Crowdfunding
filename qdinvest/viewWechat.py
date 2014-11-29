@@ -237,7 +237,76 @@ def ProjectDetail(request,p_type,p_id):
 	context = RequestContext(request)
 	context_dict = {}
 	print p_type,p_id
-	return render_to_response('wechat/proDetail.html',context_dict,context)
+	if p_type == 's':
+		try:
+			STOCK_obj = STOCK.objects.get(id__exact = p_id)
+			context_dict['title'] = STOCK_obj.st_title
+			context_dict['image'] = STOCK_obj.st_image
+			#获取用户是否已经关注
+			#if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_obj}):
+			#	context_dict['st_if_like'] = 1
+			#else:
+			#	context_dict['st_if_like'] = 0
+			context_dict['view_count'] = STOCK_obj.st_view_count
+			context_dict['like_count'] = STOCK_obj.st_like_count
+			context_dict['invest_count'] = STOCK_obj.st_invest_count
+			context_dict['progress'] = T.Scale(STOCK_obj.st_current_price,STOCK_obj.st_total_price)
+			context_dict['province'] = STOCK_obj.st_province.pr_name
+			context_dict['st_industry'] = STOCK_obj.st_industry.in_name
+			context_dict['st_com_type'] = STOCK_obj.st_com_type.ct_name
+			context_dict['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
+			context_dict['end_time'] = STOCK_obj.st_end_time
+			context_dict['current_price'] = STOCK_obj.st_current_price
+			context_dict['total_price'] = STOCK_obj.st_total_price
+			context_dict['min_price'] = STOCK_obj.st_min_price
+			invests = []
+			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_stock = STOCK_obj)
+			for INVEST_STOCK_obj in INVEST_STOCK_objs:
+				invests.append({'date':INVEST_STOCK_obj.is_date,'user':INVEST_STOCK_obj.is_user.u_name,'price':INVEST_STOCK_obj.is_amount})
+			context_dict['invests'] = invests
+			context_dict['stock'] = STOCK_obj
+			context_dict['promanage'] = STOCK_obj.st_manage
+
+			return render_to_response('wechat/proDetail.html',context_dict,context)
+		except STOCK.DoesNotExist:
+			raise Http404
+	elif p_type == 'b':
+		try:
+			BOND_obj = BOND.objects.get(id__exact = p_id)
+			context_dict['title'] = BOND_obj.bo_title
+			context_dict['image'] = BOND_obj.bo_image
+			#获取用户是否已经关注
+			#if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_obj}):
+			#	context_dict['st_if_like'] = 1
+			#else:
+			#	context_dict['st_if_like'] = 0
+			context_dict['view_count'] = BOND_obj.bo_view_count
+			context_dict['like_count'] = BOND_obj.bo_like_count
+			context_dict['invest_count'] = BOND_obj.bo_invest_count
+			context_dict['progress'] = T.Scale(BOND_obj.bo_current_price,BOND_obj.bo_total_price)
+			context_dict['province'] = BOND_obj.bo_province.pr_name
+			context_dict['st_industry'] = BOND_obj.bo_industry.in_name
+			context_dict['st_com_type'] = BOND_obj.bo_com_type.ct_name
+			context_dict['st_pro_type'] = BOND_obj.bo_pro_type.pt_name
+			context_dict['end_time'] = BOND_obj.bo_end_time
+			context_dict['current_price'] = BOND_obj.bo_current_price
+			context_dict['total_price'] = BOND_obj.bo_total_price
+			context_dict['min_price'] = BOND_obj.bo_min_price
+			context_dict['scale'] = BOND_obj.bo_scale
+			invests = []
+			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_bond = BOND_obj)
+			for INVEST_BOND_obj in INVEST_BOND_objs:
+				invests.append({'date':INVEST_BOND_obj.ib_date,'user':INVEST_BOND_obj.ib_user.u_name,'price':INVEST_BOND_obj.ib_amount})
+			context_dict['invests'] = invests
+			context_dict['bond'] = BOND_obj
+			context_dict['promanage'] = BOND_obj.bo_manage
+
+			return render_to_response('wechat/proDetail.html',context_dict,context)
+		except BOND.DoesNotExist:
+			raise Http404
+	else:
+		raise Http404
+	
 
 #微信端登录
 def Login(request):
