@@ -1,20 +1,10 @@
-<!DOCTYPE html>
+{% extends "wechat/base.html" %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>清大众筹</title>
-	<link rel="shortcut icon" href="favicon.png">
-	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
-</head>
-<body>
-	<div data-role ="page" id="setting" data-title="设置" class="setting">
+{% load extra_tags%}
+{% block body_block %}
+	<div data-role ="page" id="setting" data-title="清大众筹" class="setting">
 		<div data-role="header" >
-			<h1>设置</h1>
+			<h1>更多</h1>
 		</div>
 		<div role="main" class="ui-content">
 			<h4>关于</h4>
@@ -48,7 +38,7 @@
 						<a href="#" data-icon="bullets">我的项目</a>
 					</li>
 					<li>
-						<a href="#" data-icon="gear" class="ui-btn-active">设置</a>
+						<a href="#" data-icon="gear" class="ui-btn-active">更多</a>
 					</li>
 				</ul>
 			</div>
@@ -110,8 +100,4 @@
 			</p>
 		</div>
 	</div>
-	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
-	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
-</body>
-</html>
+{% endblock %}

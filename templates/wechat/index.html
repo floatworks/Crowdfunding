@@ -27,7 +27,7 @@
 				</div>
 				<ul data-role ="listview" data-theme ="f" id="thelist">
 					{% for project in projects%}
-						{% ifequal project.type 'stock' %}
+					{% ifequal project.type 'stock' %}
 					<li data-icon="false">
 						<a href="/w/pd/tsd{{project.id}}" data-ajax="false">
 							<img src="/media/{{project.image}}" />
@@ -144,7 +144,7 @@
 		</div>
 		<ul data-role ="listview" data-theme ="f" >
 			{% for project in projects_commend%}
-							{% ifequal project.type 'stock' %}
+			{% ifequal project.type 'stock' %}
 			<li data-icon="false">
 				<a href="/w/pd/tsd{{project.id}}" data-ajax="false">
 					<img src="/media/{{project.image}}" />
@@ -224,7 +224,7 @@
 				</p>
 			</li>
 			{% endifequal %}
-							{% endfor %}
+			{% endfor %}
 		</ul>
 	</div>
 	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
@@ -240,7 +240,7 @@
 					<a href="#" data-icon="bullets">我的项目</a>
 				</li>
 				<li>
-					<a href="#" data-icon="gear">设置</a>
+					<a href="/w/setting/" data-icon="gear" data-ajax='false'>更多</a>
 				</li>
 			</ul>
 		</div>
