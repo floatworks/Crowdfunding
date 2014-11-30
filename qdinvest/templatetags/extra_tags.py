@@ -24,5 +24,5 @@ def toTenThous(value):
 def money(value):
 	value = float(value)
 	value = round(value,2)
-	value = '{:,}'.format(value)
+	value = '{0:,}'.format(value)
 	return value

@@ -424,12 +424,13 @@ def Login(request):
 		password = request.POST.get('pwd','')
 
 		USERS_objs = USERS.objects.filter(u_name = username,u_pwd = password)
+		print USERS_objs
 		if USERS_objs:
 			request.session['HAS_LOGIN'] = True
 			request.session['USER_ID'] = USERS_objs[0].id
 			request.session['USER_NAME'] = USERS_objs[0].u_name
 			origin_path = request.session.get('origin_path','/w')
-			if origin_path == '/w/login/' or origin_path == '/w/login':
+			if origin_path == '/w/login/' or origin_path == '/w/login' or not origin_path:
 				origin_path = '/w'
 			return HttpResponseRedirect(origin_path)
 		else:
