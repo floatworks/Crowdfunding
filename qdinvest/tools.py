@@ -102,6 +102,11 @@ def CheckIsLogin(request):
 	if request.session.get('HAS_LOGIN',False):
 		return True
 	else:
-		request.session['origin_path'] = request.META.get('HTTP_REFERER', '/w')
+		origin_path = request.META.get('HTTP_REFERER', '')
+		print origin_path
+		if origin_path.endswith('/w') or origin_path.endswith('/w/'):
+			origin_path = request.path
+		print origin_path
+		request.session['origin_path'] = origin_path
 		return False
 

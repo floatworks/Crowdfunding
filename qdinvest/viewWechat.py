@@ -424,25 +424,42 @@ def Login(request):
 		password = request.POST.get('pwd','')
 
 		USERS_objs = USERS.objects.filter(u_name = username,u_pwd = password)
+		print USERS_objs
 		if USERS_objs:
 			request.session['HAS_LOGIN'] = True
 			request.session['USER_ID'] = USERS_objs[0].id
 			request.session['USER_NAME'] = USERS_objs[0].u_name
 			origin_path = request.session.get('origin_path','/w')
-			if origin_path == '/w/login/' or origin_path == '/w/login':
+			if origin_path == '/w/login/' or origin_path == '/w/login' or not origin_path:
 				origin_path = '/w'
 			return HttpResponseRedirect(origin_path)
 		else:
 			return render_to_response('wechat/login.html',context_dict,context)
+	else:
+		return render_to_response('wechat/login.html',context_dict,context)
 
 #微信端个人中心
 def Personal(request):
 	context = RequestContext(request)
 	context_dict = {}
+
+	if not T.CheckIsLogin(request):
+		return	HttpResponseRedirect('/w/login/')
+	else:
+		#USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		ACCOUNT_obj = ACCOUNT.objects.get(ac_user__id = request.session['USER_ID'])
+		context_dict['account'] = ACCOUNT_obj
+
 	return render_to_response('wechat/personal.html',context_dict,context)
 
-#微信端关于页面
+#微信端设置页面
 def Setting(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('wechat/setting.html',context_dict,context)
+
+#微信端我的项目页面
+def GetMyProList(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('wechat/myprolist.html',context_dict,context)

@@ -117,6 +117,9 @@ DATE_FORMAT = 'Y-m-d'
 
 DATETIME_FORMAT = 'Y-m-d H:i:s'
 
+SESSION_COOKIE_AGE = 60*30
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
