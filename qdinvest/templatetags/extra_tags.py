@@ -18,3 +18,11 @@ def toTenThous(value):
 	value /= 10000;
 	value = int(value)
 	return value
+
+#转化金额 金额的千位分
+@register.filter(name='money')
+def money(value):
+	value = float(value)
+	value = round(value,2)
+	value = '{:,}'.format(value)
+	return value

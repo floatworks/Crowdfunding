@@ -434,11 +434,21 @@ def Login(request):
 			return HttpResponseRedirect(origin_path)
 		else:
 			return render_to_response('wechat/login.html',context_dict,context)
+	else:
+		return render_to_response('wechat/login.html',context_dict,context)
 
 #微信端个人中心
 def Personal(request):
 	context = RequestContext(request)
 	context_dict = {}
+
+	if not T.CheckIsLogin(request):
+		return	HttpResponseRedirect('/w/login/')
+	else:
+		#USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		ACCOUNT_obj = ACCOUNT.objects.get(ac_user__id = request.session['USER_ID'])
+		context_dict['account'] = ACCOUNT_obj
+
 	return render_to_response('wechat/personal.html',context_dict,context)
 
 #微信端关于页面

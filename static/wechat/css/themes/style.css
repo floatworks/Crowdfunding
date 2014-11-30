@@ -582,19 +582,23 @@
 .personal .ui-content .ui-grid-a p {
 	margin: 0;
 	font-size: .6em;
-	padding-left: 2%;
+	padding-left: 1em;
+}
+.personal .ui-content .ui-grid-solo p.total,
+.personal .ui-content .ui-grid-a p.total,
+.personal .ui-content .ui-grid-solo p.part,
+.personal .ui-content .ui-grid-a p.part {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding-left: .5em;
 }
 .personal .ui-content .ui-grid-solo p.total,
 .personal .ui-content .ui-grid-a p.total {
 	color:#FF5000; 
-	font-size: 1.2em;
-	font-weight: bold;
 }
 .personal .ui-content .ui-grid-solo p.part,
 .personal .ui-content .ui-grid-a p.part{
 	color:#379945; 
-	font-size: 1.2em;
-	font-weight: bold;
 }
 .personal .ui-content .ui-grid-solo p span{
 	background-color: #FF5000;
