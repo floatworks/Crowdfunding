@@ -49,6 +49,17 @@ def SendRandomCode(u_tel):
 	else:
 		return False
 
+		
+#判断用户的验证码是否错误或者超时 5min
+def CheckRandomCode(u_tel,code):
+	randomCode_obj = RANDOMCODE.objects.filter(rc_tel__exact = u_tel)
+	if randomCode_obj:
+		if randomCode_obj[0].rc_code == code and (datetime.now() - randomCode_obj[0].rc_time).seconds < 300:
+			return True
+		else:
+			return False
+	else:
+		return False
 
 #token检查合法性 超时时间为30min
 #add = 1 表示插入或者更新token add = 0 检验是否合法

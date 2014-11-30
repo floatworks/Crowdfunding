@@ -9,28 +9,9 @@ $(document).ready(function(){
 		},
 		ajaxPrompt : '有数据正在异步验证，请稍等...'
 	});
-	$("#username").blur(function(){
-		var v=$("#username").val();
-		var t=/^[a-zA-Z0-9]{1}[0-9a-zA-Z]{1,}$/;
-		if(!t.test(v)){
-			$("#u_name").text("用户名为6至15位数字或字母");
-			$("#u_name").show();
-		}
-		else if(v.length <6){
-			$("#u_name").text("用户名长度不能小于6");
-			$("#u_name").show();
-		}
-		else if(v.length >15){
-			$("#u_name").text("用户名长度不能大于15");
-			$("#u_name").show();
-		}
-		else{
-			$("#u_name").text("success");
-			$("#u_name").hide();
-		}
-	});
 
 
+// register.html的js
 	$("#password").blur(function(){
 		var v=$("#password").val();
 		var t=/^[A-Za-z].*[0-9].*|[0-9].*[A-Za-z].*$/;
@@ -52,22 +33,200 @@ $(document).ready(function(){
 		}
 	});
 
+
+
+
+	$("#username").blur(function(){
+
+		$.ajax({
+			url:'/c/register1/?u_name='+$("#username").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#u_name").text(data.msg);
+				if (data.msg =="success")
+					$("#u_name").hide();
+				else
+					$("#u_name").show();
+			}
+
+		});
+	});
+
+
+
 	$("#telephone").blur(function(){
-		var v=$("#telephone").val();
-		var t=/^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$/;
-		if(!t.test(v)){
-			$("#u_tel").text("你输入的电话号码无效");
-			$("#u_tel").show();
-		}
-		else if(v.length!= 11){
-			$("#u_tel").text("密码长度应为11位");
-			$("#u_tel").show();
+
+		$.ajax({
+			url:'/c/register2/?u_tel='+$("#telephone").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#u_tel").text(data.msg);
+				if (data.msg =="success")
+					$("#u_tel").hide();
+				else
+					$("#u_tel").show();
+			}
+
+		});
+	});
+
+
+
+	$("#submit1").blur(function(){
+		$.ajax({
+			url:'/c/test/?u_telephone='+$("#telephone").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#test").text(data.msg);
+				if (data.msg =="success")
+					$("#test").hide();
+				else
+					$("#test").show();
+			}
+
+		});
+	});
+
+
+
+	$("#test1").blur(function(){
+		$.ajax({
+			url:'/c/test1/?u_test='+$("#test1").val()+'&u_telephone='+$("#telephone").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#test2").text(data.msg);
+				if (data.msg =="success")
+					$("#test2").hide();
+				else
+					$("#test2").show();
+			}
+
+		});
+	});
+
+
+
+	$("#submit").click(function(){
+
+		if(($("#u_name").text()=="success") && ($("#u_pwd").text()=="success") && ($("#u_tel").text()=="success")&& ($("#test").text()=="success")&& ($("#test2").text()=="success"))
+		{
+			return true;
 		}		
 		else{
-			$("#u_tel").text("success");
-			$("#u_tel").hide();
+			alert("请按照提示认真填写信息");
+			return false; 
 		}
 	});
+
+
+
+
+// forget.html的js
+	$("#username1").blur(function(){
+
+		$.ajax({
+			url:'/c/forget1/?u_name='+$("#username1").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#u_name1").text(data.msg);
+				if (data.msg =="success")
+					$("#u_name1").hide();
+				else
+					$("#u_name1").show();
+			}
+
+		});
+	});
+
+
+	$("#telephone1").blur(function(){
+		$.ajax({
+			url:'/c/forget3/?u_tel='+$("#telephone1").val()+'&username='+$("#username1").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#u_tel1").text(data.msg);
+				if (data.msg =="success")
+					$("#u_tel1").hide();
+				else
+					$("#u_tel1").show();
+			}
+
+		});
+	});
+
+
+	$("#button").blur(function(){
+		$.ajax({
+			url:'/c/forget4/?u_telephone='+$("#telephone1").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#button1").text(data.msg);
+				if (data.msg =="success")
+					$("#button1").hide();
+				else
+					$("#button1").show();
+			}
+
+		});
+	});
+
+	// $("#password1").blur(function(){
+	// 	$.ajax({
+	// 		url:'/c/forget2/?test='+$("#test1").val()+'&u_telephone='+$("#telephone").val()+'&u_pwd='+$('#password1').val(),
+	// 		type:'get',
+	// 		dateType:'json',
+	// 		success:function(data){
+	// 			$("#u_pwd1").text(data.msg);
+	// 			if (data.msg =="success")
+	// 				$("#u_pwd1").hide();
+	// 			else
+	// 				$("#u_pwd1").show();
+	// 		}
+
+	// 	});
+	// });
+
+
+	$("#tcod").blur(function(){
+		$.ajax({
+			url:'/c/forget5/?tcod='+$("#tcod").val()+'&telephone1='+$("#telephone1").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#tcod1").text(data.msg);
+				if (data.msg =="success")
+					$("#tcod1").hide();
+				else
+					$("#tcod1").show();
+			}
+
+		});
+	});
+
+
+
+
+
+	$("#alter").click(function(){
+
+		if(($("#u_name1").text()=="success") && ($("#u_tel1").text()=="success") && ($("#button1").text()=="success")&& ($("#u_pwd").text()=="success")&& ($("#tcod1").text()=="success"))
+		{
+			return true;
+		}		
+		else{
+			alert("请按照提示认真填写信息");
+			return false; 
+		}
+	});
+
+
 
 
 	$("#clt_mail").formValidator({onFocus:"请务必填写有效的电邮地址",onCorrect:"&nbsp"})

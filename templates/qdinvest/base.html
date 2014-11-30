@@ -22,7 +22,7 @@
         {% if not request.session.username %}
         <a href="/c/login/" class="login">登录</a>
         |
-        <a href="/c/register/" class="reg">注册</a>
+        <a href="/c/register/"  class="reg">注册</a>
         {% else %}
         <a href="/c/account/" class="reg">{{request.session.username}}</a>
         |
