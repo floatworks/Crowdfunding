@@ -538,6 +538,12 @@ def invest_stock_callback(sender, instance, signal, *args, **kwargs):
 	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_stock_3+invest_bond+invest_bond_3)
 	ACCOUNT_obj.save()
 
+	#修改当前项目已经认购的金额
+	STOCK_obj = post_data.is_stock
+	st_current_price = SUMModel(INVEST_STOCK,{'is_status__id':2},'is_amount') + SUMModel(INVEST_STOCK,{'is_status__id':3},'is_amount')
+	STOCK_obj.st_current_price = st_current_price
+	STOCK_obj.save()
+
 '''
 债权认购触发函数
 '''
@@ -557,6 +563,12 @@ def invest_bond_callback(sender, instance, signal, *args, **kwargs):
 	ACCOUNT_obj.ac_bond_invest = str(invest_bond+invest_bond_3)
 	ACCOUNT_obj.ac_total_invest = str(invest_stock+invest_stock_3+invest_bond+invest_bond_3)
 	ACCOUNT_obj.save()
+
+	#修改当前项目已经认购的金额
+	BOND_obj = post_data.ib_bond
+	bo_current_price = SUMModel(INVEST_BOND,{'ib_status__id':2},'ib_amount') + SUMModel(INVEST_BOND,{'ib_status__id':3},'ib_amount')
+	BOND_obj.bo_current_price = bo_current_price
+	BOND_obj.save()
 
 '''
 收益更改触发函数
