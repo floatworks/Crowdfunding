@@ -43,9 +43,9 @@ function pullUpAction() {
 							content += "/ ";
 							content += "<span>认购 <em class='hl1'>" + projects[index].invest_count + "</em></span></p>";
 							content += "<p class='ui-li-aside'>" + projects[index].pro_type + "</p></a>";
-							content += "<p class='ui-li-bottom'><span>当前融资:<em>￥" + projects[index].current_price + "</em></span>";
-							content += "<span>融资总额:<em>￥" + projects[index].total_price + "</em></span>";
-							content += "<span>认购起点:<em>￥" + projects[index].min_price + "</em></span></p></li>";
+							content += "<p class='ui-li-bottom'><span>当前融资:<em>" + projects[index].current_price/10000 + "万</em></span>";
+							content += "<span>融资总额:<em>" + projects[index].total_price/10000 + "万</em></span>";
+							content += "<span>认购起点:<em>" + projects[index].min_price/10000 + "万</em></span></p></li>";
 						} else if (projects[index].type == 'bond') {
 							content += "<li data-icon='false'>";
 							content += "<a href='/w/pd/tbd"+projects[index].id+"' data-ajax='false'>";
@@ -60,8 +60,8 @@ function pullUpAction() {
 							content += "<p>" + projects[index].brief + "</p>";
 							content += "<p class='ui-li-aside'>" + projects[index].pro_type + "</p></a>";
 							content += "<p class='ui-li-bottom'><span>年化利率:<em class='hl1'>" + projects[index].scale + "%</em></span>";
-							content += "<span>融资总额:<em class='hl1'>￥" + projects[index].current_price + "</em></span>";
-							content += "<span>授信额度:<em class='hl1'>￥" + projects[index].min_price + "</em></span></p></li>"
+							content += "<span>融资总额:<em class='hl1'>" + projects[index].current_price/10000 + "万</em></span>";
+							content += "<span>授信额度:<em class='hl1'>" + projects[index].min_price/10000 + "万</em></span></p></li>"
 						}
 					}
 

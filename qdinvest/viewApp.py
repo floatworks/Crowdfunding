@@ -574,7 +574,7 @@ def ProjectBase(request):
 						stock_dict['st_current_price'] = STOCK_obj.st_current_price
 						stock_dict['st_total_price'] = STOCK_obj.st_total_price
 						stock_dict['st_min_price'] = STOCK_obj.st_min_price
-						stock_dict['st_invest_count'] = STOCK_obj.st_invest_count
+						#stock_dict['st_invest_count'] = STOCK_obj.st_invest_count
 						stock_dict['st_detail'] = '/w/prodetail/tsd'+p_id
 						#获取用户是否已经关注
 						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_objs[0],'uf_stock':STOCK_obj}):

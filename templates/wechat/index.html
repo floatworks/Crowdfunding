@@ -1,5 +1,6 @@
 {% extends "wechat/base.html" %}
 {% load staticfiles %}
+{% load extra_tags%}
 {% block body_block %}
 <div data-role ="page" id="index" data-title="清大众筹" class="index">
 	<div data-role ="header" data-position="fixed" data-tap-toggle="false">
@@ -60,15 +61,15 @@
 						<p class="ui-li-bottom">
 							<span>
 								当前融资:
-								<em>￥{{project.current_price}}</em>
+								<em>{{project.current_price|toTenThous}}万</em>
 							</span>
 							<span>
 								融资总额:
-								<em>￥{{project.total_price}}</em>
+								<em>{{project.total_price|toTenThous}}万</em>
 							</span>
 							<span>
 								认购起点:
-								<em>￥{{project.min_price}}</em>
+								<em>{{project.min_price|toTenThous}}万</em>
 							</span>
 						</p>
 					</li>
@@ -93,16 +94,16 @@
 							</span>
 							<span>
 								融资总额:
-								<em class="hl1">￥{{project.current_price}}</em>
+								<em class="hl1">{{project.current_price|toTenThous}}万</em>
 							</span>
 							<span>
 								授信额度:
-								<em class="hl1">￥{{project.min_price}}</em>
+								<em class="hl1">{{project.min_price|toTenThous}}万</em>
 							</span>
 						</p>
 					</li>
 					{% endifequal %}
-							{% endfor %}
+					{% endfor %}
 				</ul>
 				<div id="pullUp">
 					<span class="pullUpIcon"></span>
@@ -230,10 +231,10 @@
 		<div data-role="navbar">
 			<ul>
 				<li>
-					<a href="#" data-icon="home" class="ui-btn-active">主页</a>
+					<a href="/w" data-icon="home" class="ui-btn-active" data-ajax='false'>主页</a>
 				</li>
 				<li>
-					<a href="#" data-icon="user">我的帐户</a>
+					<a href="/w/account/" data-icon="user" data-ajax='false'>我的帐户</a>
 				</li>
 				<li>
 					<a href="#" data-icon="bullets">我的项目</a>

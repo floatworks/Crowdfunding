@@ -7,6 +7,7 @@ from django.http import Http404
 from django.conf import settings
 import operator
 import traceback
+from datetime import datetime
 
 from models import *
 import tools as T
@@ -237,13 +238,202 @@ def ProjectDetail(request,p_type,p_id):
 	context = RequestContext(request)
 	context_dict = {}
 	print p_type,p_id
-	return render_to_response('wechat/proDetail.html',context_dict,context)
+	if p_type == 's':
+		try:
+			STOCK_obj = STOCK.objects.get(id__exact = p_id)
+			context_dict['p_type'] = 'stock'
+			context_dict['id'] = STOCK_obj.id
+			context_dict['title'] = STOCK_obj.st_title
+			context_dict['image'] = STOCK_obj.st_image
+			#获取用户是否已经关注
+			if request.session.get('HAS_LOGIN',False):
+				USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+				if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_stock':STOCK_obj}):
+					context_dict['if_like'] = 1
+				else:
+					context_dict['if_like'] = 0
+			else:
+				context_dict['if_like'] = 0
+			context_dict['view_count'] = STOCK_obj.st_view_count
+			context_dict['like_count'] = STOCK_obj.st_like_count
+			context_dict['invest_count'] = STOCK_obj.st_invest_count
+			context_dict['progress'] = T.Scale(STOCK_obj.st_current_price,STOCK_obj.st_total_price)
+			context_dict['province'] = STOCK_obj.st_province.pr_name
+			context_dict['st_industry'] = STOCK_obj.st_industry.in_name
+			context_dict['st_com_type'] = STOCK_obj.st_com_type.ct_name
+			context_dict['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
+			context_dict['end_time'] = STOCK_obj.st_end_time
+			context_dict['current_price'] = STOCK_obj.st_current_price
+			context_dict['total_price'] = STOCK_obj.st_total_price
+			context_dict['min_price'] = STOCK_obj.st_min_price
+			invests = []
+			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_stock = STOCK_obj)
+			for INVEST_STOCK_obj in INVEST_STOCK_objs:
+				invests.append({'date':INVEST_STOCK_obj.is_date,'user':INVEST_STOCK_obj.is_user.u_name,'price':INVEST_STOCK_obj.is_amount})
+			context_dict['invests'] = invests
+			context_dict['stock'] = STOCK_obj
+			context_dict['promanage'] = STOCK_obj.st_manage
+
+			return render_to_response('wechat/proDetail.html',context_dict,context)
+		except STOCK.DoesNotExist:
+			raise Http404
+	elif p_type == 'b':
+		try:
+			BOND_obj = BOND.objects.get(id__exact = p_id)
+			context_dict['p_type'] = 'bond'
+			context_dict['id'] = BOND_obj.id
+			context_dict['title'] = BOND_obj.bo_title
+			context_dict['image'] = BOND_obj.bo_image
+			#获取用户是否已经关注
+			if request.session.get('HAS_LOGIN',False):
+				USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+				if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_bond':BOND_obj}):
+					context_dict['if_like'] = 1
+				else:
+					context_dict['if_like'] = 0
+			else:
+				context_dict['if_like'] = 0
+			context_dict['view_count'] = BOND_obj.bo_view_count
+			context_dict['like_count'] = BOND_obj.bo_like_count
+			context_dict['invest_count'] = BOND_obj.bo_invest_count
+			context_dict['progress'] = T.Scale(BOND_obj.bo_current_price,BOND_obj.bo_total_price)
+			context_dict['province'] = BOND_obj.bo_province.pr_name
+			context_dict['st_industry'] = BOND_obj.bo_industry.in_name
+			context_dict['st_com_type'] = BOND_obj.bo_com_type.ct_name
+			context_dict['st_pro_type'] = BOND_obj.bo_pro_type.pt_name
+			context_dict['end_time'] = BOND_obj.bo_end_time
+			context_dict['current_price'] = BOND_obj.bo_current_price
+			context_dict['total_price'] = BOND_obj.bo_total_price
+			context_dict['min_price'] = BOND_obj.bo_min_price
+			context_dict['scale'] = BOND_obj.bo_scale
+			invests = []
+			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_bond = BOND_obj)
+			for INVEST_BOND_obj in INVEST_BOND_objs:
+				invests.append({'date':INVEST_BOND_obj.ib_date,'user':INVEST_BOND_obj.ib_user.u_name,'price':INVEST_BOND_obj.ib_amount})
+			context_dict['invests'] = invests
+			context_dict['bond'] = BOND_obj
+			context_dict['promanage'] = BOND_obj.bo_manage
+
+			return render_to_response('wechat/proDetail.html',context_dict,context)
+		except BOND.DoesNotExist:
+			raise Http404
+	else:
+		raise Http404
+
+#微信端用户喜欢界面
+def ProLike(request):
+	response_dict = {}
+	if not T.CheckIsLogin(request):
+		response_dict['status'] = -1
+	else:
+		if request.method == 'POST':
+			p_type = request.POST.get('type','')
+			p_id = request.POST.get('id','-1')
+			focus = request.POST.get('focus','')
+			p_id = int(p_id)
+			print p_type,p_id,focus
+
+			USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+			if focus == 'like':
+				if p_type == 'stock':
+					STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+					if STOCK_objs:
+						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_stock':STOCK_objs[0]}):
+							response_dict['status'] = 2
+						else:
+							USER_FOCUS_new = USER_FOCUS(uf_user = USERS_obj,uf_stock = STOCK_objs[0],uf_update_time = datetime.now())
+							USER_FOCUS_new.save()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like += 1
+								ACCOUNT_objs[0].save()
+							STOCK_objs[0].st_like_count += 1
+							STOCK_objs[0].save()
+							response_dict['status'] = 1
+					else:
+						response_dict['status'] = 0
+				elif p_type == 'bond':
+					BOND_objs = BOND.objects.filter(id__exact = p_id)
+					if BOND_objs:
+						if T.CheckExist(USER_FOCUS,{'uf_user':USERS_obj,'uf_bond':BOND_objs[0]}):
+							response_dict['status'] = 2
+						else:
+							USER_FOCUS_new = USER_FOCUS(uf_user = USERS_obj,uf_bond = BOND_objs[0],uf_update_time = datetime.now())
+							USER_FOCUS_new.save()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like += 1
+								ACCOUNT_objs[0].save()
+							BOND_objs[0].bo_like_count += 1
+							BOND_objs[0].save()
+							response_dict['status'] = 1
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			elif focus == 'unlike':
+				if p_type == 'stock':
+					STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+					if STOCK_objs:
+						USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_obj,uf_stock = STOCK_objs[0])
+						if USER_FOCUS_objs:
+							USER_FOCUS_objs[0].delete()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like -= 1
+								ACCOUNT_objs[0].save()
+							STOCK_objs[0].st_like_count -= 1
+							STOCK_objs[0].save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 2
+					else:
+						response_dict['status'] = 0
+				elif p_type == 'bond':
+					BOND_objs = BOND.objects.filter(id__exact = p_id)
+					if BOND_objs:
+						USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_obj,uf_bond = BOND_objs[0])
+						if USER_FOCUS_objs:
+							USER_FOCUS_objs[0].delete()
+							ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__exact = USERS_obj)
+							if ACCOUNT_objs:
+								ACCOUNT_objs[0].ac_like -= 1
+								ACCOUNT_objs[0].save()
+							BOND_objs[0].bo_like_count -= 1
+							BOND_objs[0].save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 2
+					else:
+						response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+	
 
 #微信端登录
 def Login(request):
 	context = RequestContext(request)
 	context_dict = {}
-	return render_to_response('wechat/login.html',context_dict,context)
+	if request.method == 'POST':
+		username = request.POST.get('user','')
+		password = request.POST.get('pwd','')
+
+		USERS_objs = USERS.objects.filter(u_name = username,u_pwd = password)
+		if USERS_objs:
+			request.session['HAS_LOGIN'] = True
+			request.session['USER_ID'] = USERS_objs[0].id
+			request.session['USER_NAME'] = USERS_objs[0].u_name
+			origin_path = request.session.get('origin_path','/w')
+			if origin_path == '/w/login/' or origin_path == '/w/login':
+				origin_path = '/w'
+			return HttpResponseRedirect(origin_path)
+		else:
+			return render_to_response('wechat/login.html',context_dict,context)
 
 #微信端个人中心
 def Personal(request):
@@ -251,7 +441,7 @@ def Personal(request):
 	context_dict = {}
 	return render_to_response('wechat/personal.html',context_dict,context)
 
-#微信端个人中心
+#微信端关于页面
 def About(request):
 	context = RequestContext(request)
 	context_dict = {}

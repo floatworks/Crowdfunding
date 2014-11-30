@@ -4,6 +4,7 @@ from models import *
 import string,random
 from datetime import datetime
 from xml.etree import ElementTree
+from django.template import RequestContext
 import requests
 import re
 
@@ -83,3 +84,13 @@ def Scale(divend,div):
 		return 100
 	else:
 		return result
+
+#判断用户是否登陆
+def CheckIsLogin(request):
+	context = RequestContext(request)
+	if request.session.get('HAS_LOGIN',False):
+		return True
+	else:
+		request.session['origin_path'] = request.META.get('HTTP_REFERER', '/w')
+		return False
+
