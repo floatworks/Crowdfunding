@@ -619,6 +619,18 @@ def notice_user_callback(sender, instance, signal, *args, **kwargs):
 		ACCOUNT_obj.ac_infos += 1
 		ACCOUNT_obj.save()
 
+'''
+用户表触发函数
+'''
+def users_callback(sender, instance, signal, *args, **kwargs):
+	if kwargs['created']:
+		#创建用户的时候同时需要创建用户账户
+		ac_infos = NOTICE.objects.filter(no_is_delete = 0).count()
+		ACCOUNT_new = ACCOUNT(ac_user=instance,ac_like=0,ac_support=0,ac_sponsor=0,ac_infos=ac_infos,
+					ac_stock_invest=0,ac_bond_invest=0,ac_total_invest=0,ac_stock_profit=0,ac_bond_profit=0,
+					ac_total_profit=0,ac_subscription=0,ac_total_subscription=0)
+		ACCOUNT_new.save()
+
 post_save.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_delete.connect(invest_stock_callback, sender=INVEST_STOCK,dispatch_uid="unique_invest_stock")
 post_save.connect(invest_bond_callback, sender=INVEST_BOND,dispatch_uid="unique_invest_bond")
@@ -633,6 +645,8 @@ post_delete.connect(payment_callback, sender=PAYMENT,dispatch_uid="unique_paymen
 post_save.connect(notice_callback,sender=NOTICE,dispatch_uid="unique_notice")
 
 post_save.connect(notice_user_callback,sender=NOTICE_USER,dispatch_uid="unique_notice_user")
+
+post_save.connect(users_callback,sender=USERS,dispatch_uid="unique_users")
 
 #功能类，返回某一张表某个参数的SUM
 #kwargs 条件

@@ -39,12 +39,6 @@ def Register(request):
 			userForm = USERSFORM(data = userData)
 			if userForm.is_valid():
 				userForm.save()
-				#创建用户的时候同时需要创建用户账户
-				USERS_obj = USERS.objects.get(u_name__exact = u_name)
-				ACCOUNT_new = ACCOUNT(ac_user=USERS_obj,ac_like=0,ac_support=0,ac_sponsor=0,ac_infos=0,
-							ac_stock_invest=0,ac_bond_invest=0,ac_total_invest=0,ac_stock_profit=0,ac_bond_profit=0,
-							ac_total_profit=0,ac_subscription=0,ac_total_subscription=0)
-				ACCOUNT_new.save()
 				response_dict['status'] = 1
 			else:
 				response_dict['status'] = 0
