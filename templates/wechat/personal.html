@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>清大众筹</title>
+	<link rel="shortcut icon" href="favicon.png">
+	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
+</head>
+<body>
+	<div data-role ="page" id="personal" data-title="个人中心" class="personal">
+		<div data-role="header" data-tap-toggle="false">
+			<a href="#" class="ui-btn ui-btn-message new"></a>
+			<h1>我的帐户</h1>
+			<p>
+				<img src="{% static 'wechat/images/user_pic.png'%}" />
+			</p>
+			<p>一天到晚编码的coder</p>
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<p>239</p>
+					<p>
+						<span>喜欢</span>
+					</p>
+				</div>
+				<div class="ui-block-b">
+					<p>3088</p>
+					<p>
+						<span>支持</span>
+					</p>
+				</div>
+				<div class="ui-block-c">
+					<p>1916</p>
+					<p>
+						<span>发起</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div role="main" class="ui-content">
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<p>投资总额（元）</p>
+					<p class="total">290,653.95</p>
+				</div>
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a" >
+					<p>股权投资（元）</p>
+					<p class="part">169,484.80</p>
+				</div>
+				<div class="ui-block-b" >
+					<p>债权投资（元）</p>
+					<p class="part">320,565.78</p>
+				</div>
+			</div>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<p>
+						收益总额（元）
+						<span>收益记录</span>
+					</p>
+					<p class="total">290,653.59</p>
+				</div>
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a" >
+					<p>股权收益（元）</p>
+					<p class="part">269,455.79</p>
+				</div>
+				<div class="ui-block-b" >
+					<p>债权收益（元）</p>
+					<p class="part">120,525.78</p>
+				</div>
+			</div>
+			<div class="ui-grid-a subscribe">
+				<div class="ui-block-a" >
+					<p>认购定金（元）</p>
+					<p class="total">233,455.61</p>
+				</div>
+				<div class="ui-block-b" >
+					<p>认购总额（元）</p>
+					<p class="total">320,565.78</p>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" data-tap-toggle="false">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="#" data-icon="home" class="ui-btn-active">主页</a>
+					</li>
+					<li>
+						<a href="#" data-icon="user">我的帐户</a>
+					</li>
+					<li>
+						<a href="#" data-icon="bullets">我的项目</a>
+					</li>
+					<li>
+						<a href="#" data-icon="gear">设置</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
+</body>
+</html>

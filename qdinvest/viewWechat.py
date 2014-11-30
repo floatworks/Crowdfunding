@@ -244,3 +244,15 @@ def Login(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('wechat/login.html',context_dict,context)
+
+#微信端个人中心
+def Personal(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('wechat/personal.html',context_dict,context)
+
+#微信端个人中心
+def About(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('wechat/about.html',context_dict,context)

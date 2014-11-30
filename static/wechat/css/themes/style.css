@@ -29,7 +29,10 @@
 	background-color: #ffffff /*{f-bup-background-color}*/;
 	border-color: #cccccc /*{f-bup-border}*/;
 	color: #111111 /*{f-bup-color}*/;
-	border-style:solid;
+	border-style: solid;
+}
+.ui-footer{
+	border-width: 0;
 }
 
 .index .ui-btn.ui-btn-f.ui-btn-active{
@@ -173,27 +176,26 @@
 } 
 .pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:after,
 .pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:before {
-  border: solid transparent;
-  content: ' ';
-  height: 0;
-  position: absolute;
-  width: 0;
-  margin-left: -0.6em;
-  z-index: 10;
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+	margin-left: -0.6em;
+	z-index: 10;
+	border-width: .5em;
 }
  
 .pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:after {
-  border-width: .5em;
-  border-bottom-color: #ffffff;
-  top: 1.5em;
-  left: 52%;
+	border-bottom-color: #ffffff;
+	top: 1.5em;
+	left: 52%;
 }
  
 .pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:before {
-  border-width: .5em;
-  border-bottom-color: #ccc;
-  top: 1.4em;
-  left: 52%;
+	border-bottom-color: #ccc;
+	top: 1.4em;
+	left: 52%;
 }
 .pro_detail .ui-navbar-fixed{
 	padding-top: 0;
@@ -491,3 +493,122 @@
 }
 
 /*******login*******/
+
+
+/*******personal*******/
+.personal{
+	height: 100%;
+}
+.personal .ui-header p{
+	margin: 0;
+	text-align: center;
+	color: #fff;
+	font-weight: normal;
+}
+.personal .ui-header p img{
+	width: 20%;
+	height: 20%;
+	margin-bottom: 1%;
+}
+.personal .ui-header .ui-grid-b {
+	padding: 1% 0;
+	line-height: 1;
+}
+.personal .ui-header .ui-grid-b .ui-block-a,
+.personal .ui-header .ui-grid-b .ui-block-b{
+	border-right: 1px solid #e0f5ff;
+}
+.personal .ui-header .ui-grid-b p{
+	font-weight: bold;
+}
+.personal .ui-header .ui-grid-b p span{
+	font-size: .6em;
+	font-weight: normal;
+}
+.personal .ui-header:after{
+	content: '';
+	background-image: url(/static/wechat/css/themes/images/pc_bg.png);
+	background-repeat: repeat-x;
+	background-size: auto 100%;
+	height: 3%;
+	width: 100%;
+	position: absolute;
+	z-index: 1000;
+}
+.personal .ui-content .ui-grid-solo,
+.personal .ui-content .ui-grid-a {
+	background-color: #EEEEEE;
+	position: relative;
+}
+.personal .ui-content .ui-grid-a{
+	padding-top: 1%;
+	padding-bottom: 2%;
+	color:#666666; 
+}
+.personal .ui-content .ui-grid-solo .ui-block-a{
+	padding-top: 2%;
+	padding-bottom: 1%;
+	background-color: #fff;
+	color:#333333; 
+	-webkit-box-shadow: 0 .15em .1em #BFBEBE /*{a-active-background-color}*/;
+	-moz-box-shadow: 0 .15em .1em #BFBEBE /*{a-active-background-color}*/;
+	box-shadow: 0 .15em .1em #BFBEBE /*{a-active-background-color}*/;
+	margin-bottom: .5em;
+}
+.personal .ui-content .ui-grid-solo .ui-block-a:before,
+.personal .ui-content .ui-grid-solo .ui-block-a:after{
+	content: ' ';
+	height: 0;
+	width: 0;
+	border: solid transparent;
+	border-width: .4em;
+	position: absolute;
+	margin-left: -2%;
+	z-index: 10;
+	left: 50%;
+	top: 100%;	
+}
+.personal .ui-content .ui-grid-solo .ui-block-a:after{	
+	border-top-color: #fff;
+	margin-top: -0.5em;
+}
+.personal .ui-content .ui-grid-solo .ui-block-a:before{
+	border-top-color: #CBCBCB;
+	-moz-border-top-colors: #E5E5E5 #C6C6C6 ;
+	margin-top: -0.4em;
+}
+.personal .ui-content .ui-grid-solo p,
+.personal .ui-content .ui-grid-a p {
+	margin: 0;
+	font-size: .6em;
+	padding-left: 2%;
+}
+.personal .ui-content .ui-grid-solo p.total,
+.personal .ui-content .ui-grid-a p.total {
+	color:#FF5000; 
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.personal .ui-content .ui-grid-solo p.part,
+.personal .ui-content .ui-grid-a p.part{
+	color:#379945; 
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.personal .ui-content .ui-grid-solo p span{
+	background-color: #FF5000;
+	color: #fff;
+	padding: 0 .6em;
+	margin-left: 1%;
+}
+.personal .ui-content .subscribe{
+	background-color: #333333;
+	color: #fff;
+	padding-top: 2%;
+}
+.personal .ui-footer{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+/*******personal*******/
