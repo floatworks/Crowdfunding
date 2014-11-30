@@ -52,7 +52,9 @@
 			<div class="ui-block-a">
 				<p>
 					收益总额（元）
-					<span>收益记录</span>
+					<a href="#recordList" data-ajax='false'>
+						<span>收益记录</span>
+					</a>
 				</p>
 				<p class="total">{{account.ac_total_profit|money}}</p>
 			</div>
@@ -85,16 +87,42 @@
 					<a href="/w" data-icon="home" data-ajax='false'>主页</a>
 				</li>
 				<li>
-					<a href="#" data-icon="user" class="ui-btn-active">我的帐户</a>
+					<a href="/w/account/" data-icon="user" data-ajax='false' class="ui-btn-active">我的帐户</a>
 				</li>
 				<li>
-					<a href="#" data-icon="bullets">我的项目</a>
+					<a href="/w/mypro/" data-icon="bullets" data-ajax='false'>我的项目</a>
 				</li>
 				<li>
 					<a href="/w/setting/" data-icon="gear" data-ajax='false'>更多</a>
 				</li>
 			</ul>
 		</div>
+	</div>
+</div>
+<div data-role ="page" id="recordList" data-title="清大众筹" class="personal">
+	<div data-role="header">
+		<a href="#" data-rel="back" data-ajax="false" class="ui-btn ui-btn-icon-left ui-icon-carat-l">我的账户</a>
+		<h1>记录列表</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<ul data-role ="listview" data-theme ="f" >
+			<li >
+				<h3>上海立博塑胶工具有限公司</h3>
+				<p>
+					2014-11-12
+					<span class="hl2">￥100元</span>
+				</p>
+				<p class="ui-li-aside">股权众筹</p>
+			</li>
+			<li >
+				<h3>寺库供应商融资</h3>
+				<p>
+					2014-11-4
+					<span class="hl2">￥10元</span>
+				</p>
+				<p class="ui-li-aside">债权众筹</p>
+			</li>
+		</ul>
 	</div>
 </div>
 {% endblock %}

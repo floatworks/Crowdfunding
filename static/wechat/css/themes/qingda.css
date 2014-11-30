@@ -1116,9 +1116,9 @@ html .ui-bar-f .ui-body-inherit,
 html .ui-body-f .ui-body-inherit,
 html body .ui-group-theme-f .ui-body-inherit,
 html .ui-panel-page-container-f {
-	background-color: #F7F7F7 /*{f-body-background-color}*/;
-	border-color: #F7F7F7 /*{f-body-border}*/;
-	color: #B0B0B0 /*{f-body-color}*/;
+	background-color: #ffffff /*{f-body-background-color}*/;
+	border-color: #cccccc /*{f-body-border}*/;
+	color: #333333 /*{f-body-color}*/;
 	text-shadow: 0 /*{f-body-shadow-x}*/ 0 /*{f-body-shadow-y}*/ 0 /*{f-body-shadow-radius}*/ transparent /*{f-body-shadow-color}*/;
 }
 .ui-body-f {

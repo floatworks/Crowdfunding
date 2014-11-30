@@ -649,6 +649,9 @@
 .personal .ui-content .ui-grid-a p.part{
 	color:#379945; 
 }
+.personal .ui-content .ui-grid-solo p a{
+	text-decoration: none;
+}
 .personal .ui-content .ui-grid-solo p span{
 	background-color: #FF5000;
 	color: #fff;
@@ -665,6 +668,35 @@
 	width: 100%;
 	position: absolute;
 	bottom: 0;
+}
+#recordList .ui-header:after{
+	background-image: none;
+}
+#recordList{
+	background-color: #fff;
+}
+.personal  .ui-content .ui-listview{
+	margin: 0;
+}
+.personal  .ui-listview > li{
+	padding: .3em;
+}
+.personal  .ui-listview > li h3{
+	margin: .2em 0 .4em;
+	font-weight: normal;
+}
+.personal .ui-listview > li p{
+	margin: .3em 0;
+	color: #B0B0B0;
+}
+.personal .ui-listview > li p .hl2{
+	float: right;
+	margin-right: .3em;
+}
+.personal .ui-listview > li p.ui-li-aside{
+	color: #fff;
+	top: 0.5em;
+	right: 0.5em;
 }
 /*******personal*******/
 
@@ -712,7 +744,7 @@
 .setting .absolute .ui-listview{
 	margin: 0 6% 4%;
 }
-.ui-listview > .ui-li-static{
+.setting .ui-listview > .ui-li-static{
 	border-width: 1px 1px 0 1px;
 }
 .setting .absolute .ui-grid-solo p{
