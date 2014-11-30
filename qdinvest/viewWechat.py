@@ -442,7 +442,7 @@ def Personal(request):
 	return render_to_response('wechat/personal.html',context_dict,context)
 
 #微信端关于页面
-def About(request):
+def Setting(request):
 	context = RequestContext(request)
 	context_dict = {}
-	return render_to_response('wechat/about.html',context_dict,context)
+	return render_to_response('wechat/setting.html',context_dict,context)

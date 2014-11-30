@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>清大众筹</title>
+	<link rel="shortcut icon" href="favicon.png">
+	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
+	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
+</head>
+<body>
+	<div data-role ="page" id="setting" data-title="设置" class="setting">
+		<div data-role="header" >
+			<h1>设置</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<h4>关于</h4>
+			<ul data-role="listview"  data-theme="e">
+				<li>
+					<a href="#feedback"  data-ajax="false" class="ui-alt-icon">意见反馈</a>
+				</li>
+				<li>
+					<a href="#aboutUs"  data-ajax="false" class="ui-alt-icon">关于我们</a>
+				</li>
+				<li>
+					<a href="#reading"  data-ajax="false" class="ui-alt-icon">投资者必读</a>
+				</li>
+			</ul>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<a href="#" data-role="button" data-theme="e">退出登录</a>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="#" data-icon="home" >主页</a>
+					</li>
+					<li>
+						<a href="#" data-icon="user">我的帐户</a>
+					</li>
+					<li>
+						<a href="#" data-icon="bullets">我的项目</a>
+					</li>
+					<li>
+						<a href="#" data-icon="gear" class="ui-btn-active">设置</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div data-role ="page" id="feedback" data-title="意见反馈" class="setting">
+		<div data-role="header">
+			<a href="#" data-rel="back" data-ajax="false">&lt; 返回</a>
+			<h1>意见反馈</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<form>
+				<textarea cols="40" rows="8" name="textarea" id="fb_textarea" placeholder="欢迎留下您的宝贵意见和建议" maxlength="80"></textarea>
+				<div id="ta_num">0/80</div>
+				<a href="#" data-role="button" data-theme="b">确认提交</a>
+			</form>
+		</div>
+	</div>
+	<div data-role ="page" id="aboutUs" data-title="关于我们" class="setting">
+		<div data-role="header">
+			<a href="#" data-rel="back">&lt; 返回</a>
+			<h1>关于我们</h1>
+		</div>
+		<div class="absolute">
+			<img src="{% static 'wechat/css/themes/images/about_logo.png'%}" />
+			<ul data-role="listview">
+				<li>官方网站：www.china-zc.com.cn</li>
+				<li>微信账号：China-ZC</li>
+				<li>客服电话：400-810-6688</li>
+			</ul>
+			<div class="ui-grid-solo">
+				<p>版权所有 © 清大众筹(上海)信息科技有限公司</p>
+				<p>Copyright © 2014, China-zc.com.cn All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+	<div data-role ="page" id="reading" data-title="投资人必读" class="setting">
+		<div data-role="header">
+			<a href="#" data-rel="back">&lt; 返回</a>
+			<h1>投资人必读</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<h3>用户协议</h3> 
+			<p><strong>特别提示</strong><br>
+				****公司（以下简称“**”）在此特别提醒您（用户）在注册成为用户之前，请认真阅读本《用户协议》（以下简称“协议”），确保您充分理解本协议中各条款。请您审慎阅读并选择接受或不接受本协议。除非您接受本协议所有条款，否则您无权注册、登录或使用本协议所涉服务。您的注册、登录、使用等行为将视为对本协议的接受，并同意接受本协议各项条款的约束。
+本协议约定**与用户之间关于“**”软件服务（以下简称“服务”）的权利义务。“用户”是指注册、登录、使用本服务的个人。本协议可由**科技随时更新，更新后的协议条款一旦公布即代替原来的协议条款，恕不再另行通知，用户可在本网站查阅最新版协议条款。在**修改协议条款后，如果用户不接受修改后的条款，请立即停止使用**提供的服务，用户继续使用**提供的服务将被视为接受修改后的协议。
+			</p>
+			<p>
+				一、账号注册
+				<br>
+				1、用户在使用本服务前需要注册一个“**”账号。“**”账号应当使用手机号码绑定注册，请用户使用尚未与“**”账号绑定的手机号码，以及未被**科技根据本协议封禁的手机号码注册“**”账号。**科技可以根据用户需求或产品需要对账号注册和绑定的方式进行变更，而无须事先通知用户。
+2、“**”系基于地理位置的移动社交产品，用户注册时应当授权**科技公开及使用其地理位置信息方可成功注册“**”账号。故用户完成注册即表明用户同意**科技提取、公开及使用用户的地理位置信息。如用户需要终止向其他用户公开其地理位置信息，可自行设置为隐身状态。
+			</p>
+			<p>
+				二、服务内容
+				<br>
+				1、本服务的具体内容由**科技根据实际情况提供，包括但不限于授权用户通过其账号进行即时通讯、添加好友、加入群组、关注他人、发布留言。**科技可以对其提供的服务予以变更，且**科技提供的服务内容可能随时变更；用户将会收到**科技关于服务变更的通知。
+2、**科技提供的服务包含免费服务与收费服务。用户可以通过付费方式购买收费服务，具体方式为：用户通过网上银行、支付宝或其他“**”平台提供的付费途径支付一定数额的人民币购买“**”平台的虚拟货币——**，然后根据**科技公布的资费标准以**币购买用户欲使用的收费服务，从而获得收费服务使用权限。对于收费服务，**科技会在用户使用之前给予用户明确的提示，只有用户根据提示确认其同意按照前述支付方式支付费用并完成了支付行为，用户才能使用该等收费服务。支付行为的完成以银行或第三方支付平台生成“支付已完成”的确认通知为准。
+			</p>
+		</div>
+	</div>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
+	<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
+</body>
+</html>

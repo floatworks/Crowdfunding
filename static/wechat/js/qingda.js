@@ -74,8 +74,8 @@ $(".follow").delegate(".follow-heart", "click", function() {
 				'focus': 'unlike'
 			},
 			function(data, status) {
-				if(data.status == -1){
-					window.location.href="/w/login/"; 
+				if (data.status == -1) {
+					window.location.href = "/w/login/";
 				}
 			});
 	} else {
@@ -87,9 +87,15 @@ $(".follow").delegate(".follow-heart", "click", function() {
 				'focus': 'like'
 			},
 			function(data, status) {
-				if(data.status == -1){
-					window.location.href="/w/login/"; 
+				if (data.status == -1) {
+					window.location.href = "/w/login/";
 				}
 			});
 	}
 });
+
+
+$("#feedback #fb_textarea").keyup(function() {
+	(($(this).val().length) >= 80) ? ($("#ta_num").text('80/80')) : ($("#ta_num").text($(this).val().length + '/80'));
+
+})

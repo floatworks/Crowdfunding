@@ -607,9 +607,80 @@
 	color: #fff;
 	padding-top: 2%;
 }
-.personal .ui-footer{
+.personal .ui-footer,
+.setting .ui-footer{
 	width: 100%;
 	position: absolute;
 	bottom: 0;
 }
 /*******personal*******/
+
+/*******about*******/
+.setting .ui-content{
+	margin: 0 .3em;
+	position: relative;
+}
+.setting .ui-content .ui-listview {
+	margin: 0;
+}
+.setting .ui-content h4 {
+	font-size: .9em;
+	margin: 0;
+	padding: .5em 1em;
+	color: #666666;
+	border-bottom: 1px solid #e0e0de;
+}
+
+.setting textarea.ui-input-text{
+	resize: none;
+	min-height: 9em;
+	max-height: 9em;
+}
+.setting #ta_num {
+
+	position: absolute;
+	top: 8em;
+	right: .4em;
+	color: #dededd;
+}
+.setting{
+	height: 100%;
+}
+.setting .absolute{
+	position: absolute;
+	left: 0;
+	top: 15%;
+	width: 100%;
+	text-align: center;
+}
+.setting .absolute img{
+	width: 88%;
+	max-width: 30em;
+}
+.setting .absolute .ui-listview{
+	margin: 0 6% 4%;
+}
+.ui-listview > .ui-li-static{
+	border-width: 1px 1px 0 1px;
+}
+.setting .absolute .ui-grid-solo p{
+	text-align: center;
+	font-size: .75em;
+	color: #0069a8;
+	margin: .3em;
+}
+#reading .ui-content{
+	padding:  0.2em 0.6em;
+}
+#reading .ui-content h3{
+	text-align: center;
+	margin: .5em 0;
+	font-size: 1em;
+}
+#reading .ui-content p{
+	line-height: 1.4;
+	margin: .3em 0;
+	font-size: .8em;
+}
+
+/*******about*******/
