@@ -1255,6 +1255,9 @@ html body .pro_detail .ui-li-aside {
 	color: #ffffff;
 	padding: .2em .6em;
 }
+html body .ui-group-theme-f .amount.ui-li-aside{
+	background-color: #ff8c19;
+}
 html body .ui-group-theme-f .hl1,
 html body .pro_detail .hl1{
 	color: #0099ff;
@@ -1271,4 +1274,16 @@ html body .ui-group-theme-f .ui-li-bottom{
 	border-color: #cccccc /*{f-bup-border}*/;
 }
 
-
+html body .record .ui-first-child{
+	background-color: #f7f7f7;
+	border-color:  #f7f7f7;
+}
+html body .record .money{
+	color: #ff0c23;
+}
+html body .record .time{
+	color: #111111;
+}
+html body .record .state{
+	color: #379945;
+}

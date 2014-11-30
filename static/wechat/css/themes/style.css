@@ -9,7 +9,7 @@
 
 /*针对jquery-mobile-structure.css相关*/
 
-/******index**********/
+/******index and mypro**********/
 
 /*theme and self*/
 .ui-page-theme-a .ui-header .ui-btn{
@@ -35,7 +35,8 @@
 	border-width: 0;
 }
 
-.index .ui-btn.ui-btn-f.ui-btn-active{
+.index .ui-btn.ui-btn-f.ui-btn-active,
+.mypro .ui-btn.ui-btn-f.ui-btn-active{
 	color: #0069A8 ;
 	border-bottom-color:#0069A8;
 	border-right-color: #E0E0DE;
@@ -44,9 +45,15 @@
 	background:-o-linear-gradient(270deg, #ffffff,#ffffff 92%,#0069A8 8%,#0069A8);
 	filter:progid:dximagetransform.microsoft.gradient(startcolorstr=#ffffff,endcolorstr=#0069A8,gradienttype=1);
 }
-.index .ui-listview > li p{
+.index .ui-listview > li p,
+.mypro .ui-listview > li p{
 	font-size: .6em;
 	margin: .4em 0;
+}
+.mypro .ui-listview > li p.intro{
+	white-space: normal;
+	height: 2.5em;
+	padding-right: 2em;
 }
 .index .ui-listview > li p.progressbar{
 	margin: 0;
@@ -78,38 +85,50 @@
 	z-index: 1000;
 }
 
-.index .ui-tabs .ui-navbar li .ui-btn {
+.index .ui-tabs .ui-navbar li .ui-btn,
+.mypro .ui-tabs .ui-navbar li .ui-btn {
 	border-top-width: 0;
 	border-bottom-width: 1px;
 	border-left-width:0; 
 	border-right-width: 1px;
 }
-.index .ui-tabs .ui-navbar li:last-child .ui-btn{
+.index .ui-tabs .ui-navbar li:last-child .ui-btn,
+.mypro .ui-tabs .ui-navbar li:last-child .ui-btn{
 	border-right-width: 0;
 }
 
-.index  .ui-content .ui-listview {
+.index  .ui-content .ui-listview,
+.mypro .ui-content .ui-listview {
 	margin: 0.3em;
 }
-.index .ui-listview > li{
+.index .ui-listview > li,
+.mypro .ui-listview > li {
 	border-width: 1px;
 	border-style: solid;
 	margin-bottom: 0.3em;
 }
-.index .ui-listview > li > a.ui-btn {
+.index .ui-listview > li > a.ui-btn{
 	border-width: 0 0 1px 0;
 	padding: 0.3em 0.6em;
 }
-.index .ui-listview > .ui-li-has-thumb > .ui-btn{
+.mypro .ui-listview > li > a.ui-btn {
+	border-width: 0;
+	padding: 0.3em 0.6em;
+}
+.index .ui-listview > .ui-li-has-thumb > .ui-btn,
+.mypro .ui-listview > .ui-li-has-thumb > .ui-btn {
 	padding-left: 6em;
 }
-.index .ui-listview .ui-li-has-thumb > .ui-btn > img{
+.index .ui-listview .ui-li-has-thumb > .ui-btn > img ,
+.mypro .ui-listview .ui-li-has-thumb > .ui-btn > img {
 	margin: 0.5em .4em;
 }
-.index .ui-listview > li h3{
+.index .ui-listview > li h3,
+.mypro .ui-listview > li h3 {
 	margin: .4em 0 .2em;
 }
-.index .ui-listview .ui-li-aside{
+.index .ui-listview .ui-li-aside,
+.mypro .ui-listview .ui-li-aside{
 	top: 0.8em;
 	right: 0.4em;
 }
@@ -142,7 +161,37 @@
 .index .ui-listview .cpopular {
 	white-space: normal;
 }
-/******index**********/
+
+.mypro .ui-listview > li p.amount{
+	font-size: 1em;
+	
+}
+.mypro .ui-listview > li p.amount span{
+	color: #ff0c23;
+	margin-left: .5em;	
+}
+.mypro .ui-listview > li p.amount.ui-li-aside{
+	top: .1em;
+	right: 2.2em;	
+}
+.mypro .ui-listview > li p.amount.ui-li-aside{
+	top: .1em;
+	right: 2.2em;	
+}
+.mypro .ui-listview > li.ui-li-static{
+	margin-bottom: 0;
+	padding: 0 0 .5em 0;
+	text-align: center;
+}
+.mypro .ui-listview > li.ui-li-static h4{
+	margin-top: .9em;
+	text-align: left;
+	padding-left: .6em;
+}
+.mypro .record > li p{
+	font-size: .8em;
+}
+/******index and mypro**********/
 
 
 /*******detail*******/

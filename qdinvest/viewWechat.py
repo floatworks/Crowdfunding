@@ -462,4 +462,4 @@ def Setting(request):
 def GetMyProList(request):
 	context = RequestContext(request)
 	context_dict = {}
-	return render_to_response('wechat/myprolist.html',context_dict,context)
+	return render_to_response('wechat/myproject.html',context_dict,context)

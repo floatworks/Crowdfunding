@@ -1,0 +1,161 @@
+{% extends "wechat/base.html" %}
+{% load staticfiles %}
+{% load extra_tags%}
+{% block body_block %}
+<div data-role ="page" id="myproject" data-title="清大众筹" class="mypro">
+	<div data-role ="header" data-position="fixed" data-tap-toggle="false">
+		<h1>我的项目</h1>
+	</div>
+	<div data-role="tabs" id="tabs" >
+		<div data-role="navbar" class="ui-navbar-fixed">
+			<ul>
+				<li>
+					<a href="#subscribing" data-theme="f" class="ui-btn-active" >认购中</a>
+				</li>
+				<li>
+					<a href="#holding" data-theme="f">持有中</a>
+				</li>
+				<li>
+					<a href="#completed" data-theme="f">已完成</a>
+				</li>
+			</ul>
+		</div>
+		<div id="subscribing" class="ui-content">
+			<ul data-role ="listview" data-theme ="f" >
+				<li data-icon="false">
+					<a href="#moreinfo">
+						<img src="{% static 'wechat/images/example_1.png'%}" />
+						<h3>农业公司经营贷款</h3>
+						<p class="intro">有关房地产债券融资有关房地产债券融资有关房地产债券融资有关</p>
+						<p class="hl2">融资金额：￥1,000万</p>
+						<p class="ui-li-aside">认购中</p>
+					</a>
+				</li>
+				<li data-icon="false">
+					<a href="#moreinfo">
+						<img src="{% static 'wechat/images/example_1.png'%}" />
+						<h3>农业公司经营贷款</h3>
+						<p class="intro">有关房地产债券融资</p>
+						<p class="hl2">融资金额：￥1,000万</p>
+						<p class="ui-li-aside">认购中</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="holding" class="ui-content">
+			<ul data-role ="listview" data-theme ="f" >
+				<li data-icon="false">
+					<a href="#moreinfo">
+						<img src="{% static 'wechat/images/example_1.png'%}" />
+						<h3>农业公司经营贷款</h3>
+						<p class="intro">有关房地产债券融资有关房地产</p>
+						<p class="hl2">融资金额：￥1,000万</p>
+						<p class="ui-li-aside">认购中</p>
+					</a>
+				</li>
+				<li data-icon="false">
+					<a href="#moreinfo">
+						<img src="{% static 'wechat/images/example_1.png'%}" />
+						<h3>农业公司经营贷款</h3>
+						<p class="intro">有关房地产债券融资有关房地产债券融资有关房地产债券融资有关</p>
+						<p class="hl2">融资金额：￥1,000万</p>
+						<p class="ui-li-aside">认购中</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="completed" class="ui-content">
+			<ul data-role ="listview" data-theme ="f" >
+				<li data-icon="false">
+					<a href="#moreinfo">
+						<img src="{% static 'wechat/images/example_1.png'%}" />
+						<h3>农业公司经营贷款</h3>
+						<p class="intro">有关房地产债券融资有关房地产债券融资有关房地产债券融资有关</p>
+						<p class="hl2">融资金额：￥1,000万</p>
+						<p class="ui-li-aside">认购中</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<div data-role="navbar">
+			<ul>
+				<li>
+					<a href="/w/" data-icon="home">主页</a>
+				</li>
+				<li>
+					<a href="/w/account/" data-icon="user" data-ajax='false'>我的帐户</a>
+				</li>
+				<li>
+					<a href="#" data-icon="bullets"  class="ui-btn-active">我的项目</a>
+				</li>
+				<li>
+					<a href="/w/setting/" data-icon="gear" data-ajax='false'>更多</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div data-role ="page" id="moreinfo" data-title="清大众筹" class="mypro">
+	<div data-role="header">
+		<a href="#" data-rel="back" class="ui-btn ui-btn-icon-left ui-icon-carat-l">我的项目</a>
+		<h1>项目认购</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<ul data-role ="listview" data-theme ="f" >
+			<li >
+				<a href="#moreinfo" class="ui-alt-icon">
+					<img src="{% static 'wechat/images/example_1.png'%}" />
+					<h3>农业公司经营贷款</h3>
+					<p class="intro">有关房地产债券融资有关房地产债券融资有关房地产债券融资有关</p>
+					<p class="hl2">融资金额：￥1,000万</p>
+					<p class="ui-li-aside">认购中</p>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="ui-alt-icon">
+					<p class="amount">
+						认购总额
+						<span>400.1万</span>
+					</p>
+					<p class="amount ui-li-aside">支付定金</p>
+				</a>
+			</li>
+		</ul>
+		<ul data-role ="listview" data-theme ="b" class="record" >
+			<li>
+				<h4>认购记录</h4>
+			</li>
+			<li class="ui-grid-b">
+				<div class="ui-block-a">
+					<p>认购金额</p>
+					<p class="money">0.01万</p>
+				</div>
+				<div class="ui-block-b">
+					<p>认购时间</p>
+					<p class="time">2014-11-27</p>
+				</div>
+				<div class="ui-block-c">
+					<p>认购状态</p>
+					<p class="state">持有中</p>
+				</div>
+			</li>
+			<li class="ui-grid-b">
+				<div class="ui-block-a">
+					<p>认购金额</p>
+					<p class="money">0.01万</p>
+				</div>
+				<div class="ui-block-b">
+					<p>认购时间</p>
+					<p class="time">2014-11-27</p>
+				</div>
+				<div class="ui-block-c">
+					<p>认购状态</p>
+					<p class="state">持有中</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+{% endblock %}
