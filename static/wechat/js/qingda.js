@@ -39,6 +39,11 @@ $(document).on("pageshow", "#pro_detail", function() {
 		$(".progress .bar").css("width", $(".progressbar").attr("data") + '%');
 	}
 
+
+});
+
+$(document).on("pageinit", "#pro_detail", function() {
+
 	//加载保利视频
 	if ($("#plv_video").length > 0) {
 		var player = polyvObject('#plv_video').videoPlayer({
