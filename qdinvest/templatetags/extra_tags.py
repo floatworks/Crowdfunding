@@ -2,6 +2,7 @@
 from django import template
 register = template.Library()
 from datetime import datetime
+import re
 
 #求剩余天数
 @register.filter(name='lastDays')
@@ -23,6 +24,13 @@ def toTenThous(value):
 @register.filter(name='money')
 def money(value):
 	value = float(value)
-	value = round(value,2)
-	value = '{0:,}'.format(value)
-	return value
+	left = int(value)
+	right = value -left
+	return strConv(left) + str(right)[1:]
+
+def strConv(s):  
+    s =  str(s)
+    while True:
+        (s,count) = re.subn(r"(\d)(\d{3})((:?,\d\d\d)*)$",r"\1,\2\3",s)
+        if count == 0 : break
+    return s
