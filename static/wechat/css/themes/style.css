@@ -637,13 +637,12 @@
 
 .setting textarea.ui-input-text{
 	resize: none;
-	min-height: 9em;
-	max-height: 9em;
+	min-height: 12em;
+	max-height: 12em;
 }
 .setting #ta_num {
-
 	position: absolute;
-	top: 8em;
+	top: 14em;
 	right: .4em;
 	color: #dededd;
 }

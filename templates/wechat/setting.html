@@ -29,10 +29,10 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#" data-icon="home" >主页</a>
+						<a href="/w" data-icon="home" data-ajax='false'>主页</a>
 					</li>
 					<li>
-						<a href="#" data-icon="user">我的帐户</a>
+						<a href="/w/account/" data-icon="user" data-ajax='false'>我的帐户</a>
 					</li>
 					<li>
 						<a href="#" data-icon="bullets">我的项目</a>
@@ -51,6 +51,7 @@
 		</div>
 		<div role="main" class="ui-content">
 			<form>
+				<input type="email" name="fb_email" id="fb_email" placeholder="您的电子邮箱" />
 				<textarea cols="40" rows="8" name="textarea" id="fb_textarea" placeholder="欢迎留下您的宝贵意见和建议" maxlength="80"></textarea>
 				<div id="ta_num">0/80</div>
 				<a href="#" data-role="button" data-theme="b">确认提交</a>
