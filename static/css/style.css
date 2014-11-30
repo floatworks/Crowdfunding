@@ -30,7 +30,7 @@
 .header .navi li .project:hover,.header .navi .hover .project{ background:url(../images/navi_ico_project_w.png) 19px center no-repeat;}
 .header .navi li .investor:hover,.header .navi .hover .investor{ background:url(../images/navi_ico_attom_w.png) 19px center no-repeat;}
 .header .navi li .attom:hover,.header .navi .hover .attom{ background:url(../images/navi_ico_investor_w.png) 19px center no-repeat;}
-.header .userbar{ width:206px; height:30px; text-align:center; line-height:30px; color:#7fb2cc; background-color:#00518c;}
+.header .userbar{ width:280px; height:30px; text-align:center; line-height:30px; color:#7fb2cc; background-color:#00518c;}
 .header .userbar a{ color:#7fb2cc; padding:0px 18px; font-size:14px; margin-left:20px;}
 .header .userbar a:hover{ text-decoration:underline;}
 .header .userbar .login{ background:url(../images/lock.png) left center no-repeat;}

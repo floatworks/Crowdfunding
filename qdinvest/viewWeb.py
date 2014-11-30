@@ -13,6 +13,7 @@ import simplejson as json
 import datetime
 from datetime import timedelta
 import datetime,time
+import re
 
 from  models import *
 
@@ -82,7 +83,7 @@ def bond(request):
 
 
 	if 	tr:			
-		if tr == 'all':			
+		if tr == 'all':
 			request.session['tr_id'] = 'all2'
 		else:
 			if tr == '1':
@@ -146,7 +147,7 @@ def bond(request):
 
 		if  request.session.has_key('tr_id'):
 			if request.session['tr_id'] == 'all2':
-				context_dict['tr'] = 'all'
+				context_dict['tr'] ='all'
 			if request.session['tr_id'] == 10:
 				context_dict['tr'] = 1
 			if request.session['tr_id'] == 15:
@@ -187,6 +188,10 @@ def bond(request):
 				dt1 = datetime.datetime.now() + datetime.timedelta(days = 360)						
 				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__gte = dt1)
 				context_dict['st'] = 5
+		else:
+			BOND_objs1 = BOND.objects.filter(**kwargs)	
+			context_dict['bonds'] = BOND_objs1
+
 
 
 	else:
@@ -194,7 +199,7 @@ def bond(request):
 		context_dict['bonds'] = BOND_objs1	
 		context_dict['ct'] = 'all'
 		context_dict['st'] = 'all'
-		context_dict['tr'] = 'all'
+		context_dict['tr'] = 'all' 
 		context_dict['pt'] = 'all'
         
 	context_dict['page_num'] = (len(context_dict['bonds'])+9)/10
@@ -309,6 +314,7 @@ def account(request):
 	context_dict = {}
 	return render_to_response('qdinvest/account.html',context_dict,context)
 
+#用户登录
 def login(request):
 	context = RequestContext(request)
 	context_dict = {}	
@@ -337,7 +343,7 @@ def login(request):
 				return render_to_response('qdinvest/login.html',context_dict,context)
 	return render_to_response('qdinvest/login.html',context_dict,context)	
 
-
+#用户名注销
 def logout(request):
 	context = RequestContext(request)
 	context_dict = {}
@@ -373,23 +379,217 @@ def db(request):
 	context_dict = {}
 	return render_to_response('qdinvest/models_doc.html',context_dict,context)
 
-
+#用户注册
 def register(request):
 	context = RequestContext(request)
 	context_dict = {}
 	registered = False
-
-	if request.method == 'POST':
+	if request.method == 'POST':						
 		userData = request.POST.copy()
 		userData.appendlist('u_status',0)
-		userForm = USERSFORM(data = userData)
-		if userForm.is_valid():			
+		userForm = USERSFORM(data = userData)	
+		
+		if userForm.is_valid():	
+			print 2	
 			registered = True
 			userForm.save()
 			context_dict['registered'] = registered
 			return render_to_response('qdinvest/login.html',context_dict,context)
 		else:
-			print userForm.errors
-	
-	context_dict['registered'] = registered
+			print userForm.errors	
+	context_dict['registered'] = registered		
 	return render_to_response('qdinvest/register.html',context_dict,context)
+
+
+
+#验证输入的用户名
+def register1(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method=='GET':		
+		username=request.GET.get('u_name','')
+		if not username:			
+			context_dict['msg'] = '请输入用户名'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")		
+		m = re.match(r"^[a-zA-Z0-9]{1}[0-9a-zA-Z]{1,}$",username)		
+		if not m:			
+			context_dict['msg'] = '用户名为6至15位数字或字母'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		if len(username)<6:		
+			context_dict['msg'] ='用户名长度不能小于6!'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		if len(username)>15:			
+			context_dict['msg'] ='用户名长度不能大于15!'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		user = USERS.objects.filter(u_name=username)
+		if user:			
+			context_dict['msg'] ='该用户名已被占用！'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:			
+			context_dict['msg'] = 'success'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+
+
+#验证用户输入的手机号码
+def register2(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method=='GET':		
+		usertel=request.GET.get('u_tel','')
+		if not usertel:			
+			context_dict['msg'] = '请输入手机号码'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")		
+		m = re.match(r"^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$",usertel)		
+		if not m:			
+			context_dict['msg'] = '你输入的电话号码无效'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		if len(usertel)!=11:
+			context_dict['msg'] ='电话号码长度应为11位!'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")		
+		user = USERS.objects.filter(u_tel=usertel)
+		if user:			
+			context_dict['msg'] ='该电话号码已被占用！'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:			
+			context_dict['msg'] = 'success'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+# 点击手机获取验证码与验证码存入数据库
+def test(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method=='GET':		
+		usertel=request.GET.get('u_telephone','')
+		if usertel:
+			if T.SendRandomCode(usertel):
+				context_dict['msg'] = 'success'
+				return HttpResponse(json.dumps(context_dict),content_type="application/json")
+			else:
+				context_dict['msg'] = '请重新点击获取验证码'
+				return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:
+			context_dict['msg'] = '请重新输入手机号码'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+
+#判断输入验证码正确性
+def test1(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method=='GET':			
+		test1=request.GET.get('u_test','')
+		usertel=request.GET.get('u_telephone','')		
+		if T.CheckRandomCode(usertel,test1):
+			print  '1'			
+			context_dict['msg'] = 'success'		
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:		
+			context_dict['msg'] = '验证码输入错误'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+
+
+#找回密码
+def  forget(request):
+	context = RequestContext(request)
+	context_dict = {}
+	kwargs={}
+	if request.method=='POST':
+		print '3'
+		test=request.POST.get('rc_code','')
+		telephone=request.POST.get('u_tel','')	
+		password=request.POST.get('u_pwd','')
+		print test,telephone,password		
+		if T.CheckExist(RANDOMCODE,{'rc_tel':telephone,'rc_code':test}):
+			print '4'
+			USERS.objects.filter(u_tel=telephone).update(u_pwd=password)
+			return HttpResponseRedirect('/c/login/')
+		else:
+			print '5'
+			context_dict['error'] = '手机号码与验证码不符'
+	return render_to_response('qdinvest/forget.html',context_dict,context)
+
+#找回页面用户名的验证
+def forget1(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method == 'GET':			
+		username=request.GET.get('u_name','')					
+		if T.CheckExist(USERS,{'u_name':username}):			
+			context_dict['msg'] = 'success'		
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:		
+			context_dict['msg'] = '此用户名未注册过,无法找回密码'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+
+#找回页面
+# def forget2(request):
+# 	context = RequestContext(request)
+# 	context_dict = {}
+# 	kwargs={}
+# 	if request.method=='GET':			
+# 		test=request.GET.get('test','')
+# 		telephone=request.GET.get('u_telephone','')	
+# 		password=request.GET.get('u_pwd','')
+# 		kwargs[rc_tel] = telephone
+# 		kwargs[rc_code] = test
+# 		if T.CheckExist(USERS,kwargs): 
+# 			USERS.objects.filter(u_tel=telephone).update(u_pwd=password)	
+# 			context_dict['msg'] = 'success'
+# 			return HttpResponse(json.dumps(context_dict),content_type="application/json")	
+# 		else:
+# 			context_dict['msg'] = '手机号与验证码不符'
+# 			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+#用户手机号码的验证
+def forget3(request):
+	context = RequestContext(request)
+	context_dict = {}
+	print '2'
+	if request.method == 'GET':
+		print  "1"		
+		usertel=request.GET.get('u_tel','')
+		username=request.GET.get('username','')
+		if not usertel:			
+			context_dict['msg'] = '请输入手机号码'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")		
+		m = re.match(r"^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$",usertel)		
+		if not m:			
+			context_dict['msg'] = '你输入的电话号码无效'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		if len(usertel)!=11:
+			context_dict['msg'] ='电话号码长度应为11位!'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")		
+		user = USERS.objects.filter(u_tel=usertel,u_name=username)
+		if user:			
+			context_dict['msg'] ='success'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:			
+			context_dict['msg'] = '你输入的手机号码与用户名不相符'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+
+#获取手机验证码
+def forget4(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method=='GET':		
+		usertel=request.GET.get('u_telephone','')
+		if usertel:
+			if T.SendRandomCode(usertel):
+				context_dict['msg'] = 'success'
+				return HttpResponse(json.dumps(context_dict),content_type="application/json")
+			else:
+				context_dict['msg'] = '请重新点击获取验证码'
+				return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:
+			context_dict['msg'] = '输入有误，请重新输入手机号码'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+#检验验证码
+def forget5(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.method=='GET':			
+		test1=request.GET.get('tcod','')
+		usertel=request.GET.get('telephone1','')		
+		if T.CheckRandomCode(usertel,test1):			
+			context_dict['msg'] = 'success'		
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+		else:		
+			context_dict['msg'] = '验证码输入错误'
+			return HttpResponse(json.dumps(context_dict),content_type="application/json")
