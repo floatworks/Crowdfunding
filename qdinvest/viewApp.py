@@ -746,7 +746,7 @@ def Invest(request):
 								ACCOUNT_obj.save()
 							response_dict['status'] = 1
 							INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
-							INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_objs[0],is_stock = STOCK_objs[0],is_amount = price,is_date = datetime.now(),is_status = INVEST_STATUS_obj)
+							INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_objs[0],is_stock = STOCK_objs[0],is_amount = str(price),is_date = datetime.now(),is_status = INVEST_STATUS_obj)
 							INVEST_STOCK_new.save()
 
 							STOCK_objs[0].st_invest_count += 1
@@ -768,7 +768,7 @@ def Invest(request):
 								ACCOUNT_obj.save()
 							response_dict['status'] = 1
 							INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
-							INVEST_BOND_new = INVEST_BOND(ib_user = USERS_objs[0],ib_bond = BOND_objs[0],ib_amount = price,ib_date = datetime.now(),ib_status = INVEST_STATUS_obj)
+							INVEST_BOND_new = INVEST_BOND(ib_user = USERS_objs[0],ib_bond = BOND_objs[0],ib_amount = str(price),ib_date = datetime.now(),ib_status = INVEST_STATUS_obj)
 							INVEST_BOND_new.save()
 
 							BOND_objs[0].bo_invest_count += 1
