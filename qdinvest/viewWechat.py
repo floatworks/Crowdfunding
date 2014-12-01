@@ -430,7 +430,8 @@ def Login(request):
 			request.session['USER_ID'] = USERS_objs[0].id
 			request.session['USER_NAME'] = USERS_objs[0].u_name
 			origin_path = request.session.get('origin_path','/w')
-			if origin_path == '/w/login/' or origin_path == '/w/login' or not origin_path:
+			print origin_path
+			if origin_path.endswith('/w/login/') or origin_path.endswith('/w/login') or not origin_path:
 				origin_path = '/w'
 			return HttpResponseRedirect(origin_path)
 		else:
@@ -462,4 +463,67 @@ def Setting(request):
 def GetMyProList(request):
 	context = RequestContext(request)
 	context_dict = {}
+	if not T.CheckIsLogin(request):
+		return	HttpResponseRedirect('/w/login/')
+	else:
+		USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		projects_s1 = []
+		projects_s2 = []
+		projects_s3 = []
+
+		STOCK_ids = INVEST_STOCK.objects.filter(is_user__exact = USERS_obj).values('is_stock').distinct()
+		for STOCK_id in STOCK_ids:
+			STOCK_obj = STOCK.objects.get(id__exact = STOCK_id['is_stock'])
+			stocks_per = {}
+			stocks_per['id'] = STOCK_obj.id
+			stocks_per['title'] = STOCK_obj.st_title
+			stocks_per['image'] = str(STOCK_obj.st_image)
+			stocks_per['total_price'] = STOCK_obj.st_total_price
+			stocks_per['brief'] = STOCK_obj.st_brief 
+			#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
+			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_obj,is_stock__exact = STOCK_obj,is_status__id = 1).order_by('-is_date')
+			if INVEST_STOCK_objs:
+				stocks_per['date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
+				projects_s1.append(stocks_per)
+			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_obj,is_stock__exact = STOCK_obj,is_status__id = 2).order_by('-is_date')
+			if INVEST_STOCK_objs:
+				stocks_per['date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
+				projects_s2.append(stocks_per)
+			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_obj,is_stock__exact = STOCK_obj,is_status__id = 3).order_by('-is_date')
+			if INVEST_STOCK_objs:
+				stocks_per['date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
+				projects_s3.append(stocks_per)
+		BOND_ids = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj).values('ib_bond').distinct()
+		for BOND_id in BOND_ids:
+			BOND_obj = BOND.objects.get(id__exact = BOND_id['ib_bond'])
+			bonds_per = {}
+			bonds_per['id'] = BOND_obj.id
+			bonds_per['title'] = BOND_obj.bo_title
+			bonds_per['image'] = str(BOND_obj.bo_image)
+			bonds_per['total_price'] = BOND_obj.bo_total_price
+			bonds_per['brief'] = BOND_obj.bo_brief
+			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj,ib_bond__exact = BOND_obj,ib_status__id = 1).order_by('-ib_date')
+			if INVEST_BOND_objs:
+				bonds_per['date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
+				projects_s1.append(bonds_per)
+			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj,ib_bond__exact = BOND_obj,ib_status__id = 2).order_by('-ib_date')
+			if INVEST_BOND_objs:
+				bonds_per['date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
+				projects_s2.append(bonds_per)
+			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj,ib_bond__exact = BOND_obj,ib_status__id = 3).order_by('-ib_date')
+			if INVEST_BOND_objs:
+				bonds_per['date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
+				projects_s3.append(bonds_per)
+		projects_s1 = sorted(projects_s1,key = operator.itemgetter('date'),reverse=True)
+		projects_s2 = sorted(projects_s2,key = operator.itemgetter('date'),reverse=True)
+		projects_s3 = sorted(projects_s3,key = operator.itemgetter('date'),reverse=True)
+		context_dict['projects_s1'] = projects_s1
+		context_dict['projects_s2'] = projects_s2
+		context_dict['projects_s3'] = projects_s3
+	if settings.DEBUG:
+		print context_dict
 	return render_to_response('wechat/myproject.html',context_dict,context)
+
+
+
+

@@ -22,59 +22,47 @@
 		</div>
 		<div id="subscribing" class="ui-content">
 			<ul data-role ="listview" data-theme ="f" >
-				<li data-icon="false">
-					<a href="#moreinfo">
-						<img src="{% static 'wechat/images/example_1.png'%}" />
-						<h3>农业公司经营贷款</h3>
-						<p class="intro">有关房地产债券融资有关房地产债券融资有关房地产债券融资有关</p>
-						<p class="hl2">融资金额：￥1,000万</p>
-						<p class="ui-li-aside">认购中</p>
-					</a>
-				</li>
-				<li data-icon="false">
-					<a href="#moreinfo">
-						<img src="{% static 'wechat/images/example_1.png'%}" />
-						<h3>农业公司经营贷款</h3>
-						<p class="intro">有关房地产债券融资</p>
-						<p class="hl2">融资金额：￥1,000万</p>
-						<p class="ui-li-aside">认购中</p>
-					</a>
-				</li>
+				{% for project in projects_s1%}
+					<li data-icon="false">
+						<a href="#moreinfo">
+							<img src="/media/{{project.image}}" />
+							<h3>{{project.title}}</h3>
+							<p class="intro">{{project.brief}}</p>
+							<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
+							<p class="ui-li-aside">认购中</p>
+						</a>
+					</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<div id="holding" class="ui-content">
 			<ul data-role ="listview" data-theme ="f" >
-				<li data-icon="false">
-					<a href="#moreinfo">
-						<img src="{% static 'wechat/images/example_1.png'%}" />
-						<h3>农业公司经营贷款</h3>
-						<p class="intro">有关房地产债券融资有关房地产</p>
-						<p class="hl2">融资金额：￥1,000万</p>
-						<p class="ui-li-aside">认购中</p>
-					</a>
-				</li>
-				<li data-icon="false">
-					<a href="#moreinfo">
-						<img src="{% static 'wechat/images/example_1.png'%}" />
-						<h3>农业公司经营贷款</h3>
-						<p class="intro">有关房地产债券融资有关房地产债券融资有关房地产债券融资有关</p>
-						<p class="hl2">融资金额：￥1,000万</p>
-						<p class="ui-li-aside">认购中</p>
-					</a>
-				</li>
+				{% for project in projects_s2%}
+					<li data-icon="false">
+						<a href="#moreinfo">
+							<img src="/media/{{project.image}}" />
+							<h3>{{project.title}}</h3>
+							<p class="intro">{{project.brief}}</p>
+							<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
+							<p class="ui-li-aside">持有中</p>
+						</a>
+					</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<div id="completed" class="ui-content">
 			<ul data-role ="listview" data-theme ="f" >
-				<li data-icon="false">
-					<a href="#moreinfo">
-						<img src="{% static 'wechat/images/example_1.png'%}" />
-						<h3>农业公司经营贷款</h3>
-						<p class="intro">有关房地产债券融资有关房地产债券融资有关房地产债券融资有关</p>
-						<p class="hl2">融资金额：￥1,000万</p>
-						<p class="ui-li-aside">认购中</p>
-					</a>
-				</li>
+				{% for project in projects_s3%}
+					<li data-icon="false">
+						<a href="#moreinfo">
+							<img src="/media/{{project.image}}" />
+							<h3>{{project.title}}</h3>
+							<p class="intro">{{project.brief}}</p>
+							<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
+							<p class="ui-li-aside">已完成</p>
+						</a>
+					</li>
+				{% endfor %}
 			</ul>
 		</div>
 	</div>
