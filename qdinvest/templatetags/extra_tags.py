@@ -17,7 +17,7 @@ def lastDays(endDate):
 def toTenThous(value):
 	value = float(value)
 	value /= 10000;
-	value = int(value)
+	#value = int(value)
 	return value
 
 #转化金额 金额的千位分

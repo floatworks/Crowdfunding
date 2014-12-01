@@ -238,7 +238,7 @@ def ProjectDetail(request,p_type,p_id):
 	context = RequestContext(request)
 	context_dict = {}
 	print p_type,p_id
-	if p_type == 's':
+	if p_type == 's' or p_type == 'stock':
 		try:
 			STOCK_obj = STOCK.objects.get(id__exact = p_id)
 			context_dict['p_type'] = 'stock'
@@ -277,7 +277,7 @@ def ProjectDetail(request,p_type,p_id):
 			return render_to_response('wechat/proDetail.html',context_dict,context)
 		except STOCK.DoesNotExist:
 			raise Http404
-	elif p_type == 'b':
+	elif p_type == 'b' or p_type == 'bond':
 		try:
 			BOND_obj = BOND.objects.get(id__exact = p_id)
 			context_dict['p_type'] = 'bond'
@@ -451,6 +451,23 @@ def Personal(request):
 		ACCOUNT_obj = ACCOUNT.objects.get(ac_user__id = request.session['USER_ID'])
 		context_dict['account'] = ACCOUNT_obj
 
+		PROFIT_objs = PROFIT.objects.filter(pr_user__id = request.session['USER_ID']).order_by('-pr_date')
+		profits = []
+		for PROFIT_obj in PROFIT_objs:
+			profits_data = {}
+			profits_data['date'] = PROFIT_obj.pr_date.strftime('%Y-%m-%d')
+			profits_data['amount'] = PROFIT_obj.pr_amount
+			if PROFIT_obj.pr_stock:
+				profits_data['title'] = PROFIT_obj.pr_stock.st_title
+				profits_data['id'] = PROFIT_obj.pr_stock.id
+				profits_data['type'] = 'stock'
+			elif PROFIT_obj.pr_bond:
+				profits_data['title'] = PROFIT_obj.pr_bond.bo_title
+				profits_data['id'] = PROFIT_obj.pr_bond.id
+				profits_data['type'] = 'bond'
+			profits.append(profits_data)
+		context_dict['profits'] = profits
+
 	return render_to_response('wechat/personal.html',context_dict,context)
 
 #微信端设置页面
@@ -476,6 +493,7 @@ def GetMyProList(request):
 			STOCK_obj = STOCK.objects.get(id__exact = STOCK_id['is_stock'])
 			stocks_per = {}
 			stocks_per['id'] = STOCK_obj.id
+			stocks_per['type'] = 'stock'
 			stocks_per['title'] = STOCK_obj.st_title
 			stocks_per['image'] = str(STOCK_obj.st_image)
 			stocks_per['total_price'] = STOCK_obj.st_total_price
@@ -498,6 +516,7 @@ def GetMyProList(request):
 			BOND_obj = BOND.objects.get(id__exact = BOND_id['ib_bond'])
 			bonds_per = {}
 			bonds_per['id'] = BOND_obj.id
+			bonds_per['type'] = 'bond'
 			bonds_per['title'] = BOND_obj.bo_title
 			bonds_per['image'] = str(BOND_obj.bo_image)
 			bonds_per['total_price'] = BOND_obj.bo_total_price
@@ -520,10 +539,73 @@ def GetMyProList(request):
 		context_dict['projects_s1'] = projects_s1
 		context_dict['projects_s2'] = projects_s2
 		context_dict['projects_s3'] = projects_s3
-	if settings.DEBUG:
-		print context_dict
+	#if settings.DEBUG:
+	#	print context_dict
 	return render_to_response('wechat/myproject.html',context_dict,context)
 
+#获取我的项目的认购信息
+def GetMyProInvest(request,p_type,p_id):
+	context = RequestContext(request)
+	response_dict = {}
+	if not T.CheckIsLogin(request):
+		return	HttpResponseRedirect('/w/login/')
+	else:
+		USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		if p_type == 'stock':
+			if T.CheckExist(STOCK,{'id':p_id}):
+				STOCK_obj = STOCK.objects.get(id__exact = p_id)
+				project = {}
+				project['id'] = STOCK_obj.id
+				project['type'] = 'stock'
+				project['title'] = STOCK_obj.st_title
+				project['image'] = str(STOCK_obj.st_image)
+				project['brief'] = STOCK_obj.st_brief
+				project['total_price'] = STOCK_obj.st_total_price
+				project['current_price'] = STOCK_obj.st_current_price
+				invests = []
+				st_invest_price = 0
+				INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user = USERS_obj,is_stock = STOCK_obj)
+				for INVEST_STOCK_obj in INVEST_STOCK_objs:
+					invests.append({'amount':INVEST_STOCK_obj.is_amount,'date':INVEST_STOCK_obj.is_date.strftime('%Y-%m-%d'),'status':INVEST_STOCK_obj.is_status.id})
+					st_invest_price += INVEST_STOCK_obj.is_amount
+				#判断是否已经交定金
+				if T.CheckExist(PAYMENT,{'pa_user':USERS_obj,'pa_stock':STOCK_obj,'pa_status':0}):
+					project['is_payment'] = 1
+				else:
+					project['is_payment'] = 0
+				project['invest_price'] = st_invest_price
+				response_dict['project'] = project
+				response_dict['invests'] = invests
+			else:
+				response_dict['status'] = 0
+		elif p_type == 'bond':
+			if T.CheckExist(BOND,{'id':p_id}):
+				BOND_obj = BOND.objects.get(id__exact = p_id)
+				project = {}
+				project['id'] = BOND_obj.id
+				project['type'] = 'bond'
+				project['title'] = BOND_obj.bo_title
+				project['image'] = str(BOND_obj.bo_image)
+				project['brief'] = BOND_obj.bo_brief
+				project['total_price'] = BOND_obj.bo_total_price
+				project['current_price'] = BOND_obj.bo_current_price
+				invests = []
+				bo_invest_price = 0
+				INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user = USERS_obj,ib_bond = BOND_obj)
+				for INVEST_BOND_obj in INVEST_BOND_objs:
+					invests.append({'amount':INVEST_BOND_obj.ib_amount,'date':INVEST_BOND_obj.ib_date.strftime('%Y-%m-%d'),'status':INVEST_BOND_obj.ib_status.id})
+					bo_invest_price += INVEST_BOND_obj.ib_amount
+				#判断是否已经交定金
+				if T.CheckExist(PAYMENT,{'pa_user':USERS_obj,'pa_bond':BOND_obj,'pa_status':0}):
+					project['is_payment'] = 1
+				else:
+					project['is_payment'] = 0
+				project['invest_price'] = bo_invest_price
+				response_dict['project'] = project
+				response_dict['invests'] = invests
 
+	if settings.DEBUG:
+		print response_dict
+	return render_to_response('wechat/myproinvest.html',response_dict,context)
 
 

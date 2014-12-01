@@ -14,4 +14,5 @@ urlpatterns = patterns('',
 	url(r'^account/$', viewWechat.Personal, name='Personal'),
 	url(r'^setting/$', viewWechat.Setting, name='Setting'),
 	url(r'^mypro/$', viewWechat.GetMyProList, name='GetMyProList'),
+	url(r'^myproinvest/t(\w+)d(\d+)$', viewWechat.GetMyProInvest, name='GetMyProInvest'), 
 	)

@@ -52,7 +52,7 @@
 			<div class="ui-block-a">
 				<p>
 					收益总额（元）
-					<a href="#recordList" data-ajax='false'>
+					<a href="#recordList" data-transition="slide">
 						<span>收益记录</span>
 					</a>
 				</p>
@@ -102,26 +102,25 @@
 <div data-role ="page" id="recordList" data-title="清大众筹" class="personal">
 	<div data-role="header">
 		<a href="#" data-rel="back" data-ajax="false" class="ui-btn ui-btn-icon-left ui-icon-carat-l">我的账户</a>
-		<h1>记录列表</h1>
+		<h1>受益列表</h1>
 	</div>
 	<div role="main" class="ui-content">
 		<ul data-role ="listview" data-theme ="f" >
-			<li >
-				<h3>上海立博塑胶工具有限公司</h3>
-				<p>
-					2014-11-12
-					<span class="hl2">￥100元</span>
-				</p>
-				<p class="ui-li-aside">股权众筹</p>
-			</li>
-			<li >
-				<h3>寺库供应商融资</h3>
-				<p>
-					2014-11-4
-					<span class="hl2">￥10元</span>
-				</p>
-				<p class="ui-li-aside">债权众筹</p>
-			</li>
+			{% for profit in profits%}
+				<li >
+					<h3>{{profit.title}}</h3>
+					<p>
+						{{profit.date}}
+						<span class="hl2">{{profit.amount|money}}元</span>
+					</p>
+					{% ifequal profit.type 'stock' %}
+						<p class="ui-li-aside">股权众筹</p>
+					{% endifequal%}
+					{% ifequal profit.type 'bond' %}
+						<p class="ui-li-aside">债权众筹</p>
+					{% endifequal%}
+				</li>
+			{% endfor %}
 		</ul>
 	</div>
 </div>

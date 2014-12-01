@@ -1,0 +1,69 @@
+{% extends "wechat/base.html" %}
+{% load staticfiles %}
+{% load extra_tags%}
+{% block body_block %}
+<div data-role ="page" id="moreinfo" data-title="清大众筹" class="mypro">
+	<div data-role="header">
+		<a href="#" data-rel="back" class="ui-btn ui-btn-icon-left ui-icon-carat-l">我的项目</a>
+		<h1>项目认购</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<ul data-role ="listview" data-theme ="f" >
+			<li >
+				<a href="/w/pd/t{{project.type}}d{{project.id}}" class="ui-alt-icon" data-ajax="false">
+					<img src="/media/{{project.image}}" />
+					<h3>{{project.title}}</h3>
+					<p class="intro">{{project.brief}}</p>
+					<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
+					{% ifequal project.type 'stock' %}
+						<p class="ui-li-aside">股权众筹</p>
+					{% endifequal%}
+					{% ifequal project.type 'bond' %}
+						<p class="ui-li-aside">债权众筹</p>
+					{% endifequal%}
+				</a>
+			</li>
+			<li>
+				<a href="#" class="ui-alt-icon">
+					<p class="amount">
+						认购总额
+						<span>{{project.current_price|toTenThous}}万</span>
+					</p>
+					{% if project.is_payment == 0%}
+						<p class="amount ui-li-aside">支付定金</p>
+					{% elif project.is_payment == 1%}
+						<p class="amount ui-li-aside">已付定金</p>
+					{% endif %}
+				</a>
+			</li>
+		</ul>
+		<ul data-role ="listview" data-theme ="b" class="record" >
+			<li>
+				<h4>认购记录</h4>
+			</li>
+			{% for invest in invests%}
+				<li class="ui-grid-b">
+					<div class="ui-block-a">
+						<p>认购金额</p>
+						<p class="money">{{invest.amount|toTenThous}}万</p>
+					</div>
+					<div class="ui-block-b">
+						<p>认购时间</p>
+						<p class="time">{{invest.date}}</p>
+					</div>
+					<div class="ui-block-c">
+						<p>认购状态</p>
+						{% if invest.status == 1%}
+							<p class="state">认购中</p>
+						{% elif invest.status == 2%}
+							<p class="state">持有中</p>
+						{% elif invest.status == 3%}
+							<p class="state">已完成</p>
+						{% endif %}
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock %}
