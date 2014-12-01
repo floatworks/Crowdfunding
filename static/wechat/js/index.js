@@ -4,14 +4,14 @@ var myScroll,
 	generatedCount = 0;
 
 function pullDownAction() {
-		setTimeout(function() {
-			location.reload(true);
-		}, 1000);
-	}
-	
+	setTimeout(function() {
+		location.reload(true);
+	}, 1000);
+}
+
 function pullUpAction() {
 	setTimeout(function() { // <-- Simulate network congestion, remove setTimeout from production!
-		
+
 		generatedCount += 1;
 		$.ajax({
 			url: '/w/prolist/' + generatedCount,
@@ -24,7 +24,7 @@ function pullUpAction() {
 					for (var index in projects) {
 						if (projects[index].type == 'stock') {
 							content += "<li data-icon='false'>";
-							content += "<a href='/w/pd/tsd"+projects[index].id+"' data-ajax='false'>";
+							content += "<a href='/w/pd/tsd" + projects[index].id + "' data-ajax='false'>";
 							content += "<img src='/media/" + projects[index].image + "'/>";
 							content += "<h3>" + projects[index].title + "</h3>";
 							if (projects[index].progress > 50)
@@ -43,12 +43,12 @@ function pullUpAction() {
 							content += "/ ";
 							content += "<span>认购 <em class='hl1'>" + projects[index].invest_count + "</em></span></p>";
 							content += "<p class='ui-li-aside'>" + projects[index].pro_type + "</p></a>";
-							content += "<p class='ui-li-bottom'><span>当前融资:<em>" + projects[index].current_price/10000 + "万</em></span>";
-							content += "<span>融资总额:<em>" + projects[index].total_price/10000 + "万</em></span>";
-							content += "<span>认购起点:<em>" + projects[index].min_price/10000 + "万</em></span></p></li>";
+							content += "<p class='ui-li-bottom'><span>当前融资:<em>" + projects[index].current_price / 10000 + "万</em></span>";
+							content += "<span>融资总额:<em>" + projects[index].total_price / 10000 + "万</em></span>";
+							content += "<span>认购起点:<em>" + projects[index].min_price / 10000 + "万</em></span></p></li>";
 						} else if (projects[index].type == 'bond') {
 							content += "<li data-icon='false'>";
-							content += "<a href='/w/pd/tbd"+projects[index].id+"' data-ajax='false'>";
+							content += "<a href='/w/pd/tbd" + projects[index].id + "' data-ajax='false'>";
 							content += "<img src='/media/" + projects[index].image + "'/>";
 							content += "<h3>" + projects[index].title + "</h3>";
 							if (projects[index].progress > 50)
@@ -60,8 +60,8 @@ function pullUpAction() {
 							content += "<p>" + projects[index].brief + "</p>";
 							content += "<p class='ui-li-aside'>" + projects[index].pro_type + "</p></a>";
 							content += "<p class='ui-li-bottom'><span>年化利率:<em class='hl1'>" + projects[index].scale + "%</em></span>";
-							content += "<span>融资总额:<em class='hl1'>" + projects[index].current_price/10000 + "万</em></span>";
-							content += "<span>授信额度:<em class='hl1'>" + projects[index].min_price/10000 + "万</em></span></p></li>"
+							content += "<span>融资总额:<em class='hl1'>" + projects[index].current_price / 10000 + "万</em></span>";
+							content += "<span>授信额度:<em class='hl1'>" + projects[index].min_price / 10000 + "万</em></span></p></li>"
 						}
 					}
 
@@ -147,10 +147,10 @@ function loaded() {
 //}, false);
 
 //document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
-document.addEventListener('DOMContentLoaded', loaded, false);
+//document.addEventListener('DOMContentLoaded', loaded, false);
+$(document).on("pageinit", "#index", function() {
+	setTimeout(loaded, 20);
 
-
-$(document).ready(function() {
 	$("#t_itemsList").bind("click", function() {
 		$("#itemsList").show();
 		$("#itemsRecommend").hide();
