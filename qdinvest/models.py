@@ -541,7 +541,7 @@ def invest_stock_callback(sender, instance, signal, *args, **kwargs):
 	#修改当前项目已经认购的金额
 	STOCK_obj = post_data.is_stock
 	st_current_price = SUMModel(INVEST_STOCK,{'is_status__id':2},'is_amount') + SUMModel(INVEST_STOCK,{'is_status__id':3},'is_amount')
-	STOCK_obj.st_current_price = st_current_price
+	STOCK_obj.st_current_price = str(st_current_price)
 	STOCK_obj.save()
 
 '''
@@ -567,7 +567,7 @@ def invest_bond_callback(sender, instance, signal, *args, **kwargs):
 	#修改当前项目已经认购的金额
 	BOND_obj = post_data.ib_bond
 	bo_current_price = SUMModel(INVEST_BOND,{'ib_status__id':2},'ib_amount') + SUMModel(INVEST_BOND,{'ib_status__id':3},'ib_amount')
-	BOND_obj.bo_current_price = bo_current_price
+	BOND_obj.bo_current_price = str(bo_current_price)
 	BOND_obj.save()
 
 '''
