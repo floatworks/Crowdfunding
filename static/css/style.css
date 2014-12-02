@@ -368,7 +368,7 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .infocontent .info .project table th{ background-color:#eee; border-right:1px solid #e0e0e0;}
 .infocontent .info .project table th,.infocontent .info .project table td{ line-height:35px; text-align:center;}
 .infocontent .info .project .btn{ border:0px; margin-top:6px;}
-.infocontent .info .project .btn a{ display:inline-block; width:80px; height:28px; line-height:25px; background:#ff8c19; font-size:14px; color:#fff; text-align:center;}
+.infocontent .info .project .btn a{ display:inline-block; width:100px; height:28px; line-height:25px; background:#ff8c19; font-size:14px; color:#fff; text-align:center;}
 
 .loginbar{ width:1000px; margin:40px auto 0;}
 .lbanner{ background:url(../images/login_banner.png) center center no-repeat; width:570px; height:547px;}

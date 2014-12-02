@@ -39,7 +39,6 @@ def index(request):
 	context_dict['stocks3'] = STOCK_objs3 
 	context_dict['bonds'] = BOND_objs
 	context_dict['bonds2'] = BOND_objs2
-
 	return render_to_response('qdinvest/index.html',context_dict,context)
 
 def bond(request):
@@ -519,25 +518,7 @@ def forget1(request):
 			context_dict['msg'] = '此用户名未注册过,无法找回密码'
 			return HttpResponse(json.dumps(context_dict),content_type="application/json")
 
-#找回页面
-# def forget2(request):
-# 	context = RequestContext(request)
-# 	context_dict = {}
-# 	kwargs={}
-# 	if request.method=='GET':			
-# 		test=request.GET.get('test','')
-# 		telephone=request.GET.get('u_telephone','')	
-# 		password=request.GET.get('u_pwd','')
-# 		kwargs[rc_tel] = telephone
-# 		kwargs[rc_code] = test
-# 		if T.CheckExist(USERS,kwargs): 
-# 			USERS.objects.filter(u_tel=telephone).update(u_pwd=password)	
-# 			context_dict['msg'] = 'success'
-# 			return HttpResponse(json.dumps(context_dict),content_type="application/json")	
-# 		else:
-# 			context_dict['msg'] = '手机号与验证码不符'
-# 			return HttpResponse(json.dumps(context_dict),content_type="application/json")
-#用户手机号码的验证
+
 def forget3(request):
 	context = RequestContext(request)
 	context_dict = {}
@@ -593,3 +574,44 @@ def forget5(request):
 		else:		
 			context_dict['msg'] = '验证码输入错误'
 			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+
+#个人中心页面中账户信息的显示
+def account_list(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if request.session.has_key('username'):	
+		u_name = request.session['username']	
+		ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__u_name = u_name)	
+		context_dict['account'] = ACCOUNT_objs		
+	else:
+		return HttpResponseRedirect('/c/login/')
+	return render_to_response('qdinvest/account_list.html',context_dict,context)
+
+def stock_list(request):
+	context = RequestContext(request)
+	context_dict = {}	
+	if request.session.has_key('username'):
+		u_name = request.session['username']
+		STOCK_obj = STOCK.objects.filter(st_user__u_name=u_name)
+		context_dict['stock'] = STOCK_obj
+		context_dict['username'] = u_name	
+	else:
+		return HttpResponseRedirect('/c/login/')
+	return render_to_response('qdinvest/stock_list.html',context_dict,context)
+
+def bond_list(request):
+	context = RequestContext(request)
+	context_dict = {}	
+	if request.session.has_key('username'):
+		u_name = request.session['username']
+		BOND_obj = BOND.objects.filter(bo_user__u_name=u_name)
+		context_dict['bond'] = BOND_obj
+		context_dict['username'] = u_name			
+	else:
+		return HttpResponseRedirect('/c/login/')
+	return render_to_response('qdinvest/bond_list.html',context_dict,context)
+
+def news(request):
+	context = RequestContext(request)
+	context_dict = {}	
+	return render_to_response('qdinvest/news.html',context_dict,context)

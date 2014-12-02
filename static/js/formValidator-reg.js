@@ -177,21 +177,7 @@ $(document).ready(function(){
 		});
 	});
 
-	// $("#password1").blur(function(){
-	// 	$.ajax({
-	// 		url:'/c/forget2/?test='+$("#test1").val()+'&u_telephone='+$("#telephone").val()+'&u_pwd='+$('#password1').val(),
-	// 		type:'get',
-	// 		dateType:'json',
-	// 		success:function(data){
-	// 			$("#u_pwd1").text(data.msg);
-	// 			if (data.msg =="success")
-	// 				$("#u_pwd1").hide();
-	// 			else
-	// 				$("#u_pwd1").show();
-	// 		}
 
-	// 	});
-	// });
 
 
 	$("#tcod").blur(function(){
