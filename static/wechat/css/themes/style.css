@@ -747,6 +747,9 @@
 .setting .ui-listview > .ui-li-static{
 	border-width: 1px 1px 0 1px;
 }
+.setting .ui-listview > .ui-last-child{
+	border-bottom-width: 1px;
+}
 .setting .absolute .ui-grid-solo p{
 	text-align: center;
 	font-size: .75em;
