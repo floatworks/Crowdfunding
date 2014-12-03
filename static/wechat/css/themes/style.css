@@ -513,16 +513,16 @@
 .login .ui-controlgroup-vertical .ui-input-text:first-child input{
 	border-bottom: 1px  solid #ccc;
 }
-.login .ui-input-text input{
+.login .absolute .ui-input-text input{
 	padding: .8em 0 .8em 2em;
 	background-repeat: no-repeat;
 	background-size: auto 50%;
 	background-position: left;
 }
-.login .ui-input-text input[type="text"]{
+.login .absolute .ui-input-text input[type="text"]{
 	background-image: url(/static/wechat/css/themes/images/login_user.png);
 }
-.login .ui-input-text input[type="password"]{
+.login .absolute .ui-input-text input[type="password"]{
 	background-image: url(/static/wechat/css/themes/images/login_pwd.png);
 }
 .login .ui-controlgroup-controls a{
@@ -541,7 +541,32 @@
 .login .ui-grid-a .ui-btn {
 	font-weight: normal;
 }
+.login [class*="ui-block-"] > .ui-btn{
+	margin-left: 0;
+	margin-right: 0;
+} 
 
+
+.login .ui-popup-container{
+	width: 80%;
+}
+.login .ui-popup-container form > div{
+	padding:0 1em;
+}
+.login .ui-popup-container form > div h3,
+.login .ui-popup-container form .ui-grid-solo{
+	text-align: center;
+	margin: .5em;
+}
+.login .ui-popup .ui-field-contain > label{
+	position: absolute;
+	left: .5em;
+	top: 1em;
+}
+
+.login .ui-popup .ui-field-contain .ui-input-text input{
+	padding: .8em 0 .8em 5em;
+}
 /*******login*******/
 
 

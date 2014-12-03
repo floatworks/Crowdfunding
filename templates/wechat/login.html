@@ -13,7 +13,6 @@
 </head>
 <body>
 	<div data-role ="page" id="login" data-title="用户登录" class="login" data-theme="d">
-
 		<div class="absolute">
 			<img src="{% static 'wechat/css/themes/images/login_logo.png'%}" />
 			<form action="/w/login/" id="login" method="post" enctype="multipart/form-data" data-ajax="false">
@@ -25,16 +24,58 @@
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a" >
-						<button data-theme="b" >注册</button>
+						<a href="#popupReg" data-rel="popup" data-position-to="window" data-role="button" data-theme="b" >注册</a>
 					</div>
 					<div class="ui-block-b" >
-						<button data-theme="c" >登录</button>
+						<button data-theme="c">登录</button>
 					</div>
 				</div>
 			</form>
 			<!--div class="ui-grid-solo">体验一下 &gt;</div-->
+			<div data-role="popup" id="popupReg" data-theme="a" class="reg ui-corner-all">
+				<form>
+					<div>
+						<h3>注册</h3>
+						<div class="ui-field-contain">
+							<label for="un" >用户名:</label>
+							<input type="text" name="user" id="un" value="" placeholder="请输入您的用户名（必填项）" data-theme="a" />
+						</div>
+						<div class="ui-field-contain">
+							<label for="lpw">登录密码:</label>
+							<input type="password" name="pass" id="lpw" value="" placeholder="请输入6-16位密码（必填项）" data-theme="a" />
+						</div>
+						<div class="ui-field-contain">
+							<label for="cpw">确认密码:</label>
+							<input type="password" name="pass" id="cpw" value="" placeholder="请输入再次输入密码（必填项）" data-theme="a" />
+						</div>
+						<div class="ui-field-contain">
+							<label for="tel">手机号码:</label>
+							<input type="password" name="pass" id="tel" value="" placeholder="您经常使用的手机号码（必填项）" data-theme="a" />
+						</div>
+						<div class="ui-grid-a">
+							<div class="ui-block-a" >
+								<div class="ui-field-contain">
+									<label for="dc">动态码:</label>
+									<input type="password" name="pass" id="pw" value="" placeholder="手机6位短信码" data-theme="a" />
+								</div>
+							</div>
+							<div class="ui-block-b" >
+								<button>免费获取</button>
+							</div>
+						</div>
+						<div class="ui-grid-solo">
+							<label>
+								<input type="checkbox" name="checkbox-0 ">我已阅读并同意</label>
+						</div>
+						<div class="ui-grid-solo">
+							<a href="">清大众筹用户服务协议</a>
+						</div>
+						<button type="submit" data-theme="b">确认提交</button>
+					</div>
+				</form>
+			</div>
+			
 	</div>
-
 </div>
 <script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
 <script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
