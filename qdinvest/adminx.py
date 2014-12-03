@@ -103,9 +103,9 @@ class COM_TYPEAdmin(object):
 股权众筹
 '''
 class STOCKAdmin(object):
-	list_display = ['st_title','st_user','st_brief','st_is_commend','st_begin_time',
+	list_display = ['st_title','st_code','st_brief','st_is_commend','st_begin_time',
 	'st_end_time','st_create_time','st_scale','st_total_price','st_current_price','st_min_price','st_industry',
-	'st_province','st_pro_type','st_com_type','st_like_count','st_view_count','st_invest_count',
+	'st_province','st_pro_type','st_com_type','st_user','st_like_count','st_view_count','st_invest_count',
 	'st_sort','st_status']
 	list_filter = ('st_begin_time','st_end_time','st_create_time')
 	search_fiedls = ['st_user']
@@ -120,8 +120,8 @@ class STOCKAdmin(object):
 债权众筹 
 '''
 class BONDAdmin(object):
-	list_display = ['bo_title','bo_user','bo_com_name','bo_brief','bo_is_commend','bo_begin_time','bo_create_time','bo_end_time',
-	'bo_scale','bo_province','bo_total_price','bo_current_price','bo_min_price','bo_pro_type','bo_com_type','bo_like_count',
+	list_display = ['bo_title','bo_code','bo_com_name','bo_brief','bo_is_commend','bo_begin_time','bo_create_time','bo_end_time',
+	'bo_scale','bo_province','bo_total_price','bo_current_price','bo_min_price','bo_pro_type','bo_com_type','bo_user','bo_like_count',
 	'bo_view_count','bo_sort','bo_status']
 	list_filter = ('bo_begin_time','bo_create_time','bo_end_time')
 	search_fiedls = ['bo_user'] 

@@ -121,6 +121,7 @@ RECOMMEND_STATUS =(
 class STOCK(models.Model):
 	st_user = models.ForeignKey(USERS,verbose_name="用户")
 	st_title = models.CharField(max_length=100,verbose_name="标题")
+	st_code = models.CharField(max_length=30,verbose_name="股份代码")
 	st_image = models.ImageField(upload_to ='logo/',verbose_name="LOGO")
 	st_video = models.CharField(max_length=100,verbose_name="保利威视视频id",null=True,blank=True)
 	st_brief = models.CharField(max_length=200,verbose_name="描述")
@@ -194,6 +195,7 @@ class STOCK(models.Model):
 class BOND(models.Model):
 	bo_user = models.ForeignKey(USERS,verbose_name="用户")
 	bo_title = models.CharField(max_length=100,verbose_name="标题")
+	bo_code = models.CharField(max_length=30,verbose_name="股份代码")
 	bo_image = models.ImageField(upload_to ='logo/',verbose_name="LOGO")
 	bo_video = models.CharField(max_length=100,verbose_name="保利威视视频id",null=True,blank=True)
 	bo_com_name = models.CharField(max_length=100,verbose_name="企业名称")

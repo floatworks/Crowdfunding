@@ -225,6 +225,7 @@ def GetProjects(request):
 					stocks_per = {}
 					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
+					stocks_per['st_code'] = STOCK_obj.st_code
 					stocks_per['st_image'] = str(STOCK_obj.st_image)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
 					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
@@ -245,6 +246,7 @@ def GetProjects(request):
 					bonds_per = {}
 					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
+					bonds_per['bo_code'] = BOND_obj.bo_code
 					bonds_per['bo_image'] = str(BOND_obj.bo_image)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
 					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
@@ -284,6 +286,7 @@ def GetMyProjects(request):
 					stocks_per = {}
 					stocks_per['id'] = INVEST_STOCK_obj.id
 					stocks_per['st_title'] = INVEST_STOCK_obj.st_title
+					stocks_per['st_code'] = INVEST_STOCK_obj.st_code
 					stocks_per['st_image'] = str(INVEST_STOCK_obj.st_image)
 					stocks_per['st_total_price'] = INVEST_STOCK_obj.st_total_price
 					#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
@@ -307,6 +310,7 @@ def GetMyProjects(request):
 					bonds_per = {}
 					bonds_per['id'] = INVEST_BOND_obj.id
 					bonds_per['bo_title'] = INVEST_BOND_obj.bo_title
+					bonds_per['bo_code'] = INVEST_BOND_obj.bo_code
 					bonds_per['bo_image'] = str(INVEST_BOND_obj.bo_image)
 					bonds_per['bo_total_price'] = INVEST_BOND_obj.bo_total_price
 					#bonds_per['ib_amount'] = INVEST_BOND_obj.ib_amount
@@ -352,6 +356,7 @@ def ProjectInvest(request):
 						project = {}
 						project['id'] = STOCK_obj.id
 						project['st_title'] = STOCK_obj.st_title
+						project['st_code'] = STOCK_obj.st_code
 						project['st_image'] = str(STOCK_obj.st_image)
 						project['st_brief'] = STOCK_obj.st_brief
 						project['st_total_price'] = STOCK_obj.st_total_price
@@ -379,6 +384,7 @@ def ProjectInvest(request):
 						project = {}
 						project['id'] = BOND_obj.id
 						project['bo_title'] = BOND_obj.bo_title
+						project['bo_code'] = BOND_obj.bo_code
 						project['bo_image'] = str(BOND_obj.bo_image)
 						project['bo_brief'] = BOND_obj.bo_brief
 						project['bo_total_price'] = BOND_obj.bo_total_price
@@ -433,6 +439,7 @@ def GetProjectsSort(request):
 					stocks_per = {}
 					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
+					stocks_per['st_code'] = STOCK_obj.st_code
 					stocks_per['st_image'] = str(STOCK_obj.st_image)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
 					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
@@ -453,6 +460,7 @@ def GetProjectsSort(request):
 					bonds_per = {}
 					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
+					bonds_per['bo_code'] = BOND_obj.bo_code
 					bonds_per['bo_image'] = str(BOND_obj.bo_image)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
 					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
@@ -498,6 +506,7 @@ def SearchProject(request):
 					stocks_per = {}
 					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
+					stocks_per['st_code'] = STOCK_obj.st_code
 					stocks_per['st_image'] = str(STOCK_obj.st_image)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
 					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
@@ -517,6 +526,7 @@ def SearchProject(request):
 					bonds_per = {}
 					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
+					bonds_per['bo_code'] = BOND_obj.bo_code
 					bonds_per['bo_image'] = str(BOND_obj.bo_image)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
 					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
@@ -557,6 +567,7 @@ def ProjectBase(request):
 						response_dict['status'] = 1
 						stock_dict['st_image'] = str(STOCK_obj.st_image)
 						stock_dict['st_title'] = STOCK_obj.st_title
+						stock_dict['st_code'] = STOCK_obj.st_code
 						stock_dict['st_like_count'] = STOCK_obj.st_like_count
 						stock_dict['st_invest_count'] = STOCK_obj.st_invest_count
 						stock_dict['st_view_count'] = STOCK_obj.st_view_count
@@ -588,6 +599,7 @@ def ProjectBase(request):
 						response_dict['status'] = 1
 						bond_dict['bo_image'] = str(BOND_obj.bo_image)
 						bond_dict['bo_title'] = BOND_obj.bo_title
+						bond_dict['bo_code'] = BOND_obj.bo_code
 						bond_dict['bo_like_count'] = BOND_obj.bo_like_count
 						bond_dict['bo_view_count'] = BOND_obj.bo_view_count
 						bond_dict['bo_province'] = BOND_obj.bo_province.pr_name
