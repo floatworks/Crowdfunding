@@ -1,17 +1,7 @@
-<!DOCTYPE html>
+{% extends "wechat/base.html" %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>清大众筹</title>
-	<link rel="shortcut icon" href="favicon.png">
-	<link href="{% static 'wechat/css/themes/qingda.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/jquery.mobile.icons.min.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/jquery.mobile.structure-1.4.5.css'%}" rel="stylesheet" charset="utf-8" />
-	<link href="{% static 'wechat/css/themes/style.css'%}" rel="stylesheet" charset="utf-8" />
-</head>
-<body>
+{% load extra_tags%}
+{% block body_block %}
 	<div data-role ="page" id="login" data-title="用户登录" class="login" data-theme="d">
 		<div class="absolute">
 			<img src="{% static 'wechat/css/themes/images/login_logo.png'%}" />
@@ -97,8 +87,4 @@
 		</p>
 	</div>
 </div>
-<script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
-<script type="text/javascript"  src="{% static 'wechat/js/jquery.mobile-1.4.5.min.js'%}"></script>
-<script type="text/javascript"  src="{% static 'wechat/js/qingda.js'%}"></script>
-</body>
-</html>
+{% endblock %}
