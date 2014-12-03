@@ -69,11 +69,31 @@ $(document).on("pageinit", "#pro_detail", function() {
 				'price':price
 			},
 			function(data, status) {
-				//alert(data);
+				if (data.status == -1){
+					window.location.href = "/w/login/";
+				}
 			});
 		$("#input-money").val('');
 	});
 
+});
+
+$(document).on("pageinit", "#feedback", function() {
+	$('#feedback_btn').click(function(){
+		mail = $("#fb_email").val().trim();
+		content = $("#fb_textarea").val().trim();
+		$.post("/w/feedback/", {
+				'mail':mail,
+				'content':content
+			},
+			function(data, status) {
+				if (data.status == -1){
+					window.location.href = "/w/login/";
+				}else if(data.status == 1){
+					window.location.href = "/w/setting/";
+				}
+			});
+	});
 });
 
 $(".pro_detail #detailtabs").delegate(".ui-tabs-anchor", "click", function() {

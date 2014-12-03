@@ -613,51 +613,76 @@ def GetMyProInvest(request,p_type,p_id):
 def Invest(request):
 	response_dict = {}
 
-	if request.method == 'POST':
-		p_type = request.POST.get('type','')
-		p_id = request.POST.get('id','-1')
-		price = request.POST.get('price','0')
-		print p_type,p_id,price
-		USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
-		if float(price) > 0:
-			if p_type == 'stock':
-				STOCK_objs = STOCK.objects.filter(id__exact = p_id)
-				if STOCK_objs:
-					if not T.CheckExist(INVEST_STOCK,{'is_user':USERS_obj,'is_stock':STOCK_objs[0]}):
-						ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
-						ACCOUNT_obj.ac_support += 1
-						ACCOUNT_obj.save()
-					response_dict['status'] = 1
-					INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
-					INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_obj,is_stock = STOCK_objs[0],is_amount = str(price),is_date = datetime.now(),is_status = INVEST_STATUS_obj)
-					INVEST_STOCK_new.save()
+	if not T.CheckIsLogin(request):
+		response_dict['status'] = -1
+	else:
+		if request.method == 'POST':
+			p_type = request.POST.get('type','')
+			p_id = request.POST.get('id','-1')
+			price = request.POST.get('price','0')
 
-					STOCK_objs[0].st_invest_count += 1
-					STOCK_objs[0].save()
-				else:
-					response_dict['status'] = 0
-			elif p_type == 'bond':
-				BOND_objs = BOND.objects.filter(id__exact = p_id)
-				if BOND_objs:
-					if not T.CheckExist(INVEST_BOND,{'ib_user':USERS_obj,'ib_bond':BOND_objs[0]}):
-						ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
-						ACCOUNT_obj.ac_support += 1
-						ACCOUNT_obj.save()
-					response_dict['status'] = 1
-					INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
-					INVEST_BOND_new = INVEST_BOND(ib_user = USERS_obj,ib_bond = BOND_objs[0],ib_amount = str(price),ib_date = datetime.now(),ib_status = INVEST_STATUS_obj)
-					INVEST_BOND_new.save()
+			USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+			if float(price) > 0:
+				if p_type == 'stock':
+					STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+					if STOCK_objs:
+						if not T.CheckExist(INVEST_STOCK,{'is_user':USERS_obj,'is_stock':STOCK_objs[0]}):
+							ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
+							ACCOUNT_obj.ac_support += 1
+							ACCOUNT_obj.save()
+						response_dict['status'] = 1
+						INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
+						INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_obj,is_stock = STOCK_objs[0],is_amount = str(price),is_date = datetime.now(),is_status = INVEST_STATUS_obj)
+						INVEST_STOCK_new.save()
 
-					BOND_objs[0].bo_invest_count += 1
-					BOND_objs[0].save()
+						STOCK_objs[0].st_invest_count += 1
+						STOCK_objs[0].save()
+					else:
+						response_dict['status'] = 0
+				elif p_type == 'bond':
+					BOND_objs = BOND.objects.filter(id__exact = p_id)
+					if BOND_objs:
+						if not T.CheckExist(INVEST_BOND,{'ib_user':USERS_obj,'ib_bond':BOND_objs[0]}):
+							ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
+							ACCOUNT_obj.ac_support += 1
+							ACCOUNT_obj.save()
+						response_dict['status'] = 1
+						INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
+						INVEST_BOND_new = INVEST_BOND(ib_user = USERS_obj,ib_bond = BOND_objs[0],ib_amount = str(price),ib_date = datetime.now(),ib_status = INVEST_STATUS_obj)
+						INVEST_BOND_new.save()
+
+						BOND_objs[0].bo_invest_count += 1
+						BOND_objs[0].save()
+					else:
+						response_dict['status'] = 0
 				else:
 					response_dict['status'] = 0
 			else:
-				response_dict['status'] = 0
-		else:
-			response_dict['status'] = 2
+				response_dict['status'] = 2
 
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#用户反馈
+def Feedback(request):
+	response_dict = {}
+
+	if not T.CheckIsLogin(request):
+		response_dict['status'] = -1
+	else:
+		if request.method == 'POST':
+			mail = request.POST.get('mail','')
+			content = request.POST.get('content','')
+
+			USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+			if content:
+				response_dict['status'] = 1
+				FEEDBACK_new = FEEDBACK(fe_user = USERS_obj,fe_mail = mail,fe_time = datetime.now(),fe_content = content)
+				FEEDBACK_new.save()
+			else:
+				response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
