@@ -10,3 +10,16 @@ class USERSFORM(forms.ModelForm):
 	class Meta:
 		model = USERS
 		# fields = ['u_name','u_pwd','u_tel','u_status']
+
+class PROFITFORM(forms.ModelForm):
+
+	class Meta:
+		model = PROFIT
+
+	def __init__(self,*args,**kwargs):
+		super(PROFITFORM,self).__init__(*args,**kwargs)
+		print kwargs
+		inst = kwargs.get('initial')
+		print inst
+		if inst:
+			self.fields['pr_stock'].queryset = STOCK.objects.filter(st_user = inst['pr_user'])

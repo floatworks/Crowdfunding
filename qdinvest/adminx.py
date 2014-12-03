@@ -7,6 +7,7 @@ from DjangoUeditor.widgets import UEditorWidget
 from xadmin.views import BaseAdminPlugin, ModelFormAdminView, DetailAdminView
 from django.conf import settings
 from django.db.models import TextField
+from forms import PROFITFORM
 
 
 class GlobalSetting(object):
@@ -55,6 +56,7 @@ class USERSAdmin(object):
 	list_display = ['u_name','u_pwd','u_tel','u_status']
 	list_filter=['u_status']	
 	search_fiedls = ['u_name']
+	list_per_page = 20
 
 '''
 用户账户信息
@@ -65,6 +67,7 @@ class ACCOUNTAdmin(object):
 	'ac_stock_invest','ac_bond_invest','ac_total_invest','ac_stock_profit','ac_bond_profit',
 	'ac_total_profit','ac_subscription','ac_total_subscription','ac_like','ac_support','ac_infos']
 	search_fiedls = ['ac_user']
+	list_per_page = 20
 
 '''
 行业
@@ -111,6 +114,7 @@ class STOCKAdmin(object):
 					'st_business':'ueditor','st_risk':'ueditor','st_team':'ueditor','st_prospectus':'ueditor',
 					'st_manage':'ueditor',}
 	list_editable = ['st_is_commend']
+	list_per_page = 20
 
 '''
 债权众筹 
@@ -123,6 +127,7 @@ class BONDAdmin(object):
 	search_fiedls = ['bo_user'] 
 	style_fields = {'bo_com_inf':'ueditor','bo_risk_inf':'ueditor','bo_files':'ueditor','bo_repay_plan':'ueditor','bo_finance':'ueditor','bo_manage':'ueditor'}
    	list_editable = ['bo_is_commend']
+   	list_per_page = 20
 
 '''
 用户投资 股权众筹
@@ -131,6 +136,7 @@ class INVEST_STOCKAdmin(object):
 	list_display = ['is_user','is_stock','is_amount','is_status','is_date','is_soon_profit','is_profit_date']
 	search_fiedls = ['is_user ']
 	list_editable = ['is_status']
+	list_per_page = 20
 
 '''
 用户投资 债权众筹 
@@ -139,6 +145,7 @@ class INVEST_BONDAdmin(object):
 	list_display = ['ib_user','ib_bond','ib_amount','ib_status','ib_date','ib_soon_profit','ib_profit_date']
 	search_fields = ['ib_user']
 	list_editable = ['ib_status']
+	list_per_page = 20
 	
 '''
 用户充值
@@ -152,6 +159,7 @@ class RECHARGEAdmin(object):
 class USER_FOCUSAdmin(object):
 	list_display = ['uf_user','uf_stock','uf_bond','uf_update_time']
 	search_fiedls = ['uf_user'] 
+	list_per_page = 20
 
 '''
 用户讨论
@@ -168,6 +176,7 @@ class NOTICEAdmin(object):
 	search_fiedls = ['no_title'] 
 	style_fields  = {'no_body':'ueditor'}
 	list_editable = ['no_is_delete','no_sort','no_type']
+	list_per_page = 20
 
 '''
 用户通知表
@@ -177,6 +186,7 @@ class NOTICE_USERAdmin(object):
 	search_fiedls = ['nu_title'] 
 	style_fields  = {'nu_body':'ueditor'}
 	list_editable = ['nu_is_delete','nu_sort','nu_type']
+	list_per_page = 20
 
 '''
 系统通知查看
@@ -189,12 +199,12 @@ class NOTICE_READAdmin(object):
 用户收益表
 '''
 class PROFITAdmin(object):
-	#def formfield_for_foreignkey(self, db_field, request, **kwargs):
-	#	if db_field.name == "pr_user":
-	#		kwargs["queryset"] = USERS.objects.filter(u_status=3)
-	#	return super(PROFITAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+	#form = PROFITFORM
 	list_display = ['pr_user','pr_amount','pr_date','pr_stock','pr_bond']
 	search_fiedls = ['pr_user']
+	list_per_page = 20
+	add_form_template = 'xadmin/views/model_form_ajax.html'
+
 
 
 
@@ -221,6 +231,7 @@ class SETTINGSAdmin(object):
 '''
 class FEEDBACKAdmin(object):
 	list_display = ['fe_user','fe_mail','fe_time','fe_content']
+	list_per_page = 20
 
 class XadminUEditorWidget(UEditorWidget):
 	def __init__(self,**kwargs):

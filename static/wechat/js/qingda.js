@@ -54,6 +54,25 @@ $(document).on("pageinit", "#pro_detail", function() {
 	} else {
 		//alert('没有视频');
 	}
+	
+	$('#invest_button').click(function(){
+		price = $("#input-money").val().trim();
+		type = $(this).attr('type');
+		id = $(this).attr('pid');
+		if(price == null || price == ''){
+			$("#input-money").val('');
+			return;
+		}
+		$.post("/w/invest/", {
+				'type':type,
+				'id':id,
+				'price':price
+			},
+			function(data, status) {
+				//alert(data);
+			});
+		$("#input-money").val('');
+	});
 
 });
 
