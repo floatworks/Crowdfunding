@@ -525,20 +525,20 @@
 .login .absolute .ui-input-text input[type="password"]{
 	background-image: url(/static/wechat/css/themes/images/login_pwd.png);
 }
-.login .ui-controlgroup-controls a{
+.login .absolute .ui-controlgroup-controls a{
 	color: #379945;
 	position: absolute;
 	bottom: .8em;
 	right: 1em;
 
 }
-.login .ui-grid-a .ui-block-a{
+.login .absolute  .ui-grid-a .ui-block-a{
 	padding-right: .25em;
 }
-.login .ui-grid-a .ui-block-b{
+.login .absolute  .ui-grid-a .ui-block-b{
 	padding-left: .25em;
 }
-.login .ui-grid-a .ui-btn {
+.login .absolute .ui-grid-a .ui-btn {
 	font-weight: normal;
 }
 .login [class*="ui-block-"] > .ui-btn{
@@ -546,27 +546,71 @@
 	margin-right: 0;
 } 
 
-
-.login .ui-popup-container{
-	width: 80%;
+.reg .ui-content form {
+	padding: .3em;
 }
-.login .ui-popup-container form > div{
-	padding:0 1em;
+.reg .ui-field-contain{
+	margin:0; 
+	padding: 0;
+	border-bottom-width: 0px;
 }
-.login .ui-popup-container form > div h3,
-.login .ui-popup-container form .ui-grid-solo{
+.reg .ui-field-contain > label ~ [class*="ui-"]{
+	width: 100%;
+	border-bottom-width: 0;
+}
+.reg .ui-field-contain:last-child{
+	border-bottom-width: 1px;
+}
+.reg .ui-content form .ui-grid-solo{
 	text-align: center;
 	margin: .5em;
 }
-.login .ui-popup .ui-field-contain > label{
+.reg .ui-content .ui-field-contain > label{
+	float: none;
 	position: absolute;
 	left: .5em;
-	top: 1em;
+	top: .88em;
+	margin: 0; 
+}
+.reg .ui-content .ui-field-contain .ui-input-text input{
+	padding: .8em 0 .8em 5.3em;
+}
+.reg .ui-content .ui-grid-a > .ui-block-a{
+	width: 65%;
+}
+.reg .ui-content .ui-grid-a > .ui-block-b{
+	width: 35%;
+}
+.reg .ui-content .ui-grid-a > .ui-block-b .ui-btn{
+	margin:0;
+	padding: .86em 1em;
+	background-color: #0099FF;
+	border-color: #0099FF;
+	color: #fff;
+}
+.reg .ui-content .ui-checkbox .ui-btn{
+	width: 10em;
+	margin:0 auto;
+	background-color: #f7f7f7;
+	border-color: #f7f7f7;
+	color: #111111 ;
+	padding: 0;
+	text-align: center;
+}
+.reg .ui-content .ui-btn.ui-checkbox-on:after{
+	background-color: #FF8C19;
+	border-color: #FF8C19;
+}
+.reg .ui-content .ui-checkbox input,
+.reg .ui-content .ui-btn-icon-left:after {
+	left: 50%;
+	margin-left: -5em;
+}
+.reg .ui-popup-screen{
+	background-color: #7c7c7c;
+	border-color: #7c7c7c;
 }
 
-.login .ui-popup .ui-field-contain .ui-input-text input{
-	padding: .8em 0 .8em 5em;
-}
 /*******login*******/
 
 
@@ -781,14 +825,17 @@
 	color: #0069a8;
 	margin: .3em;
 }
+.protocol,
 #reading .ui-content{
 	padding:  0.2em 0.6em;
 }
+.protocol h3,
 #reading .ui-content h3{
 	text-align: center;
 	margin: .5em 0;
 	font-size: 1em;
 }
+.protocol p,
 #reading .ui-content p{
 	line-height: 1.4;
 	margin: .3em 0;

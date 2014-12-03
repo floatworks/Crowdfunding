@@ -266,6 +266,7 @@ html .ui-body-a a,
 html body .ui-group-theme-a a {
 	color: #0069a8 /*{a-link-color}*/;
 	font-weight: normal;
+	text-decoration:none;
 }
 .ui-page-theme-a a:visited,
 html .ui-bar-a a:visited,

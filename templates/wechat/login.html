@@ -24,7 +24,7 @@
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a" >
-						<a href="#popupReg" data-rel="popup" data-position-to="window" data-role="button" data-theme="b" >注册</a>
+						<a href="#reg" data-role="button" data-theme="b" >注册</a>
 					</div>
 					<div class="ui-block-b" >
 						<button data-theme="c">登录</button>
@@ -32,49 +32,69 @@
 				</div>
 			</form>
 			<!--div class="ui-grid-solo">体验一下 &gt;</div-->
-			<div data-role="popup" id="popupReg" data-theme="a" class="reg ui-corner-all">
-				<form>
-					<div>
-						<h3>注册</h3>
-						<div class="ui-field-contain">
-							<label for="un" >用户名:</label>
-							<input type="text" name="user" id="un" value="" placeholder="请输入您的用户名（必填项）" data-theme="a" />
-						</div>
-						<div class="ui-field-contain">
-							<label for="lpw">登录密码:</label>
-							<input type="password" name="pass" id="lpw" value="" placeholder="请输入6-16位密码（必填项）" data-theme="a" />
-						</div>
-						<div class="ui-field-contain">
-							<label for="cpw">确认密码:</label>
-							<input type="password" name="pass" id="cpw" value="" placeholder="请输入再次输入密码（必填项）" data-theme="a" />
-						</div>
-						<div class="ui-field-contain">
-							<label for="tel">手机号码:</label>
-							<input type="password" name="pass" id="tel" value="" placeholder="您经常使用的手机号码（必填项）" data-theme="a" />
-						</div>
-						<div class="ui-grid-a">
-							<div class="ui-block-a" >
-								<div class="ui-field-contain">
-									<label for="dc">动态码:</label>
-									<input type="password" name="pass" id="pw" value="" placeholder="手机6位短信码" data-theme="a" />
-								</div>
-							</div>
-							<div class="ui-block-b" >
-								<button>免费获取</button>
-							</div>
-						</div>
-						<div class="ui-grid-solo">
-							<label>
-								<input type="checkbox" name="checkbox-0 ">我已阅读并同意</label>
-						</div>
-						<div class="ui-grid-solo">
-							<a href="">清大众筹用户服务协议</a>
-						</div>
-						<button type="submit" data-theme="b">确认提交</button>
-					</div>
-				</form>
+	</div>
+</div>
+<div data-role ="page" id="reg" data-title="用户登录" class="reg">
+	<div data-role="header">
+		<a href="#" data-rel="back" data-ajax="false" class="ui-btn ui-btn-icon-left ui-icon-carat-l">返回</a>
+		<h1>用户登录</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<form>
+			<div class="ui-field-contain">
+				<label for="un" >用户名:</label>
+				<input type="text" name="user" id="un" value="" placeholder="请输入您的用户名（必填项）" />
 			</div>
-			
+			<div class="ui-field-contain">
+				<label for="lpw">登录密码:</label>
+				<input type="password" name="pass" id="lpw" value="" placeholder="请输入6-16位密码（必填项）" />
+			</div>
+			<div class="ui-field-contain">
+				<label for="cpw">确认密码:</label>
+				<input type="password" name="cpass" id="cpw" value="" placeholder="请输入再次输入密码（必填项）" />
+			</div>
+			<div class="ui-field-contain">
+				<label for="tel">手机号码:</label>
+				<input type="password" name="tel" id="tel" value="" placeholder="您经常使用的手机号码" />
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a" >
+					<div class="ui-field-contain">
+						<label for="dc">动态码:</label>
+						<input type="password" name="dc" id="pw" value="" placeholder="手机6位短信码" />
+					</div>
+				</div>
+				<div class="ui-block-b" >
+					<button>免费获取</button>
+				</div>
+			</div>
+			<div class="ui-grid-solo">
+				<label>
+					<input type="checkbox" name="checkbox-0 " >我已阅读并同意</label>
+			</div>
+			<div class="ui-grid-solo">
+				<a href="#popupRule" data-rel="popup" data-position-to="window">《清大众筹用户服务协议》</a>
+			</div>
+			<button type="submit" data-theme="b">确认提交</button>
+		</form>
+
+	</div>
+	<div data-role="popup" id="popupRule" class="protocol">
+		<h3>用户协议</h3>
+		<p> <strong>特别提示</strong>
+			<br>
+			请您审慎阅读并选择接受或不接受本协议。除非您接受本协议所有条款，否则您无权注册、登录或使用本协议所涉服务。您的注册、登录、使用等行为将视为对本协议的接受，并同意接受本协议各项条款的约束。
+		</p>
+		<p>
+			一、账号注册
+			<br>
+			1、用户在使用本服务前需要注册一个“**”账号。“**”账号应当使用手机号码绑定注册，请用户使用尚未与“**”账号绑定的手机号码，以及未被**科技根据本协议封禁的手机号码注册“**”账号。**科技可以根据用户需求或产品需要对账号注册和绑定的方式进行变更，而无须事先通知用户。
+		</p>
+		<p>
+			二、账号登录
+			<br>
+			1、“**”系基于地理位置的移动社交产品，用户注册时应当授权**科技公开及使用其地理位置信息方可成功注册“**”账号。故用户完成注册即表明用户同意**科技提取、公开及使用用户的地理位置信息。如用户需要终止向其他用户公开其地理位置信息，可自行设置为隐身状态。
+		</p>
 	</div>
 </div>
 <script type="text/javascript"  src="{% static 'wechat/js/jquery.js'%}"></script>
