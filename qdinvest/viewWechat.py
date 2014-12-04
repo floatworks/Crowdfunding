@@ -729,3 +729,10 @@ def Feedback(request):
 	if settings.DEBUG:
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+
+#微信端弹出页面
+def Pop(request):
+	context = RequestContext(request)
+	context_dict = {}
+	return render_to_response('wechat/popup.html',context_dict,context)

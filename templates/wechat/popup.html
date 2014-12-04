@@ -1,0 +1,25 @@
+{% extends "wechat/base.html" %}
+{% load staticfiles %}
+{% load extra_tags%}
+{% block body_block %}
+<div data-role ="page" id="pop" data-title="弹出框">
+	<div data-role="header">
+		<h1>弹出框</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<!-- 弹出框开始 -->
+		<a href="#popupDialog" data-rel="popup" data-position-to="window" data-role="button" data-transition="pop">Dialog</a>
+		<div data-role="popup" id="popupDialog" class="ui-corner-all">
+			<div data-role="header">
+				<h1>密码错误！</h1>
+			</div>
+			<div role="main" class="ui-content">
+				<h3 class="ui-title">请重新输入密码</h3>
+				<p>忘记密码？</p>
+				<a href="#" data-role="button" data-rel="back" data-transition="flow" data-theme="b">确定</a>
+			</div>
+		</div>
+		<!-- 弹出框结束 -->
+	</div>
+</div>
+{% endblock %}

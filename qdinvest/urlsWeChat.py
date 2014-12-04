@@ -18,4 +18,5 @@ urlpatterns = patterns('',
 	url(r'^myproinvest/t(\w+)d(\d+)$', viewWechat.GetMyProInvest, name='GetMyProInvest'), 
 	url(r'^invest/$', viewWechat.Invest, name='Invest'), 
 	url(r'^feedback/$', viewWechat.Feedback, name='Feedback'),
+	url(r'^pop/$', viewWechat.Pop, name='Pop'),
 	)
