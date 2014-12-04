@@ -3,8 +3,8 @@
 {% load extra_tags%}
 {% block body_block %}
 <div data-role ="page" id="personal" data-title="个人中心" class="personal">
-	<div data-role="header" data-tap-toggle="false">
-		<a href="#" class="ui-btn ui-btn-message new"></a>
+	<div data-role="header">
+		<a href="#messageList" data-transition="slidefade" class="ui-btn ui-btn-right ui-btn-message new"></a>
 		<h1>我的帐户</h1>
 		<p>
 			<img src="{% static 'wechat/images/user_pic.png'%}" />
@@ -122,6 +122,61 @@
 				</li>
 			{% endfor %}
 		</ul>
+	</div>
+</div>
+<div data-role ="page" id="messageList" data-title="清大众筹" class="personal">
+	<div data-role="header">
+		<a href="#" data-rel="back" data-ajax="false" class="ui-btn ui-btn-icon-left ui-icon-carat-l">返回</a>
+		<h1>消息列表</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<ul data-role ="listview" data-theme ="e" >
+			<li data-icon="false">
+				<a href="#message" data-ajax="false" data-transition="slidefade">
+					<h3>通知测试</h3>
+					<p>
+						<span>系统通知</span>
+						<span>2014-11-22 01:21:09</span>
+					</p>
+					<p>这是正文简短介绍</p>
+				</a>
+			</li>
+			<li data-icon="false">
+				<a href="#message" data-ajax="false" data-transition="slidefade">
+					<h3>有人关注了你</h3>
+					<p>
+						<span>系统通知</span>
+						<span>2014-11-22 01:21:09</span>
+					</p>
+					<p>短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发</p>
+				</a>
+			</li>
+			<li data-icon="false">
+				<a href="#message" data-ajax="false" data-transition="slidefade">
+					<h3>用户你好</h3>
+					<p>
+						<span>系统通知</span>
+						<span>2014-11-22 01:21:09</span>
+					</p>
+					<p>这是正文简短介绍</p>
+				</a>
+			</li>
+
+		</ul>
+	</div>
+</div>
+<div data-role ="page" id="message" data-title="清大众筹" class="personal">
+	<div data-role="header">
+		<a href="#" data-rel="back" data-ajax="false" class="ui-btn ui-btn-icon-left ui-icon-carat-l">返回</a>
+		<h1>消息内容</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<h3>通知测试</h3>
+		<p>
+			<span>系统通知</span>
+			<span>2014-11-22 01:21:09</span>
+		</p>
+		<p>这是正文简短介绍</p>
 	</div>
 </div>
 {% endblock %}
