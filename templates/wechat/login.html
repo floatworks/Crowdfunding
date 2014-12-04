@@ -14,7 +14,7 @@
 
 				<div class="ui-grid-a">
 					<div class="ui-block-a" >
-						<a href="#reg" data-role="button" data-theme="b" >注册</a>
+						<a href="#reg" data-role="button" data-theme="b" data-transition="slide">注册</a>
 					</div>
 					<div class="ui-block-b" >
 						<button data-theme="c">登录</button>
@@ -30,14 +30,14 @@
 		<h1>用户登录</h1>
 	</div>
 	<div role="main" class="ui-content">
-		<form>
+		<form action='/w/reg/' method="post" enctype="multipart/form-data" data-ajax="false">
 			<div class="ui-field-contain">
 				<label for="un" >用户名:</label>
-				<input type="text" name="user" id="un" value="" placeholder="请输入您的用户名（必填项）" />
+				<input type="text" name="u_name" id="u_name" value="" placeholder="请输入您的用户名（必填项）" />
 			</div>
 			<div class="ui-field-contain">
 				<label for="lpw">登录密码:</label>
-				<input type="password" name="pass" id="lpw" value="" placeholder="请输入6-16位密码（必填项）" />
+				<input type="password" name="u_pwd" id="u_pwd" value="" placeholder="请输入6-16位密码（必填项）" />
 			</div>
 			<div class="ui-field-contain">
 				<label for="cpw">确认密码:</label>
@@ -45,17 +45,17 @@
 			</div>
 			<div class="ui-field-contain">
 				<label for="tel">手机号码:</label>
-				<input type="password" name="tel" id="tel" value="" placeholder="您经常使用的手机号码" />
+				<input type="text" name="u_tel" id="u_tel" value="" placeholder="您经常使用的手机号码" />
 			</div>
 			<div class="ui-grid-a">
 				<div class="ui-block-a" >
 					<div class="ui-field-contain">
 						<label for="dc">动态码:</label>
-						<input type="password" name="dc" id="pw" value="" placeholder="手机6位短信码" />
+						<input type="text" name="code" id="code" value="" placeholder="手机6位短信码" />
 					</div>
 				</div>
 				<div class="ui-block-b" >
-					<button>免费获取</button>
+					<button id="getCode" type="button">免费获取</button>
 				</div>
 			</div>
 			<div class="ui-grid-solo">

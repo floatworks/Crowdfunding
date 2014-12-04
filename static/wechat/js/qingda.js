@@ -96,6 +96,26 @@ $(document).on("pageinit", "#feedback", function() {
 	});
 });
 
+$(document).on("pageinit", "#reg", function() {
+	$('#getCode').click(function(){
+		tel = $("#u_tel").val().trim();
+		if(!tel.match($.regexpCommon('phoneNumberZN'))){
+			alert('手机号码不对');
+			return;
+		}
+		$.get("/app/code/", {
+				'type':'reg',
+				'u_tel':tel
+			},
+			function(data, status) {
+				alert(data.status);
+				if(data.status == 1){
+					alert('倒计时');
+				}
+			});
+	});
+});
+
 $(".pro_detail #detailtabs").delegate(".ui-tabs-anchor", "click", function() {
 
 	if ($(this).attr('id') == "ui-id-1") {

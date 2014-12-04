@@ -12,6 +12,49 @@ from datetime import datetime
 from models import *
 import tools as T
 
+#手机端用户注册接口
+def Register(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		userData = request.POST.copy()
+		u_name = userData.get('u_name','')
+		u_tel = userData.get('u_tel','')
+		code = userData.get('code','')
+		if T.CheckExist(USERS,{'u_name':u_name}):
+			response_dict['status'] = 2
+		elif T.CheckExist(USERS,{'u_tel':u_tel}):
+			response_dict['status'] = 3
+		elif not CheckRandomCode(u_tel,code):
+			response_dict['status'] = 4
+		else:
+			userData.appendlist('u_status',0)
+			userForm = USERSFORM(data = userData)
+			if userForm.is_valid():
+				userForm.save()
+				response_dict['status'] = 1
+				return HttpResponseRedirect('/w/login/')
+			else:
+				response_dict['status'] = 0
+				if settings.DEBUG:
+					response_dict['error'] = userForm.errors
+					print userForm.errors
+	
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#判断用户的验证码是否错误或者超时 5min
+def CheckRandomCode(u_tel,code):
+	randomCode_obj = RANDOMCODE.objects.filter(rc_tel__exact = u_tel)
+	if randomCode_obj:
+		if randomCode_obj[0].rc_code == code and (datetime.now() - randomCode_obj[0].rc_time).seconds < 300:
+			return True
+		else:
+			return False
+	else:
+		return False
+
 def Index(request):
 	context = RequestContext(request)
 	context_dict = {}

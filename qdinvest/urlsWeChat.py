@@ -3,6 +3,7 @@ import viewWechat
 
 urlpatterns = patterns('',
 	url(r'^$', viewWechat.Index, name='Index'),
+	url(r'^reg/$', viewWechat.Register, name='Register'),
 	url(r'^index/$', viewWechat.Index, name='Index'),
 	url(r'^prolist/(\d+)$', viewWechat.GetProList, name='GetProList'),
 	url(r'^prodetail/t(\w)d(\d+)$', viewWechat.ProDetail, name='ProDetail'),
