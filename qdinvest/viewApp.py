@@ -336,6 +336,49 @@ def GetMyProjects(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#用户获取其关注的项目列表
+def GetLikeProjects(request):
+	response_dict = {}
+
+	if request.method == 'GET':
+		token = request.GET.get('token','')
+		u_name = request.GET.get('u_name','')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_objs[0]).order_by('-uf_update_time')
+				projects = []
+				for USER_FOCUS_obj in USER_FOCUS_objs:
+					project = {}
+					if USER_FOCUS_obj.uf_stock:
+						project['id'] = USER_FOCUS_obj.uf_stock.id
+						project['type'] = 'stock'
+						project['title'] = USER_FOCUS_obj.uf_stock.st_title
+						project['code'] = USER_FOCUS_obj.uf_stock.st_code
+						project['image'] = str(USER_FOCUS_obj.uf_stock.st_image)
+						project['total_price'] = USER_FOCUS_obj.uf_stock.st_total_price
+						project['brief'] = USER_FOCUS_obj.uf_stock.st_brief
+					elif USER_FOCUS_obj.uf_bond:
+						project['id'] = USER_FOCUS_obj.uf_bond.id
+						project['type'] = 'bond'
+						project['title'] = USER_FOCUS_obj.uf_bond.bo_title
+						project['code'] = USER_FOCUS_obj.uf_bond.bo_code
+						project['image'] = str(USER_FOCUS_obj.uf_bond.bo_image)
+						project['total_price'] = USER_FOCUS_obj.uf_bond.bo_total_price
+						project['brief'] = USER_FOCUS_obj.uf_bond.bo_brief
+					projects.append(project)
+				response_dict['projects'] = projects
+				response_dict['status'] = 1
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
 #获取项目相关的认购列表，同时返回项目基本信息
 def ProjectInvest(request):
 	response_dict = {}
