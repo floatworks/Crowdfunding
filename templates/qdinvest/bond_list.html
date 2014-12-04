@@ -31,32 +31,23 @@
 
     <div class="info right">
         <div class="title">用户债权详细信息</div>
-        <div class="project">
-            {%if username%}
-          <div> <span class="left btn"><a href="javascript:;">用户名:{{username}}</a></span></div>
-          {% endif %}
-            
-            <table>
-                <tr><th>标题</th><th>经营用途</th><th>所属行业</th><th>所属地区</th><th>开始时间</th><th>结束时间</th><th>创建时间</th></tr>
-                {%for bond_list in bond%}
-                {%if bond_list %}
-                <tr><td>{{bond_list.bo_title}}</td><td>{{bond_list.bo_brief}}</td><td>{{bond_list.bo_industry}}</td><td>{{bond_list.bo_province}}</td><td>{{bond_list.bo_begin_time.date}}</td><td>{{bond_list.bo_end_time.date}}</td><td>{{bond_list.bo_create_time.date}}</td></tr>
+        <div class="project">           
+             <table>
+                <tr><th>标题</th><th>所属行业</th><th>公司类型</th><th>项目属性</th><th>投资时间</th><th>预计收入</th><th>预计收入日期</th><th>审核状态</th><th>投资金额</th></tr>
+                  {%for invest_bond in invest_bonds %}                 
+                  {%if invest_bond %}
+                  {%for bond in bonds%}                                 
+                  {%ifequal  invest_bond.ib_bond.id  bond.id %}
+                  
+
+                <tr><td>{{bond.bo_title}}</td><td>{{bond.bo_industry}}</td><td>{{bond.bo_com_type}}</td><td>{{bond.bo_pro_type}}</td><td>{{invest_bond.ib_date.date}}</td><td>{{invest_bond.ib_soon_profit|floatformat:2}}</td><td>{{invest_bond.ib_profit_date}}</td><td>{{invest_bond.ib_status}}</td><td>{{invest_bond.ib_amount|floatformat:2}}</td></tr>
+                {% endifequal %}
+                {% endfor %}
                 {% endif %}
-              {% endfor %}
-               <tr><th>标题</th><th>项目属性</th><th>公司类型</th><th>年转化率</th><th>认购起点</th><th>投资总额</th><th>当前已经认购</th></tr>
-              {%for bond_list in bond%}
-                {%if bond_list%}
-                <tr><td>{{bond_list.bo_title}}</td><td>{{bond_list.bo_pro_type}}</td><td>{{bond_list.bo_com_type}}</td><td>{{bond_list.bo_scale}}</td><td>{{bond_list.bo_min_price}}</td><td>{{bond_list.bo_total_price}}</td><td>{{bond_list.bo_current_price}}</td></tr>
-                {% endif %}
-              {% endfor %}
-            
-              <tr><th>标题</th><th>关注数</th><th>点击数</th><th>认购次数</th><th>排序</th><th>状态</th><th>是否推荐</th></tr>
-              {%for bond_list in bond%}
-                {%if bond_list%}
-                <tr><td>{{bond_list.bo_title}}</td><td>{{bond_list.bo_like_count}}</td><td>{{bond_list.bo_view_count}}</td><td>{{bond_list.bo_invest_count}}</td><td>{{bond_list.bo_sort}}</td><td>{{bond_list.bo_status}}</td><td>{{bond_list.bo_is_commend}}</td></tr>
-                {% endif %}
-              {% endfor %}
-            </table>
+                {% endfor %}   
+                
+            </table>   
+            <div class="right">投资总额：{{invest_price|floatformat:2}}万元</div>       
            
         </div>
 

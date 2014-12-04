@@ -31,39 +31,27 @@
 
     <div class="info right">
         <div class="title">用户股权详细信息</div>
-        <div class="project">
-            {%if username%}
-          <div> <span class="left btn"><a href="javascript:;">用户名:{{username}}</a></span></div>
-          {% endif %}
-            
+        <div class="project"> 
             <table>
-                <tr><th>标题</th><th>描述</th><th>所属行业</th><th>所属地区</th><th>开始时间</th><th>结束时间</th><th>创建时间</th></tr>
-                  {%for stock_list in stock%}
-                {%if stock_list%}
-                <tr><td>{{stock_list.st_title}}</td><td>{{stock_list.st_brief}}</td><td>{{stock_list.st_industry}}</td><td>{{stock_list.st_province}}</td><td>{{stock_list.st_begin_time.date}}</td><td>{{stock_list.st_end_time.date}}</td><td>{{stock_list.st_create_time.date}}</td></tr>
+
+                <tr><th>标题</th><th>所属行业</th><th>公司类型</th><th>项目属性</th><th>投资时间</th><th>预计收入</th><th>预计收入日期</th><th>审核状态</th><th>投资金额</th></tr>
+                  {%for invest_stock in invest_stocks %}                 
+                  {%if invest_stock %}
+                  {%for stock in stocks%} 
+                                
+                  {%ifequal  invest_stock.is_stock.id  stock.id %}
+                  
+
+                <tr><td>{{invest_stock.is_stock}}</td><td>{{stock.st_industry}}</td><td>{{stock.st_com_type}}</td><td>{{stock.st_pro_type}}</td><td>{{invest_stock.is_date.date}}</td><td>{{invest_stock.is_soon_profit|floatformat:2}}</td><td>{{invest_stock.is_profit_date}}</td><td>{{invest_stock.is_status}}</td><td>{{invest_stock.is_amount|floatformat:2}}</td></tr>
+                {% endifequal %}
+                {% endfor %}
                 {% endif %}
-              {% endfor %}
-               <tr><th>标题</th><th>项目属性</th><th>公司类型</th><th>出让比例</th><th>认购起点</th><th>投资总额</th><th>当前已经认购</th></tr>
-              {%for stock_list in stock%}
-                {%if stock_list%}
-                <tr><td>{{stock_list.st_title}}</td><td>{{stock_list.st_pro_type}}</td><td>{{stock_list.st_com_type}}</td><td>{{stock_list.st_scale}}</td><td>{{stock_list.st_min_price}}</td><td>{{stock_list.st_total_price}}</td><td>{{stock_list.st_current_price}}</td></tr>
-                {% endif %}
-              {% endfor %}
-            
-              <tr><th>标题</th><th>关注数</th><th>点击数</th><th>认购次数</th><th>排序</th><th>状态</th><th>是否推荐</th></tr>
-              {%for stock_list in stock%}
-                {%if stock_list%}
-                <tr><td>{{stock_list.st_title}}</td><td>{{stock_list.st_like_count}}</td><td>{{stock_list.st_view_count}}</td><td>{{stock_list.st_invest_count}}</td><td>{{stock_list.st_sort}}</td><td>{{stock_list.st_status}}</td><td>{{stock_list.st_is_commend}}</td></tr>
-                {% endif %}
-              {% endfor %}
-            </table>
-           
+                {% endfor %}   
+                
+            </table>   
+            <div class="right">投资总额：{{invest_price|floatformat:2}}万元</div>       
         </div>
-
-
     </div>
-    
-  
 </div>
 <div class="clearfix"></div>
 {% endblock %}

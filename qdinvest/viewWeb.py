@@ -119,6 +119,10 @@ def bond(request):
 					kwargs['bo_scale__gte'] = request.session['tr_id1']
 				if request.session['tr_id'] == 25:					
 					kwargs['bo_scale__gte'] = request.session['tr_id1']
+		else:
+			request.session['tr_id'] = 'all2'
+
+
 
 	if pt:	
 		if pt == 'all':
@@ -193,14 +197,13 @@ def bond(request):
 
 
 
-	else:
-		BOND_objs1 = BOND.objects.all()	
+	else:		
+		BOND_objs1 = BOND.objects.all()			
 		context_dict['bonds'] = BOND_objs1	
 		context_dict['ct'] = 'all'
-		context_dict['st'] = 'all'
-		context_dict['tr'] = 'all' 
-		context_dict['pt'] = 'all'
-        
+		context_dict['st'] = 'all'		
+		context_dict['tr'] = 'all'		
+		context_dict['pt'] = 'all'        
 	context_dict['page_num'] = (len(context_dict['bonds'])+9)/10
 	return render_to_response('qdinvest/bond.html',context_dict,context)
 
@@ -574,6 +577,19 @@ def forget5(request):
 		else:		
 			context_dict['msg'] = '验证码输入错误'
 			return HttpResponse(json.dumps(context_dict),content_type="application/json")
+#个人中心页面的显示			
+def account(request):
+	context = RequestContext(request)
+	context_dict = {}	
+	if request.session.has_key('username'):
+		return render_to_response('qdinvest/account.html',context_dict,context)
+	else:
+		return HttpResponseRedirect('/c/login/')
+
+
+
+
+
 
 #个人中心页面中账户信息的显示
 def account_list(request):
@@ -587,31 +603,61 @@ def account_list(request):
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/account_list.html',context_dict,context)
 
+#个人页面中股权项目页面的显示
 def stock_list(request):
 	context = RequestContext(request)
 	context_dict = {}	
+	invest = []
+	st_invest_price = 0
 	if request.session.has_key('username'):
-		u_name = request.session['username']
-		STOCK_obj = STOCK.objects.filter(st_user__u_name=u_name)
-		context_dict['stock'] = STOCK_obj
-		context_dict['username'] = u_name	
+		u_name = request.session['username']		
+		STOCK_objs1 = INVEST_STOCK.objects.filter(is_user__u_name = u_name)
+		context_dict['invest_stocks'] = STOCK_objs1
+		for STOCK_obj in STOCK_objs1:					
+			st_invest_price += STOCK_obj.is_amount
+			context_dict['invest_price'] = st_invest_price
+		STOCK_ids = INVEST_STOCK.objects.filter(is_user__u_name = u_name).values('is_stock').distinct()			
+		for STOCK_id in STOCK_ids:			
+			STOCK_obj = STOCK.objects.get(id__exact = STOCK_id['is_stock'])
+			invest.append({'id':STOCK_obj.id,'st_brief':STOCK_obj.st_brief,'st_com_type':STOCK_obj.st_com_type,'st_pro_type':STOCK_obj.st_pro_type,'st_industry':STOCK_obj.st_industry})
+	
+		context_dict['stocks'] = invest
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/stock_list.html',context_dict,context)
 
+#个人页面中债权项目页面的显示
 def bond_list(request):
 	context = RequestContext(request)
 	context_dict = {}	
+	invest = []
+	ib_invest_price = 0
 	if request.session.has_key('username'):
-		u_name = request.session['username']
-		BOND_obj = BOND.objects.filter(bo_user__u_name=u_name)
-		context_dict['bond'] = BOND_obj
-		context_dict['username'] = u_name			
+		u_name = request.session['username']		
+		BOND_objs1 = INVEST_BOND.objects.filter(ib_user__u_name = u_name)
+		context_dict['invest_bonds'] = BOND_objs1
+		for BOND_obj in BOND_objs1:					
+			ib_invest_price += BOND_obj.ib_amount
+			context_dict['invest_price'] = ib_invest_price
+		BOND_ids = INVEST_BOND.objects.filter(ib_user__u_name = u_name).values('ib_bond').distinct()			
+		for BOND_id in BOND_ids:			
+			BOND_obj = BOND.objects.get(id__exact = BOND_id['ib_bond'])
+			invest.append({'id':BOND_obj.id,'bo_title':BOND_obj.bo_title,'bo_com_type':BOND_obj.bo_com_type,'bo_pro_type':BOND_obj.bo_pro_type,'bo_industry':BOND_obj.bo_industry})	
+		context_dict['bonds'] = invest
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/bond_list.html',context_dict,context)
 
+#个人页面中消息页面的显示
 def news(request):
 	context = RequestContext(request)
 	context_dict = {}	
+	# if request.session.has_key('username'):
+	
+	# 	news_objs = NOTICE_READ.objects.filter(nr_user__u_name = u_name)
+	# 	for new in news_objs:
+	# 		new_list = {}
+	# 		new_list['']
+
+
 	return render_to_response('qdinvest/news.html',context_dict,context)

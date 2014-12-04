@@ -368,7 +368,7 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .infocontent .info .project table th{ background-color:#eee; border-right:1px solid #e0e0e0;}
 .infocontent .info .project table th,.infocontent .info .project table td{ line-height:35px; text-align:center;}
 .infocontent .info .project .btn{ border:0px; margin-top:6px;}
-.infocontent .info .project .btn a{ display:inline-block; width:100px; height:28px; line-height:25px; background:#ff8c19; font-size:14px; color:#fff; text-align:center;}
+.infocontent .info .project .btn a{ display:inline-block; width:80px; height:28px; line-height:25px; background:#ff8c19; font-size:14px; color:#fff; text-align:center;}
 
 .loginbar{ width:1000px; margin:40px auto 0;}
 .lbanner{ background:url(../images/login_banner.png) center center no-repeat; width:570px; height:547px;}
@@ -380,6 +380,8 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .loginform .form {margin-bottom: 30px}
 .loginform .form div input{ width:318px; height:40px; padding:0 10px; margin-top:15px; border:1px solid #eee;}
 .loginform .form > input{ width:128px; height:40px; border:1px solid #eee; background:#70ca10; color:#fff; font-size:24px; padding-bottom:5px; margin-top:30px;}
+.loginform .form div span input{ width:340px; height:42px; border:1px solid #eee; background:#70ca10; color:#fff; font-size:24px; padding-bottom:5px; margin-top:30px;}
+
 .loginform .form > span{ margin-top:30px; margin-left:15px;}
 .loginform .form > span a{font-size:14px; color:#333;}
 .loginform .form > span input{ margin-right:5px; vertical-align:middle;}
