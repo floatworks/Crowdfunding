@@ -613,15 +613,16 @@ def stock_list(request):
 		u_name = request.session['username']		
 		STOCK_objs1 = INVEST_STOCK.objects.filter(is_user__u_name = u_name)
 		context_dict['invest_stocks'] = STOCK_objs1
-		for STOCK_obj in STOCK_objs1:					
-			st_invest_price += STOCK_obj.is_amount
-			context_dict['invest_price'] = st_invest_price
-		STOCK_ids = INVEST_STOCK.objects.filter(is_user__u_name = u_name).values('is_stock').distinct()			
-		for STOCK_id in STOCK_ids:			
-			STOCK_obj = STOCK.objects.get(id__exact = STOCK_id['is_stock'])
-			invest.append({'id':STOCK_obj.id,'st_brief':STOCK_obj.st_brief,'st_com_type':STOCK_obj.st_com_type,'st_pro_type':STOCK_obj.st_pro_type,'st_industry':STOCK_obj.st_industry})
-	
-		context_dict['stocks'] = invest
+		if STOCK_objs1:
+			for STOCK_obj in STOCK_objs1:					
+				st_invest_price += STOCK_obj.is_amount		
+			STOCK_ids = INVEST_STOCK.objects.filter(is_user__u_name = u_name).values('is_stock').distinct()				
+			if 	STOCK_ids:
+				for STOCK_id in STOCK_ids:			
+					STOCK_obj = STOCK.objects.get(id__exact = STOCK_id['is_stock'])
+					invest.append({'id':STOCK_obj.id,'st_brief':STOCK_obj.st_brief,'st_com_type':STOCK_obj.st_com_type,'st_pro_type':STOCK_obj.st_pro_type,'st_industry':STOCK_obj.st_industry})	
+			context_dict['stocks'] = invest
+		context_dict['invest_price'] = st_invest_price
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/stock_list.html',context_dict,context)
@@ -636,14 +637,16 @@ def bond_list(request):
 		u_name = request.session['username']		
 		BOND_objs1 = INVEST_BOND.objects.filter(ib_user__u_name = u_name)
 		context_dict['invest_bonds'] = BOND_objs1
-		for BOND_obj in BOND_objs1:					
-			ib_invest_price += BOND_obj.ib_amount
-			context_dict['invest_price'] = ib_invest_price
-		BOND_ids = INVEST_BOND.objects.filter(ib_user__u_name = u_name).values('ib_bond').distinct()			
-		for BOND_id in BOND_ids:			
-			BOND_obj = BOND.objects.get(id__exact = BOND_id['ib_bond'])
-			invest.append({'id':BOND_obj.id,'bo_title':BOND_obj.bo_title,'bo_com_type':BOND_obj.bo_com_type,'bo_pro_type':BOND_obj.bo_pro_type,'bo_industry':BOND_obj.bo_industry})	
-		context_dict['bonds'] = invest
+		if BOND_objs1:
+			for BOND_obj in BOND_objs1:					
+				ib_invest_price += BOND_obj.ib_amount				
+			BOND_ids = INVEST_BOND.objects.filter(ib_user__u_name = u_name).values('ib_bond').distinct()
+			if	BOND_ids:		
+				for BOND_id in BOND_ids:			
+					BOND_obj = BOND.objects.get(id__exact = BOND_id['ib_bond'])
+					invest.append({'id':BOND_obj.id,'bo_title':BOND_obj.bo_title,'bo_com_type':BOND_obj.bo_com_type,'bo_pro_type':BOND_obj.bo_pro_type,'bo_industry':BOND_obj.bo_industry})	
+			context_dict['bonds'] = invest
+		context_dict['invest_price'] = ib_invest_price
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/bond_list.html',context_dict,context)

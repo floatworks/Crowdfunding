@@ -37,12 +37,20 @@
                 <tr><th>标题</th><th>所属行业</th><th>公司类型</th><th>项目属性</th><th>投资时间</th><th>预计收入</th><th>预计收入日期</th><th>审核状态</th><th>投资金额</th></tr>
                   {%for invest_stock in invest_stocks %}                 
                   {%if invest_stock %}
-                  {%for stock in stocks%} 
-                                
-                  {%ifequal  invest_stock.is_stock.id  stock.id %}
-                  
+                   
 
-                <tr><td>{{invest_stock.is_stock}}</td><td>{{stock.st_industry}}</td><td>{{stock.st_com_type}}</td><td>{{stock.st_pro_type}}</td><td>{{invest_stock.is_date.date}}</td><td>{{invest_stock.is_soon_profit|floatformat:2}}</td><td>{{invest_stock.is_profit_date}}</td><td>{{invest_stock.is_status}}</td><td>{{invest_stock.is_amount|floatformat:2}}</td></tr>
+                  {%for stock in stocks%} 
+                         
+                  {%ifequal  invest_stock.is_stock.id  stock.id %}
+                 
+                  
+                <tr><td><a href="/c/stock/sdetail/{{stock.id}}">{{invest_stock.is_stock}}</a></td><td>{{stock.st_industry}}</td><td>{{stock.st_com_type}}</td><td>{{stock.st_pro_type}}</td><td>{{invest_stock.is_date.date}}</td>
+                    {%if  invest_stock.is_soon_profit%}
+                    <td>{{invest_stock.is_soon_profit|floatformat:2}}</td>
+                    {%else%}
+                    <td>0</td>
+                    {% endif %}
+                    <td>{{invest_stock.is_profit_date}}</td><td>{{invest_stock.is_status}}</td><td>{{invest_stock.is_amount|floatformat:2}}</td></tr>
                 {% endifequal %}
                 {% endfor %}
                 {% endif %}

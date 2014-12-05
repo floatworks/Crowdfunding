@@ -40,7 +40,13 @@
                   {%ifequal  invest_bond.ib_bond.id  bond.id %}
                   
 
-                <tr><td>{{bond.bo_title}}</td><td>{{bond.bo_industry}}</td><td>{{bond.bo_com_type}}</td><td>{{bond.bo_pro_type}}</td><td>{{invest_bond.ib_date.date}}</td><td>{{invest_bond.ib_soon_profit|floatformat:2}}</td><td>{{invest_bond.ib_profit_date}}</td><td>{{invest_bond.ib_status}}</td><td>{{invest_bond.ib_amount|floatformat:2}}</td></tr>
+                <tr><td><a href="/c/bond/bdetail/{{bond.id}}">{{bond.bo_title}}</a></td><td>{{bond.bo_industry}}</td><td>{{bond.bo_com_type}}</td><td>{{bond.bo_pro_type}}</td><td>{{invest_bond.ib_date.date}}</td>
+                    {%if  invest_bond.ib_soon_profit%}
+                     <td>{{invest_bond.ib_soon_profit|floatformat:2}}</td>
+                    {%else%}
+                    <td>0</td>
+                    {% endif %}
+                   <td>{{invest_bond.ib_profit_date}}</td><td>{{invest_bond.ib_status}}</td><td>{{invest_bond.ib_amount|floatformat:2}}</td></tr>
                 {% endifequal %}
                 {% endfor %}
                 {% endif %}
