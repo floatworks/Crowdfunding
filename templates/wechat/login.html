@@ -2,26 +2,25 @@
 {% load staticfiles %}
 {% load extra_tags%}
 {% block body_block %}
-	<div data-role ="page" id="login" data-title="用户登录" class="login" data-theme="d">
-		<div class="absolute">
-			<img src="{% static 'wechat/css/themes/images/login_logo.png'%}" />
-			<form action="/w/login/" id="login" method="post" enctype="multipart/form-data" data-ajax="false">
-				<div data-role="controlgroup">
-					<input type="text" name="user" id="user" placeholder="帐号，注册时输入的用户名" />
-					<input type="password" name="pwd" id="pwd" placeholder="密码，3次机会" />
-					<a href="#">忘记密码</a>
-				</div>
+<div data-role ="page" id="login" data-title="用户登录" class="login" data-theme="d">
+	<div class="absolute">
+		<img src="{% static 'wechat/css/themes/images/login_logo.png'%}" />
+		<form action="/w/login/" id="login" method="post" enctype="multipart/form-data" data-ajax="false">
+			<div data-role="controlgroup">
+				<input type="text" name="user" id="user" placeholder="帐号，注册时输入的用户名" />
+				<input type="password" name="pwd" id="pwd" placeholder="密码，3次机会" />
+				<a href="#">忘记密码</a>
+			</div>
 
-				<div class="ui-grid-a">
-					<div class="ui-block-a" >
-						<a href="#reg" data-role="button" data-transition="flip" data-theme="b" >注册</a>
-					</div>
-					<div class="ui-block-b" >
-						<button data-theme="c">登录</button>
-					</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a" >
+					<a href="#reg" data-role="button" data-transition="flip" data-theme="b" >注册</a>
 				</div>
-			</form>
-			<!--div class="ui-grid-solo">体验一下 &gt;</div-->
+				<div class="ui-block-b" >
+					<button data-theme="c" type="submit">登录</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
 <div data-role ="page" id="reg" data-title="用户注册" class="reg">
@@ -85,6 +84,16 @@
 			<br>
 			1、“**”系基于地理位置的移动社交产品，用户注册时应当授权**科技公开及使用其地理位置信息方可成功注册“**”账号。故用户完成注册即表明用户同意**科技提取、公开及使用用户的地理位置信息。如用户需要终止向其他用户公开其地理位置信息，可自行设置为隐身状态。
 		</p>
+	</div>
+	<div data-role="popup" id="popupDialog" class="ui-corner-all">
+		<div data-role="header">
+			<h1>清大众筹</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<h3 class="ui-title">请重新输入密码</h3>
+			<!--p>忘记密码？</p-->
+			<a href="#" data-role="button" data-rel="back" data-transition="flow" data-theme="b">确定</a>
+		</div>
 	</div>
 </div>
 {% endblock %}

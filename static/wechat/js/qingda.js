@@ -54,22 +54,22 @@ $(document).on("pageinit", "#pro_detail", function() {
 	} else {
 		//alert('没有视频');
 	}
-	
-	$('#invest_button').click(function(){
+
+	$('#invest_button').click(function() {
 		price = $("#input-money").val().trim();
 		type = $(this).attr('type');
 		id = $(this).attr('pid');
-		if(price == null || price == ''){
+		if (price == null || price == '') {
 			$("#input-money").val('');
 			return;
 		}
 		$.post("/w/invest/", {
-				'type':type,
-				'id':id,
-				'price':price
+				'type': type,
+				'id': id,
+				'price': price
 			},
 			function(data, status) {
-				if (data.status == -1){
+				if (data.status == -1) {
 					window.location.href = "/w/login/";
 				}
 			});
@@ -79,17 +79,17 @@ $(document).on("pageinit", "#pro_detail", function() {
 });
 
 $(document).on("pageinit", "#feedback", function() {
-	$('#feedback_btn').click(function(){
+	$('#feedback_btn').click(function() {
 		mail = $("#fb_email").val().trim();
 		content = $("#fb_textarea").val().trim();
 		$.post("/w/feedback/", {
-				'mail':mail,
-				'content':content
+				'mail': mail,
+				'content': content
 			},
 			function(data, status) {
-				if (data.status == -1){
+				if (data.status == -1) {
 					window.location.href = "/w/login/";
-				}else if(data.status == 1){
+				} else if (data.status == 1) {
 					window.location.href = "/w/setting/";
 				}
 			});
@@ -97,24 +97,30 @@ $(document).on("pageinit", "#feedback", function() {
 });
 
 $(document).on("pageinit", "#reg", function() {
-	$('#getCode').click(function(){
+	$('#getCode').click(function() {
 		tel = $("#u_tel").val().trim();
-		if(!tel.match($.regexpCommon('phoneNumberZN'))){
-			alert('手机号码不对');
+		if (!tel.match($.regexpCommon('phoneNumberZN'))) {
+			popDialog('#popupDialog','手机号码格式不正确');
 			return;
 		}
 		$.get("/app/code/", {
-				'type':'reg',
-				'u_tel':tel
+				'type': 'reg',
+				'u_tel': tel
 			},
 			function(data, status) {
-				alert(data.status);
-				if(data.status == 1){
-					alert('倒计时');
+				if(data.status == 2){
+					popDialog('#popupDialog','该手机号码已经被注册');
+				}else if (data.status == 1) {
+					popDialog('#popupDialog','验证码发送成功，请注意查收');
 				}
 			});
 	});
 });
+
+function popDialog(dialogID,text){
+	$(dialogID+" h3").text(text);
+	$(dialogID).popup('open');  
+}
 
 $(".pro_detail #detailtabs").delegate(".ui-tabs-anchor", "click", function() {
 

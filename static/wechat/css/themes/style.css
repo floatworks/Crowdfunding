@@ -889,10 +889,11 @@
 
 /*******pop**********/
 #popupDialog-popup{
-	width: 80%;
+	width: 60%;
 }
 #popupDialog-popup #popupDialog .ui-content{
 	padding: .5em .75em 0 .75em;
+	text-align: center;
 }
 #popupDialog-popup .ui-overlay-shadow {
 -webkit-box-shadow: 0 0 12px rgba(0,0,0,.6);
