@@ -131,52 +131,23 @@
 	</div>
 	<div role="main" class="ui-content">
 		<ul data-role ="listview" data-theme ="e" >
+			{% for notice in notices%}
 			<li data-icon="false">
-				<a href="#message" data-ajax="false" data-transition="slidefade">
-					<h3>通知测试</h3>
+				<a href="/w/nodetail/t{{notice.type}}d{{notice.id}}" data-transition="slidefade" data-ajax="false">
+					<h3>{{notice.title}}</h3>
 					<p>
+						{% ifequal notice.type 'sys' %}
 						<span>系统通知</span>
-						<span>2014-11-22 01:21:09</span>
+						{% else %}
+						<span>用户通知</span>
+						{% endifequal %}
+						<span>{{notice.time}}</span>
 					</p>
-					<p>这是正文简短介绍</p>
+					<p>{{notice.brief}}</p>
 				</a>
 			</li>
-			<li data-icon="false">
-				<a href="#message" data-ajax="false" data-transition="slidefade">
-					<h3>有人关注了你</h3>
-					<p>
-						<span>系统通知</span>
-						<span>2014-11-22 01:21:09</span>
-					</p>
-					<p>短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发短信群发</p>
-				</a>
-			</li>
-			<li data-icon="false">
-				<a href="#message" data-ajax="false" data-transition="slidefade">
-					<h3>用户你好</h3>
-					<p>
-						<span>系统通知</span>
-						<span>2014-11-22 01:21:09</span>
-					</p>
-					<p>这是正文简短介绍</p>
-				</a>
-			</li>
-
+			{% endfor %}
 		</ul>
-	</div>
-</div>
-<div data-role ="page" id="message" data-title="清大众筹" class="personal">
-	<div data-role="header">
-		<a href="#" data-rel="back" data-ajax="false" class="ui-btn ui-btn-icon-left ui-icon-carat-l">返回</a>
-		<h1>消息内容</h1>
-	</div>
-	<div role="main" class="ui-content">
-		<h3>通知测试</h3>
-		<p>
-			<span>系统通知</span>
-			<span>2014-11-22 01:21:09</span>
-		</p>
-		<p>这是正文简短介绍</p>
 	</div>
 </div>
 {% endblock %}

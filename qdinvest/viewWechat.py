@@ -492,8 +492,8 @@ def Personal(request):
 	if not T.CheckIsLogin(request):
 		return	HttpResponseRedirect('/w/login/')
 	else:
-		#USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
-		ACCOUNT_obj = ACCOUNT.objects.get(ac_user__id = request.session['USER_ID'])
+		USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
 		context_dict['account'] = ACCOUNT_obj
 
 		PROFIT_objs = PROFIT.objects.filter(pr_user__id = request.session['USER_ID']).order_by('-pr_date')
@@ -513,7 +513,85 @@ def Personal(request):
 			profits.append(profits_data)
 		context_dict['profits'] = profits
 
+		#获取通知信息
+		notices = []
+		NOTICE_objs = NOTICE.objects.filter(no_is_delete__exact = 0).order_by('-no_time')
+		for NOTICE_obj in NOTICE_objs:
+			notice_data = {}
+			notice_data['id'] = NOTICE_obj.id
+			notice_data['title'] = NOTICE_obj.no_title
+			notice_data['brief'] = NOTICE_obj.no_brief
+			notice_data['time'] = NOTICE_obj.no_time.strftime('%Y-%m-%d %H:%M:%S')
+			notice_data['type'] = 'sys'
+			if T.CheckExist(NOTICE_READ,{'nr_user':USERS_obj,'nr_notice':NOTICE_obj}):
+				notice_data['is_read'] = 1
+			else:
+				notice_data['is_read'] = 0
+			notices.append(notice_data)
+		NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_obj).order_by('-nu_time')
+		for NOTICE_USER_obj in NOTICE_USER_objs:
+			notice_data = {}
+			notice_data['id'] = NOTICE_USER_obj.id
+			notice_data['title'] = NOTICE_USER_obj.nu_title
+			notice_data['brief'] = NOTICE_USER_obj.nu_brief
+			notice_data['time'] = NOTICE_USER_obj.nu_time.strftime('%Y-%m-%d %H:%M:%S')
+			notice_data['is_read'] = NOTICE_USER_obj.nu_is_read
+			notice_data['type'] = 'user'
+			notices.append(notice_data)
+		#按照时间的倒序进行排列
+		notices = sorted(notices,key = operator.itemgetter('time'),reverse=True)
+		context_dict['notices'] = notices
+
 	return render_to_response('wechat/personal.html',context_dict,context)
+
+#获取通知详情
+def NoticeDetail(request,n_type,n_id):
+	context = RequestContext(request)
+	response_dict = {}
+	if request.method == 'GET':
+		USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		if n_type == 'sys':
+			NOTICE_objs = NOTICE.objects.filter(id__exact = n_id)
+			if NOTICE_objs:
+				response_dict['status'] = 1
+				notice = {}
+				notice['title'] = NOTICE_objs[0].no_title
+				notice['body'] = NOTICE_objs[0].no_body
+				notice['time'] = NOTICE_objs[0].no_time.strftime('%Y-%m-%d %H:%M:%S')
+				notice['type'] = u"系统通知"
+				response_dict['notice'] = notice
+				if not T.CheckExist(NOTICE_READ,{'nr_user':USERS_obj,'nr_notice':NOTICE_objs[0]}):
+					NOTICE_READ_new = NOTICE_READ(nr_user = USERS_obj,nr_notice = NOTICE_objs[0])
+					NOTICE_READ_new.save()
+					ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
+					ACCOUNT_obj.ac_infos -= 1
+					ACCOUNT_obj.save()
+			else:
+				response_dict['status'] = 0
+		elif n_type == 'user':
+			NOTICE_USER_objs = NOTICE_USER.objects.filter(id__exact = n_id)
+			if NOTICE_USER_objs:
+				response_dict['status'] = 1
+				notice = {}
+				notice['title'] = NOTICE_USER_objs[0].nu_title
+				notice['body'] = NOTICE_USER_objs[0].nu_body
+				notice['time'] = NOTICE_USER_objs[0].nu_time.strftime('%Y-%m-%d %H:%M:%S')
+				notice['type'] = u"用户通知"
+				response_dict['notice'] = notice
+				if NOTICE_USER_objs[0].nu_is_read == 0:
+					ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
+					ACCOUNT_obj.ac_infos -= 1
+					ACCOUNT_obj.save()
+				#标记为已经阅读
+				NOTICE_USER_objs[0].nu_is_read = 1
+				NOTICE_USER_objs[0].save()
+
+			else:
+				response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return render_to_response('wechat/noticeDetail.html',response_dict,context)
+
 
 #微信端设置页面
 def Setting(request):

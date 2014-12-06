@@ -1,0 +1,19 @@
+{% extends "wechat/base.html" %}
+{% load staticfiles %}
+{% load extra_tags%}
+{% block body_block %}
+<div data-role ="page" id="message" data-title="清大众筹" class="personal">
+	<div data-role="header">
+		<a href="#" data-rel="back" data-ajax="false" class="ui-btn ui-btn-icon-left ui-icon-carat-l">返回</a>
+		<h1>消息内容</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<h3>{{notice.title}}</h3>
+		<p>
+			<span>{{notice.type}}</span>
+			<span>{{notice.time}}</span>
+		</p>
+		<p>{% autoescape off %}{{notice.body}}{% endautoescape %}</p>
+	</div>
+</div>
+{% endblock %}
