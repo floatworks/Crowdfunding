@@ -34,6 +34,45 @@
 .ui-footer{
 	border-width: 0;
 }
+.ui-page-theme-a .ui-header .ui-title .ui-link{
+	font-weight: bold;
+	position: relative;
+}
+.ui-page-theme-a .ui-header .ui-title .ui-link:after{
+	content: ' ';
+	height: 0;
+	width: 0;
+	border: solid transparent;
+	position: absolute;
+	margin-left: 2.4em;
+	z-index: 10;
+	border-width: .45em;
+	border-top-color: #e0f5ff;
+	top: .5em;
+	left: 50%;
+}
+#popupMenu-popup{
+	top: 2.7em !important;
+	width: 40%;
+}
+#popupMenu-popup #popupMenu{
+	border-width: 0;
+	background: #313133;
+	filter: Alpha(Opacity=85);
+	opacity: .85;
+}
+#popupMenu-popup #popupMenu .ui-listview > li{
+	border-width: 0;
+	margin-bottom: .15em;
+}
+#popupMenu-popup #popupMenu .ui-listview > li > a.ui-btn{
+	text-align: center;
+	color: #fff;
+	background-color: #000;
+	padding: .8em 0;
+	border-width: 0;
+}
+
 
 .index .ui-btn.ui-btn-f.ui-btn-active,
 .mypro .ui-btn.ui-btn-f.ui-btn-active{
@@ -84,7 +123,9 @@
 	position: fixed;
 	z-index: 1000;
 }
-
+.index .ui-filterable{
+	margin:0 .3em;
+}
 .index .ui-tabs .ui-navbar li .ui-btn,
 .mypro .ui-tabs .ui-navbar li .ui-btn {
 	border-top-width: 0;
