@@ -14,7 +14,7 @@ function pullUpAction() {
 
 		generatedCount += 1;
 		$.ajax({
-			url: '/w/prolist/' + generatedCount,
+			url: '/w/prolist/' + generatedCount+'?f='+$.getUrlParam('f'),
 			type: 'GET',
 			dataType: 'json',
 			success: function(result) {
