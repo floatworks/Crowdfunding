@@ -59,8 +59,13 @@ $(document).on("pageinit", "#pro_detail", function() {
 		price = $("#input-money").val().trim();
 		type = $(this).attr('type');
 		id = $(this).attr('pid');
+		min_price = $(this).attr('min');
 		if (price == null || price == '') {
 			$("#input-money").val('');
+			popDialog('#investDialog','认购金额不能为空');
+			return;
+		}else if(parseFloat(price) < parseFloat(min_price)){
+			popDialog('#investDialog','认购金额不能少于认购起点');
 			return;
 		}
 		$.post("/w/invest/", {
@@ -71,6 +76,9 @@ $(document).on("pageinit", "#pro_detail", function() {
 			function(data, status) {
 				if (data.status == -1) {
 					window.location.href = "/w/login/";
+				}else if(data.status == 1){
+					popDialog('#investDialog','认购成功');
+					$('#invest_count').text(parseInt($('#invest_count').text())+1);
 				}
 			});
 		$("#input-money").val('');

@@ -35,7 +35,7 @@
 								</p>
 							</div>
 							<div class="ui-block-c">
-								<p>{{invest_count}}</p>
+								<p id="invest_count">{{invest_count}}</p>
 								<p>
 									<span>认购</span>
 								</p>
@@ -167,11 +167,20 @@
 	<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme="b">
 		<div class="ui-grid-a bottomnav">
 			<div class="ui-block-a">
-				<input type="text" id = "input-money" name="input-money" placeholder="认购金额{{min_price|toTenThous}}万元起" />
+				<input type="text" id = "input-money" name="input-money" placeholder="认购金额{{min_price}}元起" />
 			</div>
 			<div class="ui-block-b">
-				<button class="btn-confirm" id="invest_button" type="{{p_type}}" pid="{{id}}">确认投标</button>
+				<button class="btn-confirm" id="invest_button" type="{{p_type}}" pid="{{id}}" min="{{min_price}}">我要认购</button>
 			</div>
+		</div>
+	</div>
+	<div data-role="popup" id="investDialog" class="ui-corner-all">
+		<div data-role="header">
+			<h1>清大众筹</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<h3 class="ui-title"></h3>
+			<a href="#" data-role="button" data-rel="back" data-transition="flow" data-theme="b">确定</a>
 		</div>
 	</div>
 </div>
