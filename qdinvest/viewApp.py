@@ -226,7 +226,7 @@ def GetProjects(request):
 					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
 					stocks_per['st_code'] = STOCK_obj.st_code
-					stocks_per['st_image'] = str(STOCK_obj.st_image)
+					stocks_per['st_image'] = str(STOCK_obj.st_logo)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
 					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
 					stocks_per['st_industry'] = STOCK_obj.st_industry.in_name
@@ -247,7 +247,7 @@ def GetProjects(request):
 					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
 					bonds_per['bo_code'] = BOND_obj.bo_code
-					bonds_per['bo_image'] = str(BOND_obj.bo_image)
+					bonds_per['bo_image'] = str(BOND_obj.bo_logo)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
 					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
 					bonds_per['bo_brief'] = BOND_obj.bo_brief
@@ -287,7 +287,7 @@ def GetMyProjects(request):
 					stocks_per['id'] = INVEST_STOCK_obj.id
 					stocks_per['st_title'] = INVEST_STOCK_obj.st_title
 					stocks_per['st_code'] = INVEST_STOCK_obj.st_code
-					stocks_per['st_image'] = str(INVEST_STOCK_obj.st_image)
+					stocks_per['st_image'] = str(INVEST_STOCK_obj.st_logo)
 					stocks_per['st_total_price'] = INVEST_STOCK_obj.st_total_price
 					#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
 					st_status_list = list(INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0],is_stock__exact = INVEST_STOCK_obj).values('is_status').distinct())
@@ -311,7 +311,7 @@ def GetMyProjects(request):
 					bonds_per['id'] = INVEST_BOND_obj.id
 					bonds_per['bo_title'] = INVEST_BOND_obj.bo_title
 					bonds_per['bo_code'] = INVEST_BOND_obj.bo_code
-					bonds_per['bo_image'] = str(INVEST_BOND_obj.bo_image)
+					bonds_per['bo_image'] = str(INVEST_BOND_obj.bo_logo)
 					bonds_per['bo_total_price'] = INVEST_BOND_obj.bo_total_price
 					#bonds_per['ib_amount'] = INVEST_BOND_obj.ib_amount
 					bo_status_list =  list(INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0],ib_bond__exact = INVEST_BOND_obj).values('ib_status').distinct())
@@ -356,7 +356,7 @@ def GetLikeProjects(request):
 						project['type'] = 'stock'
 						project['title'] = USER_FOCUS_obj.uf_stock.st_title
 						project['code'] = USER_FOCUS_obj.uf_stock.st_code
-						project['image'] = str(USER_FOCUS_obj.uf_stock.st_image)
+						project['image'] = str(USER_FOCUS_obj.uf_stock.st_logo)
 						project['total_price'] = USER_FOCUS_obj.uf_stock.st_total_price
 						project['brief'] = USER_FOCUS_obj.uf_stock.st_brief
 					elif USER_FOCUS_obj.uf_bond:
@@ -364,7 +364,7 @@ def GetLikeProjects(request):
 						project['type'] = 'bond'
 						project['title'] = USER_FOCUS_obj.uf_bond.bo_title
 						project['code'] = USER_FOCUS_obj.uf_bond.bo_code
-						project['image'] = str(USER_FOCUS_obj.uf_bond.bo_image)
+						project['image'] = str(USER_FOCUS_obj.uf_bond.bo_logo)
 						project['total_price'] = USER_FOCUS_obj.uf_bond.bo_total_price
 						project['brief'] = USER_FOCUS_obj.uf_bond.bo_brief
 					projects.append(project)
@@ -400,7 +400,7 @@ def ProjectInvest(request):
 						project['id'] = STOCK_obj.id
 						project['st_title'] = STOCK_obj.st_title
 						project['st_code'] = STOCK_obj.st_code
-						project['st_image'] = str(STOCK_obj.st_image)
+						project['st_image'] = str(STOCK_obj.st_logo)
 						project['st_brief'] = STOCK_obj.st_brief
 						project['st_total_price'] = STOCK_obj.st_total_price
 						project['st_current_price'] = STOCK_obj.st_current_price
@@ -428,7 +428,7 @@ def ProjectInvest(request):
 						project['id'] = BOND_obj.id
 						project['bo_title'] = BOND_obj.bo_title
 						project['bo_code'] = BOND_obj.bo_code
-						project['bo_image'] = str(BOND_obj.bo_image)
+						project['bo_image'] = str(BOND_obj.bo_logo)
 						project['bo_brief'] = BOND_obj.bo_brief
 						project['bo_total_price'] = BOND_obj.bo_total_price
 						project['bo_current_price'] = BOND_obj.bo_current_price

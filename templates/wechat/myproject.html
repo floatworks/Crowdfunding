@@ -28,7 +28,7 @@
 							<img src="/media/{{project.image}}" />
 							<h3>{{project.title}}</h3>
 							<p class="intro">{{project.brief}}</p>
-							<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
+							<p class="hl2">融资总额：{{project.total_price|toTenThous}}万</p>
 							{% ifequal project.type 'stock' %}
 								<p class="ui-li-aside">股权类</p>
 							{% endifequal%}

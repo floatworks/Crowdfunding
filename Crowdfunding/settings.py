@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'reversion',
     'DjangoUeditor',
+    'imagekit',
 )
 
 MIDDLEWARE_CLASSES = (

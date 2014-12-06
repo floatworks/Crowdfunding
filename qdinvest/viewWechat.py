@@ -71,7 +71,7 @@ def Index(request):
 		stock_data['type'] = 'stock'
 		stock_data['id'] = STOCK_obj.id
 		stock_data['title'] = STOCK_obj.st_title
-		stock_data['image'] = str(STOCK_obj.st_image)
+		stock_data['image'] = str(STOCK_obj.st_logo)
 		stock_data['pro_type'] = STOCK_obj.st_pro_type.pt_name
 		stock_data['province'] = STOCK_obj.st_province.pr_name
 		stock_data['industry'] = STOCK_obj.st_industry.in_name
@@ -92,7 +92,7 @@ def Index(request):
 		bond_data['type'] = 'bond'
 		bond_data['id'] = BOND_obj.id
 		bond_data['title'] = BOND_obj.bo_title
-		bond_data['image'] = str(BOND_obj.bo_image)
+		bond_data['image'] = str(BOND_obj.bo_logo)
 		bond_data['com_name'] = BOND_obj.bo_com_name
 		bond_data['pro_type'] = BOND_obj.bo_pro_type.pt_name
 		bond_data['brief'] = BOND_obj.bo_brief
@@ -113,7 +113,7 @@ def Index(request):
 		stock_data['type'] = 'stock'
 		stock_data['id'] = STOCK_obj.id
 		stock_data['title'] = STOCK_obj.st_title
-		stock_data['image'] = str(STOCK_obj.st_image)
+		stock_data['image'] = str(STOCK_obj.st_logo)
 		stock_data['pro_type'] = STOCK_obj.st_pro_type.pt_name
 		stock_data['province'] = STOCK_obj.st_province.pr_name
 		stock_data['industry'] = STOCK_obj.st_industry.in_name
@@ -132,7 +132,7 @@ def Index(request):
 		bond_data['type'] = 'bond'
 		bond_data['id'] = BOND_obj.id
 		bond_data['title'] = BOND_obj.bo_title
-		bond_data['image'] = str(BOND_obj.bo_image)
+		bond_data['image'] = str(BOND_obj.bo_logo)
 		bond_data['com_name'] = BOND_obj.bo_com_name
 		bond_data['pro_type'] = BOND_obj.bo_pro_type.pt_name
 		bond_data['brief'] = BOND_obj.bo_brief
@@ -170,7 +170,7 @@ def GetProList(request,count):
 		stock_data['type'] = 'stock'
 		stock_data['id'] = STOCK_obj.id
 		stock_data['title'] = STOCK_obj.st_title
-		stock_data['image'] = str(STOCK_obj.st_image)
+		stock_data['image'] = str(STOCK_obj.st_logo)
 		stock_data['pro_type'] = STOCK_obj.st_pro_type.pt_name
 		stock_data['province'] = STOCK_obj.st_province.pr_name
 		stock_data['industry'] = STOCK_obj.st_industry.in_name
@@ -191,7 +191,7 @@ def GetProList(request,count):
 		bond_data['type'] = 'bond'
 		bond_data['id'] = BOND_obj.id
 		bond_data['title'] = BOND_obj.bo_title
-		bond_data['image'] = str(BOND_obj.bo_image)
+		bond_data['image'] = str(BOND_obj.bo_logo)
 		bond_data['com_name'] = BOND_obj.bo_com_name
 		bond_data['pro_type'] = BOND_obj.bo_pro_type.pt_name
 		bond_data['brief'] = BOND_obj.bo_brief
@@ -620,7 +620,7 @@ def GetMyProList(request):
 			stocks_per['id'] = STOCK_obj.id
 			stocks_per['type'] = 'stock'
 			stocks_per['title'] = STOCK_obj.st_title
-			stocks_per['image'] = str(STOCK_obj.st_image)
+			stocks_per['image'] = str(STOCK_obj.st_logo)
 			stocks_per['total_price'] = STOCK_obj.st_total_price
 			stocks_per['brief'] = STOCK_obj.st_brief 
 			#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
@@ -643,7 +643,7 @@ def GetMyProList(request):
 			bonds_per['id'] = BOND_obj.id
 			bonds_per['type'] = 'bond'
 			bonds_per['title'] = BOND_obj.bo_title
-			bonds_per['image'] = str(BOND_obj.bo_image)
+			bonds_per['image'] = str(BOND_obj.bo_logo)
 			bonds_per['total_price'] = BOND_obj.bo_total_price
 			bonds_per['brief'] = BOND_obj.bo_brief
 			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj,ib_bond__exact = BOND_obj,ib_status__id = 1).order_by('-ib_date')
@@ -685,7 +685,7 @@ def GetMyLikeProList(request):
 				project['type'] = 'stock'
 				project['title'] = USER_FOCUS_obj.uf_stock.st_title
 				project['code'] = USER_FOCUS_obj.uf_stock.st_code
-				project['image'] = str(USER_FOCUS_obj.uf_stock.st_image)
+				project['image'] = str(USER_FOCUS_obj.uf_stock.st_logo)
 				project['total_price'] = USER_FOCUS_obj.uf_stock.st_total_price
 				project['brief'] = USER_FOCUS_obj.uf_stock.st_brief
 			elif USER_FOCUS_obj.uf_bond:
@@ -693,7 +693,7 @@ def GetMyLikeProList(request):
 				project['type'] = 'bond'
 				project['title'] = USER_FOCUS_obj.uf_bond.bo_title
 				project['code'] = USER_FOCUS_obj.uf_bond.bo_code
-				project['image'] = str(USER_FOCUS_obj.uf_bond.bo_image)
+				project['image'] = str(USER_FOCUS_obj.uf_bond.bo_logo)
 				project['total_price'] = USER_FOCUS_obj.uf_bond.bo_total_price
 				project['brief'] = USER_FOCUS_obj.uf_bond.bo_brief
 			projects.append(project)
@@ -718,7 +718,7 @@ def GetMyProInvest(request,p_type,p_id):
 				project['id'] = STOCK_obj.id
 				project['type'] = 'stock'
 				project['title'] = STOCK_obj.st_title
-				project['image'] = str(STOCK_obj.st_image)
+				project['image'] = str(STOCK_obj.st_logo)
 				project['brief'] = STOCK_obj.st_brief
 				project['total_price'] = STOCK_obj.st_total_price
 				project['current_price'] = STOCK_obj.st_current_price
@@ -745,7 +745,7 @@ def GetMyProInvest(request,p_type,p_id):
 				project['id'] = BOND_obj.id
 				project['type'] = 'bond'
 				project['title'] = BOND_obj.bo_title
-				project['image'] = str(BOND_obj.bo_image)
+				project['image'] = str(BOND_obj.bo_logo)
 				project['brief'] = BOND_obj.bo_brief
 				project['total_price'] = BOND_obj.bo_total_price
 				project['current_price'] = BOND_obj.bo_current_price

@@ -7,6 +7,8 @@ from django.contrib.contenttypes import generic
 from django.db.models.signals import post_save,post_delete
 from django.dispatch import receiver
 from django.db.models import Sum
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 import simplejson as json
 import push as P
@@ -122,7 +124,11 @@ class STOCK(models.Model):
 	st_user = models.ForeignKey(USERS,verbose_name="用户")
 	st_title = models.CharField(max_length=100,verbose_name="标题")
 	st_code = models.CharField(max_length=30,verbose_name="股份代码")
-	st_image = models.ImageField(upload_to ='logo/',verbose_name="LOGO")
+	#st_image = models.ImageField(upload_to ='logo/',verbose_name="详细页大图")
+	st_image = ProcessedImageField(upload_to ='logo/',verbose_name='详细页大图',help_text='320px*160px为宜，图像大小不宜超过200KB',
+					processors=[ResizeToFill(320, 160)],format='JPEG')
+	st_logo = ProcessedImageField(upload_to ='logo_100x100/',verbose_name='列表页图标',help_text='100px*100px为宜，图像大小不宜超过50KB',
+					processors=[ResizeToFill(100, 100)],format='JPEG')
 	st_video = models.CharField(max_length=100,verbose_name="保利威视视频id",null=True,blank=True)
 	st_brief = models.CharField(max_length=200,verbose_name="描述")
 	st_begin_time = models.DateTimeField(verbose_name="开始时间")
@@ -196,7 +202,11 @@ class BOND(models.Model):
 	bo_user = models.ForeignKey(USERS,verbose_name="用户")
 	bo_title = models.CharField(max_length=100,verbose_name="标题")
 	bo_code = models.CharField(max_length=30,verbose_name="股份代码")
-	bo_image = models.ImageField(upload_to ='logo/',verbose_name="LOGO")
+	#bo_image = models.ImageField(upload_to ='logo/',verbose_name="LOGO")
+	bo_image = ProcessedImageField(upload_to ='logo/',verbose_name='详细页大图',help_text='320px*160px为宜，图像大小不宜超过200KB',
+					processors=[ResizeToFill(320, 160)],format='JPEG')
+	bo_logo = ProcessedImageField(upload_to ='logo_100x100/',verbose_name='列表页图标',help_text='100px*100px为宜，图像大小不宜超过50KB',
+					processors=[ResizeToFill(100, 100)],format='JPEG')
 	bo_video = models.CharField(max_length=100,verbose_name="保利威视视频id",null=True,blank=True)
 	bo_com_name = models.CharField(max_length=100,verbose_name="企业名称")
 	bo_brief = models.CharField(max_length=200,verbose_name="经营用途")

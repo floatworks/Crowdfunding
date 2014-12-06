@@ -3,7 +3,7 @@
 
 ##依赖文件说明
 
-*	pagination
+*	django-pagination
 
 	*	分页组件
 
@@ -19,8 +19,10 @@
 
 *	django-ckeditor
 
-*	Pillow
+*	Pillow or PIL 推荐Pillow
 
-*	font-awesome 4.2
+*	font-awesome 4.2 直接覆盖xadmin
 
 *	jpush	[极光推送](https://github.com/jpush/jpush-api-python-client)
+
+*	imagekit	图像处理
