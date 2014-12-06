@@ -90,6 +90,14 @@ $(document).on("pageinit", "#feedback", function() {
 	$('#feedback_btn').click(function() {
 		mail = $("#fb_email").val().trim();
 		content = $("#fb_textarea").val().trim();
+		if(!mail.match($.regexpCommon('email'))){
+			popDialog('#feedbackDialog','邮箱地址不合法');
+			return false;
+		}else if(content == null || content == ''){
+			popDialog('#feedbackDialog','反馈内容不能为空');
+			return false;
+		}
+
 		$.post("/w/feedback/", {
 				'mail': mail,
 				'content': content
