@@ -182,15 +182,15 @@
 				<p class="ui-li-bottom">
 					<span>
 						当前融资:
-						<em>￥{{project.current_price}}</em>
+						<em>￥{{project.current_price|toTenThous}}万</em>
 					</span>
 					<span>
 						融资总额:
-						<em>￥{{project.total_price}}</em>
+						<em>￥{{project.total_price|toTenThous}}万</em>
 					</span>
 					<span>
 						认购起点:
-						<em>￥{{project.min_price}}</em>
+						<em>￥{{project.min_price|toTenThous}}万</em>
 					</span>
 				</p>
 			</li>
@@ -216,11 +216,11 @@
 					</span>
 					<span>
 						融资总额:
-						<em class="hl1">￥{{project.current_price}}</em>
+						<em class="hl1">￥{{project.current_price|toTenThous}}万</em>
 					</span>
 					<span>
 						授信额度:
-						<em class="hl1">￥{{project.min_price}}</em>
+						<em class="hl1">￥{{project.min_price|toTenThous}}万</em>
 					</span>
 				</p>
 			</li>
