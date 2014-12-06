@@ -110,3 +110,8 @@ def CheckIsLogin(request):
 		request.session['origin_path'] = origin_path
 		return False
 
+#对过长的字符串进行修饰
+def subTitle(title):
+	if len(title) > 10:
+		return title[0:10]+'...'
+	return title

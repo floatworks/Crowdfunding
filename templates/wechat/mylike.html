@@ -13,7 +13,7 @@
 					<li data-icon="false">
 						<a href="/w/pd/t{{project.type}}d{{project.id}}" data-ajax="false">
 							<img src="/media/{{project.image}}" />
-							<h3>{{project.title|slice:"8"}}...</h3>
+							<h3>{{project.title}}</h3>
 							<p class="intro">{{project.brief}}</p>
 							<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
 							{% ifequal project.type 'stock' %}
