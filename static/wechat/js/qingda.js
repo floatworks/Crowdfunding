@@ -117,6 +117,55 @@ $(document).on("pageinit", "#reg", function() {
 	});
 });
 
+$(document).on("pageshow", "#login", function() {
+	var status = $.getUrlParam('s');
+	if(status == 'reg#' || status == 'reg'){
+		popDialog('#loginDialog','注册成功，请登录');
+	}else if(status == 'err' || status == 'err#'){
+		popDialog('#loginDialog','用户名或密码错误');
+	}
+});
+
+$(document).on("pageshow", "#reg", function() {
+	var status = $.getUrlParam('s');
+	if(status == 2){
+		popDialog('#popupDialog','用户名已存在');
+	}else if(status == 3){
+		popDialog('#popupDialog','该手机号码已被注册');
+	}else if(status == 4){
+		popDialog('#popupDialog','验证码错误');
+	}
+});
+//注册校验
+function checkReg(){
+	u_name = $("#u_name").val().trim();
+	u_pwd = $("#u_pwd").val().trim();
+	cpw = $("#cpw").val().trim();
+	tel = $("#u_tel").val().trim();
+	code = $("#code").val().trim();
+	if(!u_name.match($.regexpCommon('username'))){
+		popDialog('#popupDialog','请输入6至20位用户名');
+		return false;
+	}else if(!u_pwd.match($.regexpCommon('pwd'))){
+		popDialog('#popupDialog','请输入6至16位密码');
+		return false;
+	}else if(u_pwd != cpw){
+		popDialog('#popupDialog','两次密码不同');
+		return false;
+	}else if(!tel.match($.regexpCommon('phoneNumberZN'))){
+		popDialog('#popupDialog','手机号码格式不正确');
+		return false;
+	}else if(!code.match($.regexpCommon('code'))){
+		popDialog('#popupDialog','验证码为6位数字');
+		return false;
+	}else if($('#agreement').attr('data-cacheval') != 'false'){
+		popDialog('#popupDialog','请阅读并确认用户服务协议');
+		return false;
+	}
+	return true;
+}
+
+//Dialog弹出
 function popDialog(dialogID,text){
 	$(dialogID+" h3").text(text);
 	$(dialogID).popup('open');  

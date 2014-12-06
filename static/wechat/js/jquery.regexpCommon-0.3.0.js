@@ -68,6 +68,9 @@
     },
     username : function() {
       return /^\w{6,20}$/;
+    },
+    code : function() {
+      return /^\d{6}$/;
     }
   };
 }) (jQuery);

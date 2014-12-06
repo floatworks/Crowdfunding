@@ -11,6 +11,7 @@ from datetime import datetime
 
 from models import *
 import tools as T
+from forms import *
 
 #手机端用户注册接口
 def Register(request):
@@ -33,16 +34,17 @@ def Register(request):
 			if userForm.is_valid():
 				userForm.save()
 				response_dict['status'] = 1
-				return HttpResponseRedirect('/w/login/')
+				return HttpResponseRedirect('/w/login/?s=reg')
 			else:
 				response_dict['status'] = 0
+				raise Http404
 				if settings.DEBUG:
 					response_dict['error'] = userForm.errors
 					print userForm.errors
 	
 	if settings.DEBUG:
 		print response_dict
-	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+	return HttpResponseRedirect('/w/login/#reg?s='+str(response_dict['status']))
 
 #判断用户的验证码是否错误或者超时 5min
 def CheckRandomCode(u_tel,code):
@@ -478,7 +480,7 @@ def Login(request):
 				origin_path = '/w'
 			return HttpResponseRedirect(origin_path)
 		else:
-			return render_to_response('wechat/login.html',context_dict,context)
+			return HttpResponseRedirect('/w/login/?s=err')
 	else:
 		return render_to_response('wechat/login.html',context_dict,context)
 

@@ -22,6 +22,15 @@
 			</div>
 		</form>
 	</div>
+	<div data-role="popup" id="loginDialog" class="ui-corner-all">
+		<div data-role="header">
+			<h1>清大众筹</h1>
+		</div>
+		<div role="main" class="ui-content">
+			<h3 class="ui-title">请重新输入密码</h3>
+			<a href="#" data-role="button" data-rel="back" data-transition="flow" data-theme="b">确定</a>
+		</div>
+	</div>
 </div>
 <div data-role ="page" id="reg" data-title="用户注册" class="reg">
 	<div data-role="header">
@@ -29,7 +38,7 @@
 		<h1>用户注册</h1>
 	</div>
 	<div role="main" class="ui-content">
-		<form action='/w/reg/' method="post" enctype="multipart/form-data" data-ajax="false">
+		<form action='/w/reg/' method="post" enctype="multipart/form-data" data-ajax="false" onsubmit="return checkReg()">
 			<div class="ui-field-contain">
 				<label for="un" >用户名:</label>
 				<input type="text" name="u_name" id="u_name" value="" placeholder="请输入您的用户名（必填项）" />
@@ -49,7 +58,7 @@
 			<div class="ui-grid-a">
 				<div class="ui-block-a" >
 					<div class="ui-field-contain">
-						<label for="dc">动态码:</label>
+						<label for="dc">验证码:</label>
 						<input type="text" name="code" id="code" value="" placeholder="手机6位短信码" />
 					</div>
 				</div>
@@ -59,7 +68,7 @@
 			</div>
 			<div class="ui-grid-solo">
 				<label>
-					<input type="checkbox" name="checkbox-0 " >我已阅读并同意</label>
+					<input type="checkbox" name="checkbox-0" id="agreement" >我已阅读并同意</label>
 			</div>
 			<div class="ui-grid-solo">
 				<a href="#popupRule" data-rel="popup" data-position-to="window">《清大众筹用户服务协议》</a>
