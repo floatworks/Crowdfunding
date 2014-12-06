@@ -113,6 +113,7 @@ def Index(request):
 		stock_data['type'] = 'stock'
 		stock_data['id'] = STOCK_obj.id
 		stock_data['title'] = STOCK_obj.st_title
+		stock_data['banner'] = str(STOCK_obj.st_image)
 		stock_data['image'] = str(STOCK_obj.st_logo)
 		stock_data['pro_type'] = STOCK_obj.st_pro_type.pt_name
 		stock_data['province'] = STOCK_obj.st_province.pr_name
@@ -132,6 +133,7 @@ def Index(request):
 		bond_data['type'] = 'bond'
 		bond_data['id'] = BOND_obj.id
 		bond_data['title'] = BOND_obj.bo_title
+		bond_data['banner'] = str(BOND_obj.bo_image)
 		bond_data['image'] = str(BOND_obj.bo_logo)
 		bond_data['com_name'] = BOND_obj.bo_com_name
 		bond_data['pro_type'] = BOND_obj.bo_pro_type.pt_name

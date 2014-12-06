@@ -483,7 +483,8 @@ def GetProjectsSort(request):
 					stocks_per['id'] = STOCK_obj.id
 					stocks_per['st_title'] = STOCK_obj.st_title
 					stocks_per['st_code'] = STOCK_obj.st_code
-					stocks_per['st_image'] = str(STOCK_obj.st_image)
+					stocks_per['st_banner'] = str(STOCK_obj.st_image)
+					stocks_per['st_image'] = str(STOCK_obj.st_logo)
 					stocks_per['st_pro_type'] = STOCK_obj.st_pro_type.pt_name
 					stocks_per['st_province'] = STOCK_obj.st_province.pr_name
 					stocks_per['st_industry'] = STOCK_obj.st_industry.in_name
@@ -504,7 +505,8 @@ def GetProjectsSort(request):
 					bonds_per['id'] = BOND_obj.id
 					bonds_per['bo_title'] = BOND_obj.bo_title
 					bonds_per['bo_code'] = BOND_obj.bo_code
-					bonds_per['bo_image'] = str(BOND_obj.bo_image)
+					bonds_per['bo_banner'] = str(BOND_obj.bo_image)
+					bonds_per['bo_image'] = str(BOND_obj.bo_logo)
 					bonds_per['bo_com_name'] = BOND_obj.bo_com_name
 					bonds_per['bo_pro_type'] = BOND_obj.bo_pro_type.pt_name
 					bonds_per['bo_brief'] = BOND_obj.bo_brief
