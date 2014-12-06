@@ -117,7 +117,11 @@
 			<ul class="items">
 				{% for project in projects_commend_banner %}
 				<li>
-					<a href="#">
+					{% ifequal project.type 'stock' %}
+					<a href="/w/pd/tsd{{project.id}}" data-ajax="false">
+					{% else %}
+					<a href="/w/pd/tbd{{project.id}}" data-ajax="false">
+					{% endifequal %}
 						<img src="/media/{{project.image}}" />
 					</a>
 				</li>

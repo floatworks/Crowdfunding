@@ -668,6 +668,41 @@ def GetMyProList(request):
 	#	print context_dict
 	return render_to_response('wechat/myproject.html',context_dict,context)
 
+#用户获取我关注的项目
+def GetMyLikeProList(request):
+	context = RequestContext(request)
+	context_dict = {}
+	if not T.CheckIsLogin(request):
+		return	HttpResponseRedirect('/w/login/')
+	else:
+		USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user = USERS_obj).order_by('-uf_update_time')
+		projects = []
+		for USER_FOCUS_obj in USER_FOCUS_objs:
+			project = {}
+			if USER_FOCUS_obj.uf_stock:
+				project['id'] = USER_FOCUS_obj.uf_stock.id
+				project['type'] = 'stock'
+				project['title'] = USER_FOCUS_obj.uf_stock.st_title
+				project['code'] = USER_FOCUS_obj.uf_stock.st_code
+				project['image'] = str(USER_FOCUS_obj.uf_stock.st_image)
+				project['total_price'] = USER_FOCUS_obj.uf_stock.st_total_price
+				project['brief'] = USER_FOCUS_obj.uf_stock.st_brief
+			elif USER_FOCUS_obj.uf_bond:
+				project['id'] = USER_FOCUS_obj.uf_bond.id
+				project['type'] = 'bond'
+				project['title'] = USER_FOCUS_obj.uf_bond.bo_title
+				project['code'] = USER_FOCUS_obj.uf_bond.bo_code
+				project['image'] = str(USER_FOCUS_obj.uf_bond.bo_image)
+				project['total_price'] = USER_FOCUS_obj.uf_bond.bo_total_price
+				project['brief'] = USER_FOCUS_obj.uf_bond.bo_brief
+			projects.append(project)
+		context_dict['projects'] = projects
+			
+	if settings.DEBUG:
+		print context_dict
+	return render_to_response('wechat/mylike.html',context_dict,context)
+
 #获取我的项目的认购信息
 def GetMyProInvest(request,p_type,p_id):
 	context = RequestContext(request)
