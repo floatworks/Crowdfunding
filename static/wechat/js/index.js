@@ -135,6 +135,14 @@ function loaded() {
 				pullUpEl.querySelector('.pullUpLabel').innerHTML = '正在加载...';
 				pullUpAction(); // Execute custom function (ajax call?)
 			}
+		},
+		onBeforeScrollStart: function(e) {
+			var target = e.target;
+			while (target.nodeType != 1)
+				target = target.parentNode;
+			if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA' && target.tagName != 'BUTTON') {
+				e.preventDefault();
+			}
 		}
 	});
 

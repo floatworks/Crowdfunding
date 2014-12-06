@@ -25,7 +25,7 @@
 					<span class="pullDownIcon"></span>
 					<span class="pullDownLabel">下拉刷新...</span>
 				</div>
-				<ul data-role ="listview" data-theme ="f" id="thelist">
+				<ul data-role ="listview" data-theme ="f" id="thelist" data-filter="true" data-filter-placeholder="">
 					{% for project in projects%}
 					{% ifequal project.type 'stock' %}
 					<li data-icon="false">
@@ -128,7 +128,7 @@
 				{% endfor %}
 			</ul>
 		</div>
-		<ul data-role ="listview" data-theme ="f" data-filter="true" data-filter-placeholder="">
+		<ul data-role ="listview" data-theme ="f">
 			{% for project in projects_commend%}
 			{% ifequal project.type 'stock' %}
 			<li data-icon="false">
