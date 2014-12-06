@@ -132,7 +132,7 @@
 	<div role="main" class="ui-content">
 		<ul data-role ="listview" data-theme ="e" >
 			{% for notice in notices%}
-			<li data-icon="false">
+			<li data-icon="false" class="unread">
 				<a href="/w/nodetail/t{{notice.type}}d{{notice.id}}" data-transition="slidefade" data-ajax="false">
 					<h3>{{notice.title}}</h3>
 					<p>
