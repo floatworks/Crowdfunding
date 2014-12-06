@@ -148,6 +148,8 @@ def Index(request):
 	projects_commend = sorted(projects_commend,key = operator.itemgetter('create_time'),reverse=True)
 	context_dict['projects'] = projects
 	context_dict['projects_commend'] = projects_commend
+	context_dict['projects_commend_banner'] = projects_commend[0:4]
+	#print context_dict['projects_commend_banner']
 	#if settings.DEBUG:
 	#	print context_dict
 	return render_to_response('wechat/index.html',context_dict,context)

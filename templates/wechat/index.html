@@ -115,31 +115,13 @@
 	<div id="itemsRecommend" style="display:none">
 		<div id= "carousel" class="slideBox">
 			<ul class="items">
+				{% for project in projects_commend_banner %}
 				<li>
 					<a href="#">
-						<img src="{% static 'wechat/images/img_1.png'%}" />
+						<img src="/media/{{project.image}}" />
 					</a>
 				</li>
-				<li>
-					<a href="#">
-						<img src="{% static 'wechat/images/img_1.png'%}" />
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="{% static 'wechat/images/img_1.png'%}" />
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="{% static 'wechat/images/img_1.png'%}" />
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="{% static 'wechat/images/img_1.png'%}" />
-					</a>
-				</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<ul data-role ="listview" data-theme ="f" data-filter="true" data-filter-placeholder="">
