@@ -426,6 +426,8 @@
 	text-align: center;
 	margin: .5em 0 .2em;
 	font-weight: normal;
+	padding: 0 3.6em;
+	font-size: 1.1em;
 }
 .pro_detail .ui-grid-solo  p{
 	font-size: .8em;
@@ -437,7 +439,7 @@
 	text-align: center;
 }
 .pro_detail .ui-grid-solo .ui-li-aside{
-	top: 0.4em;
+	top: 0.3em;
 	right: 0.4em;
 	position: absolute;
 	text-align: right;
