@@ -731,7 +731,7 @@ def GetMyProInvest(request,p_type,p_id):
 				project = {}
 				project['id'] = STOCK_obj.id
 				project['type'] = 'stock'
-				project['title'] = STOCK_obj.st_title
+				project['title'] = T.subTitle(STOCK_obj.st_title)
 				project['image'] = str(STOCK_obj.st_logo)
 				project['brief'] = STOCK_obj.st_brief
 				project['total_price'] = STOCK_obj.st_total_price
@@ -758,7 +758,7 @@ def GetMyProInvest(request,p_type,p_id):
 				project = {}
 				project['id'] = BOND_obj.id
 				project['type'] = 'bond'
-				project['title'] = BOND_obj.bo_title
+				project['title'] = T.subTitle(BOND_obj.bo_title)
 				project['image'] = str(BOND_obj.bo_logo)
 				project['brief'] = BOND_obj.bo_brief
 				project['total_price'] = BOND_obj.bo_total_price
