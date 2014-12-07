@@ -31,11 +31,9 @@ var co_cover = $('.co_covers');
 $(document).on("pageshow", "#pro_detail", function() {
 
 	$.mobile.buttonMarkup.hoverDelay = "false";
-	//alert(co_cover.height());
-	//alert(co_cover.find('img').height());
+	$('.pro_detail .ui-tabs').css('padding-top',$('.relative > .ui-grid-b').height()+$('.relative > .ui-grid-solo').height());
 	if (co_cover.length > 0) {
-
-		$('#base_info').css('margin-top', co_cover.height());
+		//$('#base_info').css('margin-top', co_cover.height());
 		$(".progress .bar").css("width", $(".progressbar").attr("data") + '%');
 	}
 

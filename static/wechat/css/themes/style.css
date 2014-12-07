@@ -239,9 +239,6 @@
 .pro_detail{
 	background-color: #fff;
 }
-.pro_detail  .ui-tabs{
-	padding: 6.45em 0 0 0;
-}
 .pro_detail .ui-tabs .ui-navbar li{
 	position: relative;
 }
@@ -463,6 +460,9 @@
 	border-left: 1px solid #d0d0d0;
 }.pro_detail .ui-grid-solo p.cbrief .hl3{
 	padding-left: .6em;
+}
+.pro_detail #base_info{
+	margin-top: 10.5em;
 }
 .pro_detail .ui-content .ui-listview{
 	margin:0;
