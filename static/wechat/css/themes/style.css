@@ -167,10 +167,11 @@
 .index .ui-listview > li h3,
 .mypro .ui-listview > li h3 {
 	margin: .4em 0 .2em;
+	padding-right:3.6em; 
 }
 .index .ui-listview .ui-li-aside,
 .mypro .ui-listview .ui-li-aside{
-	top: 0.8em;
+	top: 0.6em;
 	right: 0.4em;
 }
 .index .ui-listview .ui-li-bottom {
@@ -811,6 +812,7 @@
 #recordList .ui-listview > li h3{
 	margin: .2em 0 .4em;
 	font-weight: normal;
+	padding-right: 3.9em;
 }
 #recordList .ui-listview > li p{
 	margin: .3em 0;
