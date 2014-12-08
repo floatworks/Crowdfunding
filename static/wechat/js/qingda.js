@@ -240,14 +240,10 @@ $(document).on("pageshow", "#personal", function() {
 		footer = $('#personal .ui-footer'),
 		solo = $('#personal .ui-content .ui-grid-solo'),
 		grid_a = $('#personal .ui-content .ui-grid-a');
-	var gap = (w_width - header.height() - footer.height() - solo.height()*2 - grid_a.height()*3) / 16;
-	solo.find('.ui-block-a').css({"padding-top": 2*gap,"padding-bottom": gap});
-	grid_a.css({"padding-top": gap,"padding-bottom": 2*gap});
-	$('#personal .ui-content .subscribe').css("padding-top", 2*gap);
-	// alert(w_width + ' ' + header.height() + ' ' + footer.height() + ' ' + solo.height() + ' ' + grid_a.height());
-	// alert(w_width - header.height() - footer.height() - solo.height() - grid_a.height());
-	// alert(gap);
-	// alert((w_width - header.height() - footer.height() - solo.height() - grid_a.height()) / 16);
-
-
+	var gap = (w_width - header.height() - footer.height() - solo.height() * 2 - grid_a.height() * 3) / 15;
+	solo.find('.ui-block-a').css({"padding-top": 1.4 * gap,"padding-bottom": gap});
+	solo.find('.ui-block-a  .total').css("padding-top", 0.6 * gap);
+	grid_a.css({"padding-top": gap,"padding-bottom": 1.4 * gap});
+	grid_a.find('.part').css("padding-top", 0.6 * gap);
+	grid_a.find('.total').css("padding-top", 0.6 * gap);
 });

@@ -683,6 +683,8 @@
 .personal .ui-header p img{
 	width: 25%;
 	height: 25%;
+	max-width: 8em;
+	max-height: 8em;
 }
 .personal .ui-header .ui-grid-b {
 	padding: 1% 0;
