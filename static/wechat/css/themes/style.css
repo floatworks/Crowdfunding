@@ -609,6 +609,9 @@
 	text-align: center;
 	margin: .5em;
 }
+.reg .ui-content form .ui-grid-solo .ui-link{
+	color: #0069a8;
+}
 .reg .ui-content .ui-field-contain > label{
 	float: none;
 	position: absolute;
