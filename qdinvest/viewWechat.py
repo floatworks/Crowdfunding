@@ -500,6 +500,19 @@ def Login(request):
 	else:
 		return render_to_response('wechat/login.html',context_dict,context)
 
+#注销
+def Logout(request):
+	context = RequestContext(request)
+	context_dict = {}
+
+	if request.session.has_key('HAS_LOGIN'):
+		request.session['HAS_LOGIN'] = False
+		del request.session['USER_ID']
+		del request.session['USER_NAME']	
+		return HttpResponseRedirect('/w/login/')
+	else:	
+		return render_to_response('wechat/login.html',context_dict,context)
+
 #微信端个人中心
 def Personal(request):
 	context = RequestContext(request)
@@ -867,3 +880,23 @@ def Pop(request):
 	context = RequestContext(request)
 	context_dict = {}
 	return render_to_response('wechat/popup.html',context_dict,context)
+
+#返回用户协议
+def PRO_Instructions(request):
+	context = RequestContext(request)
+	context_dict = {}
+	context_dict['title'] = '清大众筹用户服务协议'
+	PROTOCOL_objs = PROTOCOL.objects.order_by('-pr_version')
+	if PROTOCOL_objs:
+		context_dict['body'] = PROTOCOL_objs[0].pr_instructions
+	return render_to_response('wechat/richTextField.html',context_dict,context)
+
+#投资者必读
+def PRO_Investor(request):
+	context = RequestContext(request)
+	context_dict = {}
+	context_dict['title'] = '投资人必读'
+	PROTOCOL_objs = PROTOCOL.objects.order_by('-pr_version')
+	if PROTOCOL_objs:
+		context_dict['body'] = PROTOCOL_objs[0].pr_investor
+	return render_to_response('wechat/richTextField.html',context_dict,context)

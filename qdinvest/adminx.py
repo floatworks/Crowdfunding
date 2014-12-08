@@ -44,6 +44,7 @@ class GlobalSetting(object):
             {'title':'其他','menus':(
             	{'title':'用户反馈','icon': 'fa fa-comment','url':self.get_model_url(FEEDBACK,'changelist')},
             	{'title':'系统参数','icon': 'fa fa-gear','url':self.get_model_url(SETTINGS,'changelist')},	
+            	{'title':'协议管理','icon': 'fa fa-gear','url':self.get_model_url(PROTOCOL,'changelist')},
             )},
         )
 
@@ -227,6 +228,10 @@ class RANDOMCODEAdmin(object):
 class SETTINGSAdmin(object):
 	list_display = ['se_android_version','se_ios_version']
 
+class PROTOCOLAdmin(object):
+	list_display = ['pr_version','pr_date']
+	style_fields = {'pr_instructions':'ueditor','pr_investor':'ueditor'}
+
 '''
 '''
 class FEEDBACKAdmin(object):
@@ -280,6 +285,7 @@ xadmin.site.register(RANDOMCODE,RANDOMCODEAdmin)
 xadmin.site.register(SETTINGS,SETTINGSAdmin)
 xadmin.site.register(FEEDBACK,FEEDBACKAdmin)
 xadmin.site.register(PAYMENT,PAYMENTAdmin)
+xadmin.site.register(PROTOCOL,PROTOCOLAdmin)
 
 
 

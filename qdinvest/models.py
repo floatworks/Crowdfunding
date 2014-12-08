@@ -527,6 +527,26 @@ class FEEDBACK(models.Model):
 		verbose_name_plural = '用户反馈管理'
 
 '''
+协议数据
+'''
+class PROTOCOL(models.Model):
+	pr_instructions = UEditorField(verbose_name='清大众筹用户服务协议',imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	pr_investor = UEditorField(verbose_name='投资者必读',imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	pr_version = models.IntegerField(verbose_name="版本",help_text="整形，将已最新版本为准")
+	pr_date = models.DateTimeField(verbose_name="更新时间")
+
+	def __unicode__(self):
+		return self.pr_version
+
+	class Meta:
+		verbose_name = '用户协议'
+		verbose_name_plural = '用户协议管理'
+
+'''
 定义各类触发函数
 '''
 
