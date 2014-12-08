@@ -678,11 +678,11 @@
 	text-align: center;
 	color: #fff;
 	font-weight: normal;
+	margin-bottom: 2%;
 }
 .personal .ui-header p img{
-	width: 5em;
-	height: 5em;
-	margin-bottom: 1%;
+	width: 25%;
+	height: 25%;
 }
 .personal .ui-header .ui-grid-b {
 	padding: 1% 0;
@@ -715,13 +715,13 @@
 	position: relative;
 }
 .personal .ui-content .ui-grid-a{
-	padding-top: 1%;
-	padding-bottom: 2%;
+	/*padding-top: 1%;
+	padding-bottom: 2%;*/
 	color:#666666; 
 }
 .personal .ui-content .ui-grid-solo .ui-block-a{
-	padding-top: 2%;
-	padding-bottom: 1%;
+	/*padding-top: 2%;
+	padding-bottom: 1%;*/
 	background-color: #fff;
 	color:#333333; 
 	-webkit-box-shadow: 0 .15em .1em #BFBEBE /*{a-active-background-color}*/;
@@ -785,7 +785,7 @@
 .personal .ui-content .subscribe{
 	background-color: #333333;
 	color: #fff;
-	padding-top: 2%;
+	/*padding-top: 2%;*/
 }
 .personal .ui-footer,
 .setting .ui-footer{
