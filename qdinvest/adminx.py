@@ -44,7 +44,7 @@ class GlobalSetting(object):
             {'title':'其他','menus':(
             	{'title':'用户反馈','icon': 'fa fa-comment','url':self.get_model_url(FEEDBACK,'changelist')},
             	{'title':'系统参数','icon': 'fa fa-gear','url':self.get_model_url(SETTINGS,'changelist')},	
-            	{'title':'协议管理','icon': 'fa fa-gear','url':self.get_model_url(PROTOCOL,'changelist')},
+            	{'title':'协议管理','icon': 'fa fa-file-o','url':self.get_model_url(PROTOCOL,'changelist')},
             )},
         )
 
