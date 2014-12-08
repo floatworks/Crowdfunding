@@ -28,4 +28,5 @@ urlpatterns = patterns('',
 	url(r'^stock_list/$', viewWeb.stock_list, name='stock_list'),
 	url(r'^bond_list/$', viewWeb.bond_list, name='bond_list'),
 	url(r'^news/$', viewWeb.news, name='news'),
+	url(r'^news2/$', viewWeb.news2, name='news2'),
 	)

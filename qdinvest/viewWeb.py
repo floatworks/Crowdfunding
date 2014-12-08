@@ -391,8 +391,7 @@ def register(request):
 		userData.appendlist('u_status',0)
 		userForm = USERSFORM(data = userData)	
 		
-		if userForm.is_valid():	
-			print 2	
+		if userForm.is_valid():			
 			registered = True
 			userForm.save()
 			context_dict['registered'] = registered
@@ -479,8 +478,7 @@ def test1(request):
 	if request.method=='GET':			
 		test1=request.GET.get('u_test','')
 		usertel=request.GET.get('u_telephone','')		
-		if T.CheckRandomCode(usertel,test1):
-			print  '1'			
+		if T.CheckRandomCode(usertel,test1):					
 			context_dict['msg'] = 'success'		
 			return HttpResponse(json.dumps(context_dict),content_type="application/json")
 		else:		
@@ -493,18 +491,15 @@ def  forget(request):
 	context = RequestContext(request)
 	context_dict = {}
 	kwargs={}
-	if request.method=='POST':
-		print '3'
+	if request.method=='POST':		
 		test=request.POST.get('rc_code','')
 		telephone=request.POST.get('u_tel','')	
 		password=request.POST.get('u_pwd','')
 		print test,telephone,password		
-		if T.CheckExist(RANDOMCODE,{'rc_tel':telephone,'rc_code':test}):
-			print '4'
+		if T.CheckExist(RANDOMCODE,{'rc_tel':telephone,'rc_code':test}):			
 			USERS.objects.filter(u_tel=telephone).update(u_pwd=password)
 			return HttpResponseRedirect('/c/login/')
-		else:
-			print '5'
+		else:			
 			context_dict['error'] = '手机号码与验证码不符'
 	return render_to_response('qdinvest/forget.html',context_dict,context)
 
@@ -524,10 +519,8 @@ def forget1(request):
 
 def forget3(request):
 	context = RequestContext(request)
-	context_dict = {}
-	print '2'
-	if request.method == 'GET':
-		print  "1"		
+	context_dict = {}	
+	if request.method == 'GET':			
 		usertel=request.GET.get('u_tel','')
 		username=request.GET.get('username','')
 		if not usertel:			
@@ -654,13 +647,80 @@ def bond_list(request):
 #个人页面中消息页面的显示
 def news(request):
 	context = RequestContext(request)
-	context_dict = {}	
-	# if request.session.has_key('username'):
-	
-	# 	news_objs = NOTICE_READ.objects.filter(nr_user__u_name = u_name)
-	# 	for new in news_objs:
-	# 		new_list = {}
-	# 		new_list['']
+	context_dict = {}
+	if request.session.has_key('username'):
+		u_name = request.session['username']
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:			
+			notices = []
+			notice_user=[]
+			NOTICE_objs = NOTICE.objects.filter(no_is_delete__exact = 0).order_by('-no_time')	
+			if 	NOTICE_objs:				
+				for NOTICE_obj in NOTICE_objs:					
+					notice_data = {}
+					notice_data['id'] = NOTICE_obj.id
+					notice_data['no_title'] = NOTICE_obj.no_title				
+					notice_data['no_time'] = NOTICE_obj.no_time
+					notice_data['no_type'] = NOTICE_obj.no_type				
+					notice_data['type'] = 'sys'				
+					if T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_obj}):
+						notice_data['no_is_read'] = 1
+					else:
+						notice_data['no_is_read'] = 0						
+					notices.append(notice_data)
+					context_dict['notices'] = notices	
+					# print 		context_dict['notices'][0]			
+			NOTICE_USER_objs = NOTICE_USER.objects.filter(nu_is_delete__exact = 0,nu_user__exact = USERS_objs[0]).order_by('-nu_time')
+			if  NOTICE_USER_objs:
+				for NOTICE_USER_obj in NOTICE_USER_objs:					
+					notice_data1= {}
+					notice_data1['id'] = NOTICE_USER_obj.id
+					notice_data1['nu_title'] = NOTICE_USER_obj.nu_title
+					# print notice_data1['nu_title']
+					notice_data1['nu_time'] = NOTICE_USER_obj.nu_time
+					notice_data1['nu_type'] = NOTICE_USER_obj.nu_type
+					notice_data1['nu_is_read'] = NOTICE_USER_obj.nu_is_read							
+					notice_data1['type'] = 'user'					
+					notice_user.append(notice_data1)
+					#按照时间的倒序进行排列			
+					context_dict['notice_users'] = notice_user
+					print  context_dict['notice_users'][0]
 
-
+			context_dict['status'] = 1			
+		else:
+			context_dict['status'] = 0	
 	return render_to_response('qdinvest/news.html',context_dict,context)
+
+def news2(request):	
+	context = RequestContext(request)
+	context_dict = {}
+	if request.session.has_key('username'):
+		u_name = request.session['username']
+	if request.method == 'GET':
+		n_type = request.GET.get('type','')
+		n_id = request.GET.get('id','-1')
+		context_dict['type'] = n_type
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+				if n_type == 'sys':
+					NOTICE_objs = NOTICE.objects.filter(id__exact = n_id)
+					context_dict['notices'] = NOTICE_objs
+					if NOTICE_objs:						
+						if not T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_objs[0]}):
+							NOTICE_READ_new = NOTICE_READ(nr_user = USERS_objs[0],nr_notice = NOTICE_objs[0])
+							NOTICE_READ_new.save()
+							ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+							ACCOUNT_obj.ac_infos -= 1
+							ACCOUNT_obj.save()					
+				elif n_type == 'user':
+					NOTICE_USER_objs = NOTICE_USER.objects.filter(id__exact = n_id)
+					context_dict['notice_users'] = NOTICE_USER_objs
+					if NOTICE_USER_objs:											
+						if NOTICE_USER_objs[0].nu_is_read == 0:
+							ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])
+							ACCOUNT_obj.ac_infos -= 1
+							ACCOUNT_obj.save()
+						#标记为已经阅读
+						NOTICE_USER_objs[0].nu_is_read = 1
+						NOTICE_USER_objs[0].save()	
+	return render_to_response('qdinvest/news2.html',context_dict,context)

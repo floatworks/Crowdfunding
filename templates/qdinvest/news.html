@@ -1,0 +1,139 @@
+{% extends "qdinvest/base.html" %}
+{% load staticfiles %}
+{% block title %}个人中心{% endblock %}
+{% block body_block %}
+
+<div class="infocontent">
+    <ul class="sidemenu left">
+        <li>
+            <div>我的资料</div>
+            <ul>
+                <li><a href="/c/account_list/">账户信息</a></li>
+                
+            </ul>
+        </li>    
+        <li>
+            <div>我的项目</div>
+            <ul>
+                <li><a href="/c/news_obj_list/">股权项目</a></li>
+                <li><a href="/c/bond_list/">债权项目</a></li>
+            </ul>
+        </li>
+        <li>
+            <div>我的消息</div>
+            <ul>
+                <li><a href="/c/news/">我的消息</a></li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <div class="info right">
+        <div class="title">系统消息</div>
+        <div class="project"> 
+            <table>
+                <tr><th>系统通知标题</th><th>通知时间</th><th>通知类型</th></tr>
+   
+                       {%if status%}
+                        {%if notices%} 
+                        {%for notice in notices%}                                              
+                         {%ifequal notice.no_is_read 0 %}
+                        <tr><td><a href="/c/news2/?id={{notice.id}}&&type=sys">{{notice.no_title|slice:"6"}}</a></td> <td>{{notice.no_time.date}}</td> 
+                       {%ifequal notice.no_type 0 %}
+                         <td>紧急通知</td>
+                         {%endifequal%} 
+                         {%ifequal notice.no_type  1 %}
+                         <td>维护通知</td>
+                        {%endifequal%} 
+                        {%ifequal notice.no_type  2 %}
+                         <td>推广通知</td>
+                        {%endifequal%} 
+                        {%ifequal notice.no_type  3 %}
+                         <td>广告</td>
+                         {%endifequal%} </tr> 
+                       {% endifequal %} 
+                       {%  endfor %}
+                      
+
+
+
+
+                           {%for notice in notices%}
+                         {%ifequal notice.no_is_read 1%}
+                        <tr><td><a href="/c/news2/?id={{notice.id}}&&type=sys"><span class = "red">{{notice.no_title|slice:"6"}}</span></a></td><td>{{notice.no_time.date}}</td>
+                 
+                       {%ifequal notice.no_type  0 %}
+                         <td>紧急通知</td>
+                         {%endifequal%} 
+                         {%ifequal notice.no_type  1 %}
+                         <td>维护通知</td>
+                        {%endifequal%} 
+                        {%ifequal notice.no_type  2 %}
+                         <td>推广通知</td>
+                        {%endifequal%} 
+                        {%ifequal notice.no_type  3 %}
+                         <td>广告</td>
+                         {%endifequal%} 
+                             </tr>   
+
+                       {% endifequal %}
+                       {%  endfor %}
+                       {% endif %}
+                       {%endif%} 
+
+            </table>  
+         
+              
+        </div>
+
+
+         <div class="title">用户消息</div>
+        <div class="project"> 
+            <table>
+                <tr><th>用户通知标题</th><th>通知时间</th><th>通知类型</th></tr>
+                      {%if status%}
+                      {%if notice_users %}                  
+                  {%for notice_user in notice_users %}                 
+                  {%ifequal notice_user.nu_is_read 0 %}
+                <tr><td><a href="/c/news2/?id={{notice_user.id}}&&type=user">{{notice_user.nu_title|slice:"6"}}</a></td><td>{{notice_user.nu_time.date}}</td>
+                 {%ifequal notice_user.nu_type 0 %}
+                    <td>收益投资</td>
+                    {%else%}
+                     <td>其他</td>
+                     {%endifequal%}
+                    </tr>               
+                   {% endifequal %}
+                {% endfor %}            
+                
+                
+                   {%for notice_user in notice_users %}                    
+                  {%ifequal notice_user.nu_is_read 1 %}
+                <tr><td><a href="/c/news2/?id={{notice_user.id}}&&type=user"><span class = "red">{{notice_user.nu_title|slice:"6"}} </span></a></td> <td>{{notice_user.nu_time.date}}</td>
+                 {%ifequal notice_user.nu_type 0 %}
+                    <td>收益投资</td>
+                    {%else%}
+                     <td>其他</td>
+                     {%endifequal%}
+                    </tr>               
+                   {% endifequal %}
+                {% endfor %}            
+                {% endif %}
+                {% endif %}
+
+                    
+
+
+                
+            </table>               
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}
+
+
+
+
+
+
+

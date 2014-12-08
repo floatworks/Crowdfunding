@@ -1,0 +1,73 @@
+{% extends "qdinvest/base.html" %}
+{% load staticfiles %}
+{% block title %}个人中心{% endblock %}
+{% block body_block %}
+
+<div class="infocontent">
+    <ul class="sidemenu left">
+        <li>
+            <div>我的资料</div>
+            <ul>
+                <li><a href="/c/account_list/">账户信息</a></li>
+                
+            </ul>
+        </li>
+    
+        <li>
+            <div>我的项目</div>
+            <ul>
+                <li><a href="/c/news_obj_list/">股权项目</a></li>
+                <li><a href="/c/bond_list/">债权项目</a></li>
+            </ul>
+        </li>
+        <li>
+            <div>我的消息</div>
+            <ul>
+                <li><a href="/c/news/">我的消息</a></li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <div class="info right">
+              
+        {%ifequal type 'user'%}
+        <div class="title">用户消息</div>
+        {%endifequal%}
+        {%ifequal type 'sys'%}
+         <div class="title">系统消息</div>
+         {%endifequal%}
+                <div class="project"> 
+            <table>
+                <tr><th>通知内容</th></tr>
+
+                  {%if notices %}
+                  {%for notice in notices%}                 
+                <tr><td>                    
+                    {% autoescape off %}
+                    {{notice.no_body}}
+                     {% endautoescape %}                  
+                </td></tr>             
+                  {%  endfor %}
+                  {%endif%}
+
+
+                    
+                    {% if notice_users %}
+                  {%for notice_user in notice_users %}                   
+                 <tr>
+                    <td>
+                    {% autoescape off %}
+                    {{notice_user.nu_body}}
+                     {% endautoescape %}                    
+                </td></tr>                              
+                 {%  endfor %}                  
+                {% endif %}  
+                
+                
+            </table>               
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}
