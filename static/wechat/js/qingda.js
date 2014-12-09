@@ -187,7 +187,6 @@ $(document).on("pageinit", "#forget", function() {
 
 $(document).on("pageshow", "#login", function() {
 	var status = $.getUrlParam('s');
-	alert(status);
 	if (status == 'reg#' || status == 'reg') {
 		popDialog('#loginDialog', '注册成功，请登录');
 	} else if (status == 'err' || status == 'err#') {
