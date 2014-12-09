@@ -290,7 +290,7 @@
         <tr>
           <td>{{invest_bond.ib_date.date}}</td>
           <td>{{invest_bond.ib_user}}</td>
-          <td>{{invest_bond.ib_amount}}</td>
+          <td>{{invest_bond.ib_amount|floatformat:2}}</td>
         </tr>
         {% endfor %}
         {% endif %}

@@ -44,7 +44,7 @@
             <!-- <div><span  class="left btn"><a href="javascript:;">投资信息</a></span></div> -->
             <table>
                 <tr><th>股权投资</th><th>债权投资</th><th>投资总额</th></tr>
-                <tr><td>{{account_list.ac_stock_invest}}</td><td>{{account_list.ac_bond_invest}}</td><td>{{account_list.ac_total_invest}}</td></tr>
+                <tr><td>{{account_list.ac_stock_invest|floatformat:2}}</td><td>{{account_list.ac_bond_invest|floatformat:2}}</td><td>{{account_list.ac_total_invest|floatformat:2}}</td></tr>
             </table>
             
         </div>
@@ -52,7 +52,7 @@
            <!--  <div><span  class="left btn"><a href="javascript:;">收益信息</a></span></div> -->
             <table>
                 <tr><th>股权收益</th><th>债权收益</th><th>收益总额</th></tr>
-                <tr><td>{{account_list.ac_stock_profit}}</td><td>{{account_list.ac_bond_profit}}</td><td>{{account_list.ac_total_profit}}</td></tr>
+                <tr><td>{{account_list.ac_stock_profit|floatformat:2}}</td><td>{{account_list.ac_bond_profit|floatformat:2}}</td><td>{{account_list.ac_total_profit|floatformat:2}}</td></tr>
             </table>
             
         </div>
@@ -61,7 +61,7 @@
             <!-- <div><span  class="left btn"><a href="javascript:;">认购信息</a></span></div> -->
             <table>
                 <tr><th>认购定金</th><th>认购总额</th></tr>
-                <tr><td>{{account_list.ac_subscription}}</td><td>{{account_list.ac_total_subscription}}</td></tr>
+                <tr><td>{{account_list.ac_subscription|floatformat:2}}</td><td>{{account_list.ac_total_subscription|floatformat:2}}</td></tr>
             </table>
             
         </div>
