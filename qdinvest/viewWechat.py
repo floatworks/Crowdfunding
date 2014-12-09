@@ -534,9 +534,10 @@ def Logout(request):
 	context_dict = {}
 
 	if request.session.has_key('HAS_LOGIN'):
-		request.session['HAS_LOGIN'] = False
-		del request.session['USER_ID']
-		del request.session['USER_NAME']	
+		if request.session['HAS_LOGIN']:
+			del request.session['USER_ID']
+			del request.session['USER_NAME']
+			request.session['HAS_LOGIN'] = false	
 		return HttpResponseRedirect('/w/login/')
 	else:	
 		return render_to_response('wechat/login.html',context_dict,context)
