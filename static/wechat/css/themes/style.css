@@ -1,6 +1,6 @@
-.progress{ height: 0.45em; width: 85%; background-color: #dddddd; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: inline-block; }
+.progress{ height: 0.4em; width: 85%; background-color: #dddddd; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: inline-block; margin-bottom: .1em;}
 .num{ width: 15%; font-size: .8em;}
-.progress .bar{ width: 75%; height: 0.45em; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: block; }
+.progress .bar{ width: 75%; height: 0.4em; -moz-border-radius: 20px; /* Firefox */ -webkit-border-radius: 20px; /* Safari 和 Chrome */ border-radius: 20px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ display: block; }
 .less .progress .bar{ background-color: #0099ff;}
 .less .num{ color: #0099ff;}
 .more .progress .bar{ background-color: #ff8c19; }
@@ -31,6 +31,7 @@
 	color: #111111 /*{f-bup-color}*/;
 	border-style: solid;
 }
+.ui-header,
 .ui-footer{
 	border-width: 0;
 }
@@ -96,6 +97,7 @@
 }
 .index .ui-listview > li p.progressbar{
 	margin: 0;
+	line-height: 1;
 }
 .index .ui-listview > li p.cbrief .hl1{
 	padding-left: .6em;
@@ -272,18 +274,17 @@
 	margin-left: -0.6em;
 	z-index: 10;
 	border-width: .5em;
+	left: 52%;
 }
  
 .pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:after {
 	border-bottom-color: #ffffff;
-	top: 1.5em;
-	left: 52%;
+	top: 1.46em;
 }
  
 .pro_detail  .ui-tabs .ui-navbar li.ui-tabs-active:before {
 	border-bottom-color: #ccc;
 	top: 1.4em;
-	left: 52%;
 }
 .pro_detail .ui-navbar-fixed{
 	padding-top: 0;
@@ -414,6 +415,7 @@
 	-webkit-border-radius: 0; /* Safari 和 Chrome */ 
 	border-radius: 0; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */ 
 	display: block;
+	margin-bottom: 0;
 }
 .pro_detail .relative .ui-grid-solo{
 	position: relative;
@@ -662,9 +664,6 @@
 
 
 /*******personal*******/
-.personal{
-	height: 100%;
-}
 .personal .ui-btn-message{
 	background-image: url(/static/wechat/css/themes/images/message.png);
 	background-size: 90%;
@@ -681,7 +680,7 @@
 	text-align: center;
 	color: #fff;
 	font-weight: normal;
-	margin-bottom: 2%;
+	margin-bottom: 1%;
 }
 .personal .ui-header p img{
 	width: 25%;
@@ -791,12 +790,6 @@
 	background-color: #333333;
 	color: #fff;
 	/*padding-top: 2%;*/
-}
-.personal .ui-footer,
-.setting .ui-footer{
-	width: 100%;
-	position: absolute;
-	bottom: 0;
 }
 #recordList .ui-header:after,
 #messageList .ui-header:after,
@@ -937,6 +930,11 @@
 	font-size: .75em;
 	color: #0069a8;
 	margin: .3em;
+}
+.setting .ui-footer{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
 }
 .protocol,
 #reading .ui-content{

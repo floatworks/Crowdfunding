@@ -287,17 +287,31 @@ $("#feedback #fb_textarea").keyup(function() {
 
 })
 
-
+var calcu = false;
+$(document).on("pageinit", "#personal", function() {
+	calcu = true;
+});
 $(document).on("pageshow", "#personal", function() {
-	var w_width = $(window).height();
-	var header = $('#personal .ui-header'),
-		footer = $('#personal .ui-footer'),
-		solo = $('#personal .ui-content .ui-grid-solo'),
-		grid_a = $('#personal .ui-content .ui-grid-a');
-	var gap = (w_width - header.height() - footer.height() - solo.height() * 2 - grid_a.height() * 3) / 15;
-	solo.find('.ui-block-a').css({"padding-top": 1.4 * gap,"padding-bottom": gap});
-	solo.find('.ui-block-a  .total').css("padding-top", 0.6 * gap);
-	grid_a.css({"padding-top": gap,"padding-bottom": 1.4 * gap});
-	grid_a.find('.part').css("padding-top", 0.6 * gap);
-	grid_a.find('.total').css("padding-top", 0.6 * gap);
+	if( calcu ){
+		var w_height = $(window).height(),
+			w_width = $(window).width();
+		var header = $('#personal .ui-header'),
+			footer = $('#personal .ui-footer'),
+			solo = $('#personal .ui-content .ui-grid-solo'),
+			grid_a = $('#personal .ui-content .ui-grid-a');
+		var gap,r_height = header.height() + footer.height() + solo.height() * 2 + grid_a.height() * 3;
+
+		if (r_height > w_height) {
+			header.find('p img').css({"height": 64 + 'px',"width": 64 + 'px'});
+			gap = 0.01 * w_width;
+		} else {
+			gap = (w_height - r_height) / 15;
+		}
+		solo.find('.ui-block-a').css({"padding-top": 1.4 * gap,"padding-bottom": gap});
+		solo.find('.ui-block-a  .total').css("padding-top", 0.6 * gap);
+		grid_a.css({"padding-top": gap,"padding-bottom": 1.4 * gap});
+		grid_a.find('.part').css("padding-top", 0.6 * gap);
+		grid_a.find('.total').css("padding-top", 0.6 * gap);
+		calcu = false;
+	}
 });
