@@ -57,6 +57,34 @@ def CheckRandomCode(u_tel,code):
 	else:
 		return False
 
+#微信端密码找回
+def Forget(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		u_tel = request.POST.get('u_tel','')
+		code = request.POST.get('code','')
+		u_pwd = request.POST.get('u_pwd','')
+
+		if CheckRandomCode(u_tel,code):
+			response_dict['status'] = 1
+			USERS_obj = USERS.objects.get(u_tel__exact = u_tel)
+			if USERS_obj:
+				#token = T.GenToken()
+				#T.CheckToken(USERS_objs[0],token,1)
+				#response_dict['u_name'] = USERS_objs[0].u_name
+				#response_dict['token'] = token
+				USERS_obj.u_pwd = u_pwd
+				USERS_obj.save()
+			else:
+				response_dict['status'] = 0
+		else:
+			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
 def Index(request):
 	context = RequestContext(request)
 	context_dict = {}

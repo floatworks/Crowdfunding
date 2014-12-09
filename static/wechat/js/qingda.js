@@ -131,8 +131,63 @@ $(document).on("pageinit", "#reg", function() {
 	});
 });
 
+$(document).on("pageinit", "#forget", function() {
+	$('#getCodeForget').click(function() {
+		tel = $("#u_tel_forget").val().trim();
+		if (!tel.match($.regexpCommon('phoneNumberZN'))) {
+			popDialog('#forgetDialog', '手机号码格式不正确');
+			return;
+		}
+		$.get("/app/code/", {
+				'type': 'forget',
+				'u_tel': tel
+			},
+			function(data, status) {
+				if (data.status == 2) {
+					popDialog('#forgetDialog', '该手机号码未被注册');
+				} else if (data.status == 1) {
+					popDialog('#forgetDialog', '验证码发送成功，请注意查收');
+				}
+			});
+	});
+
+	$('#forgetButton').click(function(){
+		tel = $("#u_tel_forget").val().trim();
+		code = $("#code_forget").val().trim();
+		u_pwd = $("#u_pwd_forget").val().trim();
+		cpw = $("#cpw_forget").val().trim();
+		if (!u_pwd.match($.regexpCommon('pwd'))) {
+			popDialog('#forgetDialog', '请输入6至16位密码');
+			return false;
+		} else if (u_pwd != cpw) {
+			popDialog('#forgetDialog', '两次密码不同');
+			return false;
+		} else if (!tel.match($.regexpCommon('phoneNumberZN'))) {
+			popDialog('#forgetDialog', '手机号码格式不正确');
+			return;
+		}else if (!code.match($.regexpCommon('code'))) {
+			popDialog('#forgetDialog', '验证码为6位数字');
+			return false;
+		}
+		$.post("/w/forget/",{
+			'u_tel':tel,
+			'code':code,
+			'u_pwd':u_pwd
+			},
+			function(data,status){
+				if (data.status == 0) {
+					popDialog('#forgetDialog', '验证码错误');
+				} else if (data.status == 1) {
+					window.location.href = "/w/login/";
+				}
+			});
+
+	});
+});
+
 $(document).on("pageshow", "#login", function() {
 	var status = $.getUrlParam('s');
+	alert(status);
 	if (status == 'reg#' || status == 'reg') {
 		popDialog('#loginDialog', '注册成功，请登录');
 	} else if (status == 'err' || status == 'err#') {
