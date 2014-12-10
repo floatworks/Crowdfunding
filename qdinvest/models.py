@@ -442,6 +442,9 @@ class PROFIT(models.Model):
 	pr_stock = models.ForeignKey(STOCK,verbose_name="股权众筹",null=True,blank=True,help_text="二选一即可")
 	pr_bond = models.ForeignKey(BOND,verbose_name="债权众筹",null=True,blank=True,help_text="二选一即可")
 
+	def __unicode__(self):
+		return self.pr_user.u_name+'的收益'
+
 	class Meta:
 		verbose_name = '用户收益'
 		verbose_name_plural = '用户收益管理'

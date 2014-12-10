@@ -204,7 +204,7 @@ class PROFITAdmin(object):
 	list_display = ['pr_user','pr_amount','pr_date','pr_stock','pr_bond']
 	search_fiedls = ['pr_user']
 	list_per_page = 20
-	add_form_template = 'xadmin/views/model_form_ajax.html'
+	add_form_template = 'xadmin/views/model_form_profit.html'
 
 
 

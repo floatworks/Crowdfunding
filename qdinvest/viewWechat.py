@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse,HttpResponseRedirect
 from django.http import Http404
 from django.conf import settings
+from django.db.models import Q
 import operator
 import traceback
 from datetime import datetime
@@ -929,3 +930,39 @@ def PRO_Investor(request):
 	if PROTOCOL_objs:
 		context_dict['body'] = PROTOCOL_objs[0].pr_investor
 	return render_to_response('wechat/richTextField.html',context_dict,context)
+
+#后台根据用户
+def Profit_Select(request):
+	response_dict = {}
+	if request.method == 'GET':
+		u_id = request.GET.get('id','')
+		p_type = request.GET.get('type','')
+		if p_type == 'stock':
+			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(Q(is_user__id = u_id),Q(is_status__id = 2) | Q(is_status__id = 3))
+			if INVEST_STOCK_objs:
+				response_dict['status'] = 1
+				projects = []
+				for INVEST_STOCK_obj in INVEST_STOCK_objs:
+					project = {'pid':INVEST_STOCK_obj.is_stock.id,'label':INVEST_STOCK_obj.is_stock.st_title}
+					if project not in projects:
+						projects.append(project)
+				response_dict['projects'] = projects
+			else:
+				response_dict['status'] = 0
+		elif p_type == 'bond':
+			INVEST_BOND_objs = INVEST_BOND.objects.filter(Q(ib_user__id = u_id),Q(ib_status__id = 2) | Q(ib_status__id = 3))
+			if INVEST_BOND_objs:
+				response_dict['status'] = 1
+				projects = []
+				for INVEST_BOND_obj in INVEST_BOND_objs:
+					project = {'pid':INVEST_BOND_obj.ib_bond.id,'label':INVEST_BOND_obj.ib_bond.bo_title}
+					if project not in projects:
+						projects.append(project)
+				response_dict['projects'] = projects
+			else:
+				response_dict['status'] = 0
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")	
+
+
