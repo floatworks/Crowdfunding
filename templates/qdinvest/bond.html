@@ -152,7 +152,12 @@
     {%for bond in  bonds%} 
     {%if bond.bo_pro_type.id == 1%}
      <li class="yellow">
-      <div class="left s">完</div>
+      <div class="left img">
+        <a href="/c/bond/bdetail/{{bond.id}}">
+          <img src="/media/{{bond.bo_image}}" width="250px" height="132px" />
+        </a>
+      </div>
+      <!--div class="left s">完</div-->
       <div class="right">
         <div class="namebar">
           <span class="left name">
@@ -192,7 +197,11 @@
 
     {% elif bond.bo_pro_type.id == 7%}
     <li class="green">
-      <div class="left s">还</div>
+      <div class="left img">
+        <a href="/c/bond/bdetail/{{bond.id}}">
+          <img src="/media/{{bond.bo_image}}" width="250px" height="132px" />
+        </a>
+      </div>
       <div class="right">
         <div class="namebar">
           <span class="left name">            
@@ -230,7 +239,11 @@
     </li>
       {% elif bond.bo_pro_type.id == 4%}
     <li class="blue">      
-      <div class="left s">中</div>     
+      <div class="left img">
+        <a href="/c/bond/bdetail/{{bond.id}}">
+          <img src="/media/{{bond.bo_image}}" width="250px" height="132px" />
+        </a>
+      </div>
       <div class="right">
         <div class="namebar">
           <span class="left name">          

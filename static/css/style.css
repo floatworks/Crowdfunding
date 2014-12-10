@@ -181,12 +181,13 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .level .list .preheat .clazz a{ color:#379945;}
 .level .list .finished .clazz a{color:#ff8c19;}
 
-.body .bondlist .s{ width:82px; height:82px; text-align:center; line-height:82px; font-size:30px; font-weight:bold; font-family:'微软雅黑'; color:#fff;}
-.body .bondlist li > .right{ width:888px;}
+/*.body .bondlist .s{ width:82px; height:82px; text-align:center; line-height:82px; font-size:30px; font-weight:bold; font-family:'微软雅黑'; color:#fff;}
+.body .bondlist li > .right{ width:888px;}*/
 .body .bondlist li .ctext{ color:#666; line-height:25px; margin-left:10px;}
 .body .bondlist li .g{ color:#666; padding:0 10px; }
-.body .bondlist .binfo .progressbar .gray{ width:290px; margin-left:20px;}
-.body .bondlist .binfo .progressbar .percent{ margin-left:20px;}
+.body .bondlist .binfo .dm { margin-top:10px;}
+.body .bondlist .binfo .progressbar .gray{ margin-top:20px;}
+.body .bondlist .binfo .progressbar .percent{ margin-top:20px;}
 .body .bondlist li .cctext{ color:#666; line-height:25px; margin-bottom:0px!important;}
 .body .bondlist li .cctext a{ color:#ff8c19;}
 
@@ -298,9 +299,9 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .body .intro .investinfo table td{ border-top:1px dashed #eee; text-align:center; height:65px;}
 
 .body .info .bond li > .s { height: 134px; width: 134px; color:#fff; background-color:#0099ff; text-align:center; line-height:134px; font-family:'微软雅黑'; font-weight:bold; font-size:48px;}
-.body .info .bond .b > .right { width: 563px;}
+/*.body .info .bond .b > .right { width: 563px;}*/
 .body .info .bond .b > .right .cctext{ color:#666;}
-.body .info .bond  li .money > div{ width:120px;}
+/*.body .info .bond  li .money > div{ width:120px;}*/
 .body .info .bond  li .local{ background:url(../images/location_ico.png) left center no-repeat; margin-left:0;}
 .body .info .bond  li .local .bygc{ margin-left:10px;}
 .body .info .bond  li .local .status{ width:56px; height:20px; text-align:center; color:#fff;line-height:20px;}
