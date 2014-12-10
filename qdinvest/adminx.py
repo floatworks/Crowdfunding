@@ -205,8 +205,7 @@ class PROFITAdmin(object):
 	search_fiedls = ['pr_user']
 	list_per_page = 20
 	add_form_template = 'xadmin/views/model_form_profit.html'
-
-
+	change_form_template = 'xadmin/views/model_form_profit.html'
 
 
 class PAYMENTAdmin(object):
