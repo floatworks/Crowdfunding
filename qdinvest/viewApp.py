@@ -267,7 +267,7 @@ def GetProjects(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
-#用户获取与之相关的数据
+#用户获取与之相关的数据,我的项目
 def GetMyProjects(request):
 	response_dict = {}
 
@@ -297,10 +297,20 @@ def GetMyProjects(request):
 					stocks_per['is_status'] = is_status
 					#stocks_per['is_status'] = INVEST_STOCK_obj.is_status
 					stocks_per['st_brief'] = INVEST_STOCK_obj.st_brief 
+					#求认购总额
+					st_invest_price = 0
 					#求最新一条记录的时间
 					INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_objs[0],is_stock__exact = INVEST_STOCK_obj).order_by('-is_date')
 					if INVEST_STOCK_objs:
 						stocks_per['is_date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
+					for STOCK_obj in INVEST_STOCK_objs:
+						st_invest_price += STOCK_obj.is_amount
+					stocks_per['st_invest_price'] = st_invest_price
+					#判断是否已经交定金
+					if T.CheckExist(PAYMENT,{'pa_user':USERS_objs[0],'pa_stock':INVEST_STOCK_obj,'pa_status':0}):
+						stocks_per['is_payment'] = 1
+					else:
+						stocks_per['is_payment'] = 0
 					stocks_data.append(stocks_per)
 				response_dict['invest_stocks'] = stocks_data
 				bonds_data = []
@@ -321,10 +331,19 @@ def GetMyProjects(request):
 					bonds_per['ib_status'] = ib_status
 					#bonds_per['ib_status'] = INVEST_BOND_obj.ib_status
 					bonds_per['bo_brief'] = INVEST_BOND_obj.bo_brief
+					#求认购总额
+					bo_invest_price = 0
 					#求最新一条记录的时间
 					INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_objs[0],ib_bond__exact = INVEST_BOND_obj).order_by('-ib_date')
 					if INVEST_BOND_objs:
 						bonds_per['ib_date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
+					for BOND_obj in INVEST_BOND_objs:
+						bo_invest_price += BOND_obj.ib_amount
+					bonds_per['bo_invest_price'] = bo_invest_price
+					if T.CheckExist(PAYMENT,{'pa_user':USERS_objs[0],'pa_bond':INVEST_BOND_obj,'pa_status':0}):
+						bonds_per['is_payment'] = 1
+					else:
+						bonds_per['is_payment'] = 0
 					bonds_data.append(bonds_per)
 				response_dict['invest_bonds'] = bonds_data
 			else:
@@ -846,6 +865,49 @@ def Invest(request):
 				response_dict['status'] = -1
 		else:
 			response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
+#用户支付定金
+def Payment(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		token = request.POST.get('token','')
+		u_name = request.POST.get('u_name','')
+		p_type = request.POST.get('type','')
+		p_id = request.POST.get('id','-1')
+		price = request.POST.get('price','0')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if float(price) > 0:
+					if p_type == 'stock':
+						STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+						if STOCK_objs:
+							PAYMENT_new = PAYMENT(pa_user = USERS_objs[0],pa_amount = str(price),pa_date = datetime.now(),pa_stock = STOCK_objs[0],pa_status = 0)
+							PAYMENT_new.save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 0
+					elif p_type == 'bond':
+						BOND_objs = BOND.objects.filter(id__exact = p_id)
+						if BOND_objs:
+							PAYMENT_new = PAYMENT(pa_user = USERS_objs[0],pa_amount = str(price),pa_date = datetime.now(),pa_bond = BOND_objs[0],pa_status = 0)
+							PAYMENT_new.save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 0
+				else:
+					response_dict['status'] = 2
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
 
 	if settings.DEBUG:
 		print response_dict
