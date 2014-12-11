@@ -883,7 +883,7 @@ def Payment(request):
 						else:
 							response_dict['status'] = 0
 				else:
-					response_dict['status'] = 0
+					response_dict['status'] = 2
 			else:
 				response_dict['status'] = -1
 		else:
