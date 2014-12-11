@@ -23,4 +23,5 @@ urlpatterns = patterns('',
 	url(r'^update/$', viewApp.CheckUpdate, name='CheckUpdate'), 
 	url(r'^feedback/$', viewApp.Feedback, name='Feedback'),
 	url(r'^invest/$', viewApp.Invest, name='Invest'), 
+	url(r'^payment/$', viewApp.Payment, name='Payment'), 
 	)

@@ -460,10 +460,10 @@ PAYMENT_STATUS = (
 class PAYMENT(models.Model):
 	pa_user = models.ForeignKey(USERS,verbose_name="用户")
 	pa_amount = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='定金数额')
-	pa_date = models.DateField(verbose_name="支付时间")
+	pa_date = models.DateTimeField(verbose_name="支付时间")
 	pa_stock = models.ForeignKey(STOCK,verbose_name="股权众筹",null=True,blank=True,help_text="二选一即可")
 	pa_bond = models.ForeignKey(BOND,verbose_name="债权众筹",null=True,blank=True,help_text="二选一即可")
-	pa_status = models.SmallIntegerField(verbose_name="状态",choices=PAYMENT_STATUS)
+	pa_status = models.SmallIntegerField(default=0,verbose_name="状态",choices=PAYMENT_STATUS)
 
 	class Meta:
 		verbose_name = '定金'

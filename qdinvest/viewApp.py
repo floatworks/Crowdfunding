@@ -851,6 +851,49 @@ def Invest(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")
 
+#用户支付定金
+def Payment(request):
+	response_dict = {}
+
+	if request.method == 'POST':
+		token = request.POST.get('token','')
+		u_name = request.POST.get('u_name','')
+		p_type = request.POST.get('type','')
+		p_id = request.POST.get('id','-1')
+		price = request.POST.get('price','0')
+
+		USERS_objs = USERS.objects.filter(u_name__exact = u_name)
+		if USERS_objs:
+			if T.CheckToken(USERS_objs[0],token,0):
+				if float(price) > 0:
+					if p_type == 'stock':
+						STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+						if STOCK_objs:
+							PAYMENT_new = PAYMENT(pa_user = USERS_objs[0],pa_amount = str(price),pa_date = datetime.now(),pa_stock = STOCK_objs[0],pa_status = 0)
+							PAYMENT_new.save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 0
+					elif p_type == 'bond':
+						BOND_objs = BOND.objects.filter(id__exact = p_id)
+						if BOND_objs:
+							PAYMENT_new = PAYMENT(pa_user = USERS_objs[0],pa_amount = str(price),pa_date = datetime.now(),pa_bond = BOND_objs[0],pa_status = 0)
+							PAYMENT_new.save()
+							response_dict['status'] = 1
+						else:
+							response_dict['status'] = 0
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = -1
+		else:
+			response_dict['status'] = 0
+
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")
+
 #获取用户的投资列表
 def InvestList(request):
 	response_dict = {}
