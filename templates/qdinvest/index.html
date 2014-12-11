@@ -71,15 +71,15 @@
           </div>
           <div class="money">
             <div class="left">
-              <p>￥{{stock.st_total_price}}</p>
-              <p>投资金额</p>
+              <p>{{stock.st_current_price|toTenThous}}万</p>
+              <p>当前融资</p>
             </div>
             <div class="left">
-              <p>￥{{stock.st_current_price}}</p>
-              <p>当前认购</p>
+              <p>{{stock.st_total_price|toTenThous}}万</p>
+              <p>融资总额</p>
             </div>
             <div class="left">
-              <p>￥{{stock.st_min_price}}</p>
+              <p>￥{{stock.st_min_price|toTenThous}}万</p>
               <p>认购起点</p>
             </div>
           </div>
@@ -92,11 +92,11 @@
           </div>
           <div class="course">
             热度
-            <span>{{stock.st_like_count}}</span>
+            <span>{{stock.st_view_count}}</span>
             /　关注
             <span>{{stock.st_like_count}}</span>
-            /　认购结束
-            <span>{{stock.st_total_price}}</span>
+            /　认购
+            <span>{{stock.st_invest_count}}</span>
           </li>        
         {% endfor  %}       
       </ul>
@@ -132,16 +132,16 @@
           <div class="progressbar">预热中可预约认购提交投资</div>
           <div class="money">
              <div class="left">
-              <p>￥0.00万</p>
+              <p>{{stock.st_current_price|toTenThous}}万</p>
               <p>当前融资</p>
-            </div>    
+            </div>
             <div class="left">
-              <p>￥{{stock.st_total_price}}</p>
+              <p>{{stock.st_total_price|toTenThous}}万</p>
               <p>融资总额</p>
-            </div>            
+            </div>
             <div class="left">
-              <p>￥{{stock.st_min_price}}</p>
-              <p>融资起点</p>
+              <p>￥{{stock.st_min_price|toTenThous}}万</p>
+              <p>认购起点</p>
             </div>
           </div>
           <div class="cinfo">
@@ -153,11 +153,11 @@
           </div>
            <div class="course">
             热度
-            <span>{{stock.st_like_count}}</span>
+            <span>{{stock.st_view_count}}</span>
             /　关注
             <span>{{stock.st_like_count}}</span>
-            /　认购结束
-            <span>{{stock.st_total_price}}</span>         
+            /　认购
+            <span>{{stock.st_invest_count}}</span>         
           </div>
         </li>       
         {% endfor  %}
@@ -199,17 +199,17 @@
           </div>
           <div class="money">
              <div class="left">
-              <p>￥{{stock.st_total_price}}</p>
+              <p>{{stock.st_current_price|toTenThous}}万</p>
               <p>当前融资</p>
-            </div> 
+            </div>
             <div class="left">
-              <p>￥{{stock.st_total_price}}</p>
+              <p>{{stock.st_total_price|toTenThous}}万</p>
               <p>融资总额</p>
-            </div>            
+            </div>
             <div class="left">
-              <p>￥{{stock.st_min_price}}</p>
-              <p>融资起点</p>
-            </div>            
+              <p>￥{{stock.st_min_price|toTenThous}}万</p>
+              <p>认购起点</p>
+            </div> 
           </div>
            <div class="cinfo">
             <span class="location">{{stock.st_province}}</span>
@@ -220,11 +220,11 @@
           </div>
            <div class="course">  
             热度
-            <span>{{stock.st_like_count}}</span>                  
+            <span>{{stock.st_view_count}}</span>                  
             /　关注
             <span>{{stock.st_like_count}}</span>             
-             /　认购结束
-            <span>{{stock.st_total_price}}</span>          
+             /　认购
+            <span>{{stock.st_invest_count}}</span>          
           </div>
         </li>      
       {% endfor  %}
@@ -236,13 +236,18 @@
       <div class="title">
         <span class="left">投标中项目</span>
         <span class="right">
-          <a href="javascript:;">查看更多&gt;</a>
+          <a href="/c/bond">查看更多&gt;</a>
         </span>
       </div>
       <ul class="left plist">
       {% for bond in bonds%} 
         <li>
-          <div class="left status">中</div>
+          <!--div class="left status">中</div-->
+          <div class="left img">
+            <a href="/c/bdetail/{{bond.id}}">
+              <img src="/media/{{bond.bo_logo}}" width="50px" height="50px" />
+            </a>
+          </div>
           <div class="left company">
             <div>
             <a href="c/bdetail/{{bond.id}}"> {{bond.bo_brief}} </a>
@@ -256,7 +261,7 @@
           </div>
           <div class="clearfix"></div>
           <div>融资企业：{{bond.bo_com_name}}</div>
-          <div>资金用途：{{bo_goal}}</div>
+          <div>资金用途：{{bond.bo_brief}}</div>
           <hr />
           <div>
             年化利率
@@ -267,10 +272,10 @@
           </div>
           <div>
             融资金额
-            <span class="ctext">￥{{bond.bo_total_price}}</span>
+            <span class="ctext">{{bond.bo_total_price|toTenThous}}万</span>
            
             授信额度
-            <span class="ctext">￥{{bond.bo_min_price}}</span>
+            <span class="ctext">{{bond.bo_min_price|toTenThous}}万</span>
           </div>
         </li>
       {% endfor  %} 
@@ -281,13 +286,18 @@
       <div class="title">
         <span class="left">还款中项目</span>
         <span class="right">
-          <a href="javascript:;">查看更多&gt;</a>
+          <a href="/c/bond">查看更多&gt;</a>
         </span>
       </div>
       <ul class="left plist">
         {%for bond in bonds2 %}
         <li>          
-          <div class="left status">还</div>
+          <!--div class="left status">还</div-->
+          <div class="left img">
+            <a href="/c/bdetail/{{bond.id}}">
+              <img src="/media/{{bond.bo_logo}}" width="50px" height="50px" />
+            </a>
+          </div>
           <div class="left company">
            <a href="c/bdetail/{{bond.id}}"> {{bond.bo_brief}} </a>
             <div class="progressbar">
@@ -299,7 +309,7 @@
           </div>
           <div class="clearfix"></div>
           <div>融资企业：{{bond.bo_com_name}}</div>
-          <div>资金用途：{{bo_goal}}</div>
+          <div>资金用途：{{bond.bo_brief}}</div>
           <hr />
           <div>
             年化利率
@@ -310,10 +320,10 @@
           </div>
           <div>
             融资金额
-            <span class="ctext">￥{{bond.bo_total_price}}</span>
+            <span class="ctext">{{bond.bo_total_price|toTenThous}}万</span>
            
             授信额度
-            <span class="ctext">￥20.00万</span>
+            <span class="ctext">{{bond.bo_min_price|toTenThous}}万</span>
           </div>          
         </li>
         {% endfor %}
@@ -324,13 +334,18 @@
       <div class="title">
         <span class="left">还款完成项目</span>
         <span class="right">
-          <a href="javascript:;">查看更多&gt;</a>
+          <a href="/c/bond">查看更多&gt;</a>
         </span>
       </div>
       <ul class="left plist">
         {% for bond  in bonds3 %}
         <li>
-          <div class="left status">完</div>
+          <!--div class="left status">完</div-->
+          <div class="left img">
+            <a href="/c/bdetail/{{bond.id}}">
+              <img src="/media/{{bond.bo_logo}}" width="50px" height="50px" />
+            </a>
+          </div>
           <div class="left company">
             <a href="c/bdetail/{{bond.id}}"> {{bond.bo_brief}} </a>
             <div class="progressbar">
@@ -342,7 +357,7 @@
           </div>
           <div class="clearfix"></div>
           <div>融资企业：{{bond.bo_com_name}}</div>
-          <div>资金用途：{{bo_goal}}</div>
+          <div>资金用途：{{bond.bo_brief}}</div>
           <hr />
           <div>
             年化利率
@@ -353,10 +368,10 @@
           </div>
           <div>
             融资金额
-            <span class="ctext">￥{{bond.bo_total_price}}</span>
+            <span class="ctext">{{bond.bo_total_price|toTenThous}}万</span>
            
              授信额度
-            <span class="ctext">￥2000.00万</span>
+            <span class="ctext">{{bond.bo_min_price|toTenThous}}万</span>
           </div>                      
         </li>
          {% endfor %}
