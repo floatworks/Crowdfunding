@@ -164,7 +164,7 @@
 }
 .index .ui-listview .ui-li-has-thumb > .ui-btn > img ,
 .mypro .ui-listview .ui-li-has-thumb > .ui-btn > img {
-	margin: 0.5em .4em;
+	margin: 0.4em 0.4em;
 }
 .index .ui-listview > li h3,
 .mypro .ui-listview > li h3 {
@@ -206,6 +206,19 @@
 	white-space: normal;
 }
 
+.mypro .ui-listview p.ui-status{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 6.667em;
+	margin: 0.534em;
+	padding: .3em 0;
+	text-align:center;
+	background-color: #222222;
+	filter: Alpha(Opacity=60);
+	opacity: .6;
+	color: #fff;
+}
 .mypro .ui-listview > li p.amount{
 	font-size: 1em;
 	
