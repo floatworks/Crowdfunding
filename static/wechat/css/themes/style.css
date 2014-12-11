@@ -164,7 +164,7 @@
 }
 .index .ui-listview .ui-li-has-thumb > .ui-btn > img ,
 .mypro .ui-listview .ui-li-has-thumb > .ui-btn > img {
-	margin: 0.4em 0.4em;
+	margin: 0.2em 0.4em;
 }
 .index .ui-listview > li h3,
 .mypro .ui-listview > li h3 {
@@ -210,9 +210,9 @@
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	width: 6.667em;
-	margin: 0.534em;
-	padding: .3em 0;
+	width: 8.333em;
+	margin: 0.333em 0.667em;
+	padding: .35em 0;
 	text-align:center;
 	background-color: #222222;
 	filter: Alpha(Opacity=60);
