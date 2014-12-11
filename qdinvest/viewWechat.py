@@ -681,17 +681,34 @@ def GetMyProList(request):
 			stocks_per['total_price'] = STOCK_obj.st_total_price
 			stocks_per['brief'] = STOCK_obj.st_brief 
 			#stocks_per['is_amount'] = INVEST_STOCK_obj.is_amount
+			#判断是否已经交定金
+			if T.CheckExist(PAYMENT,{'pa_user':USERS_obj,'pa_stock':STOCK_obj,'pa_status':0}):
+				stocks_per['is_payment'] = 1
+			else:
+				stocks_per['is_payment'] = 0
 			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_obj,is_stock__exact = STOCK_obj,is_status__id = 1).order_by('-is_date')
 			if INVEST_STOCK_objs:
 				stocks_per['date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
+				invest_price = 0
+				for INVEST_STOCK_obj in INVEST_STOCK_objs:
+					invest_price += INVEST_STOCK_obj.is_amount
+				stocks_per['invest_price'] = invest_price
 				projects_s1.append(stocks_per)
 			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_obj,is_stock__exact = STOCK_obj,is_status__id = 2).order_by('-is_date')
 			if INVEST_STOCK_objs:
 				stocks_per['date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
+				invest_price = 0
+				for INVEST_STOCK_obj in INVEST_STOCK_objs:
+					invest_price += INVEST_STOCK_obj.is_amount
+				stocks_per['invest_price'] = invest_price
 				projects_s2.append(stocks_per)
 			INVEST_STOCK_objs = INVEST_STOCK.objects.filter(is_user__exact = USERS_obj,is_stock__exact = STOCK_obj,is_status__id = 3).order_by('-is_date')
 			if INVEST_STOCK_objs:
 				stocks_per['date'] = INVEST_STOCK_objs[0].is_date.strftime('%Y-%m-%d %H:%M:%S')
+				invest_price = 0
+				for INVEST_STOCK_obj in INVEST_STOCK_objs:
+					invest_price += INVEST_STOCK_obj.is_amount
+				stocks_per['invest_price'] = invest_price
 				projects_s3.append(stocks_per)
 		BOND_ids = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj).values('ib_bond').distinct()
 		for BOND_id in BOND_ids:
@@ -703,17 +720,34 @@ def GetMyProList(request):
 			bonds_per['image'] = str(BOND_obj.bo_logo)
 			bonds_per['total_price'] = BOND_obj.bo_total_price
 			bonds_per['brief'] = BOND_obj.bo_brief
+			#判断是否已经交定金
+			if T.CheckExist(PAYMENT,{'pa_user':USERS_obj,'pa_bond':BOND_obj,'pa_status':0}):
+				bonds_per['is_payment'] = 1
+			else:
+				bonds_per['is_payment'] = 0
 			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj,ib_bond__exact = BOND_obj,ib_status__id = 1).order_by('-ib_date')
 			if INVEST_BOND_objs:
 				bonds_per['date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
+				invest_price = 0
+				for INVEST_BOND_obj in INVEST_BOND_objs:
+					invest_price += INVEST_BOND_obj.ib_amount
+				bonds_per['invest_price'] = invest_price 
 				projects_s1.append(bonds_per)
 			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj,ib_bond__exact = BOND_obj,ib_status__id = 2).order_by('-ib_date')
 			if INVEST_BOND_objs:
 				bonds_per['date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
+				invest_price = 0
+				for INVEST_BOND_obj in INVEST_BOND_objs:
+					invest_price += INVEST_BOND_obj.ib_amount
+				bonds_per['invest_price'] = invest_price
 				projects_s2.append(bonds_per)
 			INVEST_BOND_objs = INVEST_BOND.objects.filter(ib_user__exact = USERS_obj,ib_bond__exact = BOND_obj,ib_status__id = 3).order_by('-ib_date')
 			if INVEST_BOND_objs:
 				bonds_per['date'] = INVEST_BOND_objs[0].ib_date.strftime('%Y-%m-%d %H:%M:%S')
+				invest_price = 0
+				for INVEST_BOND_obj in INVEST_BOND_objs:
+					invest_price += INVEST_BOND_obj.ib_amount
+				bonds_per['invest_price'] = invest_price
 				projects_s3.append(bonds_per)
 		projects_s1 = sorted(projects_s1,key = operator.itemgetter('date'),reverse=True)
 		projects_s2 = sorted(projects_s2,key = operator.itemgetter('date'),reverse=True)
@@ -965,4 +999,32 @@ def Profit_Select(request):
 		print response_dict
 	return HttpResponse(json.dumps(response_dict),content_type="application/json")	
 
+#用户支付定金
+def Payment(request):
+	response_dict = {}
 
+	if request.method == 'POST':
+		p_type = request.POST.get('type','')
+		p_id = request.POST.get('id','-1')
+		price = request.POST.get('price','0')
+		USERS_obj = USERS.objects.get(id__exact = request.session['USER_ID'])
+		if p_type == 'stock':
+			STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+			if STOCK_objs:
+				PAYMENT_new = PAYMENT(pa_user = USERS_obj,pa_amount = str(price),pa_date = datetime.now(),pa_stock = STOCK_objs[0],pa_status = 0)
+				PAYMENT_new.save()
+				response_dict['status'] = 1
+			else:
+				response_dict['status'] = 0
+		elif p_type == 'bond':
+			BOND_objs = BOND.objects.filter(id__exact = p_id)
+			if BOND_objs:
+				PAYMENT_new = PAYMENT(pa_user = USERS_obj,pa_amount = str(price),pa_date = datetime.now(),pa_bond = BOND_objs[0],pa_status = 0)
+				PAYMENT_new.save()
+				response_dict['status'] = 1
+			else:
+				response_dict['status'] = 0
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")

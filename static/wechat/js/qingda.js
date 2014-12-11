@@ -131,6 +131,25 @@ $(document).on("pageinit", "#reg", function() {
 	});
 });
 
+$(document).on("pageinit", "#moreinfo", function() {
+	$('#btn_payment').click(function() {
+		type = $(this).attr('type');
+		id = $(this).attr('pid');
+		$.post("/w/payment/", {
+				'type': type,
+				'id': id,
+				'price':1000
+			},
+			function(data, status) {
+				if (data.status == 1) {
+					location.reload(true);
+				} else if (data.status == 0) {
+					popDialog('#popupDialog', '定金支付失败，请联系客服解决');
+				}
+			});
+	});
+});
+
 $(document).on("pageinit", "#forget", function() {
 	$('#getCodeForget').click(function() {
 		tel = $("#u_tel_forget").val().trim();

@@ -26,10 +26,14 @@
 					<li data-icon="false">
 						<a href="/w/myproinvest/t{{project.type}}d{{project.id}}" data-ajax="false">
 							<img src="/media/{{project.image}}" />
-							<p class="ui-status">认购中</p>
+							{% if project.is_payment == 1%}
+								<p class="ui-status">已认购</p>
+							{% else %}
+								<p class="ui-status">认购中</p>
+							{% endif %}
 							<h3>{{project.title}}</h3>
 							<p class="intro">{{project.brief}}</p>
-							<p class="hl2">融资总额：{{project.total_price|toTenThous}}万</p>
+							<p class="hl2">意向认购：{{project.invest_price|toTenThous}}万</p>
 							{% ifequal project.type 'stock' %}
 								<p class="ui-li-aside">股权类</p>
 							{% endifequal%}
@@ -50,7 +54,7 @@
 							<p class="ui-status">持有中</p>
 							<h3>{{project.title}}</h3>
 							<p class="intro">{{project.brief}}</p>
-							<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
+							<p class="hl2">意向认购：{{project.invest_price|toTenThous}}万</p>
 							{% ifequal project.type 'stock' %}
 								<p class="ui-li-aside">股权类</p>
 							{% endifequal%}
@@ -71,7 +75,7 @@
 							<p class="ui-status">已完成</p>
 							<h3>{{project.title}}</h3>
 							<p class="intro">{{project.brief}}</p>
-							<p class="hl2">融资金额：{{project.total_price|toTenThous}}万</p>
+							<p class="hl2">意向认购：{{project.invest_price|toTenThous}}万</p>
 							{% ifequal project.type 'stock' %}
 								<p class="ui-li-aside">股权类</p>
 							{% endifequal%}

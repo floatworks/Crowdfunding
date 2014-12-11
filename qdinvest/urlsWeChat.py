@@ -26,4 +26,5 @@ urlpatterns = patterns('',
 	url(r'^instructions/$', viewWechat.PRO_Instructions, name='PRO_Instructions'), 
 	url(r'^investor/$', viewWechat.PRO_Investor, name='PRO_Investor'), 
 	url(r'^profit_select/$', viewWechat.Profit_Select, name='Profit_Select'), 
+	url(r'^payment/$', viewWechat.Payment, name='Payment'), 
 	)

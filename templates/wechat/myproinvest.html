@@ -27,10 +27,10 @@
 				<a href="#" class="ui-alt-icon">
 					<p class="amount">
 						认购总额
-						<span>{{project.current_price|toTenThous}}万</span>
+						<span>{{project.invest_price|toTenThous}}万</span>
 					</p>
 					{% if project.is_payment == 0%}
-						<p class="amount ui-li-aside">支付定金</p>
+						<p class="amount ui-li-aside" id="btn_payment" type="{{project.type}}" pid="{{project.id}}">支付定金</p>
 					{% elif project.is_payment == 1%}
 						<p class="amount ui-li-aside">已付定金</p>
 					{% endif %}
