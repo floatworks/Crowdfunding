@@ -22,7 +22,13 @@
         <li>
             <div>我的消息</div>
             <ul>
-                <li><a href="/c/news/">我的消息</a></li>
+                {%if news %}
+                <li> <a href="/c/news/"><span class="hover">我的消息</span></a></li>
+                {%else%}
+                 <li><a href="/c/news/">我的消息</a></li>
+                {% endif %}
+
+              
             </ul>
         </li>
     </ul>

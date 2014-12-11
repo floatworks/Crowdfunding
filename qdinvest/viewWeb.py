@@ -311,10 +311,7 @@ def stock(request):
 	return render_to_response('qdinvest/stock.html',context_dict,context)
 
 
-def account(request):	
-	context = RequestContext(request)
-	context_dict = {}
-	return render_to_response('qdinvest/account.html',context_dict,context)
+
 
 #用户登录
 def login(request):
@@ -338,7 +335,7 @@ def login(request):
 			USERS_obj = USERS.objects.get(u_name = u_name,u_pwd=u_pwd)
 			request.session['username'] = USERS_obj.u_name
 			request.session['user_id'] = USERS_obj.id			
-			return HttpResponseRedirect('/c/account/')
+			return HttpResponseRedirect('/c/account_list/')
 		else:
 			if u_name and u_pwd:
 				context_dict['errors'] = '用户名与密码不匹配，请重新输入'
@@ -570,15 +567,7 @@ def forget5(request):
 		else:		
 			context_dict['msg'] = '验证码输入错误'
 			return HttpResponse(json.dumps(context_dict),content_type="application/json")
-#个人中心页面的显示			
-def account(request):
-	context = RequestContext(request)
-	context_dict = {}	
-	if request.session.has_key('username'):
-		return render_to_response('qdinvest/account.html',context_dict,context)
-	else:
-		return HttpResponseRedirect('/c/login/')
-
+		
 
 
 
@@ -591,7 +580,8 @@ def account_list(request):
 	if request.session.has_key('username'):	
 		u_name = request.session['username']	
 		ACCOUNT_objs = ACCOUNT.objects.filter(ac_user__u_name = u_name)	
-		context_dict['account'] = ACCOUNT_objs		
+		context_dict['account'] = ACCOUNT_objs	
+		context_dict['account_list'] =1
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/account_list.html',context_dict,context)
@@ -616,6 +606,7 @@ def stock_list(request):
 					invest.append({'id':STOCK_obj.id,'st_brief':STOCK_obj.st_brief,'st_com_type':STOCK_obj.st_com_type,'st_pro_type':STOCK_obj.st_pro_type,'st_industry':STOCK_obj.st_industry})	
 			context_dict['stocks'] = invest
 		context_dict['invest_price'] = st_invest_price
+		context_dict['stock_list'] = 1
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/stock_list.html',context_dict,context)
@@ -640,6 +631,7 @@ def bond_list(request):
 					invest.append({'id':BOND_obj.id,'bo_title':BOND_obj.bo_title,'bo_com_type':BOND_obj.bo_com_type,'bo_pro_type':BOND_obj.bo_pro_type,'bo_industry':BOND_obj.bo_industry})	
 			context_dict['bonds'] = invest
 		context_dict['invest_price'] = ib_invest_price
+		context_dict['bond_list'] = 1
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/bond_list.html',context_dict,context)
@@ -686,9 +678,11 @@ def news(request):
 					context_dict['notice_users'] = notice_user
 					print  context_dict['notice_users'][0]
 
-			context_dict['status'] = 1			
+			context_dict['status'] = 1	
+
 		else:
 			context_dict['status'] = 0	
+		context_dict['news'] = 1
 	return render_to_response('qdinvest/news.html',context_dict,context)
 
 def news2(request):	
@@ -723,4 +717,5 @@ def news2(request):
 						#标记为已经阅读
 						NOTICE_USER_objs[0].nu_is_read = 1
 						NOTICE_USER_objs[0].save()	
+		context_dict['news2'] = 1
 	return render_to_response('qdinvest/news2.html',context_dict,context)

@@ -17,7 +17,13 @@
             <div>我的项目</div>
             <ul>
                 <li><a href="/c/stock_list/">股权项目</a></li>
+                {%if bond_list %}
+                <li> <a href="/c/bond_list/"><span class="hover">债权项目</span></a></li>
+                {%else%}
                 <li><a href="/c/bond_list/">债权项目</a></li>
+                {% endif %}
+
+                
             </ul>
         </li>
         <li>

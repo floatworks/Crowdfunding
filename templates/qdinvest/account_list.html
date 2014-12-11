@@ -7,9 +7,13 @@
     <ul class="sidemenu left">
         <li>
             <div>我的资料</div>
-            <ul>
-                <li><a href="/c/account_list/">账户信息</a></li>
-                
+            
+            <ul> 
+                {%if account_list %}
+                <li> <a href="/c/account_list/"><span class="hover">账户信息</span></a></li>
+                {%else%}
+                 <li><a href="/c/account_list/">账户信息</a></li>
+                {% endif %}
             </ul>
         </li>
     

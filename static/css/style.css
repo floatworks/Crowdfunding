@@ -359,6 +359,7 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 
 .infocontent .sidemenu ul li{ padding-left:20px; background:url(../images/rightarrow.png) right center no-repeat;}
 .infocontent .sidemenu ul li:hover{ background-color:#eee;}
+.infocontent .sidemenu ul li .hover{ color:#FFF; background-color:#09F;padding:5px 10px;}
 .infocontent .sidemenu ul li a{ line-height:40px; color:#000; display:inline-block; width:100%;}
 .infocontent .sidemenu ul li:hover a{ font-weight:bold;}
 .infocontent .info{ width:685px; border:1px solid #eee; border-top:3px solid #7fb2cc; padding:10px 20px;}

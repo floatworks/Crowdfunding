@@ -24,7 +24,7 @@
         |
         <a href="/c/register/"  class="reg">注册</a>
         {% else %}
-        <a href="/c/account/" class="reg">{{request.session.username}}</a>
+        <a href="/c/account_list/" class="reg">{{request.session.username}}</a>
         |
         <a href="/c/logout/" class="unlock">注销</a>
         {% endif %}
@@ -34,7 +34,7 @@
         {% navtagitem / "首页" "home" %} 
         {% navtagitem /c/stock/ "股权众筹" "project" %}
         {% navtagitem /c/bond/ "债权众筹" "investor" %}
-        {% navtagitem /c/account/ "个人中心" "attom" %}
+        {% navtagitem /c/account_list/ "个人中心" "attom" %}
       </ul>
     </div>
   </div>
