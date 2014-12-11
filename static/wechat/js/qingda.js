@@ -151,7 +151,7 @@ $(document).on("pageinit", "#forget", function() {
 			});
 	});
 
-	$('#forgetButton').click(function(){
+	$('#forgetButton').click(function() {
 		tel = $("#u_tel_forget").val().trim();
 		code = $("#code_forget").val().trim();
 		u_pwd = $("#u_pwd_forget").val().trim();
@@ -165,16 +165,16 @@ $(document).on("pageinit", "#forget", function() {
 		} else if (!tel.match($.regexpCommon('phoneNumberZN'))) {
 			popDialog('#forgetDialog', '手机号码格式不正确');
 			return;
-		}else if (!code.match($.regexpCommon('code'))) {
+		} else if (!code.match($.regexpCommon('code'))) {
 			popDialog('#forgetDialog', '验证码为6位数字');
 			return false;
 		}
-		$.post("/w/forget/",{
-			'u_tel':tel,
-			'code':code,
-			'u_pwd':u_pwd
+		$.post("/w/forget/", {
+				'u_tel': tel,
+				'code': code,
+				'u_pwd': u_pwd
 			},
-			function(data,status){
+			function(data, status) {
 				if (data.status == 0) {
 					popDialog('#forgetDialog', '验证码错误');
 				} else if (data.status == 1) {
@@ -292,14 +292,21 @@ $(document).on("pageinit", "#personal", function() {
 	calcu = true;
 });
 $(document).on("pageshow", "#personal", function() {
-	if( calcu ){
+	if (calcu) {
 		var w_height = $(window).height(),
 			w_width = $(window).width();
 		var header = $('#personal .ui-header'),
 			footer = $('#personal .ui-footer'),
 			solo = $('#personal .ui-content .ui-grid-solo'),
 			grid_a = $('#personal .ui-content .ui-grid-a');
-		var gap,r_height = header.height() + footer.height() + solo.height() * 2 + grid_a.height() * 3;
+		var gap, r_height = header.height() + footer.height() + solo.height() * 2 + grid_a.height() * 3;
+		
+		if ($('#personal .ui-header p img').height() <= 0) {
+			var fontSize = $('#personal .ui-header p').css('font-size').match(/(\d+)px/)[0].replace(/px/,'');
+			r_height += (0.25 * w_width < 128) ? 0.25 * w_width : 128;
+			r_height -= fontSize;
+			//console.debug(fontSize);
+		}
 
 		if (r_height > w_height) {
 			header.find('p img').css({"height": 64 + 'px',"width": 64 + 'px'});
