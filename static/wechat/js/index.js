@@ -56,8 +56,8 @@ function pullUpAction() {
 							else
 								content += "<p class='progressbar less' data='" + projects[index].progress + "'>";
 							content += "<span class='progress'> <b class='bar' style='width: " + projects[index].progress + "%;'></b></span><span class='num'> " + projects[index].progress + "%</span></p>";
-							content += "<p>" + projects[index].com_name + "</p>";
-							content += "<p>" + projects[index].brief + "</p>";
+							content += "<p>股份代码：" + projects[index].code + "</p>";
+							content += "<p>经营用途：" + projects[index].brief + "</p>";
 							content += "<p class='ui-li-aside'>" + projects[index].pro_type + "</p></a>";
 							content += "<p class='ui-li-bottom'><span>年化利率:<em class='hl1'>" + projects[index].scale + "%</em></span>";
 							content += "<span>融资总额:<em class='hl1'>" + projects[index].current_price / 10000 + "万</em></span>";
