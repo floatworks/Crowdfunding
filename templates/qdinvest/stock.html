@@ -1,5 +1,6 @@
 {% extends "qdinvest/base.html" %}
 {% load staticfiles %}
+{% load extra_tags %}
 {% load pagination_tags %}
 {% block title %}股权众筹{% endblock %}
 {% block body_block %}
@@ -139,11 +140,11 @@
         <div class="money">
           <div class="left">
             当前融资：
-            <span>{{stock.st_current_price}}</span>
+            <span>{{stock.st_current_price|toTenThous}}万</span>
             融资总额：
-            <span>{{stock.st_total_price}}</span>
+            <span>{{stock.st_total_price|toTenThous}}万</span>
             认购起点：
-            <span>{{stock.st_min_price}}</span>
+            <span>{{stock.st_min_price|toTenThous}}万</span>
             出让股权比例：
             <span>{{stock.st_scale}}%</span>
           </div>
@@ -153,8 +154,8 @@
           <span>{{stock.st_view_count}}</span>
           /　关注
           <span>{{stock.st_like_count}}</span>
-          /　认购结束
-          <span>{{stock.st_total_price}}</span>
+          /　认购
+          <span>{{stock.st_invest_count}}</span>
         </div>
       </div>
     </li> 

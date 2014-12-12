@@ -47,16 +47,16 @@
               <p>截止日期</p>
             </div>
             <div class="left">
-              <p>￥{{bond.bo_total_price}}</p>
+              <p>{{bond.bo_total_price|toTenThous}}万</p>
               <p>融资金额</p>
             </div>
             <div class="left">
-              <p>￥{{bond.bo_min_price}}</p>
+              <p>{{bond.bo_min_price|toTenThous}}万</p>
               <p>认购起点</p>
             </div>
           </div>
           <div class="cctext">
-            已经完成投标 571,809.97 元 , 即刻投资收益自 2014-07-13 起算，每万元预期收益 1,106.03 元
+            已经完成投标 {{bond.bo_current_price}} 元,即刻投资收益自 {{bond.bo_begin_time.date}} 起算,每万元预期收益 {{bond.bo_scale | toProfit}} 元
           </div>
         </div>
       </li>

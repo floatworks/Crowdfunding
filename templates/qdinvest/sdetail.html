@@ -38,25 +38,25 @@
                     </div>
                     <div class="money">
                         <div class="left">
-                            <p>￥{{stock.st_total_price}}</p>
+                            <p>{{stock.st_total_price|toTenThous}}万</p>
                             <p>投资金额</p>
                         </div>
                         <div class="left">
-                            <p>￥{{stock.st_current_price}}</p>
+                            <p>{{stock.st_current_price|toTenThous}}万</p>
                             <p>当前认购</p>
                         </div>
                         <div class="left">
-                            <p>￥{{stock.st_min_price}}</p>
+                            <p>{{stock.st_min_price|toTenThous}}万</p>
                             <p>认购起点</p>
                         </div>
                     </div>
                     <div class="course">
-                         /  点击
-                        <span>{{stock.st_like_count}}</span>
+                         /  热度
+                        <span>{{stock.st_view_count}}</span>
                         /　关注
                         <span>{{stock.st_like_count}}</span>
-                        /　认购结束
-                       <span>{{stock.st_total_price}}</span>
+                        /　认购
+                       <span>{{stock.st_invest_count}}</span>
                     </div>
                 </div>
             </li>

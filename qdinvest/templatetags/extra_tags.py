@@ -34,3 +34,7 @@ def strConv(s):
         (s,count) = re.subn(r"(\d)(\d{3})((:?,\d\d\d)*)$",r"\1,\2\3",s)
         if count == 0 : break
     return s
+
+@register.filter(name='toProfit')
+def toProfit(value):
+	return float(value) * 100
