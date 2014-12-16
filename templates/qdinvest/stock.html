@@ -114,14 +114,14 @@
     {%for stock in  stocks%}
     <li>
       <div class="left img">
-        <a href="/c/stock/sdetail/{{stock.id}}">
+        <a href="/c/sdetail/{{stock.id}}">
           <img src="/media/{{stock.st_image}}" width="250px" height="132px" />
         </a>
       </div>
       <div class="right">
         <div class="namebar">
           <span class="left name">
-            <a href="/c/stock/sdetail/{{stock.id}}">{{stock.st_title }}</a>
+            <a href="/c/sdetail/{{stock.id}}">{{stock.st_title }}</a>
           </span>
           <span class="left local">{{stock.st_province}}• |</span>
           <span class="clazz">

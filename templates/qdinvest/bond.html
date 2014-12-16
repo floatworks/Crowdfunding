@@ -154,7 +154,7 @@
     {%if bond.bo_pro_type.id == 1%}
      <li class="yellow">
       <div class="left img">
-        <a href="/c/bond/bdetail/{{bond.id}}">
+        <a href="/c/bdetail/{{bond.id}}">
           <img src="/media/{{bond.bo_image}}" width="250px" height="132px" />
         </a>
       </div>
@@ -162,7 +162,7 @@
       <div class="right">
         <div class="namebar">
           <span class="left name">
-            <a href="/c/bond/bdetail/{{bond.id}}">{{bond.bo_title }}</a>
+            <a href="/c/bdetail/{{bond.id}}">{{bond.bo_title }}</a>
           </span>
           <span class="left ctext">股份代码：{{bond.bo_code}} |  资金用途：{{bond.bo_brief}}</span>
           <span class="right status">{{bond.bo_pro_type}}</span>

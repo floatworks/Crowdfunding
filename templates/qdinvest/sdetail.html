@@ -3,7 +3,29 @@
 {% load extra_tags %}
 {% block title %}股权众筹详情{% endblock %}
 {% block body_block %}
-
+<!-- Modal -->
+<div id="investModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="investModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="voteModalLabel">请输入认购金额</h3>
+  </div>
+  <div class="modal-body">
+    <div id='alert_field'>  
+    </div>
+    <p>
+      <span>认购起点:</span>
+      <span>1000元</span>
+    </p>
+    <p>
+      <span>认购金额:</span>
+      <input type="text" class="input-tel" id='phone'/>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary" id="btn_invest_sure">确定</button>
+  </div>
+</div>
 <div class="wrap level body">
     <div class="titlebar">
         <h1 class="left">{{stock.st_title}}</h1>
@@ -70,7 +92,7 @@
             <div class="offer">
                 已认购：
                 <span>{{stock.st_current_price}}</span>
-                <a href="javascript:;">认购</a>
+                <a id="btn_invest" href="javascript:;">我要认购</a>
             </div>
         </div>
     </div>
