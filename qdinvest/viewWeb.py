@@ -593,7 +593,8 @@ def stock_list(request):
 	invest = []
 	st_invest_price = 0
 	if request.session.has_key('username'):
-		u_name = request.session['username']		
+		u_name = request.session['username']
+		USERS_obj = USERS.objects.get(u_name__exact = u_name)		
 		STOCK_objs1 = INVEST_STOCK.objects.filter(is_user__u_name = u_name)
 		context_dict['invest_stocks'] = STOCK_objs1
 		if STOCK_objs1:
@@ -603,7 +604,10 @@ def stock_list(request):
 			if 	STOCK_ids:
 				for STOCK_id in STOCK_ids:			
 					STOCK_obj = STOCK.objects.get(id__exact = STOCK_id['is_stock'])
-					invest.append({'id':STOCK_obj.id,'st_brief':STOCK_obj.st_brief,'st_com_type':STOCK_obj.st_com_type,'st_pro_type':STOCK_obj.st_pro_type,'st_industry':STOCK_obj.st_industry})	
+					is_payment = 0
+					if T.CheckExist(PAYMENT,{'pa_user':USERS_obj,'pa_stock':STOCK_obj,'pa_status':0}):
+						is_payment = 1
+					invest.append({'id':STOCK_obj.id,'st_brief':STOCK_obj.st_brief,'st_com_type':STOCK_obj.st_com_type,'st_pro_type':STOCK_obj.st_pro_type,'st_industry':STOCK_obj.st_industry,'is_payment':is_payment})	
 			context_dict['stocks'] = invest
 		context_dict['invest_price'] = st_invest_price
 		context_dict['stock_list'] = 1
@@ -618,7 +622,8 @@ def bond_list(request):
 	invest = []
 	ib_invest_price = 0
 	if request.session.has_key('username'):
-		u_name = request.session['username']		
+		u_name = request.session['username']
+		USERS_obj = USERS.objects.get(u_name__exact = u_name)	
 		BOND_objs1 = INVEST_BOND.objects.filter(ib_user__u_name = u_name)
 		context_dict['invest_bonds'] = BOND_objs1
 		if BOND_objs1:
@@ -628,13 +633,31 @@ def bond_list(request):
 			if	BOND_ids:		
 				for BOND_id in BOND_ids:			
 					BOND_obj = BOND.objects.get(id__exact = BOND_id['ib_bond'])
-					invest.append({'id':BOND_obj.id,'bo_title':BOND_obj.bo_title,'bo_com_type':BOND_obj.bo_com_type,'bo_pro_type':BOND_obj.bo_pro_type,'bo_industry':BOND_obj.bo_industry})	
+					is_payment = 0
+					if T.CheckExist(PAYMENT,{'pa_user':USERS_obj,'pa_bond':BOND_obj,'pa_status':0}):
+						is_payment = 1
+					invest.append({'id':BOND_obj.id,'bo_title':BOND_obj.bo_title,'bo_com_type':BOND_obj.bo_com_type,'bo_pro_type':BOND_obj.bo_pro_type,'bo_industry':BOND_obj.bo_industry,'is_payment':is_payment})	
 			context_dict['bonds'] = invest
 		context_dict['invest_price'] = ib_invest_price
 		context_dict['bond_list'] = 1
 	else:
 		return HttpResponseRedirect('/c/login/')
 	return render_to_response('qdinvest/bond_list.html',context_dict,context)
+
+#个人页面 关注列表
+def like_list(request):
+	context = RequestContext(request)
+	context_dict = {}
+
+	if request.session.has_key('username'):
+		u_name = request.session['username']
+		invest = []
+		USER_FOCUS_objs = USER_FOCUS.objects.filter(uf_user__u_name = u_name).order_by('-uf_update_time')
+		#BOND_objs1 = INVEST_BOND.objects.filter(ib_user__u_name = u_name)
+		context_dict['like_projects'] = USER_FOCUS_objs
+	else:
+		return HttpResponseRedirect('/c/login/')
+	return render_to_response('qdinvest/like_list.html',context_dict,context)
 
 #个人页面中消息页面的显示
 def news(request):

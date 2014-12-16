@@ -27,6 +27,7 @@ urlpatterns = patterns('',
 	url(r'^account_list/$', viewWeb.account_list, name='account_list'),
 	url(r'^stock_list/$', viewWeb.stock_list, name='stock_list'),
 	url(r'^bond_list/$', viewWeb.bond_list, name='bond_list'),
+	url(r'^like_list/$', viewWeb.like_list, name='like_list'),
 	url(r'^news/$', viewWeb.news, name='news'),
 	url(r'^news2/$', viewWeb.news2, name='news2'),
 	)

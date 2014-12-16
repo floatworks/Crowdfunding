@@ -1,0 +1,97 @@
+{% extends "qdinvest/base.html" %}
+{% load staticfiles %}
+{% load extra_tags %}
+{% block title %}个人中心{% endblock %}
+{% block body_block %}
+<div class="infocontent">
+    <ul class="sidemenu left">
+        <li>
+            <div>我的资料</div>
+            <ul>
+                <li>
+                    <a href="/c/account_list/">账户信息</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <div>我的项目</div>
+            <ul>
+                <li>
+                    <a href="/c/stock_list/">股权项目</a>
+                </li>
+                <li>
+                    <a href="/c/bond_list/">债权项目</a>
+                </li>
+                <li>
+                    <a href="/c/like_list/">
+                        <span class="hover">关注项目</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div>我的消息</div>
+            <ul>
+                <li>
+                    <a href="/c/news/">我的消息</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="info right">
+        <div class="title">项目关注列表</div>
+        <div class="project">
+            <table>
+
+                <tr>
+                    <th>标题</th>
+                    <th>项目类型</th>
+                    <th>所属行业</th>
+                    <th>公司类型</th>
+                    <th>项目属性</th>
+                    <th>融资总额</th>
+                    <th>当前融资</th>
+                    <th>操作</th>
+                </tr>
+                {%for like_project in like_projects %}
+                    {% if like_project.uf_stock %}
+                        <tr>
+                            <td>
+                                <a href="/c/sdetail/{{like_project.uf_stock.id}}">{{like_project.uf_stock}}</a>
+                            </td>
+                            <td>股权类</td>
+                            <td>{{like_project.uf_stock.st_industry}}</td>
+                            <td>{{like_project.uf_stock.st_com_type}}</td>
+                            <td>{{like_project.uf_stock.st_pro_type}}</td>
+                            <td>{{like_project.uf_stock.st_total_price|toTenThous}}万</td>
+                            <td>{{like_project.uf_stock.st_current_price|toTenThous}}万</td>
+                            <td>
+                                <button class="btn btn-primary" id="btn_payment">查看详情</button>
+                            </td>
+                        </tr>
+                    {% elif like_project.uf_bond %}
+                        <tr>
+                            <td>
+                                <a href="/c/sbond/{{like_project.uf_bond.id}}">{{like_project.uf_bond}}</a>
+                            </td>
+                            <td>债权类</td>
+                            <td>{{like_project.uf_bond.bo_industry}}</td>
+                            <td>{{like_project.uf_bond.bo_com_type}}</td>
+                            <td>{{like_project.uf_bond.bo_pro_type}}</td>
+                            <td>{{like_project.uf_bond.bo_total_price|toTenThous}}万</td>
+                            <td>{{like_project.uf_bond.bo_current_price|toTenThous}}万</td>
+                            <td>
+                                <button class="btn btn-primary" id="btn_payment">查看详情</button>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}

@@ -56,7 +56,7 @@ xadmin.site.register(views.CommAdminView, GlobalSetting)
 class USERSAdmin(object):
 	list_display = ['u_name','u_pwd','u_tel','u_status']
 	list_filter=['u_status']	
-	search_fiedls = ['u_name']
+	search_fields = ['u_name']
 	list_per_page = 20
 
 '''
@@ -67,7 +67,7 @@ class ACCOUNTAdmin(object):
 	list_display = ['ac_user',
 	'ac_stock_invest','ac_bond_invest','ac_total_invest','ac_stock_profit','ac_bond_profit',
 	'ac_total_profit','ac_subscription','ac_total_subscription','ac_like','ac_support','ac_infos']
-	search_fiedls = ['ac_user']
+	search_fields = ['ac_user__u_name']
 	list_per_page = 20
 
 '''
@@ -76,7 +76,7 @@ class ACCOUNTAdmin(object):
 
 class INDUSTRYAdmin(object):
 	list_display = ['in_name','in_sort']
-	search_fiedls = ['in_name'] 
+	search_fields = ['in_name'] 
 
 '''
 地区 城市 基础信息
@@ -84,14 +84,14 @@ class INDUSTRYAdmin(object):
 
 class PROVINCEAdmin(object):
 	list_display = ['pr_name']
-	search_fiedls = ['pr_name'] 
+	search_fields = ['pr_name'] 
 
 '''
 项目属性
 '''
 class PRO_TYPEAdmin(object):
 	list_display = ['pt_name']
-	search_fiedls = ['pt_name'] 
+	search_fields = ['pt_name'] 
 
 
 '''
@@ -99,7 +99,7 @@ class PRO_TYPEAdmin(object):
 '''
 class COM_TYPEAdmin(object):
 	list_display = ['ct_name']
-	search_fiedls = ['ct_name'] 
+	search_fields = ['ct_name'] 
 '''
 股权众筹
 '''
@@ -109,7 +109,7 @@ class STOCKAdmin(object):
 	'st_province','st_pro_type','st_com_type','st_user','st_like_count','st_view_count','st_invest_count',
 	'st_sort','st_status']
 	list_filter = ('st_begin_time','st_end_time','st_create_time')
-	search_fiedls = ['st_user']
+	search_fields = ['st_user__u_name']
 	style_fields = {'st_hint':'ueditor','st_com_brief':'ueditor','st_protect':'ueditor','st_inf_expose':'ueditor',
 					'st_plan':'ueditor','st_finance':'ueditor','st_good_bad':'ueditor','st_market':'ueditor',
 					'st_business':'ueditor','st_risk':'ueditor','st_team':'ueditor','st_prospectus':'ueditor',
@@ -125,7 +125,7 @@ class BONDAdmin(object):
 	'bo_scale','bo_province','bo_total_price','bo_current_price','bo_min_price','bo_pro_type','bo_com_type','bo_user','bo_like_count',
 	'bo_view_count','bo_sort','bo_status']
 	list_filter = ('bo_begin_time','bo_create_time','bo_end_time')
-	search_fiedls = ['bo_user'] 
+	search_fields = ['bo_user__u_name'] 
 	style_fields = {'bo_com_inf':'ueditor','bo_risk_inf':'ueditor','bo_files':'ueditor','bo_repay_plan':'ueditor','bo_finance':'ueditor','bo_manage':'ueditor'}
    	list_editable = ['bo_is_commend']
    	list_per_page = 20
@@ -135,7 +135,7 @@ class BONDAdmin(object):
 '''
 class INVEST_STOCKAdmin(object):
 	list_display = ['is_user','is_stock','is_amount','is_status','is_date','is_soon_profit','is_profit_date']
-	search_fiedls = ['is_user ']
+	search_fields = ['is_user__u_name']
 	list_editable = ['is_status']
 	list_per_page = 20
 
@@ -144,7 +144,7 @@ class INVEST_STOCKAdmin(object):
 '''
 class INVEST_BONDAdmin(object):
 	list_display = ['ib_user','ib_bond','ib_amount','ib_status','ib_date','ib_soon_profit','ib_profit_date']
-	search_fields = ['ib_user']
+	search_fields = ['ib_user__u_name']
 	list_editable = ['ib_status']
 	list_per_page = 20
 	
@@ -153,13 +153,13 @@ class INVEST_BONDAdmin(object):
 '''
 class RECHARGEAdmin(object):
 	list_display = ['rc_user','rc_type','rc_value','rc_date','rc_status']
-	search_fiedls = ['rc_user '] 
+	search_fields = ['rc_user__u_name'] 
 '''
 用户喜欢
 '''
 class USER_FOCUSAdmin(object):
 	list_display = ['uf_user','uf_stock','uf_bond','uf_update_time']
-	search_fiedls = ['uf_user'] 
+	search_fields = ['uf_user__u_name'] 
 	list_per_page = 20
 
 '''
@@ -167,14 +167,14 @@ class USER_FOCUSAdmin(object):
 '''
 class TALKAdmin(object):
 	list_display = ['ta_user','ta_stock','ta_msg','ta_pre_id']
-	search_fiedls = ['ta_user'] 
+	search_fields = ['ta_user__u_name'] 
 
 '''
 系统通知表
 '''
 class NOTICEAdmin(object):
 	list_display = ['no_title','no_brief','no_time','no_type','no_sort','no_is_delete']
-	search_fiedls = ['no_title'] 
+	search_fields = ['no_title'] 
 	style_fields  = {'no_body':'ueditor'}
 	list_editable = ['no_is_delete','no_sort','no_type']
 	list_per_page = 20
@@ -184,7 +184,7 @@ class NOTICEAdmin(object):
 '''
 class NOTICE_USERAdmin(object):
 	list_display = ['nu_title','nu_brief','nu_time','nu_user','nu_type','nu_is_read','nu_is_delete']
-	search_fiedls = ['nu_title'] 
+	search_fields = ['nu_title'] 
 	style_fields  = {'nu_body':'ueditor'}
 	list_editable = ['nu_is_delete','nu_sort','nu_type']
 	list_per_page = 20
@@ -194,7 +194,7 @@ class NOTICE_USERAdmin(object):
 '''
 class NOTICE_READAdmin(object):
 	list_display = ['nr_user','nr_notice']
-	search_fiedls = ['nr_user'] 
+	search_fields = ['nr_user__u_name'] 
 
 '''
 用户收益表
@@ -202,7 +202,7 @@ class NOTICE_READAdmin(object):
 class PROFITAdmin(object):
 	#form = PROFITFORM
 	list_display = ['pr_user','pr_amount','pr_date','pr_stock','pr_bond']
-	search_fiedls = ['pr_user']
+	search_fields = ['pr_user__u_name']
 	list_per_page = 20
 	add_form_template = 'xadmin/views/model_form_profit.html'
 	change_form_template = 'xadmin/views/model_form_profit.html'
@@ -210,8 +210,9 @@ class PROFITAdmin(object):
 
 class PAYMENTAdmin(object):
 	list_display = ['pa_user','pa_amount','pa_date','pa_stock','pa_bond','pa_status']
-	search_fiedls = ['pa_user']
+	search_fields = ['pa_user__u_name']
 	list_editable = ['pa_status']
+	list_per_page = 20
 
 
 '''
@@ -219,7 +220,7 @@ class PAYMENTAdmin(object):
 '''
 class RANDOMCODEAdmin(object):
 	list_display = ['rc_tel','rc_code','rc_time']
-	search_fiedls = ['rc_tel'] 
+	search_fields = ['rc_tel'] 
 
 '''
 系统设置
