@@ -49,6 +49,16 @@ def bond(request):
 	st = request.GET.get('st','')
 	tr = request.GET.get('tr','')
 	pt = request.GET.get('pt','')
+	if not ct and not st and  not tr and not pt:
+		if  request.session.has_key('ct_id'):
+			del request.session['ct_id']
+		if  request.session.has_key('st_id'):
+			del request.session['st_id']
+		if  request.session.has_key('tr_id'):
+			del request.session['tr_id']			
+		if  request.session.has_key('pt_id'):
+			del request.session['pt_id']
+
 	pageid = request.GET.get('page','1')
 	context_dict['pageid'] = pageid	
 	COM_TYPE_objs = COM_TYPE.objects.all()
@@ -211,10 +221,19 @@ def stock(request):
 	context = RequestContext(request)
 	context_dict = {}
 	kwargs = {}
-	ct = request.GET.get('ct','')
-	pt = request.GET.get('pt','')
+	ctp = request.GET.get('ctp','')
+	pty = request.GET.get('pty','')
 	it = request.GET.get('it','')
 	prt = request.GET.get('prt','')
+	if not ctp and not pty and  not it and not prt:
+		if  request.session.has_key('ctp_id'):
+			del request.session['ctp_id']
+		if  request.session.has_key('pty_id'):
+			del request.session['pty_id']
+		if  request.session.has_key('it_id'):
+			del request.session['it_id']
+		if  request.session.has_key('prt_id'):
+			del request.session['prt_id']	
 	pageid = request.GET.get('page','1')
 	context_dict['pageid'] = pageid
 	PRO_TYPE_objs = PRO_TYPE.objects.all()
@@ -226,31 +245,31 @@ def stock(request):
 	PROVINCE_objs = PROVINCE.objects.all()
 	context_dict['provinces'] = PROVINCE_objs
   
-	if 	ct:			
-		if ct == 'all':			
-			request.session['ct_id'] = 'all2'
+	if 	ctp:			
+		if ctp == 'all':			
+			request.session['ctp_id'] = 'all2'
 		else:
-			request.session['ct_id'] = ct
-			kwargs['st_com_type'] = ct		
+			request.session['ctp_id'] = ctp
+			kwargs['st_com_type'] = ctp		
 	else:
-		if  request.session.has_key('ct_id'):
-			if  request.session['ct_id'] == 'all2':
+		if  request.session.has_key('ctp_id'):
+			if  request.session['ctp_id'] == 'all2':
 				ct = 1
 			else:
-				kwargs['st_com_type'] = request.session['ct_id']
+				kwargs['st_com_type'] = request.session['ctp_id']
 		
-	if pt:	
-		if pt == 'all':
-			request.session['pt_id'] = 'all2'
+	if pty:	
+		if pty == 'all':
+			request.session['pty_id'] = 'all2'
 		else: 
-			request.session['pt_id'] = pt
-			kwargs['st_pro_type'] = pt		
+			request.session['pty_id'] = pty
+			kwargs['st_pro_type'] = pty		
 	else:
-		if  request.session.has_key('pt_id'):			
-			if  request.session['pt_id'] == 'all2':				
+		if  request.session.has_key('pty_id'):			
+			if  request.session['pty_id'] == 'all2':				
 				ct = 1	
 			else:
-				kwargs['st_pro_type'] = request.session['pt_id']		
+				kwargs['st_pro_type'] = request.session['pty_id']		
 
 
 	if it:	
@@ -282,14 +301,14 @@ def stock(request):
 		context_dict['stocks'] = STOCK_objs1
 
 		if  kwargs.has_key('st_com_type'):
-			context_dict['ct'] = int(kwargs['st_com_type'])
+			context_dict['ctp'] = int(kwargs['st_com_type'])
 		else:
-			context_dict['ct'] = "all"
+			context_dict['ctp'] = "all"
 
 		if  kwargs.has_key('st_pro_type'):
-			context_dict['pt'] = int(kwargs['st_pro_type'])
+			context_dict['pty'] = int(kwargs['st_pro_type'])
 		else:
-			context_dict['pt'] = "all"
+			context_dict['pty'] = "all"
 
 		if  kwargs.has_key('st_industry'):
 			context_dict['it'] = int(kwargs['st_industry'])
@@ -303,8 +322,8 @@ def stock(request):
 	else:		
 		STOCK_objs1 = STOCK.objects.all()	
 		context_dict['stocks'] = STOCK_objs1	
-		context_dict['ct'] = 'all'
-		context_dict['pt'] = 'all'
+		context_dict['ctp'] = 'all'
+		context_dict['pty'] = 'all'
 		context_dict['it'] = 'all'
 		context_dict['prt'] = 'all'
 	context_dict['page_num'] = (len(context_dict['stocks'])+9)/10

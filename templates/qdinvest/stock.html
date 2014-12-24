@@ -19,21 +19,21 @@
   <div class="filterpart">
      <div class="type">
       <span>企业类型：</span>
-       {% ifequal ct  'all' %}
+       {% ifequal ctp  'all' %}
        <span class="hover">
        {% else %}
        <span>
        {% endifequal %}
-        <a href="/c/stock/?ct=all">全部</a>
+        <a href="/c/stock/?ctp=all">全部</a>
       </span>      
       {% for com_type in com_types%}
-        {% ifequal ct com_type.id%}        
+        {% ifequal ctp com_type.id%}        
         <span class="hover">
-          <a href="/c/stock/?ct={{com_type.id}}">{{com_type.ct_name}}</a>
+          <a href="/c/stock/?ctp={{com_type.id}}">{{com_type.ct_name}}</a>
         </span> 
         {% else %}   
         <span>
-          <a href="/c/stock/?ct={{com_type.id}}">{{com_type.ct_name}}</a>
+          <a href="/c/stock/?ctp={{com_type.id}}">{{com_type.ct_name}}</a>
         </span>
         {% endifequal %}
         {% endfor %}
@@ -41,21 +41,21 @@
 
     <div class="status">
       <span>项目属性：</span>
-       {% ifequal pt  'all' %}
+       {% ifequal pty  'all' %}
       <span class="hover">
         {% else %}
       <span>
         {% endifequal %}
-        <a href="/c/stock/?pt=all">全部</a>
+        <a href="/c/stock/?pty=all">全部</a>
       </span>      
       {% for pro_type in pro_types%}  
-       {% ifequal pt pro_type.id%}  
+       {% ifequal pty pro_type.id%}  
        <span class="hover">
-        <a href="/c/stock/?pt={{pro_type.id}}">{{pro_type.pt_name}} </a> 
+        <a href="/c/stock/?pty={{pro_type.id}}">{{pro_type.pt_name}} </a> 
        </span>
        {%else%}         
         <span>
-          <a href="/c/stock/?pt={{pro_type.id}}">{{pro_type.pt_name}}           
+          <a href="/c/stock/?pty={{pro_type.id}}">{{pro_type.pt_name}}           
           </a>          
         </span>
         {% endifequal %}
