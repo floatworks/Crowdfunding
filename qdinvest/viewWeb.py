@@ -761,3 +761,18 @@ def news2(request):
 						NOTICE_USER_objs[0].save()	
 		context_dict['news2'] = 1
 	return render_to_response('qdinvest/news2.html',context_dict,context)
+
+
+
+def passwordtest(request):
+	print 'woshini'
+	context = RequestContext(request)
+	context_dict = {}	
+	if request.method=='GET':	
+		u_passwordtest = request.GET.get('u_passwordtest','')	
+		u_password = request.GET.get('u_password','')		
+	if u_passwordtest == u_password:	
+		context_dict['msg'] = 'success'
+	else:		
+		context_dict['msg'] = '2次输入的密码不相符'	
+	return HttpResponse(json.dumps(context_dict),content_type="application/json")
