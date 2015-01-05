@@ -10,9 +10,7 @@ from qdinvest.forms import USERSFORM
 
 import tools as T
 import simplejson as json
-import datetime
-from datetime import timedelta
-import datetime,time
+from datetime import datetime,timedelta,time
 import re
 
 from  models import *
@@ -742,3 +740,60 @@ def news2(request):
 						NOTICE_USER_objs[0].save()	
 		context_dict['news2'] = 1
 	return render_to_response('qdinvest/news2.html',context_dict,context)
+
+#用户认购
+def Invest(request):
+	response_dict = {}
+
+	if not request.session.has_key('username'):
+		response_dict['status'] = -1
+	elif request.method == 'POST':
+		p_type = request.POST.get('type','')
+		p_id = request.POST.get('id','-1')
+		price = request.POST.get('price','0')
+		USERS_obj = USERS.objects.get(u_name__exact = request.session['username'])
+		if float(price) > 0:
+			if p_type == 'stock':
+				STOCK_objs = STOCK.objects.filter(id__exact = p_id)
+				if STOCK_objs:
+					if not T.CheckExist(INVEST_STOCK,{'is_user':USERS_obj,'is_stock':STOCK_objs[0]}):
+						ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
+						ACCOUNT_obj.ac_support += 1
+						ACCOUNT_obj.save()
+					response_dict['status'] = 1
+					INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
+					print '1'
+					INVEST_STOCK_new = INVEST_STOCK(is_user = USERS_obj,is_stock = STOCK_objs[0],is_amount = str(price),is_date = datetime.now(),is_status = INVEST_STATUS_obj)
+					INVEST_STOCK_new.save()
+					print '2'
+
+					STOCK_objs[0].st_invest_count += 1
+					STOCK_objs[0].save()
+
+				else:
+					response_dict['status'] = 0
+			elif p_type == 'bond':
+				BOND_objs = BOND.objects.filter(id__exact = p_id)
+				if BOND_objs:
+					if not T.CheckExist(INVEST_BOND,{'ib_user':USERS_obj,'ib_bond':BOND_objs[0]}):
+						ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_obj)
+						ACCOUNT_obj.ac_support += 1
+						ACCOUNT_obj.save()
+					response_dict['status'] = 1
+					INVEST_STATUS_obj = INVEST_STATUS.objects.get(id__exact = 1)
+					INVEST_BOND_new = INVEST_BOND(ib_user = USERS_obj,ib_bond = BOND_objs[0],ib_amount = str(price),ib_date = datetime.now(),ib_status = INVEST_STATUS_obj)
+					INVEST_BOND_new.save()
+
+					BOND_objs[0].bo_invest_count += 1
+					BOND_objs[0].save()
+
+				else:
+					response_dict['status'] = 0
+			else:
+				response_dict['status'] = 0
+		else:
+			response_dict['status'] = 2
+
+	if settings.DEBUG:
+		print response_dict
+	return HttpResponse(json.dumps(response_dict),content_type="application/json")

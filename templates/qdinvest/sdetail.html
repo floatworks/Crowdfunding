@@ -14,16 +14,16 @@
     </div>
     <p>
       <span>认购起点:</span>
-      <span>1000元</span>
+      <span>{{stock.st_min_price}}元</span>
     </p>
     <p>
       <span>认购金额:</span>
-      <input type="text" class="input-tel" id='phone'/>
+      <input type="text" class="input-tel" id='invest-money'/>
     </p>
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">关闭</button>
-    <button class="btn btn-primary" id="btn_invest_sure">确定</button>
+    <button class="btn btn-primary" id="btn_invest_sure" pid="{{stock.id}}" ptype="stock" min="{{stock.st_min_price}}">确定</button>
   </div>
 </div>
 <div class="wrap level body">
