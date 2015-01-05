@@ -33,6 +33,25 @@ $(document).ready(function(){
 		}
 	});
 
+	$("#passwordtest").blur(function(){
+		$.ajax({
+			url:'/c/passwordtest/?u_passwordtest='+$("#passwordtest").val()+'&u_password='+$("#password").val(),
+			type:'get',
+			dateType:'json',
+			success:function(data){
+				$("#u_pwdtest").text(data.msg);
+				if (data.msg =="success")
+					$("#u_pwdtest").hide();
+				else
+					$("#u_pwdtest").show();
+			}
+
+		});
+	});
+
+
+
+
 
 
 
@@ -112,7 +131,7 @@ $(document).ready(function(){
 
 	$("#submit").click(function(){
 
-		if(($("#u_name").text()=="success") && ($("#u_pwd").text()=="success") && ($("#u_tel").text()=="success")&& ($("#test").text()=="success")&& ($("#test2").text()=="success"))
+		if(($("#u_name").text()=="success") && ($("#u_pwd").text()=="success")&& ($("#u_pwdtest").text()=="success") && ($("#u_tel").text()=="success")&& ($("#test").text()=="success")&& ($("#test2").text()=="success"))
 		{
 			return true;
 		}		
@@ -202,7 +221,7 @@ $(document).ready(function(){
 
 	$("#alter").click(function(){
 
-		if(($("#u_name1").text()=="success") && ($("#u_tel1").text()=="success") && ($("#button1").text()=="success")&& ($("#u_pwd").text()=="success")&& ($("#tcod1").text()=="success"))
+		if(($("#u_name1").text()=="success") &&($("#u_pwdtest").text()=="success") && ($("#u_tel1").text()=="success") && ($("#button1").text()=="success")&& ($("#u_pwd").text()=="success")&& ($("#tcod1").text()=="success"))
 		{
 			return true;
 		}		

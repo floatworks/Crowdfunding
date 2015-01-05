@@ -30,4 +30,6 @@ urlpatterns = patterns('',
 	url(r'^like_list/$', viewWeb.like_list, name='like_list'),
 	url(r'^news/$', viewWeb.news, name='news'),
 	url(r'^news2/$', viewWeb.news2, name='news2'),
+	url(r'^passwordtest/$', viewWeb.passwordtest, name='passwordtest'),
+	
 	)
