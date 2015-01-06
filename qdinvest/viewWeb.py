@@ -10,7 +10,8 @@ from qdinvest.forms import USERSFORM
 
 import tools as T
 import simplejson as json
-from datetime import datetime,timedelta,time
+from datetime import timedelta,time
+import  datetime
 import re
 
 from  models import *
