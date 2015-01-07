@@ -124,6 +124,7 @@ class STOCK(models.Model):
 	st_user = models.ForeignKey(USERS,verbose_name="用户")
 	st_title = models.CharField(max_length=100,verbose_name="标题")
 	st_code = models.CharField(max_length=30,verbose_name="股份代码")
+	st_per_price = models.DecimalField(max_digits=16,decimal_places=4,verbose_name='每股认购价格')
 	#st_image = models.ImageField(upload_to ='logo/',verbose_name="详细页大图")
 	st_image = ProcessedImageField(upload_to ='logo/',verbose_name='详细页大图',help_text='320px*160px为宜，图像大小不宜超过200KB',
 					processors=[ResizeToFill(320, 160)],format='JPEG')
