@@ -10,8 +10,7 @@ from qdinvest.forms import USERSFORM
 
 import tools as T
 import simplejson as json
-from datetime import timedelta,time
-import  datetime
+from datetime import datetime,timedelta,time
 import re
 
 from  models import *
@@ -178,26 +177,26 @@ def bond(request):
 				context_dict['bonds'] = BOND_objs1
 				context_dict['st'] = 'all'
 			if request.session['st_id'] == '1':		
-				dt = datetime.datetime.now() + datetime.timedelta(days = 90)			
-				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt).filter(bo_end_time__gte = datetime.datetime.now())
+				dt = datetime.now() + timedelta(days = 90)			
+				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt).filter(bo_end_time__gte = datetime.now())
 				context_dict['st'] = 1
 			if request.session['st_id'] == '2':	
-				dt1 = datetime.datetime.now() + datetime.timedelta(days = 90)
-				dt2 = dt1 + datetime.timedelta(days = 90)			
+				dt1 = datetime.now() + timedelta(days = 90)
+				dt2 = dt1 + timedelta(days = 90)			
 				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt2).filter(bo_end_time__gte = dt1)
 				context_dict['st'] = 2
 			if request.session['st_id'] == '3':	
-				dt1 = datetime.datetime.now() + datetime.timedelta(days = 180)
-				dt2 = dt1 + datetime.timedelta(days = 90)			
+				dt1 = datetime.now() + timedelta(days = 180)
+				dt2 = dt1 + timedelta(days = 90)			
 				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt2).filter(bo_end_time__gte = dt1)
 				context_dict['st'] = 3
 			if request.session['st_id'] == '4':	
-				dt1 = datetime.datetime.now() + datetime.timedelta(days = 270)
-				dt2 = dt1+ datetime.timedelta(days = 90)			
+				dt1 = datetime.now() + timedelta(days = 270)
+				dt2 = dt1+ timedelta(days = 90)			
 				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__lte = dt2).filter(bo_end_time__gte = dt1)
 				context_dict['st'] = 4
 			if request.session['st_id'] == '5':	
-				dt1 = datetime.datetime.now() + datetime.timedelta(days = 360)						
+				dt1 = datetime.now() + timedelta(days = 360)						
 				context_dict['bonds'] = BOND.objects.filter(**kwargs).filter(bo_end_time__gte = dt1)
 				context_dict['st'] = 5
 		else:
