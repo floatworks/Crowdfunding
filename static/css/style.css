@@ -96,8 +96,8 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .level .list li .progressbar .gray{ position:relative; width:250px; height:9px; background:url(../images/progressbar_bg.png) right center no-repeat #d9d9de;}
 .level .list li .progressbar .yellow{ position:absolute; width:75%; height:9px; left:0; background:url(../images/progressbar.png) right center no-repeat #ff8c19;}
 .level .list li .progressbar .percent{ line-height:10px; color:#ff8c19; font-weight:600;}
-.level .list li .money > div{ width:90px; text-align:left;}
-.level .list li .money > div:last-child{ width:110px;}
+.level .list li .money > div{ width:19.9%; text-align:center;}
+/*.level .list li .money > div:last-child{ width:110px;}*/
 .level .list li .money > div > p{ line-height:20px; color:#000;}
 .level .list li .money > div > p:last-child{ color:#666;}
 .level .list li .cinfo{ border-top:1px solid #eee; padding:10px; padding-bottom:0; margin:10px 0 0 0;}

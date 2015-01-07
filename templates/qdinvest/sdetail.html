@@ -13,17 +13,15 @@
     <div id='alert_field'>  
     </div>
     <p>
-      <span>每股价格:</span>
-      <span>{{stock.st_per_price}}元</span>
-    </p>
-    <p>
       <span>认购起点:</span>
-      <span>{{stock.st_min_price}}元</span>
+      <span>{{stock.st_min_price|div:stock.st_per_price|floatformat:2}}股&nbsp;&nbsp;每股价格:</span><span>{{stock.st_per_price}}元</span>
     </p>
     <p>
-      <span>认购金额:</span>
-      <input type="text" class="input-tel" id='invest-money'/>
+      <span>我要认购:</span>
+      <input type="text" class="input-tel" id="invest-money-gu" style='width:20%'/>
+      <span>股,认购金额<span id="invest-money">12.34</span>&nbsp;元</span>
     </p>
+    <input type="text" id="st_per_price_text" style="display:none" value="{{stock.st_per_price}}">
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">关闭</button>
@@ -64,20 +62,28 @@
                     </div>
                     <div class="money">
                         <div class="left">
-                            <p>{{stock.st_total_price|toTenThous}}万</p>
-                            <p>投资金额</p>
+                            <p>{{stock.st_total_price|div:stock.st_per_price|floatformat:"0"}}股</p>
+                            <p>募集股份上限</p>
                         </div>
                         <div class="left">
-                            <p>{{stock.st_current_price|toTenThous}}万</p>
-                            <p>当前认购</p>
+                            <p>{{stock.st_per_price}}元/股</p>
+                            <p>募集价格</p>
                         </div>
                         <div class="left">
-                            <p>{{stock.st_min_price|toTenThous}}万</p>
+                            <p>{{stock.st_min_price|div:stock.st_per_price|floatformat:"0"}}股</p>
                             <p>认购起点</p>
+                        </div>
+                        <div class="left">
+                            <p>{{stock.st_current_price|div:stock.st_per_price|floatformat:"0"}}股</p>
+                            <p>已认购股份数</p>
+                        </div>
+                        <div class="left">
+                            <p>{{stock.st_end_time|date:"Y年m月d日"}}</p>
+                            <p>认购截止日</p>
                         </div>
                     </div>
                     <div class="course">
-                         /  热度
+                        热度
                         <span>{{stock.st_view_count}}</span>
                         /　关注
                         <span>{{stock.st_like_count}}</span>
@@ -104,8 +110,8 @@
         <div class="left about">
             <ul class="tabmenu">
                 <li class="hover" data="presentation">项目介绍</li>
-                <li data="plan">融资计划书</li>
-                <!--li data="comments">讨论区</li-->
+                <!--li data="plan">融资计划书</li>
+                <li data="comments">讨论区</li-->
             </ul>
             <div class="tabitem presentation">
                 {% if stock.st_video %}
