@@ -38,3 +38,8 @@ def strConv(s):
 @register.filter(name='toProfit')
 def toProfit(value):
 	return float(value) * 100
+
+
+@register.filter(name='div')
+def div(value,arg):
+	return float(value)/float(arg)

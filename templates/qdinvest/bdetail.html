@@ -316,7 +316,7 @@
         {%for invest_bond in invest_bonds%}
     <tr>
       <td>{{invest_bond.ib_date.date}}</td>
-      <td>{{invest_bond.ib_user}}</td>
+      <td>{{invest_bond.ib_user.u_name|slice:"1"}}**</td>
       <td>{{invest_bond.ib_amount|floatformat:2}}</td>
     </tr>
     {% endfor %}

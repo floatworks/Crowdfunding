@@ -299,6 +299,7 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .body .intro .investinfo table .s{ text-align:left; width:65px;}
 .body .intro .investinfo table .r{ text-align:center; width:160px;}
 .body .intro .investinfo table .q{ text-align:right;}
+.body .intro .investinfo table .k{ width: 25%;}
 .body .intro .investinfo table td{ border-top:1px dashed #eee; text-align:center; height:65px;}
 
 .body .info .bond li > .s { height: 134px; width: 134px; color:#fff; background-color:#0099ff; text-align:center; line-height:134px; font-family:'微软雅黑'; font-weight:bold; font-size:48px;}

@@ -13,6 +13,10 @@
     <div id='alert_field'>  
     </div>
     <p>
+      <span>每股价格:</span>
+      <span>{{stock.st_per_price}}元</span>
+    </p>
+    <p>
       <span>认购起点:</span>
       <span>{{stock.st_min_price}}元</span>
     </p>
@@ -321,77 +325,19 @@
             <h1>投标情况</h1>
             <table>
                 <tr>
-                    <th class="s">时 间</th>
-                    <th class="r">投资人</th>
-                    <th class="q">投资金额</th>
+                    <th class="k">时 间</th>
+                    <th class="k">投资人</th>
+                    <th class="k">认购股数</th>
+                    <th class="k">投资金额</th>
                 </tr>
                 {% for invest_stock in invest_stocks%}
                 <tr>
                     <td>{{invest_stock.is_date.date}}</td>
-                    <td>{{invest_stock.is_user}}</td>
+                    <td>{{invest_stock.is_user.u_name|slice:"1"}}**</td>
+                    <td>{{invest_stock.is_amount|div:invest_stock.is_stock.st_per_price|floatformat:2}}</td>
                     <td>{{invest_stock.is_amount|floatformat:2}}</td>
                 </tr>
                 {% endfor %}
-                <!--tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr>
-                <tr>
-                    <td>2014-07-12 01:18:34</td>
-                    <td>LC****05</td>
-                    <td>7,126.56</td>
-                </tr-->
             </table>
         </div>
     </div>
