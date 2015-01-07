@@ -111,7 +111,7 @@ class STOCKAdmin(object):
 	list_filter = ('st_begin_time','st_end_time','st_create_time')
 	search_fields = ['st_user__u_name']
 	style_fields = {'st_hint':'ueditor','st_com_brief':'ueditor','st_protect':'ueditor','st_inf_expose':'ueditor',
-					'st_plan':'ueditor','st_finance':'ueditor','st_good_bad':'ueditor','st_market':'ueditor',
+					'st_plan':'ueditor','st_finance':'ueditor','st_market':'ueditor',
 					'st_business':'ueditor','st_risk':'ueditor','st_team':'ueditor','st_prospectus':'ueditor',
 					'st_manage':'ueditor',}
 	list_editable = ['st_is_commend']

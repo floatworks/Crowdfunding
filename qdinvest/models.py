@@ -161,19 +161,19 @@ class STOCK(models.Model):
 	st_plan = UEditorField(verbose_name="融资计划",imagePath="ueditor/images/",
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
-	st_finance = UEditorField(verbose_name="财务情况",imagePath="ueditor/images/",
-        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
-		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
-	st_good_bad = UEditorField(verbose_name="优势和劣势",imagePath="ueditor/images/",
-        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
-		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
-	st_market = UEditorField(verbose_name="市场分析",imagePath="ueditor/images/",
-        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
-		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	#st_good_bad = UEditorField(verbose_name="优势和劣势",imagePath="ueditor/images/",
+    #    filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+	#	upload_settings={'imageMaxSize':2048000},null=True,blank=True)
 	st_business = UEditorField(verbose_name="商业模式",imagePath="ueditor/images/",
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
-	st_risk = UEditorField(verbose_name="风险控制",imagePath="ueditor/images/",
+	st_market = UEditorField(verbose_name="业务发展",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_finance = UEditorField(verbose_name="财务数据",imagePath="ueditor/images/",
+        filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
+		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
+	st_risk = UEditorField(verbose_name="募集资金投向",imagePath="ueditor/images/",
         filePath="ueditor/files/",settings=settings.UEDITOR_SETTINGS['config'],
 		upload_settings={'imageMaxSize':2048000},null=True,blank=True)
 	st_team = UEditorField(verbose_name="团队介绍",imagePath="ueditor/images/",

@@ -119,7 +119,7 @@
                  <p>  {{stock.st_com_brief}}</p>
                     {% endautoescape %}
                 </div>
-                <h1 id="i3">投资者保护机制</h1>
+                <h1 id="i3">投资保护机制</h1>
                 <div class="text">
                     {% autoescape off %}
                  <p>{{stock.st_protect}}</p>
@@ -137,37 +137,37 @@
                  <p>{{stock.st_plan}}  </p>
                     {% endautoescape %}
                 </div>
-                <h1 id="i5">财务情况</h1>
-                <div class="text">
-                    {% autoescape off %}
-                <p>{{stock.st_finance}}</p>
-                    {% endautoescape %}
-                </div>
-                <h1 id="i7">优势和劣势</h1>
-                <div class="text"> 
-                    {% autoescape off %}
-                 <p>{{stock.st_good_bad}}</p> 
-                    {% endautoescape %} 
-                </div>
-                <h1 id="i8">市场分析</h1>
-                <div class="text">
-                    {% autoescape off %}
-                <p>{{stock.st_market}}</p>
-                    {% endautoescape %}
-                </div>
-                <h1 id="i9">商业模式</h1>
+                <h1 id="i6">商业模式</h1>
                 <div class="text">
                     {% autoescape off %}
                 <p>{{stock.st_business}}</p>
                     {% endautoescape %}
                 </div>
-                <h1 id="i10">风险控制</h1>
+                <!--h1 id="i7">优势和劣势</h1>
+                <div class="text"> 
+                    {% autoescape off %}
+                 <p>{{stock.st_good_bad}}</p> 
+                    {% endautoescape %} 
+                </div-->
+                <h1 id="i7">业务发展</h1>
+                <div class="text">
+                    {% autoescape off %}
+                <p>{{stock.st_market}}</p>
+                    {% endautoescape %}
+                </div>
+                <h1 id="i8">财务数据</h1>
+                <div class="text">
+                    {% autoescape off %}
+                <p>{{stock.st_finance}}</p>
+                    {% endautoescape %}
+                </div>
+                <h1 id="i9">募集资金投向</h1>
                 <div class="text">
                     {% autoescape off %}
                 <p>{{stock.st_risk}}</p>
                     {% endautoescape %}
                 </div>
-                <h1 id="i11">团队介绍</h1>
+                <h1 id="i10">团队介绍</h1>
                 <div class="text">
                      {% autoescape off %}
                 <p>{{stock.st_team}}</p>
@@ -181,7 +181,7 @@
                         <a href="#i2">公司介绍</a>
                     </li>
                     <li>
-                        <a href="#i3">投资者保护机制</a>
+                        <a href="#i3">投资保护机制</a>
                     </li>
                     <li>
                         <a href="#i4">信息披露安排</a>
@@ -190,27 +190,27 @@
                         <a href="#i5">融资计划</a>
                     </li>
                     <li>
-                        <a href="#i6">财务情况</a>
+                        <a href="#i6">商业模式</a>
                     </li>
                     <li>
-                        <a href="#i7">优势和劣势</a>
+                        <a href="#i7">业务发展</a>
                     </li>
                     <li>
-                        <a href="#i8">市场分析</a>
+                        <a href="#i8">财务数据</a>
                     </li>
                     <li>
-                        <a href="#i9">商业模式</a>
+                        <a href="#i9">募集资金投向</a>
                     </li>
                     <li>
-                        <a href="#i10">风险控制</a>
-                    </li>
-                    <li>
-                        <a href="#i11">团队介绍</a>
+                        <a href="#i10">团队介绍</a>
                     </li>
                 </ul>
             </div>
             <div class="tabitem plan">
-                <ul>
+                {% autoescape off %}
+                {{stock.st_prospectus}}
+                {% endautoescape %}
+                <!--ul>
                     <li>
                         <span class="left">雪诗尼酒窖商业计划书</span>
                         <span class="right">
@@ -219,9 +219,9 @@
                             </a>
                         </span>
                     </li>
-                </ul>
+                </ul-->
             </div>
-            <div class="tabitem comments">
+            <!--div class="tabitem comments">
                 <div class="textarea">
                     <textarea></textarea>
                     <div class="right">
@@ -315,7 +315,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div-->
         </div>
         <div class="right investinfo">
             <h1>投标情况</h1>
