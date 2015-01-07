@@ -91,7 +91,7 @@
             </div>
             <div class="offer">
                 已认购：
-                <span>{{stock.st_current_price}}</span>
+                <span>{{stock.st_current_price|toTenThous}}万</span>
                 <a id="btn_invest" href="javascript:;">我要认购</a>
             </div>
         </div>
@@ -109,39 +109,39 @@
                 {% endif %}
                 <h1 id="i1">重要提示</h1>
                 <div class="text">
-                    {% autoescape off %}
-                  <p>{{stock.st_hint}}</p>
-                     {% endautoescape %}
-                </div>
+                {% autoescape off %}
+                {{stock.st_hint}}
+                {% endautoescape %}
+                 </div>
                 <h1 id="i2">公司介绍</h1>
                 <div class="text">
-                    {% autoescape off %}
-                 <p>  {{stock.st_com_brief}}</p>
-                    {% endautoescape %}
+                {% autoescape off %}
+                {{stock.st_com_brief}}
+                {% endautoescape %}
                 </div>
                 <h1 id="i3">投资保护机制</h1>
                 <div class="text">
-                    {% autoescape off %}
-                 <p>{{stock.st_protect}}</p>
-                    {% endautoescape %} 
+                {% autoescape off %}
+                {{stock.st_protect}}
+                {% endautoescape %} 
                 </div>
                 <h1 id="i4">信息披露安排</h1>
                 <div class="text">
-                    {% autoescape off %}
-                 <p>{{stock.st_inf_expose}}</p>
-                    {% endautoescape %} 
+                {% autoescape off %}
+                {{stock.st_inf_expose}}
+                {% endautoescape %} 
                 </div>
                 <h1 id="i5">融资计划</h1>
                 <div class="text">
-                    {% autoescape off %}
-                 <p>{{stock.st_plan}}  </p>
-                    {% endautoescape %}
+                {% autoescape off %}
+                {{stock.st_plan}}
+                {% endautoescape %}
                 </div>
                 <h1 id="i6">商业模式</h1>
                 <div class="text">
-                    {% autoescape off %}
-                <p>{{stock.st_business}}</p>
-                    {% endautoescape %}
+                {% autoescape off %}
+                {{stock.st_business}}
+                {% endautoescape %}
                 </div>
                 <!--h1 id="i7">优势和劣势</h1>
                 <div class="text"> 
@@ -151,27 +151,27 @@
                 </div-->
                 <h1 id="i7">业务发展</h1>
                 <div class="text">
-                    {% autoescape off %}
-                <p>{{stock.st_market}}</p>
-                    {% endautoescape %}
+                {% autoescape off %}
+                {{stock.st_market}}
+                {% endautoescape %}
                 </div>
                 <h1 id="i8">财务数据</h1>
                 <div class="text">
-                    {% autoescape off %}
-                <p>{{stock.st_finance}}</p>
-                    {% endautoescape %}
+                {% autoescape off %}
+                {{stock.st_finance}}
+                {% endautoescape %}
                 </div>
                 <h1 id="i9">募集资金投向</h1>
                 <div class="text">
-                    {% autoescape off %}
-                <p>{{stock.st_risk}}</p>
-                    {% endautoescape %}
+                {% autoescape off %}
+                {{stock.st_risk}}
+                {% endautoescape %}
                 </div>
                 <h1 id="i10">团队介绍</h1>
                 <div class="text">
-                     {% autoescape off %}
-                <p>{{stock.st_team}}</p>
-                    {% endautoescape %}
+                {% autoescape off %}
+                {{stock.st_team}}
+                {% endautoescape %}
                 </div>
                 <ul class="sidemenu">
                     <li class="hover">

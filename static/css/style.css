@@ -251,7 +251,7 @@ body .wrap > .tabmenu li a:hover,body .wrap > .tabmenu .hover a{ color:#fff; bac
 .body .intro .about .plan,.body .intro .about .riskinfo,.body .intro .about .file,.body .intro .about .comments{ display:none;}
 .body .intro .about .presentation{ position:relative;}
 .body .intro .about .presentation h1{ width:124px; height:43px; color:#fff; font-size:14px; line-height:40px; text-align:center; background:url(../images/hbg.png) center center no-repeat; margin-top:20px;}
-.body .intro .about .presentation .text{ margin-top:20px; padding:0 30px;}
+.body .intro .about .presentation .text{ margin-top:20px; padding:0 22px; font-size: 16px;}
 .body .intro .about .presentation .text p{ text-indent:2em; line-height:25px; font-size:14px;}
 .body .intro .about .presentation .sidemenu{ width:140px; height:390px; background:url(../images/sidemenu_bg.png) 127px center no-repeat; position:absolute; top:-200px; left:-160px;}
 .body .intro .about .presentation .sidemenu li{ text-align:right; line-height:30px; padding-right:30px;}
