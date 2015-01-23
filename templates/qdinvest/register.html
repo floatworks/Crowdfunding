@@ -7,64 +7,60 @@
   <div class="lbanner left"></div>
   <div class="loginform right">
     <div class="title">
-      <h3 class="left">新用户注册</h3>  
-          {% if errors1 %}
-        <p>注册成功，点此<a href="/c/login/">登录</a></p>
-          {% else %}
-      
-             <span class="right">
-             <a href="/c/login/">点此登陆</a>
-           </span>
-      
-      {% endif %}    
+      <h3 class="left">新用户注册</h3>
+      {% if errors1 %}
+      <p>
+        注册成功，点此
+        <a href="/c/login/">登录</a>
+      </p>
+      {% else %}
+      <span class="right">
+        <a href="/c/login/">点此登陆</a>
+      </span>
+      {% endif %}
     </div>
 
     <form id= 'client_form'  method="post" class="form">
-      <div>       
+      <div>
         <input  id="username" type="text" placeholder="用户名:6至15位数字或字母" name="u_name" />
-          <span  id="u_name" class='red'></span> 
-        
-        
+        <span  id="u_name" class='red'></span>
+
       </div>
-      <div>     
-     <input   id ='password' type="password"  placeholder="密码:6至15位，必须包含数字和字母"  name="u_pwd"/> 
+      <div>
+        <input   id ='password' type="password"  placeholder="密码:6至15位，必须包含数字和字母"  name="u_pwd"/>
         <span id='u_pwd' class='red'></span>
-      </div> 
-
-
+      </div>
 
       <div>
-     <input   id ='passwordtest' type="password"  placeholder="确认密码:6至15位，必须包含数字和字母"  name="u_pwdtest"/> 
+        <input   id ='passwordtest' type="password"  placeholder="确认密码:6至15位，必须包含数字和字母"  name="u_pwdtest"/>
         <span id='u_pwdtest' class='red'></span>
-      </div> 
+      </div>
 
+      <div>
+        <input id='telephone' type="text" placeholder="手机号:必填"  name="u_tel" />
 
-
-       <div>
-        <input id='telephone' type="text" placeholder="手机号:必填"  name="u_tel" />  
-        
         <span id='u_tel' class='red'></span>
 
       </div>
       <div>
         <span>
-        <input id='submit1' type='button'  value='免费获取短信验证码'/>
+          <input id='submit1' type='button'  value='免费获取短信验证码'/>
         </span>
         <span id='test'class='red'></span>
       </div>
       <div>
-        
-      <input id='test1' type='text' placeholder='验证码'/> 
-      <span id='test2' class='red'></span> 
-        
-      </div> 
-     <div>
-      <span>
-      <input id='submit'  type="submit" value="注册" /> 
-      </span>
-       </div>    
+
+        <input id='test1' type='text' placeholder='验证码'/>
+        <span id='test2' class='red'></span>
+
+      </div>
+      <div>
+        <span>
+          <input id='submit'  type="submit" value="注册" />
+        </span>
+      </div>
     </form>
-   
+
   </div>
 </div>
 <div class="clearfix"></div>

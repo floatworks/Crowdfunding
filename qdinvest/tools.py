@@ -36,6 +36,7 @@ def SendRandomCode(u_tel):
 	#print RetCode
 	search = re.search('<RetCode>(?P<status>\w+)</RetCode>',r.content)
 	RetCode = search.groupdict()['status']
+	print RetCode
 	if RetCode == 'Sucess':
 		if CheckExist(RANDOMCODE,{'rc_tel':u_tel}):
 			randomCode_obj = RANDOMCODE.objects.get(rc_tel__exact = u_tel)

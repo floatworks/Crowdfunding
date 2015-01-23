@@ -93,7 +93,7 @@ $(document).ready(function(){
 
 
 
-	$("#submit1").blur(function(){
+	$("#submit1").click(function(){
 		$.ajax({
 			url:'/c/test/?u_telephone='+$("#telephone").val(),
 			type:'get',
