@@ -738,7 +738,7 @@ def news2(request):
 		if USERS_objs:
 				if n_type == 'sys':
 					NOTICE_objs = NOTICE.objects.filter(id__exact = n_id)
-					context_dict['notices'] = NOTICE_objs
+					context_dict['notices'] = NOTICE_objs[0]
 					if NOTICE_objs:						
 						if not T.CheckExist(NOTICE_READ,{'nr_user':USERS_objs[0],'nr_notice':NOTICE_objs[0]}):
 							NOTICE_READ_new = NOTICE_READ(nr_user = USERS_objs[0],nr_notice = NOTICE_objs[0])
@@ -748,7 +748,7 @@ def news2(request):
 							ACCOUNT_obj.save()					
 				elif n_type == 'user':
 					NOTICE_USER_objs = NOTICE_USER.objects.filter(id__exact = n_id)
-					context_dict['notice_users'] = NOTICE_USER_objs
+					context_dict['notice_users'] = NOTICE_USER_objs[0]
 					if NOTICE_USER_objs:											
 						if NOTICE_USER_objs[0].nu_is_read == 0:
 							ACCOUNT_obj = ACCOUNT.objects.get(ac_user = USERS_objs[0])

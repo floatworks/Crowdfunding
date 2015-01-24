@@ -69,13 +69,13 @@
                             <td>{{like_project.uf_stock.st_total_price|toTenThous}}万</td>
                             <td>{{like_project.uf_stock.st_current_price|toTenThous}}万</td>
                             <td>
-                                <button class="btn btn-primary" id="btn_payment">查看详情</button>
+                                <button class="btn btn-primary" onclick="window.location.href='/c/sdetail/{{like_project.uf_stock.id}}'">查看详情</button>
                             </td>
                         </tr>
                     {% elif like_project.uf_bond %}
                         <tr>
                             <td>
-                                <a href="/c/sbond/{{like_project.uf_bond.id}}">{{like_project.uf_bond}}</a>
+                                <a href="/c/bdetail/{{like_project.uf_bond.id}}">{{like_project.uf_bond}}</a>
                             </td>
                             <td>债权类</td>
                             <td>{{like_project.uf_bond.bo_industry}}</td>
@@ -84,7 +84,7 @@
                             <td>{{like_project.uf_bond.bo_total_price|toTenThous}}万</td>
                             <td>{{like_project.uf_bond.bo_current_price|toTenThous}}万</td>
                             <td>
-                                <button class="btn btn-primary" id="btn_payment">查看详情</button>
+                                <button class="btn btn-primary" onclick="window.location.href='/c/bdetail/{{like_project.uf_bond.id}}'">查看详情</button>
                             </td>
                         </tr>
                     {% endif %}
